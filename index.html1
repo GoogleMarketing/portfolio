@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><style>
+@font-face {
+  font-family: "Optimistic";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Optimistic Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+}
+:where(html) {
+  font-family: "Optimistic", system-ui, sans-serif;
+}
+:where(code, pre, kbd, samp) {
+  font-family: "Optimistic Mono", ui-monospace, monospace;
+}
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Marketing - Authentic Online Review Provider & Google Map SEO Specialist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore-compat.js"></script>
+    <style>
+        :root {
+            --bg-color: #030712;
+            --surface-color: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.5);
+            --primary-color: #3b82f6;
+            --primary-glow: rgba(59, 130, 246, 0.5);
+            --accent-color: #f59e0b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        h1, h2, h3, h4, h5, h6, .menu-btn, .logo span { font-family: 'Outfit', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+        a { text-decoration: none; color: var(--text-main); transition: all 0.3s ease; }
+        a:hover { color: var(--primary-color); }
+        .ambient-glow { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1; background: radial-gradient(circle at 15% 30%, rgba(59, 130, 246, 0.12), transparent 40%), radial-gradient(circle at 85% 70%, rgba(245, 158, 11, 0.08), transparent 40%); }
+        nav { position: fixed; top: 0; width: 100%; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; background-color: rgba(3, 7, 18, 0.8); backdrop-filter: blur(12px); z-index: 1000; border-bottom: 1px solid var(--border-color); }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo img { width: 45px; height: 45px; border-radius: 8px; object-fit: cover; border: 1px solid var(--border-color); }
+        .logo span { font-weight: 700; font-size: 1.3rem; letter-spacing: 0.5px; background: linear-gradient(to right, #fff, #94a3b8); -webkit-background-clip: text; color: transparent; }
+        .nav-right { display: flex; align-items: center; gap: 15px; }
+        .login-btn { background: rgba(59,130,246,0.1); border: 1px solid var(--primary-color); color: var(--primary-color); padding: 8px 18px; border-radius: 30px; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: 0.3s; }
+        .login-btn:hover { background: var(--primary-color); color: white; }
+        .menu-btn { background: none; border: none; color: var(--text-main); font-size: 0.9rem; font-weight: 600; cursor: pointer; letter-spacing: 2px; display: flex; align-items: center; gap: 8px; }
+        .mobile-menu { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background-color: rgba(3, 7, 18, 0.98); backdrop-filter: blur(20px); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 2000; transform: translateY(-100%); transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        .mobile-menu.active { transform: translateY(0); }
+        .close-menu { position: absolute; top: 30px; right: 5%; background: none; border: none; color: var(--text-main); font-size: 1rem; font-weight: 600; cursor: pointer; letter-spacing: 1px; font-family: 'Outfit', sans-serif; }
+        .mobile-menu ul { list-style: none; text-align: center; }
+        .mobile-menu ul li { margin: 25px 0; }
+        .mobile-menu ul li a { font-size: 2.5rem; font-weight: 600; font-family: 'Outfit', sans-serif; background: linear-gradient(to right, #fff, #fff); -webkit-background-clip: text; color: transparent; transition: 0.3s; }
+        .mobile-menu ul li a:hover { background: linear-gradient(to right, #3b82f6, #60a5fa); -webkit-background-clip: text; }
+        .hero { padding: 160px 5% 100px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
+        .hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; line-height: 1.1; margin-bottom: 20px; }
+        .hero h1 span { background: linear-gradient(135deg, #3b82f6 0%, #a855f7 100%); -webkit-background-clip: text; color: transparent; }
+        .hero p { color: var(--text-muted); font-size: 1.1rem; max-width: 650px; margin-bottom: 40px; font-weight: 400; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 32px; border-radius: 30px; font-weight: 600; font-size: 1rem; transition: all 0.3s ease; cursor: pointer; border: none; font-family: 'Outfit', sans-serif; }
+        .btn-primary { background: linear-gradient(135deg, #2563eb, #3b82f6); color: white; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3); }
+        .btn-primary:hover { box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5); transform: translateY(-2px); }
+        .btn-outline { background-color: transparent; border: 1px solid var(--border-color); color: var(--text-main); }
+        .btn-outline:hover { background-color: rgba(255, 255, 255, 0.05); border-color: var(--text-muted); }
+        .trust-counter { padding: 0 5% 80px; margin-top: -60px; position: relative; z-index: 10; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto; }
+        .stat-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px; padding: 30px 20px; text-align: center; backdrop-filter: blur(12px); transition: all 0.4s ease; }
+        .stat-card:hover { transform: translateY(-8px); border-color: var(--primary-color); box-shadow: 0 15px 30px rgba(59, 130, 246, 0.15); }
+        .stat-icon { font-size: 2.2rem; color: var(--primary-color); margin-bottom: 15px; filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.4)); }
+        .stat-number { font-size: 2.5rem; font-weight: 700; color: white; font-family: 'Outfit', sans-serif; margin-bottom: 5px; line-height: 1.2; }
+        .stat-text { color: var(--text-muted); font-size: 1rem; font-weight: 500; }
+        section { padding: 100px 5%; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .badge { display: inline-block; padding: 6px 16px; background-color: rgba(59, 130, 246, 0.1); color: var(--primary-color); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 30px; font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 20px; }
+        .section-header h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: 15px; }
+        .section-header p { color: var(--text-muted); max-width: 600px; margin: 0 auto; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .service-card { background-color: var(--card-bg); backdrop-filter: blur(10px); padding: 40px 30px; border-radius: 20px; border: 1px solid var(--border-color); transition: all 0.4s ease; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+        .service-card:hover { transform: translateY(-10px); border-color: var(--primary-color); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); }
+        .service-icon { width: 65px; height: 65px; background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.05)); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: var(--primary-color); margin-bottom: 25px; }
+        .service-card h3 { font-size: 1.5rem; margin-bottom: 15px; }
+        .service-card p { color: var(--text-muted); margin-bottom: 20px; }
+        .service-card ul { list-style: none; color: var(--text-muted); margin-top: auto; margin-bottom: 25px; }
+        .service-card ul li { margin-bottom: 12px; display: flex; align-items: flex-start; gap: 12px; font-size: 0.95rem; }
+        .service-card ul li i { color: var(--primary-color); margin-top: 5px; font-size: 0.8rem; }
+        .cta-badge { display: inline-block; margin-top: auto; padding: 12px 18px; background: rgba(59, 130, 246, 0.05); border: 1px solid var(--primary-color); border-radius: 12px; color: var(--text-main); font-weight: 600; font-size: 1rem; text-align: center; text-decoration: none; transition: all 0.3s ease; }
+        .cta-badge:hover { background: rgba(59, 130, 246, 0.2); box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3); transform: translateY(-2px); color: white; }
+        .guarantee-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: stretch; max-width: 1200px; margin: 0 auto; }
+        .payment-panel, .guarantee-panel { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 24px; padding: 40px; backdrop-filter: blur(12px); }
+        .guarantee-panel { border-color: var(--primary-color); box-shadow: 0 0 40px rgba(59, 130, 246, 0.15); position: relative; }
+        .guarantee-panel::before { content: ''; position: absolute; inset: -1px; background: linear-gradient(135deg, var(--primary-color), transparent 60%); border-radius: 24px; z-index: -1; opacity: 0.5; }
+        .panel-title { font-size: 1.8rem; margin-bottom: 30px; font-weight: 700; display: flex; align-items: center; gap: 12px; }
+        .panel-title i { color: var(--primary-color); }
+        .payment-group { margin-bottom: 30px; }
+        .payment-methods { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .payment-item { display: flex; align-items: center; gap: 12px; padding: 16px; border-radius: 12px; border: 1px solid var(--border-color); transition: all 0.3s ease; font-weight: 500; }
+        .active-method { border-color: rgba(59, 130, 246, 0.4); background: rgba(59, 130, 246, 0.05); }
+        .active-method:hover { border-color: var(--primary-color); background: rgba(59, 130, 246, 0.1); transform: translateY(-2px); }
+        .active-method i { font-size: 1.4rem; color: var(--primary-color); }
+        .active-method .fa-check-circle { color: #10b981; font-size: 1.1rem; margin-left: auto; }
+        .disabled-method { opacity: 0.6; filter: grayscale(80%); background: rgba(0,0,0,0.2); }
+        .disabled-method i { font-size: 1.4rem; color: var(--text-muted); }
+        .not-accepted-badge { margin-left: auto; background: rgba(239, 68, 68, 0.15); color: #ef4444; font-size: 0.75rem; padding: 4px 8px; border-radius: 8px; border: 1px solid rgba(239, 68, 68, 0.3); font-weight: 600; }
+        .guarantee-list { list-style: none; }
+        .guarantee-list li { margin-bottom: 22px; display: flex; align-items: flex-start; gap: 16px; font-size: 1.05rem; color: var(--text-main); line-height: 1.5; }
+        .guarantee-list li i { color: #10b981; font-size: 1.3rem; margin-top: 2px; background: rgba(16, 185, 129, 0.1); padding: 5px; border-radius: 50%; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+        .gallery-item { position: relative; border-radius: 15px; overflow: hidden; aspect-ratio: 9 / 16; cursor: pointer; border: 1px solid var(--border-color); }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .gallery-item:hover img { transform: scale(1.05); }
+        .faq-container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
+        .faq-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; overflow: hidden; backdrop-filter: blur(10px); transition: all 0.3s ease; }
+        .faq-question { padding: 22px 30px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 600; font-size: 1.1rem; color: var(--text-main); transition: all 0.3s ease; }
+        .faq-question:hover { color: var(--primary-color); }
+        .faq-question i { transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); color: var(--primary-color); font-size: 1.2rem; }
+        .faq-answer { padding: 0 30px; max-height: 0; overflow: hidden; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); color: var(--text-muted); opacity: 0; }
+        .faq-item.active { border-color: var(--primary-color); box-shadow: 0 5px 20px rgba(59, 130, 246, 0.15); }
+        .faq-item.active .faq-question { color: var(--primary-color); }
+        .faq-item.active .faq-question i { transform: rotate(180deg); }
+        .faq-item.active .faq-answer { padding: 0 30px 22px; max-height: 300px; opacity: 1; }
+        .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 24px; padding: 40px; backdrop-filter: blur(10px); }
+        .contact-info-panel h3 { font-size: 2rem; margin-bottom: 20px; }
+        .contact-info-panel p { color: var(--text-muted); margin-bottom: 30px; }
+        .info-item { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
+        .info-item .icon { width: 45px; height: 45px; background-color: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--primary-color); font-size: 1.2rem; }
+        .info-item div p:first-child { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 0; }
+        .info-item div p:last-child { font-weight: 600; color: var(--text-main); margin-bottom: 0; }
+        .custom-form { display: flex; flex-direction: column; gap: 20px; }
+        .input-group { display: flex; flex-direction: column; gap: 8px; }
+        .input-group label { font-size: 0.9rem; color: var(--text-muted); font-weight: 500; }
+        .input-group input, .input-group textarea { width: 100%; padding: 15px; background-color: rgba(0,0,0,0.2); border: 1px solid var(--border-color); border-radius: 10px; color: white; font-size: 1rem; transition: 0.3s; }
+        .input-group input:focus, .input-group textarea:focus { outline: none; border-color: var(--primary-color); background-color: rgba(59, 130, 246, 0.05); }
+        .send-options { display: none; flex-direction: column; gap: 15px; margin-top: 10px; animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        .btn-wa { background-color: #25D366; color: white; border: none; }
+        .btn-tg { background-color: #0088cc; color: white; border: none; }
+        .btn-mail { background-color: #ea4335; color: white; border: none; }
+        .btn-wa:hover { background-color: #1ebe57; transform: translateY(-2px); }
+        .btn-tg:hover { background-color: #0077b5; transform: translateY(-2px); }
+        .btn-mail:hover { background-color: #d33828; transform: translateY(-2px); }
+        .modal { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.95); justify-content: center; align-items: center; }
+        .modal-content { max-width: 90%; max-height: 90vh; border-radius: 12px; }
+        .close-modal { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; font-weight: 300; cursor: pointer; }
+        .footer-trust-badges { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 30px; padding-top: 25px; border-top: 1px solid rgba(255,255,255,0.05); }
+        .footer-badge { display: flex; align-items: center; gap: 10px; color: var(--text-muted); font-size: 0.95rem; font-weight: 500; }
+        .footer-badge i { color: var(--primary-color); font-size: 1.2rem; }
+        /* Firebase Auth & Private Sections */
+        .auth-modal { display: none; position: fixed; inset: 0; background: rgba(3,7,18,0.85); backdrop-filter: blur(12px); z-index: 5000; justify-content: center; align-items: center; padding: 20px; }
+        .auth-modal.active { display: flex; }
+        .auth-box { background: #0f172a; border: 1px solid var(--border-color); border-radius: 20px; padding: 35px; width: 100%; max-width: 420px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+        .auth-box h3 { font-size: 1.8rem; margin-bottom: 10px; text-align: center; }
+        .auth-box p { color: var(--text-muted); font-size: 0.9rem; text-align: center; margin-bottom: 25px; }
+        .auth-input { width: 100%; padding: 14px; background: rgba(0,0,0,0.3); border: 1px solid var(--border-color); border-radius: 12px; color: white; margin-bottom: 15px; font-size: 0.95rem; }
+        .auth-input:focus { outline: none; border-color: var(--primary-color); }
+        .auth-btn { width: 100%; padding: 14px; border-radius: 30px; border: none; background: linear-gradient(135deg, #2563eb, #3b82f6); color: white; font-weight: 600; cursor: pointer; margin-bottom: 12px; transition: 0.3s; }
+        .auth-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(59,130,246,0.3); }
+        .auth-btn.secondary { background: transparent; border: 1px solid var(--border-color); color: var(--text-muted); }
+        .auth-btn.google { background: white; color: #030712; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .private-lock { position: relative; overflow: hidden; }
+        .private-overlay { position: absolute; inset: 0; background: rgba(3,7,18,0.85); backdrop-filter: blur(8px); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px; z-index: 5; border-radius: 20px; }
+        .private-section { display: none; }
+        .private-section.unlocked { display: block; }
+        .private-pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px; }
+        .pricing-card { background: var(--card-bg); border: 1px solid var(--primary-color); border-radius: 20px; padding: 30px; text-align: center; }
+        .pricing-card h4 { font-size: 1.3rem; margin-bottom: 10px; }
+        .pricing-card .price { font-size: 2rem; font-weight: 800; color: var(--primary-color); margin: 15px 0; }
+        .pricing-card .price span { font-size: 0.9rem; color: var(--text-muted); font-weight: 400; }
+        .admin-panel { display: none; position: fixed; bottom: 20px; right: 20px; z-index: 4000; background: #0f172a; border: 1px solid var(--primary-color); border-radius: 20px; padding: 20px; width: 380px; max-height: 85vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.6); }
+        .admin-panel.active { display: block; }
+        .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .admin-toggle-btn { position: fixed; bottom: 20px; right: 20px; z-index: 3999; background: var(--primary-color); color: white; border: none; padding: 14px 22px; border-radius: 30px; font-weight: 700; cursor: pointer; box-shadow: 0 8px 20px rgba(59,130,246,0.4); display: none; }
+        .admin-toggle-btn.show { display: flex; align-items: center; gap: 8px; }
+        .chat-widget { position: fixed; bottom: 90px; right: 20px; width: 340px; height: 420px; background: #0f172a; border: 1px solid var(--border-color); border-radius: 20px; display: none; flex-direction: column; z-index: 3998; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+        .chat-widget.active { display: flex; }
+        .chat-header { padding: 15px 20px; background: rgba(59,130,246,0.1); border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; font-weight: 600; }
+        .chat-messages { flex: 1; overflow-y: auto; padding: 15px; display: flex; flex-direction: column; gap: 10px; }
+        .chat-msg { padding: 10px 14px; border-radius: 16px; font-size: 0.9rem; max-width: 80%; }
+        .chat-msg.user { background: var(--primary-color); color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
+        .chat-msg.admin { background: rgba(255,255,255,0.08); color: var(--text-main); align-self: flex-start; border-bottom-left-radius: 4px; }
+        .chat-input-area { padding: 12px; border-top: 1px solid var(--border-color); display: flex; gap: 8px; }
+        .chat-input-area input { flex: 1; padding: 10px 14px; border-radius: 20px; border: 1px solid var(--border-color); background: rgba(0,0,0,0.3); color: white; }
+        @media (max-width: 991px) { .contact-wrapper, .guarantee-wrapper { grid-template-columns: 1fr; } .payment-methods { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) { .hero { padding-top: 130px; text-align: center; align-items: center; } .trust-counter { padding: 0 5% 50px; margin-top: 0; } .admin-panel { width: 95%; right: 2.5%; left: 2.5%; bottom: 10px; } .chat-widget { width: 95%; right: 2.5%; left: 2.5%; } }
+    </style>
+</head>
+<body>
+    <div class="ambient-glow"></div>
+    <nav>
+        <div class="logo"><img src="https://i.ibb.co.com/GfswcC5V/FB-IMG-1791925489216.jpg" alt="Google Marketing Logo"><span>Google Marketing</span></div>
+        <div class="nav-right">
+            <button id="authBtn" class="login-btn" onclick="openAuthModal()"><i class="fas fa-user"></i> Login</button>
+            <button class="menu-btn" onclick="toggleMenu()">MENU <i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="close-menu" onclick="toggleMenu()"><i class="fas fa-times"></i> CLOSE</button>
+        <ul>
+            <li><a href="#home" onclick="toggleMenu()">Home</a></li>
+            <li><a href="#services" onclick="toggleMenu()">Services</a></li>
+            <li><a href="#privatePricing" onclick="toggleMenu()">Pricing</a></li>
+            <li><a href="#guarantee" onclick="toggleMenu()">Guarantee</a></li>
+            <li><a href="#reviews" onclick="toggleMenu()">Reviews</a></li>
+            <li><a href="#about" onclick="toggleMenu()">About Me</a></li>
+            <li><a href="#faq" onclick="toggleMenu()">FAQ</a></li>
+            <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+        </ul>
+    </div>
+    <!-- Auth Modal -->
+    <div id="authModal" class="auth-modal">
+        <div class="auth-box">
+            <h3 id="authTitle">Welcome Back</h3>
+            <p id="authDesc">Login to see private pricing & chat with us</p>
+            <input id="authEmail" class="auth-input" type="email" placeholder="Email address">
+            <input id="authPass" class="auth-input" type="password" placeholder="Password (min 6 chars)">
+            <button class="auth-btn" onclick="handleEmailAuth()"><span id="authMainBtnText">Login / Sign Up</span></button>
+            <button class="auth-btn google" onclick="handleGoogleAuth()"><i class="fab fa-google"></i> Continue with Google</button>
+            <button class="auth-btn secondary" onclick="closeAuthModal()">Cancel</button>
+            <p style="font-size:0.75rem;color:var(--text-muted);text-align:center;margin-top:15px;">Admin: afshakil279@gmail.com<br>Clients: anyone can create account</p>
+        </div>
+    </div>
+    <section id="home" class="hero">
+        <span class="badge">Professional Agency</span>
+        <h1>Hi, I'm Shakil<br><span>Authentic Review & SEO Specialist</span></h1>
+        <p>Owner of Google Marketing. We help businesses scale rapidly with safe, authentic reviews, powerful Google Map SEO, and targeted digital marketing solutions.</p>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+            <a href="#contact" class="btn btn-primary">Start Your Project</a>
+            <a href="#services" class="btn btn-outline">Explore Services</a>
+            <span id="userWelcome" style="display:none;align-self:center;color:var(--primary-color);font-weight:600;"></span>
+        </div>
+    </section>
+    <div class="trust-counter">
+        <div class="stats-grid">
+            <div class="stat-card"><div class="stat-icon"><i class="fas fa-check-double"></i></div><div class="stat-number" id="statProjects">500+</div><div class="stat-text">Projects Completed</div></div>
+            <div class="stat-card"><div class="stat-icon"><i class="fas fa-globe"></i></div><div class="stat-number" id="statClients">300+</div><div class="stat-text">Global Clients</div></div>
+            <div class="stat-card"><div class="stat-icon"><i class="fas fa-award"></i></div><div class="stat-number" id="statYears">3+</div><div class="stat-text">Years Experience</div></div>
+            <div class="stat-card"><div class="stat-icon"><i class="fas fa-shield-alt"></i></div><div class="stat-number">100%</div><div class="stat-text">Safe & Non-Drop</div></div>
+        </div>
+    </div>
+    <section id="services" style="background-color: var(--surface-color);">
+        <div class="section-header"><span class="badge">Our Expertise</span><h2>Premium Digital Solutions</h2><p>Comprehensive strategies engineered to elevate your brand's digital footprint and credibility.</p></div>
+        <div class="services-grid">
+            <div class="service-card"><div class="service-icon"><i class="fab fa-google-play"></i></div><h3>Play Store Review</h3><p>Authentic and safe reviews for your mobile applications to boost visibility and credibility.</p><ul><li><i class="fas fa-check-circle"></i> 100% Safe & Authentic</li><li><i class="fas fa-check-circle"></i> Gradual Natural Delivery</li><li><i class="fas fa-check-circle"></i> Positive Rating Impact</li></ul><a href="#privatePricing" class="cta-badge">🔒 Login to See Pricing</a></div>
+            <div class="service-card"><div class="service-icon"><i class="fas fa-map-marked-alt"></i></div><h3>Google Map Review</h3><p>Professional Google My Business reviews to dominate your local market presence.</p><ul><li><i class="fas fa-check-circle"></i> Real User Profiles</li><li><i class="fas fa-check-circle"></i> Local Trust Building</li><li><i class="fas fa-check-circle"></i> Detailed Reporting</li></ul><a href="#privatePricing" class="cta-badge">🔒 Login to See Pricing</a></div>
+            <div class="service-card"><div class="service-icon"><i class="fas fa-search-location"></i></div><h3>Google Map SEO (GMB)</h3><p>Complete optimization of your business profile for maximum local search visibility.</p><ul><li><i class="fas fa-check-circle"></i> Profile Optimization</li><li><i class="fas fa-check-circle"></i> Local Keyword Strategy</li><li><i class="fas fa-check-circle"></i> Ranking Monitoring</li></ul><a href="#privatePricing" class="cta-badge">🔒 Login to See Pricing</a></div>
+            <div class="service-card"><div class="service-icon"><i class="fas fa-bullhorn"></i></div><h3>Digital Marketing</h3><p>Lead generation and targeted campaigns to acquire and retain premium customers.</p><ul><li><i class="fas fa-check-circle"></i> Lead Generation</li><li><i class="fas fa-check-circle"></i> Social Media Ads</li><li><i class="fas fa-check-circle"></i> High ROI Campaigns</li></ul><a href="#privatePricing" class="cta-badge">🔒 Login to See Pricing</a></div>
+        </div>
+    </section>
+    <!-- Private Pricing Section - Only for logged in users -->
+    <section id="privatePricing" class="private-section" style="background-color: var(--bg-color); position: relative;">
+        <div class="section-header"><span class="badge" style="background: rgba(16,185,129,0.1); color: #10b981; border-color: rgba(16,185,129,0.2);"><i class="fas fa-lock-open"></i> Private Access</span><h2>Exclusive Pricing for Members</h2><p>Only logged-in clients can see our real pricing. This is hidden from public.</p></div>
+        <div id="privatePricingContent" class="private-pricing-grid">
+            <div class="pricing-card"><h4><i class="fab fa-google-play" style="color:var(--primary-color);"></i> Play Store Review</h4><div class="price" id="pricePlay">$1.2 <span>/ per review</span></div><p style="color:var(--text-muted);font-size:0.9rem;">Min 10 reviews, daily 2-5 delivery, 100% manual</p><a href="#contact" class="btn btn-primary" style="margin-top:15px;width:100%;">Order Now</a></div>
+            <div class="pricing-card"><h4><i class="fas fa-map-marked-alt" style="color:var(--primary-color);"></i> Google Map Review</h4><div class="price" id="priceMap">$2.5 <span>/ per review</span></div><p style="color:var(--text-muted);font-size:0.9rem;">Real profiles, local IP, detailed report</p><a href="#contact" class="btn btn-primary" style="margin-top:15px;width:100%;">Order Now</a></div>
+            <div class="pricing-card"><h4><i class="fas fa-search-location" style="color:var(--primary-color);"></i> GMB SEO Full Setup</h4><div class="price" id="priceSeo">$99 <span>/ one time</span></div><p style="color:var(--text-muted);font-size:0.9rem;">Full optimization + 1 month ranking support</p><a href="#contact" class="btn btn-primary" style="margin-top:15px;width:100%;">Order Now</a></div>
+            <div class="pricing-card"><h4><i class="fas fa-bullhorn" style="color:var(--primary-color);"></i> Lead Generation</h4><div class="price" id="priceLead">$149 <span>/ per campaign</span></div><p style="color:var(--text-muted);font-size:0.9rem;">Targeted leads, high ROI, weekly report</p><a href="#contact" class="btn btn-primary" style="margin-top:15px;width:100%;">Order Now</a></div>
+        </div>
+        <div id="pricingLoginPrompt" class="private-overlay" style="display:flex;"><div><i class="fas fa-lock" style="font-size:3rem;color:var(--primary-color);margin-bottom:20px;"></i><h3 style="font-size:1.8rem;margin-bottom:10px;">Pricing is Private</h3><p style="color:var(--text-muted);margin-bottom:25px;">Create a free account to see our exclusive pricing. Public visitors see only quote button.</p><button class="btn btn-primary" onclick="openAuthModal()">🔓 Login to Unlock Pricing</button></div></div>
+    </section>
+    <section id="guarantee">
+        <div class="section-header"><span class="badge">Trust & Transparency</span><h2>Our Agency Guarantee</h2><p>We believe in building long-term partnerships through 100% secure, transparent, and result-oriented work processes.</p></div>
+        <div class="guarantee-wrapper">
+            <div class="payment-panel"><h3 class="panel-title"><i class="fas fa-wallet"></i> Accepted Payments</h3><div class="payment-group"><h4 style="color: #10b981; margin-bottom: 15px; font-size: 1.1rem; font-weight: 600;"><i class="fas fa-check-circle" style="margin-right: 5px;"></i> We Accept (Primary)</h4><div class="payment-methods"><div class="payment-item active-method"><i class="fas fa-mobile-alt"></i> Bkash<i class="fas fa-check-circle"></i></div><div class="payment-item active-method"><i class="fas fa-mobile-alt"></i> Nagad<i class="fas fa-check-circle"></i></div><div class="payment-item active-method"><i class="fab fa-bitcoin"></i> USDT (TRC20/BEP20)<i class="fas fa-check-circle"></i></div><div class="payment-item active-method"><i class="fab fa-btc"></i> Binance Pay / Balance<i class="fas fa-check-circle"></i></div></div></div><div class="payment-group" style="margin-bottom: 0;"><h4 style="color: #ef4444; margin-bottom: 15px; font-size: 1.1rem; font-weight: 600;"><i class="fas fa-times-circle" style="margin-right: 5px;"></i> Not Accepted Directly</h4><div class="payment-methods"><div class="payment-item disabled-method"><i class="fab fa-paypal"></i> PayPal<span class="not-accepted-badge">Not Accepted</span></div><div class="payment-item disabled-method"><i class="fas fa-money-check-alt"></i> Payoneer<span class="not-accepted-badge">Not Accepted</span></div><div class="payment-item disabled-method"><i class="fas fa-exchange-alt"></i> Wise<span class="not-accepted-badge">Not Accepted</span></div><div class="payment-item disabled-method"><i class="fas fa-university"></i> Bank Transfer<span class="not-accepted-badge">Not Accepted</span></div></div><p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 18px; line-height: 1.6; padding: 12px; background: rgba(0,0,0,0.2); border-radius: 8px; border: 1px solid var(--border-color);"><i class="fas fa-info-circle" style="color: var(--primary-color);"></i> We show these for information, but we currently don't accept them directly. Please use crypto/bKash methods, as Binance supports all crypto wallets for deposit.</p></div></div>
+            <div class="guarantee-panel"><h3 class="panel-title"><i class="fas fa-shield-alt"></i> Our Working Policy</h3><ul class="guarantee-list"><li><i class="fas fa-handshake"></i><div><strong>Pay Only For Live & Published Reviews</strong><br><span style="font-size: 0.9rem; color: var(--text-muted);">We charge only for reviews that are live and visible. We submit a daily report and you pay only for the live ones in that report.</span></div></li><li><i class="fas fa-lock"></i><div><strong>100% Manual & Safe Method</strong><br><span style="font-size: 0.9rem; color: var(--text-muted);">We follow 100% manual Play Store search, install & review method. But as Google's policy changes frequently, we cannot provide any absolute guarantee - we work with the safest method possible.</span></div></li><li><i class="fas fa-file-invoice-dollar"></i><div><strong>Daily Report & Daily Payment</strong><br><span style="font-size: 0.9rem; color: var(--text-muted);">We will add only the published reviews to our daily report. You just need to count the live reviews from the report and pay for those only. No extra charge.</span></div></li><li><i class="fas fa-ban"></i><div><strong>No Refill / No Money-Back Commitment</strong><br><span style="font-size: 0.9rem; color: var(--text-muted);">Since we only take payment for reviews that are already published and live, there is no need for refill or refund policy. You pay for what you get.</span></div></li><li><i class="fas fa-headset"></i><div><strong>24/7 Live Support</strong><br><span style="font-size: 0.9rem; color: var(--text-muted);">Always available to answer your queries and provide live updates on WhatsApp & Telegram.</span></div></li></ul></div>
+        </div>
+    </section>
+    <section id="reviews" style="background-color: var(--surface-color);"><div class="section-header"><span class="badge">Proof of Work</span><h2>Delivered Excellence</h2><p>Real results from real campaigns. Browse through some of the authentic reviews we've successfully delivered for our global clients.</p></div><div class="gallery-grid" id="reviewsGrid"><div class="gallery-item" onclick="openModal('https://i.ibb.co.com/mVcbPvkH/Screenshot-20261017-172628.jpg')"><img src="https://i.ibb.co.com/mVcbPvkH/Screenshot-20261017-172628.jpg" alt="Review 1" loading="lazy"></div><div class="gallery-item" onclick="openModal('https://i.ibb.co.com/s9Z91s78/Screenshot-20261017-172704.jpg')"><img src="https://i.ibb.co.com/s9Z91s78/Screenshot-20261017-172704.jpg" alt="Review 2" loading="lazy"></div><div class="gallery-item" onclick="openModal('https://i.ibb.co.com/rfZS4sk5/Screenshot-20261017-172755.jpg')"><img src="https://i.ibb.co.com/rfZS4sk5/Screenshot-20261017-172755.jpg" alt="Review 3" loading="lazy"></div><div class="gallery-item" onclick="openModal('https://i.ibb.co.com/BHXRQd3M/Screenshot-20261017-172824.jpg')"><img src="https://i.ibb.co.com/BHXRQd3M/Screenshot-20261017-172824.jpg" alt="Review 4" loading="lazy"></div><div class="gallery-item" onclick="openModal('https://i.ibb.co.com/ZRmX1KD6/file-00000000a0c482119588a0de1452fd69.png')"><img src="https://i.ibb.co.com/ZRmX1KD6/file-00000000a0c482119588a0de1452fd69.png" alt="Review 5" loading="lazy"></div><div class="gallery-item" onclick="openModal('https://i.ibb.co.com/WWWyWh5j/file-00000000f3688211bf516c208be32272.png')"><img src="https://i.ibb.co.com/WWWyWh5j/file-00000000f3688211bf516c208be32272.png" alt="Review 6" loading="lazy"></div></div></section>
+    <section id="about"><div class="section-header"><span class="badge">The Founder</span><h2>About Shakil</h2></div><div class="contact-wrapper" style="max-width: 1000px; margin: 0 auto; align-items: center;"><div style="text-align: center;"><img src="https://i.ibb.co.com/V0rL4WJN/IMG-20261017-142414-396.png" alt="Shakil" style="width: 250px; height: 250px; border-radius: 20px; object-fit: cover; border: 2px solid var(--border-color); box-shadow: 0 10px 30px rgba(0,0,0,0.5);"></div><div><h3 style="font-size: 2rem; margin-bottom: 5px;">Meet Shakil</h3><h4 style="color: var(--primary-color); margin-bottom: 20px; font-weight: 500;">Founder & CEO, Google Marketing</h4><p style="color: var(--text-muted); margin-bottom: 15px;">Shakil is the founder of Google Marketing, a premium digital agency specializing in authentic online review services and Google Map SEO.</p><p style="color: var(--text-muted);">His commitment to transparency, quality, and 100% safe methods has made Google Marketing a trusted name.</p></div></div></section>
+    <section id="faq" style="background-color: var(--surface-color);"><div class="section-header"><span class="badge">Clear Your Doubts</span><h2>Frequently Asked Questions</h2><p>Everything you need to know about our honest working process.</p></div><div class="faq-container"><div class="faq-item"><div class="faq-question">Are your reviews safe for my app/business?<i class="fas fa-chevron-down"></i></div><div class="faq-answer">We use 100% manual method - real search, real install, real review. It's the safest method in the market. But we cannot give you 100% guarantee because Google Play / Map policy changes anytime and it's not our property.</div></div><div class="faq-item"><div class="faq-question">Will the reviews ever drop or disappear?<i class="fas fa-chevron-down"></i></div><div class="faq-answer">Reviews can drop anytime due to Google's algorithm. That's why our system is different - we charge you ONLY for reviews that are currently live. If any review drops, you don't need to pay for it.</div></div><div class="faq-item"><div class="faq-question">What payment methods do you accept?<i class="fas fa-chevron-down"></i></div><div class="faq-answer">We ONLY accept Bkash, Nagad, USDT (TRC20/BEP20), and Binance Pay / Binance Balance.</div></div></div></section>
+    <section id="contact"><div class="section-header"><span class="badge">Let's Connect</span><h2>Start Your Project Today</h2><p>Fill out the details below and select your preferred platform to send us a direct message.</p></div><div class="contact-wrapper" style="max-width: 1100px; margin: 0 auto;"><div class="contact-info-panel"><h3>Contact Info</h3><p>We are available 24/7 to answer your queries and help your business grow.</p><div class="info-item"><div class="icon"><i class="fas fa-building"></i></div><div><p>Agency</p><p>Google Marketing</p></div></div><div class="info-item"><div class="icon"><i class="fab fa-whatsapp"></i></div><div><p>WhatsApp</p><p>+880 1647-323233</p></div></div><div class="info-item"><div class="icon"><i class="fab fa-telegram-plane"></i></div><div><p>Telegram</p><p>@DirectorShakil</p></div></div><div class="info-item"><div class="icon"><i class="fas fa-envelope"></i></div><div><p>Email</p><p>24.7.g00glemarketing@gmail.com</p></div></div></div><div class="custom-form"><div class="input-group"><label>App Name / Map Link / ID</label><input type="text" id="appName" placeholder="e.g. My App Name or Link" required></div><div class="input-group"><label>Your Contact Info</label><input type="text" id="userContact" placeholder="Your WhatsApp number or Email" required></div><div class="input-group"><label>Requirements / Message</label><textarea id="userMessage" rows="4" placeholder="Tell us what you need..."></textarea></div><button class="btn btn-primary" id="mainSubmitBtn" onclick="showOptions()" style="width: 100%; margin-top: 10px;">Choose Send Option <i class="fas fa-arrow-right"></i></button><div class="send-options" id="sendOptionsBlock"><p style="font-size: 0.9rem; color: var(--text-muted); text-align: center; margin-bottom: 5px;">Send message via:</p><button class="btn btn-wa" onclick="sendMessage('whatsapp')"><i class="fab fa-whatsapp"></i> Send via WhatsApp</button><button class="btn btn-tg" onclick="sendMessage('telegram')"><i class="fab fa-telegram-plane"></i> Send via Telegram</button><button class="btn btn-mail" onclick="sendMessage('email')"><i class="fas fa-envelope"></i> Send via Email</button></div></div></div></section>
+    <footer style="background-color: #02040a; padding: 60px 5% 30px; border-top: 1px solid var(--border-color);"><div style="text-align: center; margin-bottom: 30px;"><img src="https://i.ibb.co.com/GfswcC5V/FB-IMG-1791925489216.jpg" alt="Logo" style="width: 50px; border-radius: 8px; margin-bottom: 15px;"><h3 style="font-family: 'Outfit'; font-size: 1.5rem;">Google Marketing</h3><p style="color: var(--text-muted); max-width: 500px; margin: 15px auto;">Premium online review services and Google Map SEO optimization. Empowering businesses worldwide.</p></div><div class="footer-trust-badges"><div class="footer-badge"><i class="fas fa-user-check"></i> Manual Work - Real Users</div><div class="footer-badge"><i class="fas fa-file-invoice"></i> Pay Only For Live Reviews</div><div class="footer-badge"><i class="fas fa-headset"></i> 24/7 Live Support</div></div><div style="text-align: center; padding-top: 25px; color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">&copy; 2026 Google Marketing. All rights reserved.</div></footer>
+    <div id="imageModal" class="modal" onclick="closeModal()"><span class="close-modal">&times;</span><img class="modal-content" id="modalImg"></div>
+    <!-- Admin Panel -->
+    <button id="adminToggleBtn" class="admin-toggle-btn" onclick="toggleAdminPanel()"><i class="fas fa-cogs"></i> Admin Panel</button>
+    <div id="adminPanel" class="admin-panel">
+        <div class="admin-header"><h3 style="font-size:1.2rem;"><i class="fas fa-shield-alt" style="color:var(--primary-color);"></i> Admin Panel</h3><button onclick="toggleAdminPanel()" style="background:none;border:none;color:white;font-size:1.2rem;cursor:pointer;"><i class="fas fa-times"></i></button></div>
+        <div style="margin-bottom:20px;"><h4 style="font-size:0.9rem;color:var(--text-muted);margin-bottom:10px;">STATS EDITOR</h4><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;"><input id="adminStatProjects" class="auth-input" placeholder="Projects (e.g. 500+)"><input id="adminStatClients" class="auth-input" placeholder="Clients (e.g. 300+)"><input id="adminStatYears" class="auth-input" placeholder="Years (e.g. 3+)"></div><button class="auth-btn" onclick="saveStats()">Save Stats</button></div>
+        <div style="margin-bottom:20px;"><h4 style="font-size:0.9rem;color:var(--text-muted);margin-bottom:10px;">PRICING EDITOR (Private)</h4><input id="adminPricePlay" class="auth-input" placeholder="Play Store Price (e.g. $1.2 / per review)"><input id="adminPriceMap" class="auth-input" placeholder="Map Review Price"><input id="adminPriceSeo" class="auth-input" placeholder="GMB SEO Price"><input id="adminPriceLead" class="auth-input" placeholder="Lead Gen Price"><button class="auth-btn" onclick="savePricing()">Save Pricing</button></div>
+        <div style="margin-bottom:20px;"><h4 style="font-size:0.9rem;color:var(--text-muted);margin-bottom:10px;">ADD NEW REVIEW IMAGE</h4><input id="adminReviewUrl" class="auth-input" placeholder="Image URL (i.ibb.co...)"><button class="auth-btn" onclick="addReviewImage()">Add to Gallery</button></div>
+        <div><h4 style="font-size:0.9rem;color:var(--text-muted);margin-bottom:10px;">RECENT INQUIRIES</h4><div id="adminInquiries" style="max-height:200px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;"></div></div>
+    </div>
+    <!-- Chat Widget -->
+    <div id="chatWidget" class="chat-widget"><div class="chat-header"><span><i class="fas fa-comments" style="color:var(--primary-color);"></i> Live Chat</span><button onclick="toggleChat()" style="background:none;border:none;color:white;cursor:pointer;"><i class="fas fa-times"></i></button></div><div id="chatMessages" class="chat-messages"></div><div class="chat-input-area"><input id="chatInput" placeholder="Type your message..." onkeypress="if(event.key==='Enter') sendChatMessage()"><button onclick="sendChatMessage()" style="background:var(--primary-color);border:none;color:white;padding:10px 16px;border-radius:20px;cursor:pointer;"><i class="fas fa-paper-plane"></i></button></div></div>
+    <button id="chatToggleBtn" onclick="toggleChat()" style="position:fixed;bottom:20px;left:20px;z-index:3999;background:#25D366;color:white;border:none;padding:14px 18px;border-radius:50%;cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,0.3);display:none;"><i class="fas fa-comments" style="font-size:1.3rem;"></i></button>
+    <script>
+        // Firebase Config - Same project as before
+        const firebaseConfig = {
+            apiKey: "AIzaSyA_RWWB-CI-Bp31NeVR-PHZe8HyNmWni9E",
+            authDomain: "email-marketing-d7597.firebaseapp.com",
+            databaseURL: "https://email-marketing-d7587-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "email-marketing-d7597",
+            storageBucket: "email-marketing-d7597.firebasestorage.app",
+            messagingSenderId: "317421169576",
+            appId: "1:317421169576:web:c11a90d1033395d6720b9d"
+        };
+        const ADMIN_EMAILS = ["afshakil279@gmail.com"];
+        if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+        let currentUser = null;
+        let isAdmin = false;
+
+        // Auth Modal
+        function openAuthModal() { document.getElementById('authModal').classList.add('active'); }
+        function closeAuthModal() { document.getElementById('authModal').classList.remove('active'); }
+        function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('active'); }
+        function openModal(src) { document.getElementById('imageModal').style.display = 'flex'; document.getElementById('modalImg').src = src; }
+        function closeModal() { document.getElementById('imageModal').style.display = 'none'; }
+
+        // FAQ
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.querySelector('.faq-question').addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                    if (!isActive) item.classList.add('active');
+                });
+            });
+        });
+
+        // Auth Logic
+        async function handleEmailAuth() {
+            const email = document.getElementById('authEmail').value.trim();
+            const pass = document.getElementById('authPass').value.trim();
+            if (!email || pass.length < 6) return alert('Email and password (min 6) required');
+            try {
+                await auth.signInWithEmailAndPassword(email, pass);
+            } catch (e) {
+                if (e.code === 'auth/user-not-found' || e.code === 'auth/invalid-credential') {
+                    try { await auth.createUserWithEmailAndPassword(email, pass); } catch (err) { alert(err.message); return; }
+                } else { alert(e.message); return; }
+            }
+            closeAuthModal();
+        }
+        async function handleGoogleAuth() {
+            try {
+                const provider = new firebase.auth.GoogleAuthProvider();
+                await auth.signInWithPopup(provider);
+                closeAuthModal();
+            } catch (e) { alert(e.message); }
+        }
+        function handleLogout() {
+            auth.signOut();
+        }
+
+        auth.onAuthStateChanged(async (user) => {
+            currentUser = user;
+            const authBtn = document.getElementById('authBtn');
+            const welcome = document.getElementById('userWelcome');
+            const privateSection = document.getElementById('privatePricing');
+            const overlay = document.getElementById('pricingLoginPrompt');
+            const chatBtn = document.getElementById('chatToggleBtn');
+            if (user) {
+                isAdmin = ADMIN_EMAILS.includes(user.email);
+                authBtn.innerHTML = `<i class="fas fa-sign-out-alt"></i> ${user.email.split('@')[0]} | Logout`;
+                authBtn.onclick = handleLogout;
+                welcome.style.display = 'inline';
+                welcome.innerText = `Hi, ${user.email}`;
+                privateSection.classList.add('unlocked');
+                overlay.style.display = 'none';
+                privateSection.style.display = 'block';
+                chatBtn.style.display = 'block';
+                // Create user doc
+                await db.collection('gm_users').doc(user.uid).set({ email: user.email, role: isAdmin ? 'admin' : 'user', lastLogin: firebase.firestore.FieldValue.serverTimestamp() }, { merge: true });
+                if (isAdmin) {
+                    document.getElementById('adminToggleBtn').classList.add('show');
+                    loadAdminData();
+                    listenInquiries();
+                }
+                listenChat();
+                listenSettings();
+            } else {
+                isAdmin = false;
+                authBtn.innerHTML = `<i class="fas fa-user"></i> Login`;
+                authBtn.onclick = openAuthModal;
+                welcome.style.display = 'none';
+                privateSection.classList.remove('unlocked');
+                overlay.style.display = 'flex';
+                privateSection.style.display = 'block';
+                chatBtn.style.display = 'none';
+                document.getElementById('adminToggleBtn').classList.remove('show');
+                document.getElementById('adminPanel').classList.remove('active');
+            }
+        });
+
+        // Settings Listeners (Public + Private)
+        function listenSettings() {
+            db.collection('gm_settings').doc('stats').onSnapshot(doc => {
+                if (doc.exists) {
+                    const d = doc.data();
+                    if (d.projects) document.getElementById('statProjects').innerText = d.projects;
+                    if (d.clients) document.getElementById('statClients').innerText = d.clients;
+                    if (d.years) document.getElementById('statYears').innerText = d.years;
+                    document.getElementById('adminStatProjects').value = d.projects || '';
+                    document.getElementById('adminStatClients').value = d.clients || '';
+                    document.getElementById('adminStatYears').value = d.years || '';
+                }
+            });
+            db.collection('gm_settings').doc('pricing').onSnapshot(doc => {
+                if (doc.exists && currentUser) {
+                    const d = doc.data();
+                    if (d.play) document.getElementById('pricePlay').innerHTML = d.play;
+                    if (d.map) document.getElementById('priceMap').innerHTML = d.map;
+                    if (d.seo) document.getElementById('priceSeo').innerHTML = d.seo;
+                    if (d.lead) document.getElementById('priceLead').innerHTML = d.lead;
+                    document.getElementById('adminPricePlay').value = d.play || '';
+                    document.getElementById('adminPriceMap').value = d.map || '';
+                    document.getElementById('adminPriceSeo').value = d.seo || '';
+                    document.getElementById('adminPriceLead').value = d.lead || '';
+                }
+            });
+        }
+        // Initial load for public stats
+        db.collection('gm_settings').doc('stats').get().then(doc => {
+            if (doc.exists) {
+                const d = doc.data();
+                if (d.projects) document.getElementById('statProjects').innerText = d.projects;
+                if (d.clients) document.getElementById('statClients').innerText = d.clients;
+                if (d.years) document.getElementById('statYears').innerText = d.years;
+            }
+        });
+
+        // Admin Actions
+        function toggleAdminPanel() { document.getElementById('adminPanel').classList.toggle('active'); }
+        async function saveStats() {
+            if (!isAdmin) return alert('Admin only');
+            const p = document.getElementById('adminStatProjects').value.trim();
+            const c = document.getElementById('adminStatClients').value.trim();
+            const y = document.getElementById('adminStatYears').value.trim();
+            await db.collection('gm_settings').doc('stats').set({ projects: p, clients: c, years: y, updatedBy: currentUser.email, updatedAt: firebase.firestore.FieldValue.serverTimestamp() }, { merge: true });
+            alert('Stats Saved!');
+        }
+        async function savePricing() {
+            if (!isAdmin) return alert('Admin only');
+            const play = document.getElementById('adminPricePlay').value.trim();
+            const map = document.getElementById('adminPriceMap').value.trim();
+            const seo = document.getElementById('adminPriceSeo').value.trim();
+            const lead = document.getElementById('adminPriceLead').value.trim();
+            await db.collection('gm_settings').doc('pricing').set({ play, map, seo, lead, updatedBy: currentUser.email, updatedAt: firebase.firestore.FieldValue.serverTimestamp() }, { merge: true });
+            alert('Pricing Saved! Only logged-in users can see it.');
+        }
+        async function addReviewImage() {
+            if (!isAdmin) return alert('Admin only');
+            const url = document.getElementById('adminReviewUrl').value.trim();
+            if (!url) return alert('URL required');
+            await db.collection('gm_reviews').add({ url, createdAt: firebase.firestore.FieldValue.serverTimestamp(), createdBy: currentUser.email });
+            document.getElementById('adminReviewUrl').value = '';
+            alert('Review Added!');
+        }
+        // Listen Reviews
+        db.collection('gm_reviews').orderBy('createdAt', 'desc').limit(20).onSnapshot(snap => {
+            const grid = document.getElementById('reviewsGrid');
+            // Keep existing 6 + add new
+            snap.forEach(doc => {
+                const data = doc.data();
+                if (!document.querySelector(`img[src="${data.url}"]`)) {
+                    const div = document.createElement('div');
+                    div.className = 'gallery-item';
+                    div.onclick = () => openModal(data.url);
+                    div.innerHTML = `<img src="${data.url}" alt="Review" loading="lazy">`;
+                    grid.prepend(div);
+                }
+            });
+        });
+
+        // Contact Form + Firestore Save
+        function showOptions() {
+            const appName = document.getElementById('appName').value.trim();
+            const contact = document.getElementById('userContact').value.trim();
+            if (!appName || !contact) return alert('Please fill in App Name/ID and your Contact Info');
+            document.getElementById('mainSubmitBtn').style.display = 'none';
+            document.getElementById('sendOptionsBlock').style.display = 'flex';
+            // Save inquiry to Firestore (even without login, save as guest)
+            db.collection('gm_inquiries').add({
+                appName, contact, message: document.getElementById('userMessage').value.trim(),
+                uid: currentUser ? currentUser.uid : 'guest',
+                email: currentUser ? currentUser.email : 'guest',
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            });
+        }
+        function sendMessage(platform) {
+            const appName = document.getElementById('appName').value.trim();
+            const contact = document.getElementById('userContact').value.trim();
+            const message = document.getElementById('userMessage').value.trim() || 'No additional message.';
+            const textRaw = `🚀 *New Service Request* 🚀\n\n📱 *App/Target:* ${appName}\n📞 *Client Info:* ${contact}\n💬 *Message:* ${message}\n👤 *User:* ${currentUser ? currentUser.email : 'Guest'}`;
+            const encodedText = encodeURIComponent(textRaw);
+            if (platform === 'whatsapp') window.open(`https://wa.me/8801647323233?text=${encodedText}`, '_blank');
+            else if (platform === 'telegram') window.open(`https://t.me/DirectorShakil?text=${encodedText}`, '_blank');
+            else if (platform === 'email') window.open(`mailto:24.7.g00glemarketing@gmail.com?subject=${encodeURIComponent('New Service Request - Google Marketing')}&body=${encodedText}`, '_blank');
+        }
+        function listenInquiries() {
+            db.collection('gm_inquiries').orderBy('createdAt', 'desc').limit(15).onSnapshot(snap => {
+                const box = document.getElementById('adminInquiries');
+                box.innerHTML = '';
+                snap.forEach(doc => {
+                    const d = doc.data();
+                    const div = document.createElement('div');
+                    div.style.cssText = 'background:rgba(255,255,255,0.05);padding:10px;border-radius:10px;font-size:0.8rem;border:1px solid var(--border-color);';
+                    div.innerHTML = `<b>${d.appName || 'No App'}</b><br><span style="color:var(--text-muted);">${d.contact} | ${d.email}</span><br><span style="font-size:0.75rem;">${d.message?.substring(0,60) || ''}</span>`;
+                    box.appendChild(div);
+                });
+            });
+        }
+
+        // Real-time Chat (Firestore)
+        function toggleChat() { document.getElementById('chatWidget').classList.toggle('active'); }
+        function listenChat() {
+            if (!currentUser) return;
+            db.collection('gm_chats').doc(currentUser.uid).collection('messages').orderBy('createdAt', 'asc').limit(50).onSnapshot(snap => {
+                const box = document.getElementById('chatMessages');
+                box.innerHTML = '';
+                snap.forEach(doc => {
+                    const m = doc.data();
+                    const div = document.createElement('div');
+                    div.className = `chat-msg ${m.sender === currentUser.uid ? 'user' : 'admin'}`;
+                    div.innerText = m.text;
+                    box.appendChild(div);
+                });
+                box.scrollTop = box.scrollHeight;
+            });
+        }
+        async function sendChatMessage() {
+            if (!currentUser) return openAuthModal();
+            const input = document.getElementById('chatInput');
+            const text = input.value.trim();
+            if (!text) return;
+            await db.collection('gm_chats').doc(currentUser.uid).collection('messages').add({
+                text, sender: currentUser.uid, senderEmail: currentUser.email,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            });
+            // Also create chat doc for admin list
+            await db.collection('gm_chats').doc(currentUser.uid).set({ lastMessage: text, lastEmail: currentUser.email, updatedAt: firebase.firestore.FieldValue.serverTimestamp() }, { merge: true });
+            input.value = '';
+        }
+        function loadAdminData() {
+            // Load stats and pricing already handled by listeners
+        }
+    </script>
+<script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script></body>
+</html>
