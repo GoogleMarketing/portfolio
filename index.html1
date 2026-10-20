@@ -294,10 +294,10 @@
     <script>
         // Firebase Config - Same project as before
         const firebaseConfig = {
-            apiKey: "AIzaSyA_RWWB-CI-Bp31NeVR-PHZe8HyNmWni9E",
+            apiKey: "",
             authDomain: "email-marketing-d7597.firebaseapp.com",
             databaseURL: "https://email-marketing-d7587-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "email-marketing-d7597",
+            projectId: "",
             storageBucket: "email-marketing-d7597.firebasestorage.app",
             messagingSenderId: "317421169576",
             appId: "1:317421169576:web:c11a90d1033395d6720b9d"
