@@ -24,67 +24,57 @@
 </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Marketing - Authentic Online Review Provider & Google Map SEO Specialist</title>
+    <title>Google Marketing - Authentic Review Provider & Google Map SEO Specialist</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --bg-color: #030712;
-            --surface-color: #0f172a;
-            --card-bg: rgba(30, 41, 59, 0.5);
-            --primary-color: #3b82f6;
-            --primary-glow: rgba(59, 130, 246, 0.5);
-            --accent-color: #f59e0b;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border-color: rgba(255, 255, 255, 0.1);
-        }
+        :root{--bg-color:#030712;--surface-color:#0f172a;--card-bg:rgba(30,41,59,0.5);--primary-color:#3b82f6;--accent-color:#f59e0b;--text-main:#f8fafc;--text-muted:#94a3b8;--border-color:rgba(255,255,255,0.1)}
         *{margin:0;padding:0;box-sizing:border-box;font-family:'Plus Jakarta Sans',sans-serif}
         h1,h2,h3,h4,h5,h6,.menu-btn,.logo span{font-family:'Outfit',sans-serif}
         body{background-color:var(--bg-color);color:var(--text-main);line-height:1.6;overflow-x:hidden}
-        a{text-decoration:none;color:var(--text-main);transition:all .3s ease}
+        a{text-decoration:none;color:var(--text-main);transition:.3s}
         a:hover{color:var(--primary-color)}
         .ambient-glow{position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:-1;background:radial-gradient(circle at 15% 30%,rgba(59,130,246,.12),transparent 40%),radial-gradient(circle at 85% 70%,rgba(245,158,11,.08),transparent 40%)}
-        nav{position:fixed;top:0;width:100%;padding:15px 5%;display:flex;justify-content:space-between;align-items:center;background-color:rgba(3,7,18,.8);backdrop-filter:blur(12px);z-index:1000;border-bottom:1px solid var(--border-color)}
+        nav{position:fixed;top:0;width:100%;padding:15px 5%;display:flex;justify-content:space-between;align-items:center;background:rgba(3,7,18,.8);backdrop-filter:blur(12px);z-index:1000;border-bottom:1px solid var(--border-color)}
         .logo{display:flex;align-items:center;gap:12px}
         .logo img{width:45px;height:45px;border-radius:8px;object-fit:cover;border:1px solid var(--border-color)}
-        .logo span{font-weight:700;font-size:1.3rem;letter-spacing:.5px;background:linear-gradient(to right,#fff,#94a3b8);-webkit-background-clip:text;color:transparent}
+        .logo span{font-weight:700;font-size:1.3rem;background:linear-gradient(to right,#fff,#94a3b8);-webkit-background-clip:text;color:transparent}
         .nav-right{display:flex;align-items:center;gap:15px}
         .nav-auth{display:flex;align-items:center;gap:10px}
         .btn-login{background:rgba(255,255,255,.05);border:1px solid var(--border-color);color:white;padding:8px 18px;border-radius:20px;font-size:.85rem;font-weight:600;cursor:pointer;transition:.3s}
         .btn-login:hover{background:var(--primary-color);border-color:var(--primary-color)}
         .user-chip{display:flex;align-items:center;gap:8px;background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.3);padding:6px 12px;border-radius:20px;font-size:.8rem}
         .menu-btn{background:none;border:none;color:var(--text-main);font-size:.9rem;font-weight:600;cursor:pointer;letter-spacing:2px;display:flex;align-items:center;gap:8px}
-        .mobile-menu{position:fixed;top:0;left:0;width:100%;height:100vh;background-color:rgba(3,7,18,.98);backdrop-filter:blur(20px);display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:2000;transform:translateY(-100%);transition:transform .5s cubic-bezier(0.4,0,0.2,1)}
+        .mobile-menu{position:fixed;top:0;left:0;width:100%;height:100vh;background:rgba(3,7,18,.98);backdrop-filter:blur(20px);display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:2000;transform:translateY(-100%);transition:transform .5s cubic-bezier(0.4,0,0.2,1)}
         .mobile-menu.active{transform:translateY(0)}
-        .close-menu{position:absolute;top:30px;right:5%;background:none;border:none;color:var(--text-main);font-size:1rem;font-weight:600;cursor:pointer;letter-spacing:1px;font-family:'Outfit',sans-serif}
+        .close-menu{position:absolute;top:30px;right:5%;background:none;border:none;color:var(--text-main);font-size:1rem;font-weight:600;cursor:pointer}
         .mobile-menu ul{list-style:none;text-align:center}
         .mobile-menu ul li{margin:25px 0}
-        .mobile-menu ul li a{font-size:2.5rem;font-weight:600;font-family:'Outfit',sans-serif;background:linear-gradient(to right,#fff,#fff);-webkit-background-clip:text;color:transparent;transition:.3s}
-        .mobile-menu ul li a:hover{background:linear-gradient(to right,#3b82f6,#60a5fa);-webkit-background-clip:text}
+        .mobile-menu ul li a{font-size:2.5rem;font-weight:600}
         .hero{padding:160px 5% 100px;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
         .hero h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:700;line-height:1.1;margin-bottom:20px}
         .hero h1 span{background:linear-gradient(135deg,#3b82f6 0%,#a855f7 100%);-webkit-background-clip:text;color:transparent}
-        .hero p{color:var(--text-muted);font-size:1.1rem;max-width:650px;margin-bottom:40px;font-weight:400}
-        .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 32px;border-radius:30px;font-weight:600;font-size:1rem;transition:all .3s ease;cursor:pointer;border:none;font-family:'Outfit',sans-serif}
+        .hero p{color:var(--text-muted);font-size:1.1rem;max-width:650px;margin-bottom:40px}
+        .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 32px;border-radius:30px;font-weight:600;font-size:1rem;transition:.3s;cursor:pointer;border:none;font-family:'Outfit',sans-serif}
         .btn-primary{background:linear-gradient(135deg,#2563eb,#3b82f6);color:white;box-shadow:0 4px 15px rgba(37,99,235,.3)}
         .btn-primary:hover{box-shadow:0 6px 20px rgba(37,99,235,.5);transform:translateY(-2px)}
-        .btn-outline{background-color:transparent;border:1px solid var(--border-color);color:var(--text-main)}
-        .btn-outline:hover{background-color:rgba(255,255,255,.05);border-color:var(--text-muted)}
-        .trust-counter{padding:0 5% 80px;margin-top:-60px;position:relative;z-index:10}
+        .btn-outline{background:transparent;border:1px solid var(--border-color);color:var(--text-main)}
+        .btn-outline:hover{background:rgba(255,255,255,.05);border-color:var(--text-muted)}
+        /* FIXED TRUST COUNTER - NO OVERLAP */
+        .trust-counter{padding:80px 5%;position:relative;z-index:10;background:linear-gradient(180deg,transparent 0%,rgba(15,23,42,0.3) 100%)}
         .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:25px;max-width:1200px;margin:0 auto}
-        .stat-card{background:var(--card-bg);border:1px solid var(--border-color);border-radius:20px;padding:30px 20px;text-align:center;backdrop-filter:blur(12px);transition:all .4s ease}
+        .stat-card{background:var(--card-bg);border:1px solid var(--border-color);border-radius:20px;padding:30px 20px;text-align:center;backdrop-filter:blur(12px);transition:.4s}
         .stat-card:hover{transform:translateY(-8px);border-color:var(--primary-color);box-shadow:0 15px 30px rgba(59,130,246,.15)}
-        .stat-icon{font-size:2.2rem;color:var(--primary-color);margin-bottom:15px;filter:drop-shadow(0 0 10px rgba(59,130,246,.4))}
-        .stat-number{font-size:2.5rem;font-weight:700;color:white;font-family:'Outfit',sans-serif;margin-bottom:5px;line-height:1.2}
+        .stat-icon{font-size:2.2rem;color:var(--primary-color);margin-bottom:15px}
+        .stat-number{font-size:2.5rem;font-weight:700;color:white;font-family:'Outfit',sans-serif;margin-bottom:5px}
         .stat-text{color:var(--text-muted);font-size:1rem;font-weight:500}
         section{padding:100px 5%}
         .section-header{text-align:center;margin-bottom:60px}
-        .badge{display:inline-block;padding:6px 16px;background-color:rgba(59,130,246,.1);color:var(--primary-color);border:1px solid rgba(59,130,246,.2);border-radius:30px;font-size:.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:20px}
+        .badge{display:inline-block;padding:6px 16px;background:rgba(59,130,246,.1);color:var(--primary-color);border:1px solid rgba(59,130,246,.2);border-radius:30px;font-size:.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:20px}
         .section-header h2{font-size:2.5rem;font-weight:700;margin-bottom:15px}
         .section-header p{color:var(--text-muted);max-width:600px;margin:0 auto}
-        .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:25px}
-        .service-card{background-color:var(--card-bg);backdrop-filter:blur(10px);padding:40px 30px;border-radius:20px;border:1px solid var(--border-color);transition:all .4s ease;position:relative;overflow:hidden;display:flex;flex-direction:column}
+        .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:25px;max-width:1200px;margin:0 auto}
+        .service-card{background:var(--card-bg);backdrop-filter:blur(10px);padding:40px 30px;border-radius:20px;border:1px solid var(--border-color);transition:.4s;position:relative;overflow:hidden;display:flex;flex-direction:column}
         .service-card:hover{transform:translateY(-10px);border-color:var(--primary-color);box-shadow:0 20px 40px rgba(0,0,0,.4)}
         .service-icon{width:65px;height:65px;background:linear-gradient(135deg,rgba(59,130,246,.1),rgba(59,130,246,.05));border:1px solid rgba(59,130,246,.2);border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--primary-color);margin-bottom:25px}
         .service-card h3{font-size:1.5rem;margin-bottom:15px}
@@ -92,71 +82,66 @@
         .service-card ul{list-style:none;color:var(--text-muted);margin-top:auto;margin-bottom:25px}
         .service-card ul li{margin-bottom:12px;display:flex;align-items:flex-start;gap:12px;font-size:.95rem}
         .service-card ul li i{color:var(--primary-color);margin-top:5px;font-size:.8rem}
-        .cta-badge{display:inline-block;margin-top:auto;padding:12px 18px;background:rgba(59,130,246,.05);border:1px solid var(--primary-color);border-radius:12px;color:var(--text-main);font-weight:600;font-size:1rem;text-align:center;text-decoration:none;transition:all .3s ease}
-        .cta-badge:hover{background:rgba(59,130,246,.2);box-shadow:0 4px 15px rgba(59,130,246,.3);transform:translateY(-2px);color:white}
+        .cta-badge{display:inline-block;margin-top:auto;padding:12px 18px;background:rgba(59,130,246,.05);border:1px solid var(--primary-color);border-radius:12px;color:var(--text-main);font-weight:600;font-size:1rem;text-align:center;text-decoration:none;transition:.3s}
+        .cta-badge:hover{background:rgba(59,130,246,.2);transform:translateY(-2px)}
+        /* PRICING - CLEAN NO BLUR */
+        .pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:28px;max-width:1200px;margin:0 auto}
+        .pricing-card{background:linear-gradient(180deg,rgba(30,41,59,0.8) 0%,rgba(15,23,42,0.9) 100%);border:1px solid var(--border-color);border-radius:20px;padding:30px;position:relative;overflow:hidden;transition:.3s}
+        .pricing-card:hover{transform:translateY(-5px);border-color:var(--primary-color)}
+        .pricing-card.popular{border-color:rgba(59,130,246,0.4);box-shadow:0 0 40px rgba(59,130,246,.15)}
+        .popular-tag{position:absolute;top:15px;right:15px;background:linear-gradient(135deg,#3b82f6,#a855f7);color:white;font-size:.7rem;padding:6px 14px;border-radius:20px;font-weight:700}
+        .price{font-size:2.5rem;font-weight:800;margin:15px 0;font-family:'Outfit';display:flex;align-items:baseline;gap:4px}
+        .price span{font-size:1rem;color:var(--text-muted);font-weight:400}
+        .pricing-features{list-style:none;margin:20px 0}
+        .pricing-features li{display:flex;gap:10px;margin-bottom:10px;color:var(--text-muted);font-size:.95rem}
+        .pricing-features li i{color:#10b981;margin-top:4px}
         .guarantee-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:stretch;max-width:1200px;margin:0 auto}
         .payment-panel,.guarantee-panel{background:var(--card-bg);border:1px solid var(--border-color);border-radius:24px;padding:40px;backdrop-filter:blur(12px)}
-        .guarantee-panel{border-color:var(--primary-color);box-shadow:0 0 40px rgba(59,130,246,.15);position:relative}
-        .guarantee-panel::before{content:'';position:absolute;inset:-1px;background:linear-gradient(135deg,var(--primary-color),transparent 60%);border-radius:24px;z-index:-1;opacity:.5}
+        .guarantee-panel{border-color:var(--primary-color);box-shadow:0 0 40px rgba(59,130,246,.15)}
         .panel-title{font-size:1.8rem;margin-bottom:30px;font-weight:700;display:flex;align-items:center;gap:12px}
         .panel-title i{color:var(--primary-color)}
-        .payment-group{margin-bottom:30px}
         .payment-methods{display:grid;grid-template-columns:1fr 1fr;gap:15px}
-        .payment-item{display:flex;align-items:center;gap:12px;padding:16px;border-radius:12px;border:1px solid var(--border-color);transition:all .3s ease;font-weight:500}
+        .payment-item{display:flex;align-items:center;gap:12px;padding:16px;border-radius:12px;border:1px solid var(--border-color);font-weight:500}
         .active-method{border-color:rgba(59,130,246,.4);background:rgba(59,130,246,.05)}
-        .active-method:hover{border-color:var(--primary-color);background:rgba(59,130,246,.1);transform:translateY(-2px)}
-        .active-method i{font-size:1.4rem;color:var(--primary-color)}
-        .active-method .fa-check-circle{color:#10b981;font-size:1.1rem;margin-left:auto}
-        .disabled-method{opacity:.6;filter:grayscale(80%);background:rgba(0,0,0,.2)}
-        .disabled-method i{font-size:1.4rem;color:var(--text-muted)}
-        .not-accepted-badge{margin-left:auto;background:rgba(239,68,68,.15);color:#ef4444;font-size:.75rem;padding:4px 8px;border-radius:8px;border:1px solid rgba(239,68,68,.3);font-weight:600}
         .guarantee-list{list-style:none}
-        .guarantee-list li{margin-bottom:22px;display:flex;align-items:flex-start;gap:16px;font-size:1.05rem;color:var(--text-main);line-height:1.5}
+        .guarantee-list li{margin-bottom:22px;display:flex;align-items:flex-start;gap:16px;font-size:1.05rem;line-height:1.5}
         .guarantee-list li i{color:#10b981;font-size:1.3rem;margin-top:2px;background:rgba(16,185,129,.1);padding:5px;border-radius:50%}
-        .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
+        .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px;max-width:1200px;margin:0 auto}
         .gallery-item{position:relative;border-radius:15px;overflow:hidden;aspect-ratio:9/16;cursor:pointer;border:1px solid var(--border-color)}
-        .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+        .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
         .gallery-item:hover img{transform:scale(1.05)}
         .faq-container{max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:15px}
-        .faq-item{background:var(--card-bg);border:1px solid var(--border-color);border-radius:16px;overflow:hidden;backdrop-filter:blur(10px);transition:all .3s ease}
-        .faq-question{padding:22px 30px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:600;font-size:1.1rem;color:var(--text-main);transition:all .3s ease}
+        .faq-item{background:var(--card-bg);border:1px solid var(--border-color);border-radius:16px;overflow:hidden;backdrop-filter:blur(10px);transition:.3s}
+        .faq-question{padding:22px 30px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:600;font-size:1.1rem}
         .faq-question:hover{color:var(--primary-color)}
-        .faq-question i{transition:transform .4s cubic-bezier(0.4,0,0.2,1);color:var(--primary-color);font-size:1.2rem}
-        .faq-answer{padding:0 30px;max-height:0;overflow:hidden;transition:all .4s cubic-bezier(0.4,0,0.2,1);color:var(--text-muted);opacity:0}
-        .faq-item.active{border-color:var(--primary-color);box-shadow:0 5px 20px rgba(59,130,246,.15)}
-        .faq-item.active .faq-question{color:var(--primary-color)}
+        .faq-question i{transition:transform .4s;color:var(--primary-color)}
+        .faq-answer{padding:0 30px;max-height:0;overflow:hidden;transition:.4s;color:var(--text-muted);opacity:0}
+        .faq-item.active{border-color:var(--primary-color)}
         .faq-item.active .faq-question i{transform:rotate(180deg)}
         .faq-item.active .faq-answer{padding:0 30px 22px;max-height:300px;opacity:1}
-        .contact-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:50px;background-color:var(--card-bg);border:1px solid var(--border-color);border-radius:24px;padding:40px;backdrop-filter:blur(10px)}
+        .contact-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:50px;background:var(--card-bg);border:1px solid var(--border-color);border-radius:24px;padding:40px;backdrop-filter:blur(10px);max-width:1100px;margin:0 auto}
         .contact-info-panel h3{font-size:2rem;margin-bottom:20px}
         .contact-info-panel p{color:var(--text-muted);margin-bottom:30px}
         .info-item{display:flex;align-items:center;gap:15px;margin-bottom:20px}
-        .info-item .icon{width:45px;height:45px;background-color:rgba(255,255,255,.03);border:1px solid var(--border-color);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--primary-color);font-size:1.2rem}
-        .info-item div p:first-child{color:var(--text-muted);font-size:.85rem;margin-bottom:0}
-        .info-item div p:last-child{font-weight:600;color:var(--text-main);margin-bottom:0}
+        .info-item .icon{width:45px;height:45px;background:rgba(255,255,255,.03);border:1px solid var(--border-color);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--primary-color);font-size:1.2rem}
         .custom-form{display:flex;flex-direction:column;gap:20px}
         .input-group{display:flex;flex-direction:column;gap:8px}
         .input-group label{font-size:.9rem;color:var(--text-muted);font-weight:500}
-        .input-group input,.input-group textarea{width:100%;padding:15px;background-color:rgba(0,0,0,.2);border:1px solid var(--border-color);border-radius:10px;color:white;font-size:1rem;transition:.3s}
-        .input-group input:focus,.input-group textarea:focus{outline:none;border-color:var(--primary-color);background-color:rgba(59,130,246,.05)}
+        .input-group input,.input-group textarea,.input-group select{width:100%;padding:15px;background:rgba(0,0,0,.2);border:1px solid var(--border-color);border-radius:10px;color:white;font-size:1rem;transition:.3s}
+        .input-group input:focus,.input-group textarea:focus{outline:none;border-color:var(--primary-color);background:rgba(59,130,246,.05)}
         .send-options{display:none;flex-direction:column;gap:15px;margin-top:10px;animation:fadeIn .4s ease}
         @keyframes fadeIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
-        .btn-wa{background-color:#25D366;color:white;border:none}
-        .btn-tg{background-color:#0088cc;color:white;border:none}
-        .btn-mail{background-color:#ea4335;color:white;border:none}
-        .btn-wa:hover{background-color:#1ebe57;transform:translateY(-2px)}
-        .btn-tg:hover{background-color:#0077b5;transform:translateY(-2px)}
-        .btn-mail:hover{background-color:#d33828;transform:translateY(-2px)}
-        .modal{display:none;position:fixed;z-index:3000;left:0;top:0;width:100%;height:100%;background-color:rgba(0,0,0,.95);justify-content:center;align-items:center}
+        .btn-wa{background:#25D366;color:white;border:none}
+        .btn-tg{background:#0088cc;color:white;border:none}
+        .btn-mail{background:#ea4335;color:white;border:none}
+        .modal{display:none;position:fixed;z-index:3000;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,.95);justify-content:center;align-items:center}
         .modal-content{max-width:90%;max-height:90vh;border-radius:12px}
-        .close-modal{position:absolute;top:20px;right:30px;color:white;font-size:40px;font-weight:300;cursor:pointer}
+        .close-modal{position:absolute;top:20px;right:30px;color:white;font-size:40px;cursor:pointer}
         .footer-trust-badges{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin-top:30px;padding-top:25px;border-top:1px solid rgba(255,255,255,.05)}
-        .footer-badge{display:flex;align-items:center;gap:10px;color:var(--text-muted);font-size:.95rem;font-weight:500}
+        .footer-badge{display:flex;align-items:center;gap:10px;color:var(--text-muted);font-size:.95rem}
         .footer-badge i{color:var(--primary-color);font-size:1.2rem}
-        @media (max-width:991px){.contact-wrapper,.guarantee-wrapper{grid-template-columns:1fr}.payment-methods{grid-template-columns:1fr}}
-        @media (max-width:768px){.hero{padding-top:130px;text-align:center;align-items:center}.trust-counter{padding:0 5% 50px;margin-top:0}}
-
-        /* ===== NEW: AUTH MODAL ===== */
+        @media(max-width:991px){.contact-wrapper,.guarantee-wrapper{grid-template-columns:1fr}.payment-methods{grid-template-columns:1fr}}
+        @media(max-width:768px){.hero{padding-top:130px;text-align:center;align-items:center}.trust-counter{padding:50px 5%}.hero h1{font-size:2.8rem}}
         .auth-modal{position:fixed;inset:0;z-index:4000;background:rgba(3,7,18,.9);backdrop-filter:blur(12px);display:none;justify-content:center;align-items:center;padding:20px}
         .auth-modal.active{display:flex}
         .auth-box{background:#0f172a;border:1px solid var(--border-color);border-radius:20px;padding:35px;width:100%;max-width:420px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
@@ -170,25 +155,6 @@
         .btn-google{width:100%;background:white;color:black;padding:12px;border-radius:10px;border:none;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;margin-top:10px}
         .divider{height:1px;background:var(--border-color);margin:18px 0;position:relative}
         .divider span{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:#0f172a;padding:0 10px;color:var(--text-muted);font-size:.8rem}
-
-        /* ===== NEW: PRICING SECTION ===== */
-        .pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px;max-width:1100px;margin:0 auto}
-        .pricing-card{background:var(--card-bg);border:1px solid var(--border-color);border-radius:20px;padding:30px;backdrop-filter:blur(10px);position:relative;overflow:hidden;transition:.3s}
-        .pricing-card.popular{border-color:var(--primary-color);box-shadow:0 0 30px rgba(59,130,246,.2)}
-        .pricing-card:hover{transform:translateY(-5px)}
-        .popular-tag{position:absolute;top:15px;right:15px;background:var(--primary-color);color:white;font-size:.7rem;padding:4px 10px;border-radius:20px;font-weight:700}
-        .price{font-size:2.5rem;font-weight:800;margin:15px 0;font-family:'Outfit'}
-        .price span{font-size:1rem;color:var(--text-muted);font-weight:400}
-        .pricing-features{list-style:none;margin:20px 0}
-        .pricing-features li{display:flex;gap:10px;margin-bottom:10px;color:var(--text-muted);font-size:.95rem}
-        .pricing-features li i{color:#10b981;margin-top:4px}
-        .pricing-locked-wrapper{position:relative}
-        .pricing-lock-overlay{position:absolute;inset:0;background:rgba(3,7,18,.85);backdrop-filter:blur(8px);z-index:5;border-radius:20px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:30px}
-        .pricing-lock-overlay i{font-size:3rem;color:var(--primary-color);margin-bottom:15px}
-        .pricing-lock-overlay h3{font-size:1.5rem;margin-bottom:10px}
-        .pricing-lock-overlay p{color:var(--text-muted);margin-bottom:20px;max-width:400px}
-
-        /* ===== NEW: ADMIN PANEL ===== */
         #adminPanel{position:fixed;inset:0;z-index:5000;background:#030712;overflow-y:auto;padding:30px 5%;display:none}
         #adminPanel.active{display:block}
         .admin-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;padding-bottom:20px;border-bottom:1px solid var(--border-color)}
@@ -205,8 +171,6 @@
         .btn-sm{padding:6px 12px;border-radius:6px;border:none;cursor:pointer;font-size:.8rem;font-weight:600}
         .btn-danger{background:#ef4444;color:white}
         .btn-edit{background:#3b82f6;color:white}
-
-        /* ===== NEW: CHAT WIDGET ===== */
         .chat-button{position:fixed;bottom:25px;right:25px;width:60px;height:60px;background:linear-gradient(135deg,#2563eb,#3b82f6);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:1.5rem;cursor:pointer;box-shadow:0 8px 25px rgba(37,99,235,.4);z-index:999;transition:.3s}
         .chat-button:hover{transform:scale(1.1)}
         .chat-badge{position:absolute;top:-5px;right:-5px;background:#ef4444;color:white;font-size:.7rem;width:20px;height:20px;border-radius:50%;display:none;align-items:center;justify-content:center;font-weight:700}
@@ -225,35 +189,29 @@
 <body>
     <div class="ambient-glow"></div>
 
-    <!-- Auth Modal -->
     <div id="authModal" class="auth-modal">
         <div class="auth-box">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
                 <h3 id="authTitle">Welcome Back</h3>
                 <button onclick="closeAuth()" style="background:none;border:none;color:var(--text-muted);font-size:1.5rem;cursor:pointer"><i class="fas fa-times"></i></button>
             </div>
-            <p id="authDesc">Login to view pricing & chat with us</p>
+            <p id="authDesc">Login to your account to access all features</p>
             <div class="auth-tabs">
                 <button id="tabLogin" class="auth-tab active" onclick="switchAuthTab('login')">Login</button>
                 <button id="tabSignup" class="auth-tab" onclick="switchAuthTab('signup')">Sign Up</button>
             </div>
             <input id="authEmail" type="email" class="auth-input" placeholder="Email address">
-            <input id="authPass" type="password" class="auth-input" placeholder="Password (min 6)">
+            <input id="authPass" type="password" class="auth-input" placeholder="Password (min 6 characters)">
             <button id="authSubmitBtn" class="btn btn-primary" style="width:100%" onclick="handleAuth()">Login</button>
             <div class="divider"><span>OR</span></div>
             <button class="btn-google" onclick="loginWithGoogle()"><i class="fab fa-google"></i> Continue with Google</button>
             <p id="authError" style="color:#ef4444;font-size:.85rem;margin-top:12px;display:none"></p>
-            
         </div>
     </div>
 
-    <!-- Admin Panel -->
     <div id="adminPanel">
         <div class="admin-header">
-            <div>
-                <h2 style="font-size:2rem">Admin Panel - Google Marketing</h2>
-                <p style="color:var(--text-muted)">Logged as afshakil279@gmail.com</p>
-            </div>
+            <div><h2 style="font-size:2rem">Admin Panel</h2><p style="color:var(--text-muted)">Manage your website content</p></div>
             <button class="btn btn-outline" onclick="closeAdmin()"><i class="fas fa-times"></i> Close</button>
         </div>
         <div class="admin-tabs">
@@ -263,62 +221,56 @@
             <button class="admin-tab" onclick="switchAdminTab('leadsAdmin')">Leads</button>
             <button class="admin-tab" onclick="switchAdminTab('chatsAdmin')">Live Chats</button>
         </div>
-
         <div id="tab-stats" class="admin-content active">
             <div class="admin-card">
-                <h3>Trust Counter Stats - Edit</h3>
+                <h3>Trust Counter Stats</h3>
                 <div class="admin-grid" style="margin-top:15px">
-                    <div><label>Projects Completed</label><input id="stat_projects" class="admin-input" type="number" placeholder="500"><label>Label</label><input id="stat_projects_label" class="admin-input" value="Projects Completed"></div>
-                    <div><label>Global Clients</label><input id="stat_clients" class="admin-input" type="number" placeholder="300"><label>Label</label><input id="stat_clients_label" class="admin-input" value="Global Clients"></div>
-                    <div><label>Years Experience</label><input id="stat_years" class="admin-input" type="number" placeholder="3"><label>Label</label><input id="stat_years_label" class="admin-input" value="Years Experience"></div>
-                    <div><label>Safe %</label><input id="stat_safe" class="admin-input" type="number" placeholder="100"><label>Label</label><input id="stat_safe_label" class="admin-input" value="Safe & Non-Drop"></div>
+                    <div><label>Projects Completed</label><input id="stat_projects" class="admin-input" type="number"><label>Label</label><input id="stat_projects_label" class="admin-input" value="Projects Completed"></div>
+                    <div><label>Global Clients</label><input id="stat_clients" class="admin-input" type="number"><label>Label</label><input id="stat_clients_label" class="admin-input" value="Global Clients"></div>
+                    <div><label>Years Experience</label><input id="stat_years" class="admin-input" type="number"><label>Label</label><input id="stat_years_label" class="admin-input" value="Years Experience"></div>
+                    <div><label>Safe %</label><input id="stat_safe" class="admin-input" type="number"><label>Label</label><input id="stat_safe_label" class="admin-input" value="Safe & Non-Drop"></div>
                 </div>
                 <button class="btn btn-primary" onclick="saveStats()" style="margin-top:15px">Save Stats</button>
                 <p id="statsStatus" style="margin-top:10px;color:#10b981;display:none">Saved!</p>
             </div>
         </div>
-
         <div id="tab-pricingAdmin" class="admin-content">
             <div class="admin-card">
-                <h3>Add New Pricing</h3>
-                <input id="pricingTitle" class="admin-input" placeholder="Title e.g. Google Map Review 10x">
-<input id="pricingPrice" class="admin-input" placeholder="Price e.g. $50 or 5000">
+                <h3>Add New Pricing Plan</h3>
+                <input id="pricingTitle" class="admin-input" placeholder="Title">
+                <input id="pricingPrice" class="admin-input" placeholder="Price e.g. $50">
                 <input id="pricingPer" class="admin-input" placeholder="Per e.g. / 10 reviews">
-                <textarea id="pricingFeatures" class="admin-input" rows="3" placeholder="Features comma separated: Real Users, 100% Safe, Daily Report"></textarea>
+                <textarea id="pricingFeatures" class="admin-input" rows="3" placeholder="Features comma separated"></textarea>
                 <label><input type="checkbox" id="pricingPopular"> Popular?</label>
                 <button class="btn btn-primary" onclick="addPricing()" style="margin-top:10px;width:100%">Add Pricing</button>
             </div>
             <div class="admin-card"><h3>Existing Pricing</h3><div id="adminPricingList"></div></div>
         </div>
-
         <div id="tab-reviewsAdmin" class="admin-content">
             <div class="admin-card">
                 <h3>Add Review Image</h3>
-                <input id="reviewImageUrl" class="admin-input" placeholder="Image URL e.g. https://i.ibb.co/...jpg">
+                <input id="reviewImageUrl" class="admin-input" placeholder="Image URL">
                 <input id="reviewAlt" class="admin-input" placeholder="Alt text">
                 <button class="btn btn-primary" onclick="addReview()" style="width:100%">Add Review</button>
             </div>
             <div class="admin-card"><h3>Existing Reviews</h3><div id="adminReviewsList" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px"></div></div>
         </div>
-
         <div id="tab-leadsAdmin" class="admin-content">
-            <div class="admin-card"><h3>Contact Form Leads (Firebase)</h3><div id="adminLeadsList"></div></div>
+            <div class="admin-card"><h3>Contact Form Leads</h3><div id="adminLeadsList"></div></div>
         </div>
-
         <div id="tab-chatsAdmin" class="admin-content">
-<div class="admin-card"><h3>Live Chats (Realtime DB) - Telegram Connected</h3><p style="color:var(--text-muted);font-size:.9rem;margin-bottom:15px">Client message Telegram bot । Telegram /reply USER_ID message website real-time ।</p><div id="adminChatsList"></div></div>
+            <div class="admin-card"><h3>Live Chats - Telegram Connected</h3><p style="color:var(--text-muted);font-size:.9rem;margin-bottom:15px">Client messages will be forwarded to Telegram bot. Reply from Telegram using /reply USER_ID message</p><div id="adminChatsList"></div></div>
         </div>
     </div>
 
-    <!-- Chat Widget -->
     <div class="chat-button" onclick="toggleChat()"><i class="fas fa-comments"></i><div id="chatBadge" class="chat-badge">0</div></div>
     <div id="chatBox" class="chat-box">
         <div class="chat-header">
-            <div><strong>Google Marketing</strong><div style="font-size:.75rem;color:#10b981">● Online - Reply in Telegram</div></div>
+            <div><strong>Google Marketing</strong><div style="font-size:.75rem;color:#10b981">Online - Instant Reply</div></div>
             <button onclick="toggleChat()" style="background:none;border:none;color:white;cursor:pointer"><i class="fas fa-times"></i></button>
         </div>
         <div id="chatMessages" class="chat-messages">
-            <div class="msg admin">Hi! 👋 Feel free to ask anything. I'll reply directly from Telegram.</div>
+            <div class="msg admin">Hi! How can I help you today? Feel free to ask any questions.</div>
         </div>
         <div class="chat-input-area">
             <input id="chatInput" placeholder="Type message..." onkeypress="if(event.key==='Enter') sendChatMessage()">
@@ -326,10 +278,9 @@
         </div>
     </div>
 
-    <!-- Navbar -->
     <nav>
         <div class="logo">
-            <img src="https://i.ibb.co.com/GfswcC5V/FB-IMG-1791925489216.jpg" alt="Google Marketing Logo">
+            <img src="https://i.ibb.co.com/GfswcC5V/FB-IMG-1791925489216.jpg" alt="Logo">
             <span>Google Marketing</span>
         </div>
         <div class="nav-right">
@@ -353,7 +304,7 @@
             <li><a href="#pricing" onclick="toggleMenu()">Pricing</a></li>
             <li><a href="#guarantee" onclick="toggleMenu()">Guarantee</a></li>
             <li><a href="#reviews" onclick="toggleMenu()">Reviews</a></li>
-            <li><a href="#about" onclick="toggleMenu()">About Me</a></li>
+            <li><a href="#about" onclick="toggleMenu()">About</a></li>
             <li><a href="#faq" onclick="toggleMenu()">FAQ</a></li>
             <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
         </ul>
@@ -365,9 +316,13 @@
         <p>Owner of Google Marketing. We help businesses scale rapidly with safe, authentic reviews, powerful Google Map SEO, and targeted digital marketing solutions.</p>
         <div style="display:flex;gap:15px;flex-wrap:wrap">
             <a href="#contact" class="btn btn-primary">Start Your Project</a>
-            <a href="#pricing" class="btn btn-outline">View Pricing</a>
+            <a href="#pricing" class="btn btn-outline" onclick="handlePricingClick(event)">View Pricing</a>
         </div>
-        </div>
+    </section>
+
+    <div class="trust-counter">
+        <div class="stats-grid">
+            <div class="stat-card"><div class="stat-icon"><i class="fas fa-check-double"></i></div><div class="stat-number" id="stat-projects">500+</div><div class="stat-text" id="stat-projects-label">Projects Completed</div></div>
             <div class="stat-card"><div class="stat-icon"><i class="fas fa-globe"></i></div><div class="stat-number" id="stat-clients">300+</div><div class="stat-text" id="stat-clients-label">Global Clients</div></div>
             <div class="stat-card"><div class="stat-icon"><i class="fas fa-award"></i></div><div class="stat-number" id="stat-years">3+</div><div class="stat-text" id="stat-years-label">Years Experience</div></div>
             <div class="stat-card"><div class="stat-icon"><i class="fas fa-shield-alt"></i></div><div class="stat-number" id="stat-safe">100%</div><div class="stat-text" id="stat-safe-label">Safe & Non-Drop</div></div>
@@ -377,110 +332,140 @@
     <section id="services" style="background-color:var(--surface-color)">
         <div class="section-header"><span class="badge">Our Expertise</span><h2>Premium Digital Solutions</h2><p>Comprehensive strategies engineered to elevate your brand's digital footprint and credibility.</p></div>
         <div class="services-grid">
-            <div class="service-card"><div class="service-icon"><i class="fab fa-google-play"></i></div><h3>Play Store Review</h3><p>Authentic and safe reviews for your mobile applications to boost visibility and credibility.</p><ul><li><i class="fas fa-check-circle"></i> 100% Safe & Authentic</li><li><i class="fas fa-check-circle"></i> Gradual Natural Delivery</li><li><i class="fas fa-check-circle"></i> Positive Rating Impact</li></ul><a href="#contact" class="cta-badge">📩 Get Custom Quote - Contact Us</a></div>
-            <div class="service-card"><div class="service-icon"><i class="fas fa-map-marked-alt"></i></div><h3>Google Map Review</h3><p>Professional Google My Business reviews to dominate your local market presence.</p><ul><li><i class="fas fa-check-circle"></i> Real User Profiles</li><li><i class="fas fa-check-circle"></i> Local Trust Building</li><li><i class="fas fa-check-circle"></i> Detailed Reporting</li></ul><a href="#contact" class="cta-badge">📩 Get Custom Quote - Contact Us</a></div>
-            <div class="service-card"><div class="service-icon"><i class="fas fa-search-location"></i></div><h3>Google Map SEO (GMB)</h3><p>Complete optimization of your business profile for maximum local search visibility.</p><ul><li><i class="fas fa-check-circle"></i> Profile Optimization</li><li><i class="fas fa-check-circle"></i> Local Keyword Strategy</li><li><i class="fas fa-check-circle"></i> Ranking Monitoring</li></ul><a href="#contact" class="cta-badge">📩 Get Custom Quote - Contact Us</a></div>
-            <div class="service-card"><div class="service-icon"><i class="fas fa-bullhorn"></i></div><h3>Digital Marketing</h3><p>Lead generation and targeted campaigns to acquire and retain premium customers.</p><ul><li><i class="fas fa-check-circle"></i> Lead Generation</li><li><i class="fas fa-check-circle"></i> Social Media Ads</li><li><i class="fas fa-check-circle"></i> High ROI Campaigns</li></ul><a href="#contact" class="cta-badge">📩 Get Custom Quote - Contact Us</a></div>
+            <div class="service-card"><div class="service-icon"><i class="fab fa-google-play"></i></div><h3>Play Store Review</h3><p>Authentic and safe reviews for your mobile applications to boost visibility and credibility.</p><ul><li><i class="fas fa-check-circle"></i> 100% Safe & Authentic</li><li><i class="fas fa-check-circle"></i> Gradual Natural Delivery</li><li><i class="fas fa-check-circle"></i> Positive Rating Impact</li></ul><a href="#contact" class="cta-badge">Get Custom Quote - Contact Us</a></div>
+            <div class="service-card"><div class="service-icon"><i class="fas fa-map-marked-alt"></i></div><h3>Google Map Review</h3><p>Professional Google My Business reviews to dominate your local market presence.</p><ul><li><i class="fas fa-check-circle"></i> Real User Profiles</li><li><i class="fas fa-check-circle"></i> Local Trust Building</li><li><i class="fas fa-check-circle"></i> Detailed Reporting</li></ul><a href="#contact" class="cta-badge">Get Custom Quote - Contact Us</a></div>
+            <div class="service-card"><div class="service-icon"><i class="fas fa-search-location"></i></div><h3>Google Map SEO (GMB)</h3><p>Complete optimization of your business profile for maximum local search visibility.</p><ul><li><i class="fas fa-check-circle"></i> Profile Optimization</li><li><i class="fas fa-check-circle"></i> Local Keyword Strategy</li><li><i class="fas fa-check-circle"></i> Ranking Monitoring</li></ul><a href="#contact" class="cta-badge">Get Custom Quote - Contact Us</a></div>
+            <div class="service-card"><div class="service-icon"><i class="fas fa-bullhorn"></i></div><h3>Digital Marketing</h3><p>Lead generation and targeted campaigns to acquire and retain premium customers.</p><ul><li><i class="fas fa-check-circle"></i> Lead Generation</li><li><i class="fas fa-check-circle"></i> Social Media Ads</li><li><i class="fas fa-check-circle"></i> High ROI Campaigns</li></ul><a href="#contact" class="cta-badge">Get Custom Quote - Contact Us</a></div>
         </div>
     </section>
 
-    <!-- NEW PRICING SECTION - GATED -->
-    <section id="pricing" style="background:#02040a">
-<div class="section-header"><span class="badge">Transparent Pricing</span><h2>Choose Your Plan</h2><p>Login pricing । Pay only for live & published reviews.</p></div>
+    <section id="pricing" style="background:linear-gradient(180deg,#02040a 0%,#0f172a 100%);position:relative;overflow:hidden;display:none">
+        <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:800px;height:400px;background:radial-gradient(circle,rgba(59,130,246,0.15) 0%,transparent 70%);pointer-events:none"></div>
+        <div class="section-header" style="position:relative">
+            <span class="badge">Transparent Pricing</span>
+            <h2>Choose Your <span style="background:linear-gradient(135deg,#3b82f6,#a855f7);-webkit-background-clip:text;color:transparent">Perfect Plan</span></h2>
+            <p style="max-width:700px">No advance payment. Pay only for live reviews after checking the daily report. Use the calculator to estimate your costs.</p>
+        </div>
+
+        <div style="max-width:900px;margin:0 auto 50px;background:rgba(30,41,59,0.6);border:1px solid var(--border-color);border-radius:20px;padding:25px;backdrop-filter:blur(12px);position:relative">
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;align-items:end">
+                <div class="input-group"><label>Service Type</label><select id="calcService" class="admin-input" style="padding:13px"><option value="1.2">Google Map Review - $1.2</option><option value="1.5">Play Store Review - $1.5</option><option value="99">GMB SEO - $99/month</option></select></div>
+                <div class="input-group"><label>Quantity</label><input id="calcQty" type="number" class="admin-input" style="padding:13px" value="10" min="1" oninput="updateCalc()"></div>
+                <div style="background:linear-gradient(135deg,#2563eb,#3b82f6);border-radius:12px;padding:16px;text-align:center;color:white"><div style="font-size:0.85rem;opacity:0.9">Estimated Total</div><div id="calcTotal" style="font-size:1.8rem;font-weight:800;font-family:'Outfit'">$12</div><div style="font-size:0.75rem;opacity:0.8">Pay after live report</div></div>
+            </div>
+        </div>
+
         <div style="max-width:1200px;margin:0 auto">
             <div id="pricingGrid" class="pricing-grid">
-                <!-- Dynamic from Firebase -->
-                <div class="pricing-card popular"><span class="popular-tag">POPULAR</span><h3>Google Map Review</h3><div class="price">$1.2 <span>/ per review</span></div><ul class="pricing-features"><li><i class="fas fa-check"></i> Real User Profile</li><li><i class="fas fa-check"></i> Daily Report</li><li><i class="fas fa-check"></i> Pay for Live Only</li></ul><a href="#contact" class="btn btn-primary" style="width:100%">Get Started</a></div>
-                <div class="pricing-card"><h3>Play Store Review</h3><div class="price">$1.5 <span>/ per review</span></div><ul class="pricing-features"><li><i class="fas fa-check"></i> Manual Install</li><li><i class="fas fa-check"></i> 5 Star Rating</li><li><i class="fas fa-check"></i> Non-Drop Method</li></ul><a href="#contact" class="btn btn-outline" style="width:100%">Get Started</a></div>
-                <div class="pricing-card"><h3>Map SEO Full</h3><div class="price">$99 <span>/ per month</span></div><ul class="pricing-features"><li><i class="fas fa-check"></i> Full GMB Optimization</li><li><i class="fas fa-check"></i> Ranking Boost</li><li><i class="fas fa-check"></i> 24/7 Support</li></ul><a href="#contact" class="btn btn-outline" style="width:100%">Get Started</a></div>
+                <div class="pricing-card popular">
+                    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#3b82f6,#a855f7)"></div>
+                    <span class="popular-tag">MOST POPULAR</span>
+                    <div style="margin-top:10px"><div style="width:50px;height:50px;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:18px"><i class="fas fa-map-marked-alt" style="color:#3b82f6;font-size:1.5rem"></i></div><h3>Google Map Review</h3><p style="color:var(--text-muted);font-size:0.85rem">Local business trust boost</p></div>
+                    <div class="price">$1.2 <span>/ per review</span><span style="margin-left:auto;background:rgba(16,185,129,0.15);color:#10b981;padding:4px 8px;border-radius:6px;font-size:0.7rem">PAY FOR LIVE</span></div>
+                    <div style="height:1px;background:var(--border-color);margin:18px 0"></div>
+                    <ul class="pricing-features"><li><i class="fas fa-check"></i> Real User Profiles</li><li><i class="fas fa-check"></i> Manual Search & Review</li><li><i class="fas fa-check"></i> Daily Live Report</li><li><i class="fas fa-check"></i> Natural Delivery</li><li><i class="fas fa-check"></i> Pay Only For Live</li></ul>
+                    <a href="#contact" class="btn btn-primary" style="width:100%;margin-top:22px">Get Custom Quote</a>
+                    <p style="text-align:center;font-size:0.7rem;color:var(--text-muted);margin-top:10px"><i class="fas fa-shield-alt"></i> Safe method</p>
+                </div>
+                <div class="pricing-card">
+                    <div style="width:50px;height:50px;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.2);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:18px"><i class="fab fa-google-play" style="color:#f59e0b;font-size:1.5rem"></i></div>
+                    <h3>Play Store Review</h3><p style="color:var(--text-muted);font-size:0.85rem">App ranking & credibility</p>
+                    <div class="price">$1.5 <span>/ per review</span></div>
+                    <div style="height:1px;background:var(--border-color);margin:18px 0"></div>
+                    <ul class="pricing-features"><li><i class="fas fa-check"></i> Real Install + Review</li><li><i class="fas fa-check"></i> 5 Star + Custom Comment</li><li><i class="fas fa-check"></i> Keyword Search Method</li><li><i class="fas fa-check"></i> Non-Drop Strategy</li></ul>
+                    <a href="#contact" class="btn btn-outline" style="width:100%;margin-top:22px">Get Custom Quote</a>
+                </div>
+                <div class="pricing-card">
+                    <div style="width:50px;height:50px;background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.2);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:18px"><i class="fas fa-rocket" style="color:#a855f7;font-size:1.5rem"></i></div>
+                    <h3>GMB SEO Full</h3><p style="color:var(--text-muted);font-size:0.85rem">Dominate local search</p>
+                    <div class="price">$99 <span>/ month</span><span style="margin-left:auto;background:rgba(168,85,247,0.15);color:#a855f7;padding:4px 8px;border-radius:6px;font-size:0.7rem">RECOMMENDED</span></div>
+                    <div style="height:1px;background:var(--border-color);margin:18px 0"></div>
+                    <ul class="pricing-features"><li><i class="fas fa-check"></i> Full Profile Optimization</li><li><i class="fas fa-check"></i> Local Keyword Research</li><li><i class="fas fa-check"></i> Posts + Q&A + Photos</li><li><i class="fas fa-check"></i> Ranking Tracking</li></ul>
+                    <a href="#contact" class="btn btn-outline" style="width:100%;margin-top:22px">Start SEO</a>
+                </div>
+            </div>
+            <div style="text-align:center;margin-top:35px;padding:16px;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);border-radius:12px;max-width:700px;margin:0 auto">
+                <p style="font-size:0.9rem;color:#10b981"><i class="fas fa-info-circle"></i> <strong>Honest Policy:</strong> We charge only for live reviews. If 10 reviews are live in the report, you pay for 10. No charge if a review drops.</p>
             </div>
         </div>
     </section>
 
     <section id="guarantee">
-        <div class="section-header"><span class="badge">Trust & Transparency</span><h2>Our Agency Guarantee</h2><p>We believe in building long-term partnerships through 100% secure, transparent, and result-oriented work processes.</p></div>
+        <div class="section-header"><span class="badge">Trust & Transparency</span><h2>Our Agency Guarantee</h2><p>We believe in building long-term partnerships through secure, transparent, and result-oriented work processes.</p></div>
         <div class="guarantee-wrapper">
             <div class="payment-panel">
                 <h3 class="panel-title"><i class="fas fa-wallet"></i> Accepted Payments</h3>
-                <div class="payment-group"><h4 style="color:#10b981;margin-bottom:15px;font-size:1.1rem;font-weight:600"><i class="fas fa-check-circle" style="margin-right:5px"></i> We Accept (Primary)</h4><div class="payment-methods"><div class="payment-item active-method"><i class="fas fa-mobile-alt"></i> Bkash <i class="fas fa-check-circle"></i></div><div class="payment-item active-method"><i class="fas fa-mobile-alt"></i> Nagad <i class="fas fa-check-circle"></i></div><div class="payment-item active-method"><i class="fab fa-bitcoin"></i> USDT (TRC20/BEP20) <i class="fas fa-check-circle"></i></div><div class="payment-item active-method"><i class="fab fa-btc"></i> Binance Pay / Balance <i class="fas fa-check-circle"></i></div></div></div>
-                <div class="payment-group" style="margin-bottom:0"><h4 style="color:#ef4444;margin-bottom:15px;font-size:1.1rem;font-weight:600"><i class="fas fa-times-circle" style="margin-right:5px"></i> Not Accepted Directly</h4><div class="payment-methods"><div class="payment-item disabled-method"><i class="fab fa-paypal"></i> PayPal <span class="not-accepted-badge">Not Accepted</span></div><div class="payment-item disabled-method"><i class="fas fa-money-check-alt"></i> Payoneer <span class="not-accepted-badge">Not Accepted</span></div><div class="payment-item disabled-method"><i class="fas fa-exchange-alt"></i> Wise <span class="not-accepted-badge">Not Accepted</span></div><div class="payment-item disabled-method"><i class="fas fa-university"></i> Bank Transfer <span class="not-accepted-badge">Not Accepted</span></div></div><p style="font-size:.85rem;color:var(--text-muted);margin-top:18px;line-height:1.6;padding:12px;background:rgba(0,0,0,.2);border-radius:8px;border:1px solid var(--border-color)"><i class="fas fa-info-circle" style="color:var(--primary-color)"></i> We show these for information, but we currently don't accept them directly. Please use crypto/bKash methods, as Binance supports all crypto wallets for deposit.</p></div>
+                <div style="margin-bottom:30px"><h4 style="color:#10b981;margin-bottom:15px;font-size:1.1rem"><i class="fas fa-check-circle"></i> We Accept (Primary)</h4><div class="payment-methods"><div class="payment-item active-method"><i class="fas fa-mobile-alt"></i> Bkash <i class="fas fa-check-circle"></i></div><div class="payment-item active-method"><i class="fas fa-mobile-alt"></i> Nagad <i class="fas fa-check-circle"></i></div><div class="payment-item active-method"><i class="fab fa-bitcoin"></i> USDT (TRC20/BEP20) <i class="fas fa-check-circle"></i></div><div class="payment-item active-method"><i class="fab fa-btc"></i> Binance Pay <i class="fas fa-check-circle"></i></div></div></div>
+                <div style="margin-bottom:0"><h4 style="color:#ef4444;margin-bottom:15px;font-size:1.1rem"><i class="fas fa-times-circle"></i> Not Accepted Directly</h4><div class="payment-methods"><div class="payment-item" style="opacity:.6"><i class="fab fa-paypal"></i> PayPal <span style="margin-left:auto;background:rgba(239,68,68,.15);color:#ef4444;font-size:.75rem;padding:4px 8px;border-radius:8px">Not Accepted</span></div><div class="payment-item" style="opacity:.6"><i class="fas fa-money-check-alt"></i> Payoneer <span style="margin-left:auto;background:rgba(239,68,68,.15);color:#ef4444;font-size:.75rem;padding:4px 8px;border-radius:8px">Not Accepted</span></div></div></div>
             </div>
             <div class="guarantee-panel">
-                <h3 class="panel-title"><i class="fas fa-shield-alt"></i> Our Working Policy</h3>
+                <h3 class="panel-title"><i class="fas fa-shield-alt"></i> Working Policy</h3>
                 <ul class="guarantee-list">
-                    <li><i class="fas fa-handshake"></i> <div><strong>Pay Only For Live & Published Reviews</strong><br><span style="font-size:.9rem;color:var(--text-muted)">We charge only for reviews that are live and visible. We submit a daily report and you pay only for the live ones in that report.</span></div></li>
-                    <li><i class="fas fa-lock"></i> <div><strong>100% Manual & Safe Method</strong><br><span style="font-size:.9rem;color:var(--text-muted)">We follow 100% manual Play Store search, install & review method. But as Google's policy changes frequently, we cannot provide any absolute guarantee - we work with the safest method possible.</span></div></li>
-                    <li><i class="fas fa-file-invoice-dollar"></i> <div><strong>Daily Report & Daily Payment</strong><br><span style="font-size:.9rem;color:var(--text-muted)">We will add only the published reviews to our daily report. You just need to count the live reviews from the report and pay for those only. No extra charge.</span></div></li>
-                    <li><i class="fas fa-ban"></i> <div><strong>No Refill / No Money-Back Commitment</strong><br><span style="font-size:.9rem;color:var(--text-muted)">Since we only take payment for reviews that are already published and live, there is no need for refill or refund policy. You pay for what you get.</span></div></li>
-                    <li><i class="fas fa-headset"></i> <div><strong>24/7 Live Support</strong><br><span style="font-size:.9rem;color:var(--text-muted)">Always available to answer your queries and provide live updates on WhatsApp & Telegram.</span></div></li>
+                    <li><i class="fas fa-handshake"></i><div><strong>Pay Only For Live Reviews</strong><br><span style="font-size:.9rem;color:var(--text-muted)">We charge only for reviews that are live and visible. Daily report and you pay only for the live ones.</span></div></li>
+                    <li><i class="fas fa-lock"></i><div><strong>100% Manual & Safe Method</strong><br><span style="font-size:.9rem;color:var(--text-muted)">100% manual search, install & review method. Safest method possible following current policies.</span></div></li>
+                    <li><i class="fas fa-file-invoice-dollar"></i><div><strong>Daily Report & Payment</strong><br><span style="font-size:.9rem;color:var(--text-muted)">Published reviews added to daily report. Count live reviews and pay for those only.</span></div></li>
+                    <li><i class="fas fa-headset"></i><div><strong>24/7 Live Support</strong><br><span style="font-size:.9rem;color:var(--text-muted)">Available on WhatsApp & Telegram for live updates.</span></div></li>
                 </ul>
             </div>
         </div>
     </section>
 
     <section id="reviews" style="background-color:var(--surface-color)">
-        <div class="section-header"><span class="badge">Proof of Work</span><h2>Delivered Excellence</h2><p>Real results from real campaigns. Browse through some of the authentic reviews we've successfully delivered for our global clients.</p></div>
+        <div class="section-header"><span class="badge">Proof of Work</span><h2>Delivered Excellence</h2><p>Real results from real campaigns. Authentic reviews delivered for global clients.</p></div>
         <div id="reviewsGrid" class="gallery-grid">
-            <!-- Dynamic from Firebase + static fallback -->
-            <div class="gallery-item" onclick="openModal('https://i.ibb.co.com/mVcbPvkH/Screenshot-20261017-172628.jpg')"><img src="https://i.ibb.co.com/mVcbPvkH/Screenshot-20261017-172628.jpg" alt="Review 1"></div>
-            <div class="gallery-item" onclick="openModal('https://i.ibb.co.com/s9Z91s78/Screenshot-20261017-172704.jpg')"><img src="https://i.ibb.co.com/s9Z91s78/Screenshot-20261017-172704.jpg" alt="Review 2"></div>
-            <div class="gallery-item" onclick="openModal('https://i.ibb.co.com/rfZS4sk5/Screenshot-20261017-172755.jpg')"><img src="https://i.ibb.co.com/rfZS4sk5/Screenshot-20261017-172755.jpg" alt="Review 3"></div>
-            <div class="gallery-item" onclick="openModal('https://i.ibb.co.com/BHXRQd3M/Screenshot-20261017-172824.jpg')"><img src="https://i.ibb.co.com/BHXRQd3M/Screenshot-20261017-172824.jpg" alt="Review 4"></div>
-            <div class="gallery-item" onclick="openModal('https://i.ibb.co.com/ZRmX1KD6/file-00000000a0c482119588a0de1452fd69.png')"><img src="https://i.ibb.co.com/ZRmX1KD6/file-00000000a0c482119588a0de1452fd69.png" alt="Review 5"></div>
-            <div class="gallery-item" onclick="openModal('https://i.ibb.co.com/WWWyWh5j/file-00000000f3688211bf516c208be32272.png')"><img src="https://i.ibb.co.com/WWWyWh5j/file-00000000f3688211bf516c208be32272.png" alt="Review 6"></div>
+            <div class="gallery-item" onclick="openModal('https://i.ibb.co.com/mVcbPvkH/Screenshot-20261017-172628.jpg')"><img src="https://i.ibb.co.com/mVcbPvkH/Screenshot-20261017-172628.jpg" alt="Review"></div>
+            <div class="gallery-item" onclick="openModal('https://i.ibb.co.com/s9Z91s78/Screenshot-20261017-172704.jpg')"><img src="https://i.ibb.co.com/s9Z91s78/Screenshot-20261017-172704.jpg" alt="Review"></div>
+            <div class="gallery-item" onclick="openModal('https://i.ibb.co.com/rfZS4sk5/Screenshot-20261017-172755.jpg')"><img src="https://i.ibb.co.com/rfZS4sk5/Screenshot-20261017-172755.jpg" alt="Review"></div>
+            <div class="gallery-item" onclick="openModal('https://i.ibb.co.com/BHXRQd3M/Screenshot-20261017-172824.jpg')"><img src="https://i.ibb.co.com/BHXRQd3M/Screenshot-20261017-172824.jpg" alt="Review"></div>
         </div>
     </section>
 
     <section id="about">
         <div class="section-header"><span class="badge">The Founder</span><h2>About Shakil</h2></div>
-        <div class="contact-wrapper" style="max-width:1000px;margin:0 auto;align-items:center">
-            <div style="text-align:center"><img src="https://i.ibb.co.com/V0rL4WJN/IMG-20261017-142414-396.png" alt="Shakil" style="width:250px;height:250px;border-radius:20px;object-fit:cover;border:2px solid var(--border-color);box-shadow:0 10px 30px rgba(0,0,0,.5)"></div>
-            <div><h3 style="font-size:2rem;margin-bottom:5px">Meet Shakil</h3><h4 style="color:var(--primary-color);margin-bottom:20px;font-weight:500">Founder & CEO, Google Marketing</h4><p style="color:var(--text-muted);margin-bottom:15px">Shakil is the founder of Google Marketing, a premium digital agency specializing in authentic online review services and Google Map SEO. With years of deep industry expertise, he has helped hundreds of businesses dominate their local markets.</p><p style="color:var(--text-muted)">His commitment to transparency, quality, and 100% safe methods has made Google Marketing a trusted name. Shakil believes in building long-term relationships through honest communication and reliable service delivery.</p></div>
+        <div class="contact-wrapper" style="max-width:1000px;align-items:center">
+            <div style="text-align:center"><img src="https://i.ibb.co.com/V0rL4WJN/IMG-20261017-142414-396.png" alt="Shakil" style="width:250px;height:250px;border-radius:20px;object-fit:cover;border:2px solid var(--border-color)"></div>
+            <div><h3 style="font-size:2rem;margin-bottom:5px">Meet Shakil</h3><h4 style="color:var(--primary-color);margin-bottom:20px;font-weight:500">Founder & CEO, Google Marketing</h4><p style="color:var(--text-muted);margin-bottom:15px">Founder of Google Marketing, specializing in authentic review services and Google Map SEO. Helped hundreds of businesses dominate local markets.</p><p style="color:var(--text-muted)">Committed to transparency, quality, and safe methods. Building long-term relationships through honest communication.</p></div>
         </div>
     </section>
 
     <section id="faq" style="background-color:var(--surface-color)">
-        <div class="section-header"><span class="badge">Clear Your Doubts</span><h2>Frequently Asked Questions</h2><p>Everything you need to know about our honest working process.</p></div>
+        <div class="section-header"><span class="badge">Clear Your Doubts</span><h2>Frequently Asked Questions</h2><p>Everything you need to know about our process.</p></div>
         <div class="faq-container">
-            <div class="faq-item"><div class="faq-question">Are your reviews safe for my app/business? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">We use 100% manual method - real search, real install, real review. It's the safest method in the market. But we cannot give you 100% guarantee because Google Play / Map policy changes anytime and it's not our property. We always follow the safest way possible.</div></div>
-            <div class="faq-item"><div class="faq-question">Will the reviews ever drop or disappear? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Reviews can drop anytime due to Google's algorithm. That's why our system is different - we charge you ONLY for reviews that are currently live. If any review drops, you don't need to pay for it. So no tension about drop.</div></div>
-            <div class="faq-item"><div class="faq-question">How long does it take to complete an order? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">We deliver slowly to keep it natural and safe, usually 2-5 reviews per day. The exact timeline depends on your app's current condition. We will give you a clear idea before starting.</div></div>
-            <div class="faq-item"><div class="faq-question">What payment methods do you accept? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">We ONLY accept Bkash, Nagad, USDT (TRC20/BEP20), and Binance Pay / Binance Balance. We don't accept PayPal, Payoneer, Wise or Bank directly. But you can deposit to Binance from any crypto wallet and then pay us easily.</div></div>
-            <div class="faq-item"><div class="faq-question">Do you provide proof/screenshots of work? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Yes. We provide a daily report with all published review details. You can check the report, count the live reviews, and pay only for those live ones. Full transparency.</div></div>
-            <div class="faq-item"><div class="faq-question">Can you handle bulk orders? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Yes, we can handle bulk orders. But we still deliver them slowly and manually to keep it safe. Contact us for your bulk requirement and we will make a daily plan for you.</div></div>
+            <div class="faq-item"><div class="faq-question">Are your reviews safe? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">100% manual method - real search, real install, real review. Safest method in market. We follow safest practices as policies change.</div></div>
+            <div class="faq-item"><div class="faq-question">Will reviews drop? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Reviews can drop due to Google algorithm. That's why we charge ONLY for live reviews. If any drops, you don't pay for it.</div></div>
+            <div class="faq-item"><div class="faq-question">How long does it take? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">We deliver slowly to keep it natural, usually 2-5 reviews per day. Timeline depends on your app condition.</div></div>
+            <div class="faq-item"><div class="faq-question">Payment methods? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">We accept Bkash, Nagad, USDT (TRC20/BEP20), and Binance Pay. Not accepting PayPal, Payoneer, Wise directly.</div></div>
         </div>
     </section>
 
     <section id="contact">
-        <div class="section-header"><span class="badge">Let's Connect</span><h2>Start Your Project Today</h2><p>Fill out the details below and select your preferred platform to send us a direct message.</p></div>
-        <div class="contact-wrapper" style="max-width:1100px;margin:0 auto">
-            <div class="contact-info-panel"><h3>Contact Info</h3><p>We are available 24/7 to answer your queries and help your business grow.</p><div class="info-item"><div class="icon"><i class="fas fa-building"></i></div><div><p>Agency</p><p>Google Marketing</p></div></div><div class="info-item"><div class="icon"><i class="fab fa-whatsapp"></i></div><div><p>WhatsApp</p><p>+880 1647-323233</p></div></div><div class="info-item"><div class="icon"><i class="fab fa-telegram-plane"></i></div><div><p>Telegram</p><p>@DirectorShakil</p></div></div><div class="info-item"><div class="icon"><i class="fas fa-envelope"></i></div><div><p>Email</p><p>24.7.g00glemarketing@gmail.com</p></div></div></div>
+        <div class="section-header"><span class="badge">Let's Connect</span><h2>Start Your Project Today</h2><p>Fill out details and select preferred platform to send direct message.</p></div>
+        <div class="contact-wrapper">
+            <div class="contact-info-panel"><h3>Contact Info</h3><p>Available 24/7 to answer queries and help your business grow.</p><div class="info-item"><div class="icon"><i class="fas fa-building"></i></div><div><p>Agency</p><p>Google Marketing</p></div></div><div class="info-item"><div class="icon"><i class="fab fa-whatsapp"></i></div><div><p>WhatsApp</p><p>+880 1647-323233</p></div></div><div class="info-item"><div class="icon"><i class="fab fa-telegram-plane"></i></div><div><p>Telegram</p><p>@DirectorShakil</p></div></div><div class="info-item"><div class="icon"><i class="fas fa-envelope"></i></div><div><p>Email</p><p>24.7.g00glemarketing@gmail.com</p></div></div></div>
             <div class="custom-form">
-                <div class="input-group"><label>App Name / Map Link / ID</label><input type="text" id="appName" placeholder="e.g. My App Name or Link" required></div>
-                <div class="input-group"><label>Your Contact Info</label><input type="text" id="userContact" placeholder="Your WhatsApp number or Email" required></div>
-                <div class="input-group"><label>Requirements / Message</label><textarea id="userMessage" rows="4" placeholder="Tell us what you need..."></textarea></div>
+                <div class="input-group"><label>App Name / Map Link / ID</label><input type="text" id="appName" placeholder="e.g. My App Name" required></div>
+                <div class="input-group"><label>Your Contact Info</label><input type="text" id="userContact" placeholder="WhatsApp or Email" required></div>
+                <div class="input-group"><label>Requirements</label><textarea id="userMessage" rows="4" placeholder="Tell us what you need..."></textarea></div>
                 <button class="btn btn-primary" id="mainSubmitBtn" onclick="showOptions()" style="width:100%;margin-top:10px">Choose Send Option <i class="fas fa-arrow-right"></i></button>
-                <div class="send-options" id="sendOptionsBlock"><p style="font-size:.9rem;color:var(--text-muted);text-align:center;margin-bottom:5px">Send message via:</p><button class="btn btn-wa" onclick="sendLead('whatsapp')"><i class="fab fa-whatsapp"></i> Send via WhatsApp + Save Lead</button><button class="btn btn-tg" onclick="sendLead('telegram')"><i class="fab fa-telegram-plane"></i> Send via Telegram + Save Lead</button><button class="btn btn-mail" onclick="sendLead('email')"><i class="fas fa-envelope"></i> Send via Email + Save Lead</button><p id="leadStatus" style="font-size:.85rem;color:#10b981;display:none;text-align:center"></p></div>
+                <div class="send-options" id="sendOptionsBlock"><p style="font-size:.9rem;color:var(--text-muted);text-align:center">Send via:</p><button class="btn btn-wa" onclick="sendLead('whatsapp')"><i class="fab fa-whatsapp"></i> WhatsApp + Save Lead</button><button class="btn btn-tg" onclick="sendLead('telegram')"><i class="fab fa-telegram-plane"></i> Telegram + Save Lead</button><button class="btn btn-mail" onclick="sendLead('email')"><i class="fas fa-envelope"></i> Email + Save Lead</button><p id="leadStatus" style="font-size:.85rem;color:#10b981;display:none;text-align:center"></p></div>
             </div>
         </div>
     </section>
 
-    <footer style="background-color:#02040a;padding:60px 5% 30px;border-top:1px solid var(--border-color)">
-        <div style="text-align:center;margin-bottom:30px"><img src="https://i.ibb.co.com/GfswcC5V/FB-IMG-1791925489216.jpg" alt="Logo" style="width:50px;border-radius:8px;margin-bottom:15px"><h3 style="font-family:'Outfit';font-size:1.5rem">Google Marketing</h3><p style="color:var(--text-muted);max-width:500px;margin:15px auto">Premium online review services and Google Map SEO optimization. Empowering businesses worldwide.</p></div>
-        <div class="footer-trust-badges"><div class="footer-badge"><i class="fas fa-user-check"></i> Manual Work - Real Users</div><div class="footer-badge"><i class="fas fa-file-invoice"></i> Pay Only For Live Reviews</div><div class="footer-badge"><i class="fas fa-headset"></i> 24/7 Live Support</div></div>
-        <div style="text-align:center;padding-top:25px;color:var(--text-muted);font-size:.9rem;margin-top:10px">&copy; 2026 Google Marketing. All rights reserved. | Built with honesty, not fake guarantees.</div>
+    <footer style="background:#02040a;padding:60px 5% 30px;border-top:1px solid var(--border-color)">
+        <div style="text-align:center;margin-bottom:30px"><img src="https://i.ibb.co.com/GfswcC5V/FB-IMG-1791925489216.jpg" alt="Logo" style="width:50px;border-radius:8px;margin-bottom:15px"><h3 style="font-family:'Outfit';font-size:1.5rem">Google Marketing</h3><p style="color:var(--text-muted);max-width:500px;margin:15px auto">Premium review services and Google Map SEO optimization. Empowering businesses worldwide.</p></div>
+        <div class="footer-trust-badges"><div class="footer-badge"><i class="fas fa-user-check"></i> Manual Work - Real Users</div><div class="footer-badge"><i class="fas fa-file-invoice"></i> Pay Only For Live Reviews</div><div class="footer-badge"><i class="fas fa-headset"></i> 24/7 Support</div></div>
+        <div style="text-align:center;padding-top:25px;color:var(--text-muted);font-size:.9rem">&copy; 2026 Google Marketing. All rights reserved.</div>
     </footer>
 
     <div id="imageModal" class="modal" onclick="closeModal()"><span class="close-modal">&times;</span><img class="modal-content" id="modalImg"></div>
 
-    <!-- Firebase + Logic -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
         import { getAuth, onAuthStateChanged, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
         import { getFirestore, collection, doc, getDocs, addDoc, deleteDoc, onSnapshot, setDoc, getDoc, serverTimestamp, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-        import { getDatabase, ref, push, onChildAdded, onValue, set, remove } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+        import { getDatabase, ref, push, onChildAdded, onValue, set } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
-        // ================== REPLACE WITH YOUR FIREBASE CONFIG ==================
         const firebaseConfig = {
             apiKey: "__FIREBASE_API_KEY__",
             authDomain: "__FIREBASE_AUTH_DOMAIN__",
@@ -490,7 +475,6 @@
             messagingSenderId: "__FIREBASE_MESSAGING_SENDER_ID__",
             appId: "__FIREBASE_APP_ID__"
         };
-        // ========================================================================
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
@@ -498,11 +482,9 @@
         const rtdb = getDatabase(app);
         const provider = new GoogleAuthProvider();
         const ADMIN_EMAIL = "afshakil279@gmail.com";
-        
         let currentUser = null;
         let authMode = 'login';
 
-        // ---- Auth UI ----
         window.openAuth = () => document.getElementById('authModal').classList.add('active');
         window.closeAuth = () => document.getElementById('authModal').classList.remove('active');
         window.switchAuthTab = (mode) => {
@@ -511,14 +493,14 @@
             document.getElementById('tabSignup').classList.toggle('active', mode==='signup');
             document.getElementById('authTitle').innerText = mode==='login' ? 'Welcome Back' : 'Create Account';
             document.getElementById('authSubmitBtn').innerText = mode==='login' ? 'Login' : 'Sign Up';
-            document.getElementById('authDesc').innerText = mode==='login' ? 'Welcome back - login to your account' : 'Create a new account to get started';
+            document.getElementById('authDesc').innerText = mode==='login' ? 'Login to your account to access all features' : 'Create a new account to get started';
         }
         window.handleAuth = async () => {
             const email = document.getElementById('authEmail').value.trim();
             const pass = document.getElementById('authPass').value.trim();
             const errEl = document.getElementById('authError');
             errEl.style.display='none';
-            if(!email || !pass){ errEl.innerText='Please enter Email & Password'; errEl.style.display='block'; return; }
+            if(!email || !pass){ errEl.innerText='Please enter email and password'; errEl.style.display='block'; return; }
             try{
                 if(authMode==='signup') await createUserWithEmailAndPassword(auth,email,pass);
                 else await signInWithEmailAndPassword(auth,email,pass);
@@ -530,29 +512,32 @@
         }
         window.logout = async () => { await signOut(auth); location.reload(); }
 
+        window.handlePricingClick = (e) => {
+            if(!currentUser){ e.preventDefault(); openAuth(); return; }
+            document.getElementById('pricing').scrollIntoView({behavior:'smooth'});
+        }
+
         onAuthStateChanged(auth, (user) => {
             currentUser = user;
             const loginBtn = document.getElementById('loginBtn');
             const userInfo = document.getElementById('userInfo');
             const pricingSection = document.getElementById('pricing');
             const adminBtn = document.getElementById('adminBtn');
-
             if(user){
                 loginBtn.style.display='none';
                 userInfo.style.display='flex';
                 document.getElementById('userEmailText').innerText = user.email || 'Guest';
                 if(pricingSection) pricingSection.style.display='block';
-                if(user.email===ADMIN_EMAIL){ adminBtn.style.display='inline-flex'; }
+                if(user.email===ADMIN_EMAIL) adminBtn.style.display='inline-flex';
                 initChatListener();
             }else{
                 loginBtn.style.display='inline-flex';
                 userInfo.style.display='none';
                 if(pricingSection) pricingSection.style.display='none';
-                adminBtn.style.display='none';
+                if(adminBtn) adminBtn.style.display='none';
             }
         });
 
-        // ---- Menu & FAQ & Modal (original) ----
         window.toggleMenu = () => document.getElementById('mobileMenu').classList.toggle('active');
         const modal = document.getElementById("imageModal");
         const modalImg = document.getElementById("modalImg");
@@ -567,7 +552,6 @@
             })
         });
 
-        // ---- Pricing (Firestore) ----
         function renderPricing(docs){
             const grid = document.getElementById('pricingGrid');
             if(!docs.length) return;
@@ -580,21 +564,18 @@
                     <h3>${p.title}</h3>
                     <div class="price">${p.price} <span>${p.per||''}</span></div>
                     <ul class="pricing-features">${(p.features||[]).map(f=>`<li><i class="fas fa-check"></i> ${f}</li>`).join('')}</ul>
-                    <a href="#contact" class="btn ${p.popular?'btn-primary':'btn-outline'}" style="width:100%">Get Started</a>
+                    <a href="#contact" class="btn ${p.popular?'btn-primary':'btn-outline'}" style="width:100%;margin-top:15px">Get Started</a>
                 </div>`;
             });
         }
         onSnapshot(collection(db,'pricing'), snap=>{
-            const docs = snap.docs;
-            renderPricing(docs);
-            // admin list
+            renderPricing(snap.docs);
             const adminList = document.getElementById('adminPricingList');
             if(adminList){
-                adminList.innerHTML = docs.map(d=>`<div class="admin-list-item"><span>${d.data().title} - ${d.data().price}</span><div class="admin-actions"><button class="btn-sm btn-danger" onclick="deletePricing('${d.id}')">Delete</button></div></div>`).join('') || 'No pricing';
+                adminList.innerHTML = snap.docs.map(d=>`<div class="admin-list-item"><span>${d.data().title} - ${d.data().price}</span><div class="admin-actions"><button class="btn-sm btn-danger" onclick="deletePricing('${d.id}')">Delete</button></div></div>`).join('') || 'No pricing';
             }
         });
 
-        // ---- Stats (Firestore) ----
         async function loadStats(){
             try{
                 const snap = await getDoc(doc(db,'config','stats'));
@@ -608,7 +589,6 @@
                     document.getElementById('stat-clients-label').innerText = s.clients_label||'Global Clients';
                     document.getElementById('stat-years-label').innerText = s.years_label||'Years Experience';
                     document.getElementById('stat-safe-label').innerText = s.safe_label||'Safe & Non-Drop';
-                    // fill admin inputs
                     document.getElementById('stat_projects').value=s.projects||500;
                     document.getElementById('stat_clients').value=s.clients||300;
                     document.getElementById('stat_years').value=s.years||3;
@@ -618,7 +598,7 @@
                     document.getElementById('stat_years_label').value=s.years_label||'Years Experience';
                     document.getElementById('stat_safe_label').value=s.safe_label||'Safe & Non-Drop';
                 }
-            }catch(e){ console.log('stats load error',e); }
+            }catch(e){}
         }
         loadStats();
         window.saveStats = async ()=>{
@@ -638,19 +618,9 @@
             loadStats();
         }
 
-        // ---- Reviews (Firestore) ----
         onSnapshot(collection(db,'reviews'), snap=>{
-            const grid = document.getElementById('reviewsGrid');
-            // keep static fallback if empty, else prepend dynamic?
-            if(snap.docs.length){
-                // clear and add all from DB + static? We'll show DB items first
-                const existingStatic = grid.innerHTML; // keep? for now replace with DB only if you want dynamic
-                // Let's append DB reviews
-                snap.docs.forEach(d=>{
-                    const r = d.data();
-                    // avoid duplicate if already exists - just add
-                });
-                const adminDiv = document.getElementById('adminReviewsList');
+            const adminDiv = document.getElementById('adminReviewsList');
+            if(adminDiv){
                 adminDiv.innerHTML = snap.docs.map(d=>{
                     const r=d.data();
                     return `<div style="position:relative;border:1px solid var(--border-color);border-radius:10px;overflow:hidden"><img src="${r.imageUrl}" style="width:100%;height:150px;object-fit:cover"><button class="btn-sm btn-danger" style="position:absolute;top:5px;right:5px" onclick="deleteReview('${d.id}')">X</button></div>`;
@@ -662,13 +632,10 @@
             if(!url) return alert('Please enter Image URL');
             await addDoc(collection(db,'reviews'), { imageUrl:url, alt:document.getElementById('reviewAlt').value, createdAt:serverTimestamp() });
             document.getElementById('reviewImageUrl').value='';
-            // also render immediately in UI
             const grid = document.getElementById('reviewsGrid');
             const div = document.createElement('div'); div.className='gallery-item'; div.onclick=()=>openModal(url); div.innerHTML=`<img src="${url}" alt="Review">`; grid.prepend(div);
         }
         window.deleteReview = async (id)=>{ if(confirm('Delete?')) await deleteDoc(doc(db,'reviews',id)); }
-
-        // ---- Pricing Admin ----
         window.addPricing = async ()=>{
             const title = document.getElementById('pricingTitle').value.trim();
             const price = document.getElementById('pricingPrice').value.trim();
@@ -679,11 +646,10 @@
         }
         window.deletePricing = async (id)=>{ if(confirm('Delete pricing?')) await deleteDoc(doc(db,'pricing',id)); }
 
-        // ---- Leads ----
         window.showOptions = ()=>{
             const appName = document.getElementById('appName').value.trim();
             const contact = document.getElementById('userContact').value.trim();
-            if(!appName||!contact){ alert("Please fill in App Name/ID and Contact Info"); return; }
+            if(!appName||!contact){ alert("Please fill App Name and Contact Info"); return; }
             document.getElementById('mainSubmitBtn').style.display='none';
             document.getElementById('sendOptionsBlock').style.display='flex';
         }
@@ -691,12 +657,8 @@
             const appName = document.getElementById('appName').value.trim();
             const contact = document.getElementById('userContact').value.trim();
             const message = document.getElementById('userMessage').value.trim()||'No additional message.';
-            try{
-                await addDoc(collection(db,'leads'), { appName, contact, message, platform, createdAt:serverTimestamp(), user: currentUser?.email||'guest' });
-                document.getElementById('leadStatus').innerText='✅ Lead saved to Firebase!';
-                document.getElementById('leadStatus').style.display='block';
-            }catch(e){ console.log(e); }
-            const textRaw = `🚀 New Service Request 🚀\n\n📱 App/Target: ${appName}\n📞 Client: ${contact}\n💬 Message: ${message}`;
+            try{ await addDoc(collection(db,'leads'), { appName, contact, message, platform, createdAt:serverTimestamp(), user: currentUser?.email||'guest' }); document.getElementById('leadStatus').innerText='Lead saved!'; document.getElementById('leadStatus').style.display='block'; }catch(e){}
+            const textRaw = `New Service Request\nApp: ${appName}\nContact: ${contact}\nMessage: ${message}`;
             const encoded = encodeURIComponent(textRaw);
             if(platform==='whatsapp') window.open(`https://wa.me/8801647323233?text=${encoded}`,'_blank');
             else if(platform==='telegram') window.open(`https://t.me/DirectorShakil?text=${encoded}`,'_blank');
@@ -711,32 +673,24 @@
             }).join('') || 'No leads yet';
         });
 
-        // ---- Real-time Chat (Realtime DB) ----
         let chatUnsub = null;
         let guestId = localStorage.getItem('guestId') || 'guest_'+Date.now();
         localStorage.setItem('guestId', guestId);
-
-        window.toggleChat = ()=>{
-            document.getElementById('chatBox').classList.toggle('active');
-        }
+        window.toggleChat = ()=>{ document.getElementById('chatBox').classList.toggle('active'); }
         window.sendChatMessage = async ()=>{
             const input = document.getElementById('chatInput');
             const text = input.value.trim();
             if(!text) return;
             let uid = currentUser?.uid || guestId;
-            // if not logged in, try anonymous
-            if(!currentUser){
-                try{ const cred = await signInAnonymously(auth); uid = cred.user.uid; }catch(e){ uid = guestId; }
-            }
+            if(!currentUser){ try{ const cred = await signInAnonymously(auth); uid = cred.user.uid; }catch(e){ uid = guestId; } }
             const chatRef = ref(rtdb, `chats/${uid}/messages`);
             await push(chatRef, { from:'client', text, time:Date.now(), email: currentUser?.email||'guest', uid });
             input.value='';
-            // Also trigger telegram via cloud function (onCreate will send)
         }
         function initChatListener(){
             const uid = currentUser?.uid || guestId;
             const chatRef = ref(rtdb, `chats/${uid}/messages`);
-            if(chatUnsub) return; // avoid multiple
+            if(chatUnsub) return;
             onChildAdded(chatRef, (snap)=>{
                 const m = snap.val();
                 const box = document.getElementById('chatMessages');
@@ -753,8 +707,6 @@
             });
         }
         initChatListener();
-
-        // Admin Chats view
         onValue(ref(rtdb, 'chats'), (snap)=>{
             const data = snap.val();
             const el = document.getElementById('adminChatsList');
@@ -772,11 +724,19 @@
             const chatRef = ref(rtdb, `chats/${uid}/messages`);
             onValue(chatRef, (snap)=>{
                 const msgs = snap.val();
-alert('Chat '+uid+':\n'+ (msgs ? Object.values(msgs).map(m=>m.from+': '+m.text).join('\n') : 'empty') + '\n\nTelegram /reply '+uid+' your_message client real-time ');
+                alert('Chat '+uid+':\n'+ (msgs ? Object.values(msgs).map(m=>m.from+': '+m.text).join('\n') : 'empty') + '\n\nTelegram: /reply '+uid+' your_message');
             }, {onlyOnce:true});
         }
-
-        // ---- Admin Panel ----
+        window.updateCalc = () => {
+            const price = parseFloat(document.getElementById('calcService').value) || 1.2;
+            const qty = parseInt(document.getElementById('calcQty').value) || 1;
+            let total = price * qty;
+            if(price < 10) total = total.toFixed(1);
+            else total = total.toFixed(0);
+            document.getElementById('calcTotal').innerText = '$' + total;
+        }
+        document.getElementById('calcService')?.addEventListener('change', updateCalc);
+        updateCalc();
         window.openAdmin = ()=> document.getElementById('adminPanel').classList.add('active');
         window.closeAdmin = ()=> document.getElementById('adminPanel').classList.remove('active');
         window.switchAdminTab = (id)=>{
@@ -785,51 +745,9 @@ alert('Chat '+uid+':\n'+ (msgs ? Object.values(msgs).map(m=>m.from+': '+m.text).
             document.querySelector(`[onclick="switchAdminTab('${id}')"]`).classList.add('active');
             document.getElementById('tab-'+id).classList.add('active');
         }
-
-        // Expose doc for inline onclick delete
         window.doc = doc;
         window.deleteDoc = deleteDoc;
         window.db = db;
     </script>
-
-    <!-- 
-    ================= TELEGRAM BOT CLOUD FUNCTION - DEPLOY IN FIREBASE =================
-    1. firebase init functions
-    2. npm install axios
-    3. firebase functions:config:set telegram.token="YOUR_BOT_TOKEN" telegram.admin_id="YOUR_TELEGRAM_ID"
-    4. Paste this code in functions/index.js and deploy:
-
-    const functions = require("firebase-functions");
-    const admin = require("firebase-admin");
-    const axios = require("axios");
-    admin.initializeApp();
-
-    exports.onNewChatMessage = functions.database.ref("/chats/{uid}/messages/{msgId}").onCreate(async (snap, context) => {
-      const msg = snap.val();
-      if (msg.from !== 'client') return null;
-      const token = functions.config().telegram.token;
-      const adminId = functions.config().telegram.admin_id;
-      const uid = context.params.uid;
-      const text = `📩 New message from ${uid}\nEmail: ${msg.email||'guest'}\nMessage: ${msg.text}\n\nReply: /reply ${uid} your_message`;
-      await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, { chat_id: adminId, text });
-      return null;
-    });
-
-    exports.telegramWebhook = functions.https.onRequest(async (req, res) => {
-      const message = req.body.message;
-      if (!message || !message.text) return res.send("ok");
-      if (message.text.startsWith("/reply")) {
-        const parts = message.text.split(" ");
-        const uid = parts[1];
-        const replyText = parts.slice(2).join(" ");
-        await admin.database().ref(`chats/${uid}/messages`).push({ from: "admin", text: replyText, time: Date.now() });
-      }
-      res.send("ok");
-    });
-
-    Then set webhook: https://api.telegram.org/bot<TOKEN>/setWebhook?url=https://<region>-<project>.cloudfunctions.net/telegramWebhook
-
-    ===============================================================================
-    -->
 <script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script></body>
 </html>
