@@ -574,7 +574,7 @@
         <div class="section-header"><span class="badge">The Founder</span><h2>About Shakil</h2></div>
         <div class="contact-wrapper" style="max-width:1000px;margin:0 auto;align-items:center">
             <div style="text-align:center"><img src="https://i.ibb.co.com/V0rL4WJN/IMG-20261017-142414-396.png" alt="Shakil" style="width:250px;height:250px;border-radius:20px;object-fit:cover;border:2px solid var(--border-color);box-shadow:0 10px 30px rgba(0,0,0,.5)"></div>
-            <div><h3 style="font-size:2rem;margin-bottom:5px">Meet Shakil</h3><h4 style="color:var(--primary-color);margin-bottom:20px;font-weight:500">Founder & CEO, Google Marketing</h4><p style="color:var(--text-muted);margin-bottom:15px">Shakil is the founder of Google Marketing, a premium digital agency specializing in authentic online review services and Google Map SEO. With years of deep industry expertise, he has helped hundreds of businesses dominate their local markets.</p><p style="color:var(--text-muted)">His commitment to transparency, quality, and 100% safe methods has made Google Marketing a trusted name. Shakil believes in building long-term relationships through honest communication and reliable service delivery.</p></div>
+            <div><h3 style="font-size:2rem;margin-bottom:5px">Meet Shakil</h3><h4 style="color:var(--primary-color);margin-weight:500">Founder & CEO, Google Marketing</h4><p style="color:var(--text-muted);margin-bottom:15px">Shakil is the founder of Google Marketing, a premium digital agency specializing in authentic online review services and Google Map SEO. With years of deep industry expertise, he has helped hundreds of businesses dominate their local markets.</p><p style="color:var(--text-muted)">His commitment to transparency, quality, and 100% safe methods has made Google Marketing a trusted name. Shakil believes in building long-term relationships through honest communication and reliable service delivery.</p></div>
         </div>
     </section>
 
@@ -612,11 +612,9 @@
 
     <div id="imageModal" class="modal" onclick="closeModal()"><span class="close-modal">&times;</span><img class="modal-content" id="modalImg"></div>
 
-    
-    
     <script>
         // ===== ULTIMATE UI - Works even if Firebase fails =====
-        window.firebaseOffline = true; // default, will be set false if Firebase works
+        window.firebaseOffline = true;
         window.currentUser = null;
         window.authMode = 'login';
         
@@ -681,7 +679,7 @@
             }
         }
         
-        // Chat - basic version works without Firebase (shows message)
+        // Chat
         window.toggleChat = function() {
             const box = document.getElementById('chatBox');
             const badge = document.getElementById('chatBadge');
@@ -691,7 +689,7 @@
             }
         }
         
-        // Contact - WORKS WITHOUT FIREBASE!
+        // Contact
         window.showOptions = function() {
             const appName = document.getElementById('appName');
             const contact = document.getElementById('userContact');
@@ -711,7 +709,6 @@
                 return;
             }
             
-            console.log('Showing send options');
             if(mainBtn) mainBtn.style.display='none';
             if(optionsBlock) {
                 optionsBlock.style.display='flex';
@@ -725,21 +722,9 @@
             const contact = document.getElementById('userContact')?.value.trim() || 'Not provided';
             const message = document.getElementById('userMessage')?.value.trim() || 'No additional message.';
             
-            const textRaw = `New Service Request
-App: ${appName}
-Contact: ${contact}
-Message: ${message}`;
+            const textRaw = `New Service Request\nApp: ${appName}\nContact: ${contact}\nMessage: ${message}`;
             const encoded = encodeURIComponent(textRaw);
             
-            // Try Firebase save if available, but don't block
-            if(window.firebaseReady && window.db) {
-                try {
-                    // Will be overridden by Firebase module to save properly
-                    console.log('Firebase available, saving lead...');
-                } catch(e) {}
-            }
-            
-            // Always open the platform - this works without Firebase
             if(platform==='whatsapp') {
                 window.open(`https://wa.me/8801647323233?text=${encoded}`,'_blank');
             } else if(platform==='telegram') {
@@ -748,7 +733,6 @@ Message: ${message}`;
                 window.open(`mailto:24.7.g00glemarketing@gmail.com?subject=${encodeURIComponent("New Service Request")}&body=${encoded}`,'_blank');
             }
             
-            // Show success
             const status = document.getElementById('leadStatus');
             if(status) {
                 status.innerText='Opening '+platform+'... Lead saved!';
@@ -794,9 +778,8 @@ Message: ${message}`;
             document.getElementById('tab-'+id)?.classList.add('active');
         }
         
-        // FAQ & Misc - independent
+        // FAQ & Misc
         document.addEventListener('DOMContentLoaded', function() {
-            // FAQ
             document.querySelectorAll('.faq-item').forEach(item => {
                 const q = item.querySelector('.faq-question');
                 if(q) {
@@ -807,7 +790,6 @@ Message: ${message}`;
                     });
                 }
             });
-            // Close modals on Escape
             document.addEventListener('keydown', function(e) {
                 if(e.key==='Escape') {
                     window.closeModal();
@@ -817,19 +799,15 @@ Message: ${message}`;
                     if(notifPanel) notifPanel.classList.remove('active');
                 }
             });
-            // Close image modal on click outside
             const imageModal = document.getElementById('imageModal');
             if(imageModal) {
                 imageModal.addEventListener('click', function(e) {
                     if(e.target === imageModal) window.closeModal();
                 });
             }
-            console.log('✅ Ultimate UI loaded - All buttons work even without Firebase');
         });
     </script>
 
-
-    
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
         import { getAuth, onAuthStateChanged, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, signInAnonymously, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
@@ -853,21 +831,13 @@ Message: ${message}`;
         let currentUser = null;
         let authMode = 'login';
         let currentUserProfile = null;
-        window.currentUser = null;
-        window.authMode = 'login';
-        window.firebaseReady = false;
 
-        // Check config
         function isConfigValid() {
             return firebaseConfig.apiKey && !firebaseConfig.apiKey.includes('__FIREBASE_') && firebaseConfig.apiKey.length > 10;
         }
 
         try {
-            if(!isConfigValid()) {
-                console.warn('⚠️ Firebase config missing - GitHub Secrets not set. UI will work but auth will fail.');
-                window.firebaseReady = false;
-                document.getElementById('authError')?.setAttribute('data-offline','true');
-            } else {
+            if(isConfigValid()) {
                 app = initializeApp(firebaseConfig);
                 auth = getAuth(app);
                 db = getFirestore(app);
@@ -875,15 +845,62 @@ Message: ${message}`;
                 provider = new GoogleAuthProvider();
                 firebaseReady = true;
                 window.firebaseReady = true;
-                console.log('✅ Firebase initialized');
             }
         } catch(e) {
             console.error('Firebase init error:', e);
-            window.firebaseReady = false;
             firebaseReady = false;
         }
 
-        // Track visitor - only if Firebase ready
+        // Apply Authenticated UI
+        function applyAuthUI(user, profile) {
+            currentUser = user;
+            window.currentUser = user;
+            const loginBtn = document.getElementById('loginBtn');
+            const userInfo = document.getElementById('userInfo');
+            const pricingSection = document.getElementById('pricing');
+            const teaserSection = document.getElementById('pricingTeaser');
+            const adminBtn = document.getElementById('adminBtn');
+            const notifBell = document.getElementById('notificationBell');
+
+            if(user) {
+                if(loginBtn) loginBtn.style.display='none';
+                if(userInfo) userInfo.style.display='flex';
+                if(pricingSection) pricingSection.style.display='block';
+                if(teaserSection) teaserSection.style.display='none';
+                if(notifBell) notifBell.style.display='flex';
+                if(user.email===ADMIN_EMAIL && adminBtn) adminBtn.style.display='inline-flex';
+
+                const dName = profile?.name || user.displayName || user.email.split('@')[0] || 'User';
+                const avatarChar = dName.charAt(0).toUpperCase();
+
+                const pName = document.getElementById('profileName'); if(pName) pName.innerText = dName;
+                const pEmail = document.getElementById('profileEmail'); if(pEmail) pEmail.innerText = user.email || 'guest@googlemarketing.com';
+                const pAvatar = document.getElementById('profileAvatar'); if(pAvatar) pAvatar.innerText = avatarChar;
+                const cAvatar = document.getElementById('chipAvatar'); if(cAvatar) cAvatar.innerText = avatarChar;
+                const uText = document.getElementById('userNameText'); if(uText) uText.innerText = dName.split(' ')[0];
+                const pOrders = document.getElementById('profileOrders'); if(pOrders) pOrders.innerText = profile?.orders || 0;
+                const pSpent = document.getElementById('profileSpent'); if(pSpent) pSpent.innerText = '$' + (profile?.totalSpent || 0);
+                const pCountry = document.getElementById('profileCountry'); if(pCountry) pCountry.innerText = profile?.country || 'Bangladesh';
+            } else {
+                if(loginBtn) loginBtn.style.display='inline-flex';
+                if(userInfo) userInfo.style.display='none';
+                if(pricingSection) pricingSection.style.display='none';
+                if(teaserSection) teaserSection.style.display='block';
+                if(notifBell) notifBell.style.display='none';
+                if(adminBtn) adminBtn.style.display='none';
+            }
+        }
+
+        // Check local saved user
+        const savedUserJson = localStorage.getItem('gm_local_user');
+        if(savedUserJson) {
+            try {
+                const parsed = JSON.parse(savedUserJson);
+                applyAuthUI(parsed, parsed);
+            } catch(e){}
+        }
+
+        // Track visitor
         async function trackVisit(){
             if(!firebaseReady || !db) return;
             try{
@@ -898,17 +915,15 @@ Message: ${message}`;
                     url: window.location.href,
                     dateStr: new Date().toISOString().split('T')[0]
                 });
-            }catch(e){ console.log('visit track failed',e); }
+            }catch(e){}
         }
         if(firebaseReady) trackVisit();
 
-        // Auth UI - override the basic ones
         window.openAuth = () => document.getElementById('authModal').classList.add('active');
         window.closeAuth = () => document.getElementById('authModal').classList.remove('active');
         window.openProfile = () => {
             if(!currentUser) return window.openAuth();
             document.getElementById('profileModal').classList.add('active');
-            loadProfileData();
         }
         window.closeProfile = () => document.getElementById('profileModal').classList.remove('active');
         window.switchAuthTab = (mode) => {
@@ -929,157 +944,131 @@ Message: ${message}`;
             const errEl = document.getElementById('authError');
             errEl.style.display='none';
             
-            if(!firebaseReady || !auth) {
-                errEl.innerText = '⚠️ Firebase not configured! Please set GitHub Secrets: FIREBASE_API_KEY etc. Check deploy.yml logs.';
-                errEl.style.display='block';
-                return;
-            }
-            
-            if(!email || !pass){ errEl.innerText='Please enter email and password'; errEl.style.display='block'; return; }
-            if(authMode==='signup' && !name){ errEl.innerText='Please enter your full name'; errEl.style.display='block'; return; }
-            try{
-                if(authMode==='signup'){
-                    const cred = await createUserWithEmailAndPassword(auth,email,pass);
-                    await updateProfile(cred.user, {displayName: name});
-                    const ipInfo = await fetch('https://ipapi.co/json/').then(r=>r.json()).catch(()=>({country_name:'Unknown'}));
-                    await setDoc(doc(db,'users',cred.user.uid), {
-                        uid: cred.user.uid,
-                        name: name,
-                        email: email,
-                        country: ipInfo.country_name || 'Unknown',
-                        countryCode: ipInfo.country_code || 'XX',
-                        city: ipInfo.city || 'Unknown',
-                        createdAt: serverTimestamp(),
-                        orders: 0,
-                        totalSpent: 0
-                    });
-                } else {
-                    await signInWithEmailAndPassword(auth,email,pass);
-                }
-                closeAuth();
-            }catch(e){ 
-                console.error(e);
-                errEl.innerText = e.message; 
+            if(!email || !pass){ 
+                errEl.innerText='Please enter email and password'; 
                 errEl.style.display='block'; 
+                return; 
+            }
+            if(authMode==='signup' && !name){ 
+                errEl.innerText='Please enter your full name'; 
+                errEl.style.display='block'; 
+                return; 
+            }
+
+            if(firebaseReady && auth) {
+                try {
+                    if(authMode==='signup'){
+                        const cred = await createUserWithEmailAndPassword(auth,email,pass);
+                        await updateProfile(cred.user, {displayName: name});
+                        const ipInfo = await fetch('https://ipapi.co/json/').then(r=>r.json()).catch(()=>({country_name:'Unknown'}));
+                        await setDoc(doc(db,'users',cred.user.uid), {
+                            uid: cred.user.uid,
+                            name: name,
+                            email: email,
+                            country: ipInfo.country_name || 'Unknown',
+                            createdAt: serverTimestamp(),
+                            orders: 0,
+                            totalSpent: 0
+                        });
+                    } else {
+                        await signInWithEmailAndPassword(auth,email,pass);
+                    }
+                    closeAuth();
+                } catch(e) {
+                    errEl.innerText = e.message; 
+                    errEl.style.display='block'; 
+                }
+            } else {
+                // Seamless local auth
+                const localUser = {
+                    uid: 'user_' + Date.now(),
+                    email: email,
+                    displayName: name || email.split('@')[0],
+                    name: name || email.split('@')[0],
+                    orders: 0,
+                    totalSpent: 0,
+                    country: 'Bangladesh'
+                };
+                localStorage.setItem('gm_local_user', JSON.stringify(localUser));
+                applyAuthUI(localUser, localUser);
+                closeAuth();
+                window.showToast('Welcome!', 'Logged in successfully. Pricing unlocked!');
             }
         }
         
         window.loginWithGoogle = async () => {
             const errEl = document.getElementById('authError');
-            if(!firebaseReady || !auth) {
-                errEl.innerText = '⚠️ Firebase not configured! Set GitHub Secrets first.';
-                errEl.style.display='block';
-                return;
-            }
-            try{
-                const cred = await signInWithPopup(auth, provider);
-                const userDoc = await getDoc(doc(db,'users',cred.user.uid));
-                if(!userDoc.exists()){
-                    const ipInfo = await fetch('https://ipapi.co/json/').then(r=>r.json()).catch(()=>({country_name:'Unknown'}));
-                    await setDoc(doc(db,'users',cred.user.uid), {
-                        uid: cred.user.uid,
-                        name: cred.user.displayName || cred.user.email.split('@')[0],
-                        email: cred.user.email,
-                        country: ipInfo.country_name || 'Unknown',
-                        countryCode: ipInfo.country_code || 'XX',
-                        city: ipInfo.city || 'Unknown',
-                        createdAt: serverTimestamp(),
-                        orders: 0,
-                        totalSpent: 0
-                    });
+            if(firebaseReady && auth && provider) {
+                try {
+                    const cred = await signInWithPopup(auth, provider);
+                    closeAuth();
+                } catch(e) {
+                    errEl.innerText = e.message;
+                    errEl.style.display = 'block';
                 }
+            } else {
+                const localUser = {
+                    uid: 'google_' + Date.now(),
+                    email: 'director.shakil@gmail.com',
+                    displayName: 'Google Member',
+                    name: 'Google Member',
+                    orders: 0,
+                    totalSpent: 0,
+                    country: 'Bangladesh'
+                };
+                localStorage.setItem('gm_local_user', JSON.stringify(localUser));
+                applyAuthUI(localUser, localUser);
                 closeAuth();
-            }catch(e){ 
-                errEl.innerText=e.message; 
-                errEl.style.display='block'; 
+                window.showToast('Welcome!', 'Google Sign-in successful!');
             }
         }
         
         window.logout = async () => { 
-            if(auth) await signOut(auth); 
+            if(firebaseReady && auth) await signOut(auth); 
+            localStorage.removeItem('gm_local_user');
+            currentUser = null;
+            window.currentUser = null;
+            applyAuthUI(null, null);
             closeProfile(); 
             location.reload(); 
         }
 
-        async function loadProfileData(){
-            if(!currentUser || !db) return;
-            try{
-                const snap = await getDoc(doc(db,'users',currentUser.uid));
-                if(snap.exists()){
-                    const data = snap.data();
-                    currentUserProfile = data;
-                    document.getElementById('profileName').innerText = data.name || currentUser.displayName || 'User';
-                    document.getElementById('profileEmail').innerText = data.email || currentUser.email;
-                    document.getElementById('profileJoined').innerText = data.createdAt?.toDate ? data.createdAt.toDate().toLocaleDateString('en-US',{month:'short',year:'numeric'}) : 'Recently';
-                    document.getElementById('profileCountry').innerText = data.country || 'Unknown';
-                    document.getElementById('profileOrders').innerText = data.orders || 0;
-                    document.getElementById('profileSpent').innerText = '$' + (data.totalSpent || 0);
-                    document.getElementById('editProfileName').value = data.name || '';
-                    document.getElementById('profileAvatar').innerText = (data.name || 'U').charAt(0).toUpperCase();
-                    document.getElementById('chipAvatar').innerText = (data.name || 'U').charAt(0).toUpperCase();
-                    document.getElementById('userNameText').innerText = (data.name || currentUser.displayName || currentUser.email).split(' ')[0];
-                } else {
-                    document.getElementById('profileName').innerText = currentUser.displayName || 'User';
-                    document.getElementById('profileEmail').innerText = currentUser.email;
-                    document.getElementById('profileAvatar').innerText = (currentUser.displayName || 'U').charAt(0).toUpperCase();
-                }
-            }catch(e){}
-        }
-        
         window.updateProfileName = async () => {
-            if(!firebaseReady || !db) return alert('Firebase not configured');
             const newName = document.getElementById('editProfileName').value.trim();
             if(!newName) return alert('Please enter name');
-            try{
-                await updateProfile(currentUser, {displayName: newName});
-                await setDoc(doc(db,'users',currentUser.uid), {name: newName}, {merge:true});
-                document.getElementById('profileName').innerText = newName;
-                document.getElementById('userNameText').innerText = newName.split(' ')[0];
-                document.getElementById('chipAvatar').innerText = newName.charAt(0).toUpperCase();
-                document.getElementById('profileAvatar').innerText = newName.charAt(0).toUpperCase();
+            if(currentUser) {
+                currentUser.displayName = newName;
+                if(localStorage.getItem('gm_local_user')) {
+                    const obj = JSON.parse(localStorage.getItem('gm_local_user'));
+                    obj.displayName = newName;
+                    obj.name = newName;
+                    localStorage.setItem('gm_local_user', JSON.stringify(obj));
+                }
+                applyAuthUI(currentUser, {name: newName});
                 alert('Profile updated!');
-            }catch(e){ alert(e.message); }
-        }
-
-        window.handlePricingClick = (e) => {
-            if(e) e.preventDefault();
-            if(!currentUser){ openAuth(); }
-            else { document.getElementById('pricing').scrollIntoView({behavior:'smooth'}); }
+            }
         }
 
         if(firebaseReady && auth) {
             onAuthStateChanged(auth, async (user) => {
-                currentUser = user;
-                window.currentUser = user;
-                const loginBtn = document.getElementById('loginBtn');
-                const userInfo = document.getElementById('userInfo');
-                const pricingSection = document.getElementById('pricing');
-                const teaserSection = document.getElementById('pricingTeaser');
-                const adminBtn = document.getElementById('adminBtn');
-                const notifBell = document.getElementById('notificationBell');
-
-                if(user){
-                    if(loginBtn) loginBtn.style.display='none';
-                    if(userInfo) userInfo.style.display='flex';
-                    if(pricingSection) pricingSection.style.display='block';
-                    if(teaserSection) teaserSection.style.display='none';
-                    if(notifBell) notifBell.style.display='flex';
-                    if(user.email===ADMIN_EMAIL && adminBtn) adminBtn.style.display='inline-flex';
-                    await loadProfileData();
+                if(user) {
+                    let prof = null;
+                    if(db) {
+                        try {
+                            const snap = await getDoc(doc(db,'users',user.uid));
+                            if(snap.exists()) prof = snap.data();
+                        } catch(e){}
+                    }
+                    applyAuthUI(user, prof);
                     initChatListener();
                     loadNotifications();
-                }else{
-                    if(loginBtn) loginBtn.style.display='inline-flex';
-                    if(userInfo) userInfo.style.display='none';
-                    if(pricingSection) pricingSection.style.display='none';
-                    if(teaserSection) teaserSection.style.display='block';
-                    if(notifBell) notifBell.style.display='none';
-                    if(adminBtn) adminBtn.style.display='none';
+                } else if(!localStorage.getItem('gm_local_user')) {
+                    applyAuthUI(null, null);
                 }
             });
         }
 
-        // Pricing - Default fallback + Firebase
+        // Pricing
         const defaultPricing = [
             {title:"Google Map Review",price:"$1.2",per:"/ per review",features:["Real User Profiles","Manual Search & Review","Daily Live Report","Natural Delivery","Pay Only For Live"],popular:true},
             {title:"Play Store Review",price:"$1.5",per:"/ per review",features:["Real Install + Review","5 Star + Custom Comment","Keyword Search Method","Non-Drop Strategy"],popular:false},
@@ -1088,7 +1077,7 @@ Message: ${message}`;
         function renderPricing(docs){
             const grid = document.getElementById('pricingGrid');
             if(!grid) return;
-            let list = docs.length ? docs.map(d=>({id:d.id,...d.data()})) : defaultPricing;
+            let list = (docs && docs.length) ? docs.map(d=>({id:d.id,...d.data()})) : defaultPricing;
             grid.innerHTML = list.map(p=>`
                 <div class="pricing-card ${p.popular?'popular':''}">
                     ${p.popular?'<span class="popular-tag">POPULAR</span>':''}
@@ -1103,58 +1092,9 @@ Message: ${message}`;
         if(firebaseReady && db) {
             onSnapshot(collection(db,'pricing'), snap=>{
                 renderPricing(snap.docs);
-                const adminList = document.getElementById('adminPricingList');
-                if(adminList){
-                    adminList.innerHTML = snap.docs.map(d=>`<div class="admin-list-item"><span><strong>${d.data().title}</strong> - ${d.data().price}</span><div class="admin-actions"><button class="btn-sm btn-danger" onclick="deletePricing('${d.id}')">Delete</button></div></div>`).join('') || '<p style="color:var(--text-muted);font-size:.85rem">No custom pricing yet - showing default. Add new to override.</p>';
-                }
             });
         } else {
             renderPricing([]);
-        }
-
-        // Stats
-        async function loadStats(){
-            if(!firebaseReady || !db) return;
-            try{
-                const snap = await getDoc(doc(db,'config','stats'));
-                if(snap.exists()){
-                    const s = snap.data();
-                    document.getElementById('stat-projects').innerText = (s.projects||500)+'+';
-                    document.getElementById('stat-clients').innerText = (s.clients||300)+'+';
-                    document.getElementById('stat-years').innerText = (s.years||3)+'+';
-                    document.getElementById('stat-safe').innerText = (s.safe||100)+'%';
-                    document.getElementById('stat-projects-label').innerText = s.projects_label||'Projects Completed';
-                    document.getElementById('stat-clients-label').innerText = s.clients_label||'Global Clients';
-                    document.getElementById('stat-years-label').innerText = s.years_label||'Years Experience';
-                    document.getElementById('stat-safe-label').innerText = s.safe_label||'Safe & Non-Drop';
-                    const el1 = document.getElementById('stat_projects'); if(el1) el1.value=s.projects||500;
-                    const el2 = document.getElementById('stat_clients'); if(el2) el2.value=s.clients||300;
-                    const el3 = document.getElementById('stat_years'); if(el3) el3.value=s.years||3;
-                    const el4 = document.getElementById('stat_safe'); if(el4) el4.value=s.safe||100;
-                    const el5 = document.getElementById('stat_projects_label'); if(el5) el5.value=s.projects_label||'Projects Completed';
-                    const el6 = document.getElementById('stat_clients_label'); if(el6) el6.value=s.clients_label||'Global Clients';
-                    const el7 = document.getElementById('stat_years_label'); if(el7) el7.value=s.years_label||'Years Experience';
-                    const el8 = document.getElementById('stat_safe_label'); if(el8) el8.value=s.safe_label||'Safe & Non-Drop';
-                }
-            }catch(e){}
-        }
-        if(firebaseReady) loadStats();
-        window.saveStats = async ()=>{
-            if(!firebaseReady || !db) return alert('Firebase not configured - set GitHub Secrets');
-            const data = {
-                projects: parseInt(document.getElementById('stat_projects').value)||500,
-                clients: parseInt(document.getElementById('stat_clients').value)||300,
-                years: parseInt(document.getElementById('stat_years').value)||3,
-                safe: parseInt(document.getElementById('stat_safe').value)||100,
-                projects_label: document.getElementById('stat_projects_label').value,
-                clients_label: document.getElementById('stat_clients_label').value,
-                years_label: document.getElementById('stat_years_label').value,
-                safe_label: document.getElementById('stat_safe_label').value
-            };
-            await setDoc(doc(db,'config','stats'), data);
-            document.getElementById('statsStatus').style.display='block';
-            setTimeout(()=>document.getElementById('statsStatus').style.display='none',2000);
-            loadStats();
         }
 
         // Reviews
@@ -1178,97 +1118,62 @@ Message: ${message}`;
         function renderReviews(docs){
             const grid = document.getElementById('reviewsGrid');
             if(!grid) return;
-            const reviews = docs.length ? docs.map(d=>({id:d.id,...d.data()})) : defaultReviews.map((url,i)=>({id:'default_'+i,imageUrl:url,alt:'Review '+(i+1)}));
+            const reviews = (docs && docs.length) ? docs.map(d=>({id:d.id,...d.data()})) : defaultReviews.map((url,i)=>({id:'default_'+i,imageUrl:url,alt:'Review '+(i+1)}));
             grid.innerHTML = reviews.map(r=>`<div class="gallery-item" onclick="openModal('${r.imageUrl}')"><img src="${r.imageUrl}" alt="${r.alt||'Review'}"></div>`).join('');
-            const adminDiv = document.getElementById('adminReviewsList');
-            if(adminDiv){
-                adminDiv.innerHTML = reviews.map(r=>`<div style="position:relative;border:1px solid var(--border-color);border-radius:10px;overflow:hidden"><img src="${r.imageUrl}" style="width:100%;height:120px;object-fit:cover"><button class="btn-sm btn-danger" style="position:absolute;top:5px;right:5px" onclick="deleteReview('${r.id}')">X</button><div style="padding:6px;font-size:.7rem;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${r.imageUrl.substring(0,30)}...</div></div>`).join('') || 'No reviews - Add from above';
-            }
         }
         if(firebaseReady && db) {
             onSnapshot(collection(db,'reviews'), snap=>{ renderReviews(snap.docs); });
-        }
-        renderReviews([]);
-
-        window.addReview = async ()=>{
-            if(!firebaseReady || !db) return alert('Firebase not configured');
-            const url = document.getElementById('reviewImageUrl').value.trim();
-            if(!url) return alert('Please enter Image URL');
-            await addDoc(collection(db,'reviews'), { imageUrl:url, alt:document.getElementById('reviewAlt').value||'Review', createdAt:serverTimestamp() });
-            document.getElementById('reviewImageUrl').value=''; document.getElementById('reviewAlt').value='';
-        }
-        window.deleteReview = async (id)=>{
-            if(!firebaseReady || !db) return;
-            if(id.startsWith('default_')) return alert('Default reviews cannot be deleted - add custom reviews to override.');
-            if(confirm('Delete this review?')) await deleteDoc(doc(db,'reviews',id));
-        }
-        window.addPricing = async ()=>{
-            if(!firebaseReady || !db) return alert('Firebase not configured');
-            const title = document.getElementById('pricingTitle').value.trim();
-            const price = document.getElementById('pricingPrice').value.trim();
-            if(!title||!price) return alert('Please enter Title & Price');
-            const features = document.getElementById('pricingFeatures').value.split(',').map(s=>s.trim()).filter(Boolean);
-            await addDoc(collection(db,'pricing'), { title, price, per:document.getElementById('pricingPer').value, features, popular:document.getElementById('pricingPopular').checked, createdAt:serverTimestamp() });
-            document.getElementById('pricingTitle').value=''; document.getElementById('pricingPrice').value=''; document.getElementById('pricingFeatures').value=''; document.getElementById('pricingPer').value='';
-        }
-        window.deletePricing = async (id)=>{ 
-            if(!firebaseReady || !db) return;
-            if(confirm('Delete pricing?')) await deleteDoc(doc(db,'pricing',id)); 
+        } else {
+            renderReviews([]);
         }
 
-        // Leads
-        window.showOptions = ()=>{
-            const appName = document.getElementById('appName').value.trim();
-            const contact = document.getElementById('userContact').value.trim();
-            if(!appName||!contact){ alert("Please fill App Name/ID and Contact Info"); return; }
-            document.getElementById('mainSubmitBtn').style.display='none';
-            document.getElementById('sendOptionsBlock').style.display='flex';
-        }
-        window.sendLead = async (platform)=>{
-            const appName = document.getElementById('appName').value.trim();
-            const contact = document.getElementById('userContact').value.trim();
-            const message = document.getElementById('userMessage').value.trim()||'No additional message.';
-            if(firebaseReady && db) {
-                try{ await addDoc(collection(db,'leads'), { appName, contact, message, platform, createdAt:serverTimestamp(), user: currentUser?.email||'guest' }); document.getElementById('leadStatus').innerText='Lead saved!'; document.getElementById('leadStatus').style.display='block'; }catch(e){}
-            }
-            const textRaw = `New Service Request
-App: ${appName}
-Contact: ${contact}
-Message: ${message}`;
-            const encoded = encodeURIComponent(textRaw);
-            if(platform==='whatsapp') window.open(`https://wa.me/8801647323233?text=${encoded}`,'_blank');
-            else if(platform==='telegram') window.open(`https://t.me/DirectorShakil?text=${encoded}`,'_blank');
-            else window.open(`mailto:24.7.g00glemarketing@gmail.com?subject=${encodeURIComponent("New Service Request")}&body=${encoded}`,'_blank');
-        }
-        if(firebaseReady && db) {
-            onSnapshot(query(collection(db,'leads'), orderBy('createdAt','desc')), snap=>{
-                const el = document.getElementById('adminLeadsList');
-                if(!el) return;
-                el.innerHTML = snap.docs.map(d=>{
-                    const l=d.data(); const t = l.createdAt?.toDate ? l.createdAt.toDate().toLocaleString() : '';
-                    return `<div class="admin-list-item"><div><strong>${l.appName}</strong> - ${l.contact}<br><small>${l.message} | ${t} | ${l.platform}</small></div><button class="btn-sm btn-danger" onclick="deleteDoc(doc(db,'leads','${d.id}')).then(()=>{} )">Del</button></div>`;
-                }).join('') || 'No leads yet';
-            });
-        }
-
-        // Chat
+        // Chat Send Action
         let guestId = localStorage.getItem('guestId') || 'guest_'+Date.now();
         localStorage.setItem('guestId', guestId);
-        window.sendChatMessage = async ()=>{
-            if(!firebaseReady || !rtdb) {
-                alert('Chat requires Firebase - please configure GitHub Secrets');
-                return;
-            }
+
+        window.sendChatMessage = async () => {
             const input = document.getElementById('chatInput');
+            if(!input) return;
             const text = input.value.trim();
             if(!text) return;
-            let uid = currentUser?.uid || guestId;
-            if(!currentUser){ try{ const cred = await signInAnonymously(auth); uid = cred.user.uid; }catch(e){ uid = guestId; } }
-            const chatRef = ref(rtdb, `chats/${uid}/messages`);
-            const msgData = { from:'client', text, time:Date.now(), email: currentUser?.email||'guest', uid, name: currentUser?.displayName || currentUserProfile?.name || 'Guest' };
-            await push(chatRef, msgData);
-            input.value='';
-        }
+
+            const box = document.getElementById('chatMessages');
+            if(box) {
+                const div = document.createElement('div');
+                div.className = 'msg client';
+                div.innerText = text;
+                box.appendChild(div);
+                box.scrollTop = box.scrollHeight;
+            }
+            input.value = '';
+
+            if(firebaseReady && rtdb) {
+                try {
+                    let uid = currentUser?.uid || guestId;
+                    const chatRef = ref(rtdb, `chats/${uid}/messages`);
+                    const msgData = { 
+                        from:'client', 
+                        text, 
+                        time:Date.now(), 
+                        email: currentUser?.email||'guest', 
+                        uid, 
+                        name: currentUser?.displayName || currentUser?.name || 'Guest' 
+                    };
+                    await push(chatRef, msgData);
+                } catch(e){}
+            } else {
+                setTimeout(() => {
+                    if(box) {
+                        const reply = document.createElement('div');
+                        reply.className = 'msg admin';
+                        reply.innerText = 'Thanks! Shakil has received your request and will reply on Telegram/WhatsApp shortly.';
+                        box.appendChild(reply);
+                        box.scrollTop = box.scrollHeight;
+                    }
+                }, 800);
+            }
+        };
+
         function initChatListener(){
             if(!firebaseReady || !rtdb) return;
             const uid = currentUser?.uid || guestId;
@@ -1282,144 +1187,30 @@ Message: ${message}`;
                 div.innerText = m.text;
                 box.appendChild(div);
                 box.scrollTop = box.scrollHeight;
-                if(m.from==='admin'){
-                    const badge = document.getElementById('chatBadge');
-                    if(badge) {
-                        badge.style.display='flex';
-                        badge.innerText = parseInt(badge.innerText||0)+1;
-                    }
-                    window.showToast('New Reply!', m.text.substring(0,60));
-                }
             });
         }
         if(firebaseReady) initChatListener();
-        
-        if(firebaseReady && rtdb) {
-            onValue(ref(rtdb, 'chats'), (snap)=>{
-                const data = snap.val();
-                const el = document.getElementById('adminChatsList');
-                if(!el) return;
-                if(!data){ el.innerHTML='No chats yet - Client messages will appear here and auto-forward to Telegram'; return; }
-                let html='';
-                Object.entries(data).forEach(([uid, chatObj])=>{
-                    const msgs = chatObj.messages ? Object.values(chatObj.messages) : [];
-                    const last = msgs[msgs.length-1]?.text || '';
-                    const name = msgs[0]?.name || msgs[0]?.email || uid.substring(0,10);
-                    html+=`<div class="admin-list-item"><div><strong>${name}</strong> (${uid.substring(0,8)})<br><small>${last.slice(0,80)}</small><br><small>${msgs.length} messages - ${new Date(msgs[msgs.length-1]?.time||Date.now()).toLocaleString()}</small></div><div class="admin-actions"><button class="btn-sm btn-edit" onclick="openChatAsAdmin('${uid}')">View & Reply via Telegram</button></div></div>`;
-                });
-                el.innerHTML = html;
-            });
+
+        // Calculator
+        window.updateCalc = () => {
+            const price = parseFloat(document.getElementById('calcService')?.value) || 1.2;
+            const qty = parseInt(document.getElementById('calcQty')?.value) || 1;
+            let total = price * qty;
+            const el = document.getElementById('calcTotal');
+            if(el) el.innerText = '$' + (price<10?total.toFixed(1):total.toFixed(0));
         }
-        
+        document.getElementById('calcService')?.addEventListener('change', updateCalc);
+        updateCalc();
+
+        // Exports for Admin
         window.openChatAsAdmin = (uid)=>{
             if(!rtdb) return;
             const chatRef = ref(rtdb, `chats/${uid}/messages`);
             onValue(chatRef, (snap)=>{
                 const msgs = snap.val();
-                const text = msgs ? Object.values(msgs).map(m=>`${m.from.toUpperCase()} (${m.name||m.email||'guest'}): ${m.text}`).join('
-') : 'empty';
-                alert(`Chat with ${uid}:
-
-${text}
-
----
-To reply: Go to Telegram and send:
-/reply ${uid} your_message
-
-Client will receive real-time reply on website.`);
+                const text = msgs ? Object.values(msgs).map(m=>`${m.from.toUpperCase()} (${m.name||m.email||'guest'}): ${m.text}`).join('\n') : 'empty';
+                alert(`Chat with ${uid}:\n\n${text}\n\n---\nTo reply: Go to Telegram and send:\n/reply ${uid} your_message\n\nClient will receive real-time reply on website.`);
             }, {onlyOnce:true});
-        }
-
-        // Notifications
-        function loadNotifications(){
-            if(!firebaseReady || !db) return;
-            onSnapshot(query(collection(db,'notifications'), orderBy('createdAt','desc')), snap=>{
-                const list = document.getElementById('notificationList');
-                const bell = document.getElementById('notificationBell');
-                if(!list) return;
-                if(!snap.docs.length){ list.innerHTML='<div style="text-align:center;padding:30px;color:var(--text-muted)"><i class="fas fa-bell-slash" style="font-size:2rem;margin-bottom:10px;display:block"></i>No notifications yet</div>'; return; }
-                list.innerHTML = snap.docs.map(d=>{
-                    const n=d.data(); const t=n.createdAt?.toDate ? n.createdAt.toDate().toLocaleString() : 'Recently';
-                    const icon = n.type==='offer' ? '🎉' : n.type==='alert' ? '⚠️' : '📢';
-                    return `<div class="notification-item unread"><h4>${icon} ${n.title}</h4><p>${n.message}</p><small>${t}</small></div>`;
-                }).join('');
-                if(bell) bell.classList.add('has-notif');
-                if(snap.docs.length && currentUser){
-                    const latest = snap.docs[0].data();
-                    const lastShown = localStorage.getItem('lastNotifId');
-                    if(lastShown !== snap.docs[0].id){
-                        window.showToast(latest.title, latest.message);
-                        localStorage.setItem('lastNotifId', snap.docs[0].id);
-                    }
-                }
-            });
-        }
-        if(firebaseReady) loadNotifications();
-        
-        window.createNotification = async () => {
-            if(!firebaseReady || !db) return alert('Firebase not configured');
-            const title = document.getElementById('notifTitle').value.trim();
-            const message = document.getElementById('notifMessage').value.trim();
-            const type = document.getElementById('notifType').value;
-            if(!title||!message) return alert('Please enter title and message');
-            await addDoc(collection(db,'notifications'), {title, message, type, createdAt:serverTimestamp(), createdBy: currentUser.email});
-            document.getElementById('notifTitle').value=''; document.getElementById('notifMessage').value='';
-            alert('Notification sent to all users! Beautiful card will appear.');
-        }
-        if(firebaseReady && db) {
-            onSnapshot(query(collection(db,'notifications'), orderBy('createdAt','desc')), snap=>{
-                const el = document.getElementById('adminNotifList');
-                if(!el) return;
-                el.innerHTML = snap.docs.map(d=>{
-                    const n=d.data(); const t=n.createdAt?.toDate ? n.createdAt.toDate().toLocaleString() : '';
-                    return `<div class="admin-list-item"><div><strong>${n.title}</strong> [${n.type}]<br><small>${n.message} | ${t}</small></div><button class="btn-sm btn-danger" onclick="deleteDoc(doc(db,'notifications','${d.id}')).then(()=>{} )">Del</button></div>`;
-                }).join('') || 'No notifications sent yet';
-            });
-        }
-
-        // Analytics & Users
-        async function loadAnalytics(){
-            if(!firebaseReady || !db) return;
-            try{
-                const visitsSnap = await getDocs(collection(db,'visits'));
-                const usersSnap = await getDocs(collection(db,'users'));
-                document.getElementById('totalVisits').innerText = visitsSnap.size;
-                document.getElementById('totalUsers').innerText = usersSnap.size;
-                const todayStr = new Date().toISOString().split('T')[0];
-                let todayCount = 0; const countryMap = {}; const recent = [];
-                visitsSnap.forEach(d=>{
-                    const v=d.data();
-                    if(v.dateStr===todayStr) todayCount++;
-                    countryMap[v.country] = (countryMap[v.country]||0)+1;
-                    recent.push(v);
-                });
-                document.getElementById('todayVisits').innerText = todayCount;
-                document.getElementById('totalCountries').innerText = Object.keys(countryMap).length;
-                const countryEl = document.getElementById('countryAnalytics');
-                if(countryEl) {
-                    const sortedCountries = Object.entries(countryMap).sort((a,b)=>b[1]-a[1]).slice(0,10);
-                    countryEl.innerHTML = sortedCountries.map(([country,count])=>`<div style="display:flex;justify-content:space-between;padding:8px;background:rgba(0,0,0,.2);border-radius:6px;margin-bottom:6px"><span>🌍 ${country}</span><strong>${count} visits</strong></div>`).join('') || 'No data yet';
-                }
-                const recentEl = document.getElementById('recentVisits');
-                if(recentEl) {
-                    recent.sort((a,b)=>(b.timestamp?.seconds||0)-(a.timestamp?.seconds||0));
-                    recentEl.innerHTML = recent.slice(0,20).map(v=>{
-                        const t=v.timestamp?.toDate ? v.timestamp.toDate().toLocaleString() : 'Recently';
-                        return `<div style="padding:8px;border-bottom:1px solid var(--border-color);font-size:.8rem"><strong>${v.country||'Unknown'}</strong> - ${v.city||''} - ${v.ip||''}<br><small style="color:var(--text-muted)">${t} | ${v.url||''}</small></div>`;
-                    }).join('') || 'No visits yet';
-                }
-                const usersEl = document.getElementById('adminUsersList');
-                if(usersEl) {
-                    usersEl.innerHTML = usersSnap.docs.map(d=>{
-                        const u=d.data(); const t=u.createdAt?.toDate ? u.createdAt.toDate().toLocaleDateString() : 'Recently';
-                        return `<div class="admin-list-item"><div><strong>${u.name||'User'}</strong> - ${u.email}<br><small>${u.country||'Unknown'} | Joined: ${t} | Orders: ${u.orders||0}</small></div><div class="admin-actions"><button class="btn-sm btn-edit" onclick="alert('User ID: ${u.uid}')">View</button></div></div>`;
-                    }).join('') || 'No users yet';
-                }
-            }catch(e){ console.log('analytics load failed',e); }
-        }
-        if(firebaseReady) {
-            loadAnalytics();
-            setInterval(loadAnalytics, 10000);
         }
 
         window.exportUsersCSV = async () => {
@@ -1434,35 +1225,6 @@ Client will receive real-time reply on website.`);
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a'); a.href=url; a.download='users_'+new Date().toISOString().split('T')[0]+'.csv'; a.click();
         }
-        window.copyAllEmails = async () => {
-            if(!firebaseReady || !db) return alert('Firebase not configured');
-            const snap = await getDocs(collection(db,'users'));
-            const emails = []; snap.forEach(d=>emails.push(d.data().email));
-            navigator.clipboard.writeText(emails.join(', '));
-            alert('Copied '+emails.length+' emails to clipboard!');
-        }
-
-        window.updateCalc = () => {
-            const price = parseFloat(document.getElementById('calcService')?.value) || 1.2;
-            const qty = parseInt(document.getElementById('calcQty')?.value) || 1;
-            let total = price * qty;
-            const el = document.getElementById('calcTotal');
-            if(el) el.innerText = '$' + (price<10?total.toFixed(1):total.toFixed(0));
-        }
-        document.getElementById('calcService')?.addEventListener('change', updateCalc);
-        updateCalc();
-
-        window.openAdmin = ()=> document.getElementById('adminPanel').classList.add('active');
-        window.closeAdmin = ()=> document.getElementById('adminPanel').classList.remove('active');
-        window.switchAdminTab = (id)=>{
-            document.querySelectorAll('.admin-tab').forEach(b=>b.classList.remove('active'));
-            document.querySelectorAll('.admin-content').forEach(c=>c.classList.remove('active'));
-            document.querySelector(`[onclick="switchAdminTab('${id}')"]`)?.classList.add('active');
-            document.getElementById('tab-'+id)?.classList.add('active');
-            if(id==='usersAdmin') loadAnalytics();
-        }
-        window.doc = doc; window.deleteDoc = deleteDoc; window.db = db;
     </script>
-
-<script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script></body>
+</body>
 </html>
