@@ -1,74 +1,96 @@
 import os
 import json
 import requests
+import re
+import time
 from flask import Flask, request
 import firebase_admin
-from firebase_admin import credentials, firestore
+from firebase_admin import credentials, db
 
 app = Flask(__name__)
 
-# ১. ফায়ারবেস এডমিন কানেক্ট করা
+# Render Environment থেকে ফায়ারবেস এডমিন কানেক্ট
 service_account_info = json.loads(os.environ.get("FIREBASE_SERVICE_ACCOUNT"))
 cred = credentials.Certificate(service_account_info)
-firebase_admin.initialize_app(cred)
-db = firestore.client()
+firebase_admin.initialize_app(cred, {
+    'databaseURL': os.environ.get("FIREBASE_DATABASE_URL")
+})
 
-# ২. টেলিগ্রাম টোকেন এবং চ্যাট আইডি নেওয়া
 BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
 CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
 
 def send_telegram_message(chat_id, text):
-    """টেলিগ্রামে মেসেজ পাঠানোর ফাংশন"""
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
-    payload = {
-        "chat_id": chat_id,
-        "text": text
-    }
-    requests.post(url, json=payload)
+    requests.post(url, json={"chat_id": chat_id, "text": text})
 
 @app.route('/', methods=['GET'])
 def home():
-    return "Portfolio Live Chat Bot is running!"
+    return "Backend is running!"
 
 @app.route('/', methods=['POST'])
 def webhook():
-    """ওয়েবসাইট বা টেলিগ্রাম থেকে আসা ডেটা হ্যান্ডেল করার মূল লজিক"""
     try:
         data = request.get_json()
-        
         if not data:
             return "No data", 400
 
-        # কেইস ১: যদি মেসেজটি সরাসরি ওয়েবসাইট থেকে আসে (পোর্টফোলিও চ্যাট ফর্ম)
+        # ওয়েবসাইট থেকে মেসেজ আসলে (টেলিগ্রামে পাঠানো)
         if "website_message" in data:
             user_msg = data.get("website_message")
-            user_email = data.get("email", "Unknown")
+            uid = data.get("uid", "unknown")
+            name = data.get("name", "Guest")
+            email = data.get("email", "No Email")
             
-            # ওয়েবসাইটের মেসেজটি সরাসরি আপনার টেলিগ্রাম চ্যাট আইডিতে পাঠিয়ে দেবে
-            alert_text = f"🌐 নতুন ওয়েবসাইট মেসেজ!\n\nইমেইল: {user_email}\nমেসেজ: {user_msg}"
+            alert_text = f"🌐 Website Msg from {name}\nEmail: {email}\nUID: `{uid}`\n\n💬 {user_msg}\n\n(রিপ্লাই দিতে এই মেসেজটি Reply করুন অথবা লিখুন: /reply {uid} আপনার_মেসেজ)"
             send_telegram_message(CHAT_ID, alert_text)
-            
-            # চাইলে ফায়ারবেসেও সেভ করে রাখতে পারেন
-            db.collection("messages").add({
-                "email": user_email,
-                "message": user_msg,
-                "source": "website"
-            })
-            
-            return {"status": "success", "message": "Sent to Telegram"}, 200
+            return {"status": "success"}, 200
 
-        # কেইস ২: যদি মেসেজটি টেলিগ্রাম থেকে আসে (বট চ্যাট)
+        # টেলিগ্রাম থেকে মেসেজ আসলে (ওয়েবসাইটে পাঠানো)
         if "message" in data:
-            chat_id = data["message"]["chat"]["id"]
+            chat_id = str(data["message"]["chat"]["id"])
             text = data["message"].get("text", "")
             
-            if text == "/start":
-                send_telegram_message(chat_id, "বট সফলভাবে চালু আছে! আপনার পোর্টফোলিও চ্যাট রিসিভ করার জন্য প্রস্তুত।")
-            else:
-                send_telegram_message(chat_id, f"আপনার মেসেজটি পাওয়া গেছে: {text}")
+            if chat_id != str(CHAT_ID):
+                return "OK", 200
+
+            if text.startswith("/start"):
+                send_telegram_message(chat_id, "বট প্রস্তুত! ওয়েবসাইট থেকে চ্যাট আসলে এখানেই পাবেন।")
+                return "OK", 200
+
+            # কমান্ড দিয়ে রিপ্লাই (/reply UID Message)
+            if text.startswith("/reply "):
+                parts = text.split(" ", 2)
+                if len(parts) >= 3:
+                    target_uid = parts[1]
+                    reply_msg = parts[2]
+                    
+                    ref = db.reference(f"chats/{target_uid}/messages")
+                    ref.push({
+                        "from": "admin",
+                        "text": reply_msg,
+                        "time": int(time.time() * 1000),
+                        "name": "Google Marketing"
+                    })
+                    send_telegram_message(chat_id, "✅ ওয়েবসাইটে রিয়েল-টাইম রিপ্লাই পাঠানো হয়েছে!")
+                else:
+                    send_telegram_message(chat_id, "⚠️ নিয়ম: /reply UserID Message")
+            
+            # সরাসরি Reply অপশন ব্যবহার করলে
+            elif "reply_to_message" in data["message"]:
+                reply_text = data["message"]["reply_to_message"].get("text", "")
+                match = re.search(r"UID:\s*`?([a-zA-Z0-9_]+)`?", reply_text)
+                if match:
+                    target_uid = match.group(1)
+                    ref = db.reference(f"chats/{target_uid}/messages")
+                    ref.push({
+                        "from": "admin",
+                        "text": text,
+                        "time": int(time.time() * 1000),
+                        "name": "Google Marketing"
+                    })
+                    send_telegram_message(chat_id, "✅ ওয়েবসাইটে রিয়েল-টাইম রিপ্লাই পাঠানো হয়েছে!")
 
         return "OK", 200
-
     except Exception as e:
         print(f"Error: {e}")
         return str(e), 500
