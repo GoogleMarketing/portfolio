@@ -612,6 +612,136 @@
 
     <div id="imageModal" class="modal" onclick="closeModal()"><span class="close-modal">&times;</span><img class="modal-content" id="modalImg"></div>
 
+    
+    <script>
+        // Critical UI functions - work even if Firebase fails - NO dependency
+        window.toggleMenu = function() {
+            const menu = document.getElementById('mobileMenu');
+            if(menu) menu.classList.toggle('active');
+        }
+        window.closeModal = function() {
+            const modal = document.getElementById('imageModal');
+            if(modal) modal.style.display='none';
+        }
+        window.openModal = function(src) {
+            const modal = document.getElementById('imageModal');
+            const img = document.getElementById('modalImg');
+            if(modal && img) { modal.style.display='flex'; img.src=src; }
+        }
+        window.toggleChat = function() {
+            const box = document.getElementById('chatBox');
+            const badge = document.getElementById('chatBadge');
+            if(box) {
+                box.classList.toggle('active');
+                if(badge) { badge.style.display='none'; badge.innerText='0'; }
+            }
+        }
+        window.openAuth = function() {
+            const modal = document.getElementById('authModal');
+            if(modal) modal.classList.add('active');
+        }
+        window.closeAuth = function() {
+            const modal = document.getElementById('authModal');
+            if(modal) modal.classList.remove('active');
+        }
+        window.openProfile = function() {
+            // Will be overridden by Firebase module if logged in, else open auth
+            const modal = document.getElementById('profileModal');
+            const authModal = document.getElementById('authModal');
+            // If Firebase not loaded, just open auth
+            if(window.currentUser) {
+                if(modal) modal.classList.add('active');
+            } else {
+                if(authModal) authModal.classList.add('active');
+            }
+        }
+        window.closeProfile = function() {
+            const modal = document.getElementById('profileModal');
+            if(modal) modal.classList.remove('active');
+        }
+        window.toggleNotifications = function() {
+            const panel = document.getElementById('notificationPanel');
+            if(panel) panel.classList.toggle('active');
+        }
+        window.hideToast = function() {
+            const toast = document.getElementById('toast');
+            if(toast) toast.classList.remove('show');
+        }
+        window.showToast = function(title, msg) {
+            const toast = document.getElementById('toast');
+            const titleEl = document.getElementById('toastTitle');
+            const msgEl = document.getElementById('toastMsg');
+            if(titleEl) titleEl.innerText = title;
+            if(msgEl) msgEl.innerText = msg;
+            if(toast) {
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 5000);
+            }
+        }
+        window.handlePricingClick = function(e) {
+            if(e) e.preventDefault();
+            // If not logged in, open auth modal
+            if(!window.currentUser) {
+                window.openAuth();
+            } else {
+                const pricing = document.getElementById('pricing');
+                if(pricing) pricing.scrollIntoView({behavior:'smooth'});
+            }
+        }
+        window.switchAuthTab = function(mode) {
+            window.authMode = mode;
+            const tabLogin = document.getElementById('tabLogin');
+            const tabSignup = document.getElementById('tabSignup');
+            const title = document.getElementById('authTitle');
+            const btn = document.getElementById('authSubmitBtn');
+            const desc = document.getElementById('authDesc');
+            const nameInput = document.getElementById('authName');
+            if(tabLogin) tabLogin.classList.toggle('active', mode==='login');
+            if(tabSignup) tabSignup.classList.toggle('active', mode==='signup');
+            if(title) title.innerText = mode==='login' ? 'Welcome Back' : 'Create Account';
+            if(btn) btn.innerText = mode==='login' ? 'Login' : 'Sign Up';
+            if(desc) desc.innerText = mode==='login' ? 'Login to access pricing and exclusive features' : 'Create account - get instant access to pricing';
+            if(nameInput) nameInput.style.display = mode==='signup' ? 'block' : 'none';
+        }
+        
+        // FAQ, Menu, Modal listeners - independent of Firebase
+        document.addEventListener('DOMContentLoaded', function() {
+            // FAQ
+            document.querySelectorAll('.faq-item').forEach(item => {
+                const q = item.querySelector('.faq-question');
+                if(q) {
+                    q.addEventListener('click', () => {
+                        const active = item.classList.contains('active');
+                        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                        if(!active) item.classList.add('active');
+                    });
+                }
+            });
+            // Close modals on Escape
+            document.addEventListener('keydown', function(e) {
+                if(e.key==='Escape') {
+                    window.closeModal();
+                    window.closeAuth();
+                    window.closeProfile();
+                    const notifPanel = document.getElementById('notificationPanel');
+                    if(notifPanel) notifPanel.classList.remove('active');
+                }
+            });
+            // Close image modal on click
+            const imageModal = document.getElementById('imageModal');
+            if(imageModal) {
+                imageModal.addEventListener('click', function(e) {
+                    if(e.target === imageModal) window.closeModal();
+                });
+            }
+        });
+        
+        // Global error handler to show if Firebase fails
+        window.addEventListener('error', function(e) {
+            console.log('JS Error:', e.message);
+        });
+    </script>
+
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
         import { getAuth, onAuthStateChanged, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, signInAnonymously, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
@@ -628,13 +758,33 @@
             appId: "__FIREBASE_APP_ID__"
         };
 
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-        const rtdb = getDatabase(app);
+        let app, auth, db, rtdb;
+        try {
+            // Check if config is still placeholder
+            if(firebaseConfig.apiKey.includes('__FIREBASE_') || !firebaseConfig.apiKey) {
+                console.warn('Firebase config not injected - running in offline mode. UI will still work, but auth/chat/pricing need config.');
+                // Don't initialize Firebase, but keep UI working
+                window.firebaseOffline = true;
+                throw new Error('Firebase config missing - offline mode');
+            }
+            app = initializeApp(firebaseConfig);
+            auth = getAuth(app);
+            db = getFirestore(app);
+            rtdb = getDatabase(app);
+            window.firebaseOffline = false;
+        } catch(err) {
+            console.warn('Firebase init failed:', err.message);
+            window.firebaseOffline = true;
+            // Create dummy objects to prevent further errors
+            auth = { currentUser: null };
+            db = null;
+            rtdb = null;
+        }
         const provider = new GoogleAuthProvider();
+
         const ADMIN_EMAIL = "afshakil279@gmail.com";
         let currentUser = null;
+        window.currentUser = null;
         let authMode = 'login';
         let currentUserProfile = null;
 
@@ -772,8 +922,9 @@
             else { document.getElementById('pricing').scrollIntoView({behavior:'smooth'}); }
         }
 
-        onAuthStateChanged(auth, async (user) => {
+        if(!window.firebaseOffline && auth) { onAuthStateChanged(auth, async (user) => {
             currentUser = user;
+            window.currentUser = user;
             const loginBtn = document.getElementById('loginBtn');
             const userInfo = document.getElementById('userInfo');
             const pricingSection = document.getElementById('pricing');
@@ -800,8 +951,18 @@
                 if(adminBtn) adminBtn.style.display='none';
             }
         });
+        }
 
-        // Menu & Modal & FAQ
+        // If offline, show warning and enable basic UI
+        if(window.firebaseOffline) {
+            console.log('Running offline - basic UI only');
+            const pricing = document.getElementById('pricing');
+            const teaser = document.getElementById('pricingTeaser');
+            if(pricing) pricing.style.display='none';
+            if(teaser) teaser.style.display='block';
+        }
+
+        // Menu & Modal & FAQ - now handled in separate script
         window.toggleMenu = () => document.getElementById('mobileMenu').classList.toggle('active');
         const modal = document.getElementById("imageModal");
         const modalImg = document.getElementById("modalImg");
