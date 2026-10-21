@@ -1,31 +1,29 @@
-const express = require('express');
-const admin = require('firebase-admin');
+import os
+import json
+from flask import Flask, request
+import firebase_admin
+from firebase_admin import credentials
 
-const app = express();
-app.use(express.json());
+app = Flask(__name__)
 
-// Render-এর Environment থেকে ফায়ারবেস এডমিন কি নিয়ে কানেক্ট করা
-const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
-});
+# Render-এর Environment থেকে ফায়ারবেস এডমিন কি নিয়ে কানেক্ট করা
+service_account_info = json.loads(os.environ.get("FIREBASE_SERVICE_ACCOUNT"))
+cred = credentials.Certificate(service_account_info)
+firebase_admin.initialize_app(cred)
 
-// Render-এর Environment থেকে টেলিগ্রাম টোকেন এবং চ্যাট আইডি নেওয়া
-const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
-const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
+# Render-এর Environment থেকে টেলিগ্রাম টোকেন এবং চ্যাট আইডি নেওয়া
+BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
+CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
 
-// বটের আসল লজিক (API/Webhook)
-app.get('/', (req, res) => {
-    res.send("Bot is running perfectly on Render!");
-});
+@app.route('/', methods=['GET'])
+def home():
+    return "Python Bot is running perfectly on Render!"
 
-app.post('/', (req, res) => {
-    // আপনার টেলিগ্রাম মেসেজ রিসিভ ও সেন্ড করার কোড এখানে থাকবে
-    res.status(200).send("OK");
-});
+@app.route('/', methods=['POST'])
+def webhook():
+    # আপনার টেলিগ্রাম মেসেজ রিসিভ ও সেন্ড করার কোড এখানে থাকবে
+    return "OK", 200
 
-// Render-এর জন্য পোর্ট সেটআপ করে সার্ভার চালু করা
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Bot server is successfully running on port ${PORT}`);
-});
+if __name__ == '__main__':
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
