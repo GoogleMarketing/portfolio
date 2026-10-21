@@ -243,7 +243,7 @@
             <div class="divider"><span>OR</span></div>
             <button class="btn-google" onclick="loginWithGoogle()"><i class="fab fa-google"></i> Continue with Google</button>
             <p id="authError" style="color:#ef4444;font-size:.85rem;margin-top:12px;display:none"></p>
-            <p style="font-size:.75rem;color:var(--text-muted);margin-top:15px;text-align:center">Admin: afshakil279@gmail.com login করলে Admin Panel খুলবে</p>
+            
         </div>
     </div>
 
@@ -282,7 +282,7 @@
             <div class="admin-card">
                 <h3>Add New Pricing</h3>
                 <input id="pricingTitle" class="admin-input" placeholder="Title e.g. Google Map Review 10x">
-                <input id="pricingPrice" class="admin-input" placeholder="Price e.g. $50 or ৳5000">
+<input id="pricingPrice" class="admin-input" placeholder="Price e.g. $50 or 5000">
                 <input id="pricingPer" class="admin-input" placeholder="Per e.g. / 10 reviews">
                 <textarea id="pricingFeatures" class="admin-input" rows="3" placeholder="Features comma separated: Real Users, 100% Safe, Daily Report"></textarea>
                 <label><input type="checkbox" id="pricingPopular"> Popular?</label>
@@ -306,7 +306,7 @@
         </div>
 
         <div id="tab-chatsAdmin" class="admin-content">
-            <div class="admin-card"><h3>Live Chats (Realtime DB) - Telegram Connected</h3><p style="color:var(--text-muted);font-size:.9rem;margin-bottom:15px">Client message আসলে Telegram bot এ যাবে। Telegram থেকে /reply USER_ID message লিখলে website এ real-time যাবে।</p><div id="adminChatsList"></div></div>
+<div class="admin-card"><h3>Live Chats (Realtime DB) - Telegram Connected</h3><p style="color:var(--text-muted);font-size:.9rem;margin-bottom:15px">Client message Telegram bot । Telegram /reply USER_ID message website real-time ।</p><div id="adminChatsList"></div></div>
         </div>
     </div>
 
@@ -318,7 +318,7 @@
             <button onclick="toggleChat()" style="background:none;border:none;color:white;cursor:pointer"><i class="fas fa-times"></i></button>
         </div>
         <div id="chatMessages" class="chat-messages">
-            <div class="msg admin">Hi! 👋 Pricing দেখতে login করুন। যেকোনো প্রশ্ন লিখুন, আমি Telegram থেকে reply দেব।</div>
+            <div class="msg admin">Hi! 👋 Feel free to ask anything. I'll reply directly from Telegram.</div>
         </div>
         <div class="chat-input-area">
             <input id="chatInput" placeholder="Type message..." onkeypress="if(event.key==='Enter') sendChatMessage()">
@@ -365,14 +365,9 @@
         <p>Owner of Google Marketing. We help businesses scale rapidly with safe, authentic reviews, powerful Google Map SEO, and targeted digital marketing solutions.</p>
         <div style="display:flex;gap:15px;flex-wrap:wrap">
             <a href="#contact" class="btn btn-primary">Start Your Project</a>
-            <a href="#pricing" class="btn btn-outline">View Pricing <i class="fas fa-lock" id="pricingLockIcon"></i></a>
+            <a href="#pricing" class="btn btn-outline">View Pricing</a>
         </div>
-        <div id="heroLoginNote" style="margin-top:20px;padding:12px 18px;background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.3);border-radius:10px;display:none"><i class="fas fa-info-circle" style="color:var(--primary-color)"></i> <span style="font-size:.9rem">Pricing দেখতে Login করুন - শুধু account খুললেই pricing দেখতে পাবেন</span></div>
-    </section>
-
-    <div class="trust-counter">
-        <div class="stats-grid">
-            <div class="stat-card"><div class="stat-icon"><i class="fas fa-check-double"></i></div><div class="stat-number" id="stat-projects">500+</div><div class="stat-text" id="stat-projects-label">Projects Completed</div></div>
+        </div>
             <div class="stat-card"><div class="stat-icon"><i class="fas fa-globe"></i></div><div class="stat-number" id="stat-clients">300+</div><div class="stat-text" id="stat-clients-label">Global Clients</div></div>
             <div class="stat-card"><div class="stat-icon"><i class="fas fa-award"></i></div><div class="stat-number" id="stat-years">3+</div><div class="stat-text" id="stat-years-label">Years Experience</div></div>
             <div class="stat-card"><div class="stat-icon"><i class="fas fa-shield-alt"></i></div><div class="stat-number" id="stat-safe">100%</div><div class="stat-text" id="stat-safe-label">Safe & Non-Drop</div></div>
@@ -389,72 +384,15 @@
         </div>
     </section>
 
-    <!-- NEW PREMIUM PRACTICAL PRICING SECTION - GATED -->
-    <section id="pricing" style="background:linear-gradient(180deg,#02040a 0%,#0f172a 100%);position:relative;overflow:hidden">
-        <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:800px;height:400px;background:radial-gradient(circle,rgba(59,130,246,0.15) 0%,transparent 70%);pointer-events:none"></div>
-        <div class="section-header" style="position:relative">
-            <span class="badge"><i class="fas fa-gem"></i> Transparent & Honest Pricing</span>
-            <h2>Pay Only For <span style="background:linear-gradient(135deg,#3b82f6,#a855f7);-webkit-background-clip:text;color:transparent">Live Reviews</span></h2>
-            <p style="max-width:700px">কোনো advance না। Daily report দেখে শুধু live review এর টাকা দেবেন। নিচে calculator দিয়ে হিসাব দেখুন।</p>
-        </div>
-
-        <!-- Practical Calculator -->
-        <div style="max-width:900px;margin:0 auto 50px;background:rgba(30,41,59,0.6);border:1px solid var(--border-color);border-radius:20px;padding:25px;backdrop-filter:blur(12px);position:relative">
-            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;align-items:end">
-                <div class="input-group"><label><i class="fas fa-tasks"></i> Service Type</label><select id="calcService" class="admin-input" style="padding:13px"><option value="1.2">Google Map Review - $1.2</option><option value="1.5">Play Store Review - $1.5</option><option value="99">GMB SEO - $99/month</option></select></div>
-                <div class="input-group"><label><i class="fas fa-sort-numeric-up"></i> Quantity</label><input id="calcQty" type="number" class="admin-input" style="padding:13px" value="10" min="1" oninput="updateCalc()"></div>
-                <div style="background:linear-gradient(135deg,#2563eb,#3b82f6);border-radius:12px;padding:16px;text-align:center;color:white"><div style="font-size:0.85rem;opacity:0.9">Estimated Total</div><div id="calcTotal" style="font-size:1.8rem;font-weight:800;font-family:'Outfit'">$12</div><div style="font-size:0.75rem;opacity:0.8">Pay after live report</div></div>
-            </div>
-        </div>
-
-        <div class="pricing-locked-wrapper" style="max-width:1200px;margin:0 auto">
-            <div id="pricingLockOverlay" class="pricing-lock-overlay" style="background:rgba(3,7,18,0.92);backdrop-filter:blur(16px);border:1px solid rgba(59,130,246,0.2)">
-                <div style="width:80px;height:80px;background:linear-gradient(135deg,#2563eb,#a855f7);border-radius:20px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;box-shadow:0 10px 30px rgba(59,130,246,0.4)"><i class="fas fa-lock" style="font-size:2rem;color:white"></i></div>
-                <h3 style="font-size:1.8rem;margin-bottom:12px">Premium Pricing Locked 🔒</h3>
-                <p style="color:var(--text-muted);max-width:450px;margin:0 auto 8px">আমাদের real pricing, bulk discount, এবং daily report system শুধু verified clients দের জন্য।</p>
-                <div style="display:flex;gap:15px;justify-content:center;margin:20px 0;flex-wrap:wrap">
-                    <div style="display:flex;align-items:center;gap:6px;color:#10b981;font-size:0.85rem"><i class="fas fa-check-circle"></i> No Advance</div>
-                    <div style="display:flex;align-items:center;gap:6px;color:#10b981;font-size:0.85rem"><i class="fas fa-check-circle"></i> Daily Live Report</div>
-                    <div style="display:flex;align-items:center;gap:6px;color:#10b981;font-size:0.85rem"><i class="fas fa-check-circle"></i> Bkash/Nagad/USDT</div>
-                </div>
-                <button class="btn btn-primary" onclick="openAuth()" style="padding:14px 28px;font-size:1.05rem"><i class="fas fa-rocket"></i> Free Account খুলে Pricing দেখুন</button>
-                <p style="font-size:0.75rem;color:var(--text-muted);margin-top:12px">30 সেকেন্ডে signup • Google দিয়ে 1 ক্লিকে login</p>
-            </div>
-
-            <div id="pricingGrid" class="pricing-grid" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:28px">
-                <!-- Will be replaced by Firebase, fallback premium design -->
-                <div class="pricing-card popular" style="background:linear-gradient(180deg,rgba(30,41,59,0.8) 0%,rgba(15,23,42,0.9) 100%);border:1px solid rgba(59,130,246,0.4);box-shadow:0 0 40px rgba(59,130,246,0.15),inset 0 1px 0 rgba(255,255,255,0.05)">
-                    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#3b82f6,#a855f7)"></div>
-                    <span class="popular-tag" style="background:linear-gradient(135deg,#3b82f6,#a855f7);padding:6px 14px;font-size:0.7rem;letter-spacing:1px"><i class="fas fa-crown"></i> MOST POPULAR</span>
-                    <div style="margin-top:10px"><div style="width:50px;height:50px;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:18px"><i class="fas fa-map-marked-alt" style="color:#3b82f6;font-size:1.5rem"></i></div><h3 style="font-size:1.4rem">Google Map Review</h3><p style="color:var(--text-muted);font-size:0.85rem;margin-top:4px">Local business trust boost</p></div>
-                    <div class="price" style="margin:20px 0 5px;display:flex;align-items:baseline;gap:4px">$1.2 <span style="color:var(--text-muted);font-size:0.9rem">/ per review</span><span style="margin-left:auto;background:rgba(16,185,129,0.15);color:#10b981;padding:4px 8px;border-radius:6px;font-size:0.7rem">PAY FOR LIVE</span></div>
-                    <div style="height:1px;background:var(--border-color);margin:18px 0"></div>
-                    <ul class="pricing-features" style="margin:0"><li><i class="fas fa-check"></i> 100% Real User Profiles</li><li><i class="fas fa-check"></i> Manual Search & Review</li><li><i class="fas fa-check"></i> Daily Live Report Sheet</li><li><i class="fas fa-check"></i> 2-5/Day Natural Delivery</li><li><i class="fas fa-check"></i> Pay Only For Live</li></ul>
-                    <a href="#contact" class="btn btn-primary" style="width:100%;margin-top:22px;padding:14px"><i class="fas fa-bolt"></i> Get Custom Quote</a>
-                    <p style="text-align:center;font-size:0.7rem;color:var(--text-muted);margin-top:10px"><i class="fas fa-shield-alt"></i> Safe method • No bot</p>
-                </div>
-
-                <div class="pricing-card" style="background:linear-gradient(180deg,rgba(30,41,59,0.6) 0%,rgba(15,23,42,0.8) 100%)">
-                    <div style="width:50px;height:50px;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.2);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:18px"><i class="fab fa-google-play" style="color:#f59e0b;font-size:1.5rem"></i></div>
-                    <h3 style="font-size:1.4rem">Play Store Review</h3><p style="color:var(--text-muted);font-size:0.85rem;margin-top:4px">App ranking & credibility</p>
-                    <div class="price" style="margin:20px 0 5px;display:flex;align-items:baseline;gap:4px">$1.5 <span style="color:var(--text-muted);font-size:0.9rem">/ per review</span></div>
-                    <div style="height:1px;background:var(--border-color);margin:18px 0"></div>
-                    <ul class="pricing-features"><li><i class="fas fa-check"></i> Real Install + Review</li><li><i class="fas fa-check"></i> 5 Star + Custom Comment</li><li><i class="fas fa-check"></i> Keyword Search Method</li><li><i class="fas fa-check"></i> Non-Drop Strategy</li></ul>
-                    <a href="#contact" class="btn btn-outline" style="width:100%;margin-top:22px;padding:14px">Get Custom Quote</a>
-                </div>
-
-                <div class="pricing-card" style="background:linear-gradient(180deg,rgba(30,41,59,0.6) 0%,rgba(15,23,42,0.8) 100%)">
-                    <div style="width:50px;height:50px;background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.2);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:18px"><i class="fas fa-rocket" style="color:#a855f7;font-size:1.5rem"></i></div>
-                    <h3 style="font-size:1.4rem">GMB SEO Full</h3><p style="color:var(--text-muted);font-size:0.85rem;margin-top:4px">Dominate local search</p>
-                    <div class="price" style="margin:20px 0 5px;display:flex;align-items:baseline;gap:4px">$99 <span style="color:var(--text-muted);font-size:0.9rem">/ month</span><span style="margin-left:auto;background:rgba(168,85,247,0.15);color:#a855f7;padding:4px 8px;border-radius:6px;font-size:0.7rem">RECOMMENDED</span></div>
-                    <div style="height:1px;background:var(--border-color);margin:18px 0"></div>
-                    <ul class="pricing-features"><li><i class="fas fa-check"></i> Full Profile Optimization</li><li><i class="fas fa-check"></i> Local Keyword Research</li><li><i class="fas fa-check"></i> Posts + Q&A + Photos</li><li><i class="fas fa-check"></i> Ranking Tracking</li></ul>
-                    <a href="#contact" class="btn btn-outline" style="width:100%;margin-top:22px;padding:14px">Start SEO</a>
-                </div>
-            </div>
-
-            <div style="text-align:center;margin-top:35px;padding:16px;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);border-radius:12px;max-width:700px;margin-left:auto;margin-right:auto">
-                <p style="font-size:0.9rem;color:#10b981"><i class="fas fa-info-circle"></i> <strong>Honest Policy:</strong> আমরা শুধু live review এর টাকা নিই। Report এ 10 টা live থাকলে 10 টার টাকা। Drop হলে টাকা লাগবে না।</p>
+    <!-- NEW PRICING SECTION - GATED -->
+    <section id="pricing" style="background:#02040a">
+<div class="section-header"><span class="badge">Transparent Pricing</span><h2>Choose Your Plan</h2><p>Login pricing । Pay only for live & published reviews.</p></div>
+        <div style="max-width:1200px;margin:0 auto">
+            <div id="pricingGrid" class="pricing-grid">
+                <!-- Dynamic from Firebase -->
+                <div class="pricing-card popular"><span class="popular-tag">POPULAR</span><h3>Google Map Review</h3><div class="price">$1.2 <span>/ per review</span></div><ul class="pricing-features"><li><i class="fas fa-check"></i> Real User Profile</li><li><i class="fas fa-check"></i> Daily Report</li><li><i class="fas fa-check"></i> Pay for Live Only</li></ul><a href="#contact" class="btn btn-primary" style="width:100%">Get Started</a></div>
+                <div class="pricing-card"><h3>Play Store Review</h3><div class="price">$1.5 <span>/ per review</span></div><ul class="pricing-features"><li><i class="fas fa-check"></i> Manual Install</li><li><i class="fas fa-check"></i> 5 Star Rating</li><li><i class="fas fa-check"></i> Non-Drop Method</li></ul><a href="#contact" class="btn btn-outline" style="width:100%">Get Started</a></div>
+                <div class="pricing-card"><h3>Map SEO Full</h3><div class="price">$99 <span>/ per month</span></div><ul class="pricing-features"><li><i class="fas fa-check"></i> Full GMB Optimization</li><li><i class="fas fa-check"></i> Ranking Boost</li><li><i class="fas fa-check"></i> 24/7 Support</li></ul><a href="#contact" class="btn btn-outline" style="width:100%">Get Started</a></div>
             </div>
         </div>
     </section>
@@ -544,13 +482,13 @@
 
         // ================== REPLACE WITH YOUR FIREBASE CONFIG ==================
         const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_PROJECT.firebaseapp.com",
-            databaseURL: "https://YOUR_PROJECT-default-rtdb.firebaseio.com",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_PROJECT.appspot.com",
-            messagingSenderId: "YOUR_SENDER_ID",
-            appId: "YOUR_APP_ID"
+            apiKey: "__FIREBASE_API_KEY__",
+            authDomain: "__FIREBASE_AUTH_DOMAIN__",
+            databaseURL: "__FIREBASE_DATABASE_URL__",
+            projectId: "__FIREBASE_PROJECT_ID__",
+            storageBucket: "__FIREBASE_STORAGE_BUCKET__",
+            messagingSenderId: "__FIREBASE_MESSAGING_SENDER_ID__",
+            appId: "__FIREBASE_APP_ID__"
         };
         // ========================================================================
 
@@ -573,14 +511,14 @@
             document.getElementById('tabSignup').classList.toggle('active', mode==='signup');
             document.getElementById('authTitle').innerText = mode==='login' ? 'Welcome Back' : 'Create Account';
             document.getElementById('authSubmitBtn').innerText = mode==='login' ? 'Login' : 'Sign Up';
-            document.getElementById('authDesc').innerText = mode==='login' ? 'Login to view pricing & chat' : 'Account খুললেই pricing দেখতে পাবেন';
+            document.getElementById('authDesc').innerText = mode==='login' ? 'Welcome back - login to your account' : 'Create a new account to get started';
         }
         window.handleAuth = async () => {
             const email = document.getElementById('authEmail').value.trim();
             const pass = document.getElementById('authPass').value.trim();
             const errEl = document.getElementById('authError');
             errEl.style.display='none';
-            if(!email || !pass){ errEl.innerText='Email & password দিন'; errEl.style.display='block'; return; }
+            if(!email || !pass){ errEl.innerText='Please enter Email & Password'; errEl.style.display='block'; return; }
             try{
                 if(authMode==='signup') await createUserWithEmailAndPassword(auth,email,pass);
                 else await signInWithEmailAndPassword(auth,email,pass);
@@ -596,26 +534,20 @@
             currentUser = user;
             const loginBtn = document.getElementById('loginBtn');
             const userInfo = document.getElementById('userInfo');
-            const lockOverlay = document.getElementById('pricingLockOverlay');
-            const heroNote = document.getElementById('heroLoginNote');
+            const pricingSection = document.getElementById('pricing');
             const adminBtn = document.getElementById('adminBtn');
-            const lockIcon = document.getElementById('pricingLockIcon');
 
             if(user){
                 loginBtn.style.display='none';
                 userInfo.style.display='flex';
                 document.getElementById('userEmailText').innerText = user.email || 'Guest';
-                lockOverlay.style.display='none';
-                heroNote.style.display='none';
-                lockIcon.className='fas fa-check-circle';
+                if(pricingSection) pricingSection.style.display='block';
                 if(user.email===ADMIN_EMAIL){ adminBtn.style.display='inline-flex'; }
                 initChatListener();
             }else{
                 loginBtn.style.display='inline-flex';
                 userInfo.style.display='none';
-                lockOverlay.style.display='flex';
-                heroNote.style.display='block';
-                lockIcon.className='fas fa-lock';
+                if(pricingSection) pricingSection.style.display='none';
                 adminBtn.style.display='none';
             }
         });
@@ -727,7 +659,7 @@
         });
         window.addReview = async ()=>{
             const url = document.getElementById('reviewImageUrl').value.trim();
-            if(!url) return alert('Image URL দিন');
+            if(!url) return alert('Please enter Image URL');
             await addDoc(collection(db,'reviews'), { imageUrl:url, alt:document.getElementById('reviewAlt').value, createdAt:serverTimestamp() });
             document.getElementById('reviewImageUrl').value='';
             // also render immediately in UI
@@ -740,7 +672,7 @@
         window.addPricing = async ()=>{
             const title = document.getElementById('pricingTitle').value.trim();
             const price = document.getElementById('pricingPrice').value.trim();
-            if(!title||!price) return alert('Title & Price দিন');
+            if(!title||!price) return alert('Please enter Title & Price');
             const features = document.getElementById('pricingFeatures').value.split(',').map(s=>s.trim()).filter(Boolean);
             await addDoc(collection(db,'pricing'), { title, price, per:document.getElementById('pricingPer').value, features, popular:document.getElementById('pricingPopular').checked, createdAt:serverTimestamp() });
             document.getElementById('pricingTitle').value=''; document.getElementById('pricingPrice').value=''; document.getElementById('pricingFeatures').value='';
@@ -751,7 +683,7 @@
         window.showOptions = ()=>{
             const appName = document.getElementById('appName').value.trim();
             const contact = document.getElementById('userContact').value.trim();
-            if(!appName||!contact){ alert("App Name/ID and Contact Info fill করুন"); return; }
+            if(!appName||!contact){ alert("Please fill in App Name/ID and Contact Info"); return; }
             document.getElementById('mainSubmitBtn').style.display='none';
             document.getElementById('sendOptionsBlock').style.display='flex';
         }
@@ -840,22 +772,9 @@
             const chatRef = ref(rtdb, `chats/${uid}/messages`);
             onValue(chatRef, (snap)=>{
                 const msgs = snap.val();
-                alert('Chat '+uid+':\n'+ (msgs ? Object.values(msgs).map(m=>m.from+': '+m.text).join('\n') : 'empty') + '\n\nTelegram থেকে /reply '+uid+' your_message লিখলে client real-time পাবে');
+alert('Chat '+uid+':\n'+ (msgs ? Object.values(msgs).map(m=>m.from+': '+m.text).join('\n') : 'empty') + '\n\nTelegram /reply '+uid+' your_message client real-time ');
             }, {onlyOnce:true});
         }
-
-        
-        // Pricing Calculator
-        window.updateCalc = () => {
-            const price = parseFloat(document.getElementById('calcService').value) || 1.2;
-            const qty = parseInt(document.getElementById('calcQty').value) || 1;
-            let total = price * qty;
-            if(price < 10) total = total.toFixed(1);
-            else total = total.toFixed(0);
-            document.getElementById('calcTotal').innerText = '$' + total;
-        }
-        document.getElementById('calcService')?.addEventListener('change', updateCalc);
-        updateCalc();
 
         // ---- Admin Panel ----
         window.openAdmin = ()=> document.getElementById('adminPanel').classList.add('active');
