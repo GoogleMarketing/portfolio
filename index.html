@@ -411,17 +411,13 @@
         <div id="tab-chatsAdmin" class="admin-content">
             <div class="admin-card">
                 <h3>Live Chats - Telegram Connected ✅</h3>
-                <p style="color:var(--text-muted);font-size:.85rem;margin-bottom:15px">Fix applied: Client messages auto-forward to Telegram bot. Reply from Telegram with <code>/reply USER_ID message</code> to send real-time reply to website.</p>
-                <div style="background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);border-radius:10px;padding:12px;margin-bottom:15px">
-                    <strong style="color:#10b981;font-size:.85rem"><i class="fas fa-check-circle"></i> Telegram Bot Setup:</strong>
-                    <p style="font-size:.8rem;color:var(--text-muted);margin-top:6px">1. Create bot via @BotFather, get token<br>2. Get your chat ID via @userinfobot<br>3. Add to Firebase Functions config: <code>firebase functions:config:set telegram.token="BOT_TOKEN" telegram.chat_id="YOUR_ID"</code><br>4. Deploy functions: <code>firebase deploy --only functions</code><br>5. Set webhook: <code>https://api.telegram.org/botTOKEN/setWebhook?url=https://REGION-PROJECT.cloudfunctions.net/telegramWebhook</code></p>
-                </div>
+                <p style="color:var(--text-muted);font-size:.85rem;margin-bottom:15px">Client messages auto-forward to Telegram bot. Reply from Telegram with <code>/reply USER_ID message</code> to send real-time reply to website.</p>
                 <div id="adminChatsList"></div>
             </div>
         </div>
     </div>
 
-    <!-- Chat Widget - Fixed Telegram -->
+    <!-- Chat Widget - Fixed Telegram Integration -->
     <div class="chat-button" onclick="toggleChat()"><i class="fas fa-comments"></i><div id="chatBadge" class="chat-badge">0</div></div>
     <div id="chatBox" class="chat-box">
         <div class="chat-header">
@@ -437,7 +433,7 @@
         </div>
     </div>
 
-    <!-- Navbar - No floating email, Profile Chip instead -->
+    <!-- Navbar -->
     <nav>
         <div class="logo">
             <img src="https://i.ibb.co.com/GfswcC5V/FB-IMG-1791925489216.jpg" alt="Logo">
@@ -503,7 +499,7 @@
         </div>
     </section>
 
-    <!-- Pricing Teaser for Guests - No pricing exposed -->
+    <!-- Pricing Teaser for Guests -->
     <section id="pricingTeaser" style="background:linear-gradient(180deg,#02040a 0%,#0f172a 100%);padding:80px 5%">
         <div class="pricing-teaser">
             <i class="fas fa-lock"></i>
@@ -519,7 +515,7 @@
         </div>
     </section>
 
-    <!-- Pricing Section - Only for Logged In Users -->
+    <!-- Pricing Section -->
     <section id="pricing" style="background:linear-gradient(180deg,#02040a 0%,#0f172a 100%);position:relative;overflow:hidden;display:none">
         <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:800px;height:400px;background:radial-gradient(circle,rgba(59,130,246,0.15) 0%,transparent 70%);pointer-events:none"></div>
         <div class="section-header" style="position:relative">
@@ -613,12 +609,11 @@
     <div id="imageModal" class="modal" onclick="closeModal()"><span class="close-modal">&times;</span><img class="modal-content" id="modalImg"></div>
 
     <script>
-        // ===== ULTIMATE UI - Works even if Firebase fails =====
+        // UI Helpers
         window.firebaseOffline = true;
         window.currentUser = null;
         window.authMode = 'login';
         
-        // Menu
         window.toggleMenu = function() {
             const menu = document.getElementById('mobileMenu');
             if(menu) menu.classList.toggle('active');
@@ -628,7 +623,6 @@
             if(menu) menu.classList.remove('active');
         }
         
-        // Modals
         window.openModal = function(src) {
             const modal = document.getElementById('imageModal');
             const img = document.getElementById('modalImg');
@@ -679,7 +673,6 @@
             }
         }
         
-        // Chat
         window.toggleChat = function() {
             const box = document.getElementById('chatBox');
             const badge = document.getElementById('chatBadge');
@@ -689,7 +682,6 @@
             }
         }
         
-        // Contact
         window.showOptions = function() {
             const appName = document.getElementById('appName');
             const contact = document.getElementById('userContact');
@@ -741,7 +733,6 @@
             }
         }
         
-        // Toast
         window.showToast = function(title, msg) {
             const toast = document.getElementById('toast');
             const titleEl = document.getElementById('toastTitle');
@@ -762,7 +753,6 @@
             if(panel) panel.classList.toggle('active');
         }
         
-        // Admin
         window.openAdmin = function() {
             const panel = document.getElementById('adminPanel');
             if(panel) panel.classList.add('active');
@@ -778,7 +768,6 @@
             document.getElementById('tab-'+id)?.classList.add('active');
         }
         
-        // FAQ & Misc
         document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('.faq-item').forEach(item => {
                 const q = item.querySelector('.faq-question');
@@ -810,8 +799,8 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import { getAuth, onAuthStateChanged, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, signInAnonymously, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-        import { getFirestore, collection, doc, addDoc, deleteDoc, onSnapshot, setDoc, getDoc, serverTimestamp, query, orderBy, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+        import { getAuth, onAuthStateChanged, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        import { getFirestore, collection, doc, addDoc, onSnapshot, setDoc, getDoc, serverTimestamp, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
         import { getDatabase, ref, push, onChildAdded, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
         const firebaseConfig = {
@@ -830,7 +819,6 @@
         const ADMIN_EMAIL = "afshakil279@gmail.com";
         let currentUser = null;
         let authMode = 'login';
-        let currentUserProfile = null;
 
         function isConfigValid() {
             return firebaseConfig.apiKey && !firebaseConfig.apiKey.includes('__FIREBASE_') && firebaseConfig.apiKey.length > 10;
@@ -851,7 +839,6 @@
             firebaseReady = false;
         }
 
-        // Apply Authenticated UI
         function applyAuthUI(user, profile) {
             currentUser = user;
             window.currentUser = user;
@@ -891,7 +878,6 @@
             }
         }
 
-        // Check local saved user
         const savedUserJson = localStorage.getItem('gm_local_user');
         if(savedUserJson) {
             try {
@@ -900,7 +886,6 @@
             } catch(e){}
         }
 
-        // Track visitor
         async function trackVisit(){
             if(!firebaseReady || !db) return;
             try{
@@ -979,7 +964,6 @@
                     errEl.style.display='block'; 
                 }
             } else {
-                // Seamless local auth
                 const localUser = {
                     uid: 'user_' + Date.now(),
                     email: email,
@@ -1061,7 +1045,6 @@
                     }
                     applyAuthUI(user, prof);
                     initChatListener();
-                    loadNotifications();
                 } else if(!localStorage.getItem('gm_local_user')) {
                     applyAuthUI(null, null);
                 }
@@ -1127,7 +1110,7 @@
             renderReviews([]);
         }
 
-        // Chat Send Action
+        // CHAT ENGINE - Full Hybrid (Firebase + Render Telegram)
         let guestId = localStorage.getItem('guestId') || 'guest_'+Date.now();
         localStorage.setItem('guestId', guestId);
 
@@ -1138,40 +1121,49 @@
             if(!text) return;
 
             const box = document.getElementById('chatMessages');
-            if(box) {
-                const div = document.createElement('div');
-                div.className = 'msg client';
-                div.innerText = text;
-                box.appendChild(div);
-                box.scrollTop = box.scrollHeight;
-            }
+            let uid = currentUser?.uid || guestId;
+            let userName = currentUser?.displayName || currentUser?.name || 'Guest';
+            let userEmail = currentUser?.email || 'guest@website.com';
+
             input.value = '';
 
+            // ১. ফায়ারবেসে মেসেজ পুশ করা (যদি ফায়ারবেস থাকে)
             if(firebaseReady && rtdb) {
                 try {
-                    let uid = currentUser?.uid || guestId;
                     const chatRef = ref(rtdb, `chats/${uid}/messages`);
-                    const msgData = { 
+                    await push(chatRef, { 
                         from:'client', 
                         text, 
                         time:Date.now(), 
-                        email: currentUser?.email||'guest', 
+                        email: userEmail, 
                         uid, 
-                        name: currentUser?.displayName || currentUser?.name || 'Guest' 
-                    };
-                    await push(chatRef, msgData);
-                } catch(e){}
+                        name: userName 
+                    });
+                } catch(e){ console.error("Firebase chat error:", e); }
             } else {
-                setTimeout(() => {
-                    if(box) {
-                        const reply = document.createElement('div');
-                        reply.className = 'msg admin';
-                        reply.innerText = 'Thanks! Shakil has received your request and will reply on Telegram/WhatsApp shortly.';
-                        box.appendChild(reply);
-                        box.scrollTop = box.scrollHeight;
-                    }
-                }, 800);
+                // অফলাইন মোড হলে স্ক্রিনে সরাসরি দেখানো
+                if(box) {
+                    const div = document.createElement('div');
+                    div.className = 'msg client';
+                    div.innerText = text;
+                    box.appendChild(div);
+                    box.scrollTop = box.scrollHeight;
+                }
             }
+
+            // ২. রেন্ডার সার্ভারে মেসেজ কল করা (টেলিগ্রাম বটে পাঠানোর জন্য)
+            try {
+                await fetch('https://portfolio-live-chat-bot.onrender.com/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        website_message: text,
+                        uid: uid,
+                        name: userName,
+                        email: userEmail
+                    })
+                });
+            } catch(e) { console.error("Render bot notification error:", e); }
         };
 
         function initChatListener(){
@@ -1202,14 +1194,14 @@
         document.getElementById('calcService')?.addEventListener('change', updateCalc);
         updateCalc();
 
-        // Exports for Admin
+        // Admin Helpers
         window.openChatAsAdmin = (uid)=>{
             if(!rtdb) return;
             const chatRef = ref(rtdb, `chats/${uid}/messages`);
             onValue(chatRef, (snap)=>{
                 const msgs = snap.val();
                 const text = msgs ? Object.values(msgs).map(m=>`${m.from.toUpperCase()} (${m.name||m.email||'guest'}): ${m.text}`).join('\n') : 'empty';
-                alert(`Chat with ${uid}:\n\n${text}\n\n---\nTo reply: Go to Telegram and send:\n/reply ${uid} your_message\n\nClient will receive real-time reply on website.`);
+                alert(`Chat with ${uid}:\n\n${text}\n\n---\nTo reply: Go to Telegram and send:\n/reply ${uid} your_message`);
             }, {onlyOnce:true});
         }
 
