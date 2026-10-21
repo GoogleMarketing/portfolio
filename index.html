@@ -1425,12 +1425,10 @@ Client will receive real-time reply on website.`);
         window.exportUsersCSV = async () => {
             if(!firebaseReady || !db) return alert('Firebase not configured');
             const snap = await getDocs(collection(db,'users'));
-            let csv = 'Name,Email,Country,City,Joined,Orders,TotalSpent
-';
+            let csv = 'Name,Email,Country,City,Joined,Orders,TotalSpent\n';
             snap.forEach(d=>{
                 const u=d.data(); const t=u.createdAt?.toDate ? u.createdAt.toDate().toLocaleDateString() : '';
-                csv+=`"${u.name||''}","${u.email||''}","${u.country||''}","${u.city||''}","${t}","${u.orders||0}","${u.totalSpent||0}"
-`;
+                csv+=`"${u.name||''}","${u.email||''}","${u.country||''}","${u.city||''}","${t}","${u.orders||0}","${u.totalSpent||0}"\n`;
             });
             const blob = new Blob([csv], {type:'text/csv'});
             const url = URL.createObjectURL(blob);
