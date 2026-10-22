@@ -54,7 +54,8 @@
         .nav-auth{display:flex;align-items:center;gap:10px}
         .btn-login{background:rgba(255,255,255,.05);border:1px solid var(--border-color);color:white;padding:8px 18px;border-radius:20px;font-size:.85rem;font-weight:600;cursor:pointer;transition:.3s}
         .btn-login:hover{background:var(--primary-color);border-color:var(--primary-color)}
-        .user-chip{display:flex;align-items:center;gap:8px;background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.3);padding:6px 12px;border-radius:20px;font-size:.8rem}
+        .user-chip{display:flex;align-items:center;gap:8px;background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.3);padding:6px 12px;border-radius:20px;font-size:.8rem;cursor:pointer;transition:all .3s}
+        .user-chip:hover{background:rgba(59,130,246,.25)}
         .menu-btn{background:none;border:none;color:var(--text-main);font-size:.9rem;font-weight:600;cursor:pointer;letter-spacing:2px;display:flex;align-items:center;gap:8px}
         .mobile-menu{position:fixed;top:0;left:0;width:100%;height:100vh;background-color:rgba(3,7,18,.98);backdrop-filter:blur(20px);display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:2000;transform:translateY(-100%);transition:transform .5s cubic-bezier(0.4,0,0.2,1)}
         .mobile-menu.active{transform:translateY(0)}
@@ -157,7 +158,7 @@
         @media (max-width:991px){.contact-wrapper,.guarantee-wrapper{grid-template-columns:1fr}.payment-methods{grid-template-columns:1fr}}
         @media (max-width:768px){.hero{padding-top:130px;text-align:center;align-items:center}.trust-counter{padding:0 5% 50px;margin-top:0}}
 
-        /* ===== NEW: AUTH MODAL ===== */
+        /* ===== AUTH MODAL ===== */
         .auth-modal{position:fixed;inset:0;z-index:4000;background:rgba(3,7,18,.9);backdrop-filter:blur(12px);display:none;justify-content:center;align-items:center;padding:20px}
         .auth-modal.active{display:flex}
         .auth-box{background:#0f172a;border:1px solid var(--border-color);border-radius:20px;padding:35px;width:100%;max-width:420px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
@@ -172,7 +173,12 @@
         .divider{height:1px;background:var(--border-color);margin:18px 0;position:relative}
         .divider span{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:#0f172a;padding:0 10px;color:var(--text-muted);font-size:.8rem}
 
-        /* ===== NEW: PRICING SECTION ===== */
+        /* ===== PROFILE MODAL ===== */
+        .profile-modal{position:fixed;inset:0;z-index:4500;background:rgba(3,7,18,.95);backdrop-filter:blur(15px);display:none;padding:20px;overflow-y:auto;align-items:flex-start;justify-content:center}
+        .profile-modal.active{display:flex}
+        .profile-box{background:#0f172a;border:1px solid var(--primary-color);border-radius:20px;padding:35px;width:100%;max-width:800px;box-shadow:0 20px 60px rgba(0,0,0,.6);margin-top:50px;position:relative}
+
+        /* ===== PRICING SECTION ===== */
         .pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px;max-width:1100px;margin:0 auto}
         .pricing-card{background:var(--card-bg);border:1px solid var(--border-color);border-radius:20px;padding:30px;backdrop-filter:blur(10px);position:relative;overflow:hidden;transition:.3s}
         .pricing-card.popular{border-color:var(--primary-color);box-shadow:0 0 30px rgba(59,130,246,.2)}
@@ -183,13 +189,8 @@
         .pricing-features{list-style:none;margin:20px 0}
         .pricing-features li{display:flex;gap:10px;margin-bottom:10px;color:var(--text-muted);font-size:.95rem}
         .pricing-features li i{color:#10b981;margin-top:4px}
-        .pricing-locked-wrapper{position:relative}
-        .pricing-lock-overlay{position:absolute;inset:0;background:rgba(3,7,18,.85);backdrop-filter:blur(8px);z-index:5;border-radius:20px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:30px}
-        .pricing-lock-overlay i{font-size:3rem;color:var(--primary-color);margin-bottom:15px}
-        .pricing-lock-overlay h3{font-size:1.5rem;margin-bottom:10px}
-        .pricing-lock-overlay p{color:var(--text-muted);margin-bottom:20px;max-width:400px}
 
-        /* ===== NEW: ADMIN PANEL ===== */
+        /* ===== ADMIN PANEL ===== */
         #adminPanel{position:fixed;inset:0;z-index:5000;background:#030712;overflow-y:auto;padding:30px 5%;display:none}
         #adminPanel.active{display:block}
         .admin-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;padding-bottom:20px;border-bottom:1px solid var(--border-color)}
@@ -207,7 +208,7 @@
         .btn-danger{background:#ef4444;color:white}
         .btn-edit{background:#3b82f6;color:white}
 
-        /* ===== NEW: CHAT WIDGET ===== */
+        /* ===== CHAT WIDGET ===== */
         .chat-button{position:fixed;bottom:25px;right:25px;width:60px;height:60px;background:linear-gradient(135deg,#2563eb,#3b82f6);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:1.5rem;cursor:pointer;box-shadow:0 8px 25px rgba(37,99,235,.4);z-index:999;transition:.3s}
         .chat-button:hover{transform:scale(1.1)}
         .chat-badge{position:absolute;top:-5px;right:-5px;background:#ef4444;color:white;font-size:.7rem;width:20px;height:20px;border-radius:50%;display:none;align-items:center;justify-content:center;font-weight:700}
@@ -244,7 +245,47 @@
             <div class="divider"><span>OR</span></div>
             <button class="btn-google" onclick="loginWithGoogle()"><i class="fab fa-google"></i> Continue with Google</button>
             <p id="authError" style="color:#ef4444;font-size:.85rem;margin-top:12px;display:none"></p>
-            <p style="font-size:.75rem;color:var(--text-muted);margin-top:15px;text-align:center">Admin: afshakil279@gmail.com login করলে Admin Panel খুলবে</p>
+        </div>
+    </div>
+
+    <!-- User Profile Modal (Visible only after login) -->
+    <div id="profileModal" class="profile-modal">
+        <div class="profile-box">
+            <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-color);padding-bottom:15px;margin-bottom:25px">
+                <h2 style="font-size:1.8rem"><i class="fas fa-user-circle" style="color:var(--primary-color)"></i> My Dashboard</h2>
+                <button onclick="closeProfile()" style="background:none;border:none;color:var(--text-muted);font-size:1.5rem;cursor:pointer"><i class="fas fa-times"></i></button>
+            </div>
+            <div style="margin-bottom:30px">
+                <p style="color:var(--text-muted);font-size:.9rem">Account Email</p>
+                <h3 id="profileEmailDisplay" style="font-size:1.2rem"></h3>
+            </div>
+            
+            <h3 style="margin-bottom:15px"><i class="fas fa-calculator" style="color:#10b981"></i> Cost Estimator</h3>
+            <div style="background:rgba(30,41,59,0.6);border:1px solid var(--border-color);border-radius:20px;padding:25px;margin-bottom:30px">
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;align-items:end">
+                    <div class="input-group">
+                        <label>Service Type</label>
+                        <select id="calcService" class="admin-input" style="padding:13px">
+                            <option value="1.2">Google Map Review - $1.2</option>
+                            <option value="1.5">Play Store Review - $1.5</option>
+                            <option value="99">GMB SEO - $99/month</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Quantity</label>
+                        <input id="calcQty" type="number" class="admin-input" style="padding:13px" value="10" min="1" oninput="updateCalc()">
+                    </div>
+                    <div style="background:linear-gradient(135deg,#2563eb,#3b82f6);border-radius:12px;padding:16px;text-align:center;color:white">
+                        <div style="font-size:0.85rem;opacity:0.9">Estimated Total</div>
+                        <div id="calcTotal" style="font-size:1.8rem;font-weight:800;font-family:'Outfit'">$12</div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display:flex;justify-content:flex-end;gap:15px;margin-top:20px;border-top:1px solid var(--border-color);padding-top:20px">
+                <button class="btn btn-outline" onclick="closeProfile()">Close</button>
+                <button class="btn btn-primary" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
         </div>
     </div>
 
@@ -253,7 +294,7 @@
         <div class="admin-header">
             <div>
                 <h2 style="font-size:2rem">Admin Panel - Google Marketing</h2>
-                <p style="color:var(--text-muted)">Logged as afshakil279@gmail.com</p>
+                <p style="color:var(--text-muted)">Secure Administration Area</p>
             </div>
             <button class="btn btn-outline" onclick="closeAdmin()"><i class="fas fa-times"></i> Close</button>
         </div>
@@ -283,7 +324,7 @@
             <div class="admin-card">
                 <h3>Add New Pricing</h3>
                 <input id="pricingTitle" class="admin-input" placeholder="Title e.g. Google Map Review 10x">
-                <input id="pricingPrice" class="admin-input" placeholder="Price e.g. $50 or ৳5000">
+                <input id="pricingPrice" class="admin-input" placeholder="Price e.g. $50">
                 <input id="pricingPer" class="admin-input" placeholder="Per e.g. / 10 reviews">
                 <textarea id="pricingFeatures" class="admin-input" rows="3" placeholder="Features comma separated: Real Users, 100% Safe, Daily Report"></textarea>
                 <label><input type="checkbox" id="pricingPopular"> Popular?</label>
@@ -307,7 +348,7 @@
         </div>
 
         <div id="tab-chatsAdmin" class="admin-content">
-            <div class="admin-card"><h3>Live Chats (Realtime DB) - Telegram Connected</h3><p style="color:var(--text-muted);font-size:.9rem;margin-bottom:15px">Client message আসলে Telegram bot এ যাবে। Telegram থেকে /reply USER_ID message লিখলে website এ real-time যাবে।</p><div id="adminChatsList"></div></div>
+            <div class="admin-card"><h3>Live Chats (Realtime DB)</h3><p style="color:var(--text-muted);font-size:.9rem;margin-bottom:15px">Client messages are sent to the Telegram bot. Reply from Telegram using /reply USER_ID message to send it to the website in real-time.</p><div id="adminChatsList"></div></div>
         </div>
     </div>
 
@@ -315,11 +356,11 @@
     <div class="chat-button" onclick="toggleChat()"><i class="fas fa-comments"></i><div id="chatBadge" class="chat-badge">0</div></div>
     <div id="chatBox" class="chat-box">
         <div class="chat-header">
-            <div><strong>Google Marketing</strong><div style="font-size:.75rem;color:#10b981">● Online - Reply in Telegram</div></div>
+            <div><strong>Google Marketing</strong><div style="font-size:.75rem;color:#10b981">● Online Support</div></div>
             <button onclick="toggleChat()" style="background:none;border:none;color:white;cursor:pointer"><i class="fas fa-times"></i></button>
         </div>
         <div id="chatMessages" class="chat-messages">
-            <div class="msg admin">Hi! 👋 Pricing দেখতে login করুন। যেকোনো প্রশ্ন লিখুন, আমি Telegram থেকে reply দেব।</div>
+            <div class="msg admin">Hi! 👋 Please login to view pricing. Ask any questions, and we will reply promptly.</div>
         </div>
         <div class="chat-input-area">
             <input id="chatInput" placeholder="Type message..." onkeypress="if(event.key==='Enter') sendChatMessage()">
@@ -337,9 +378,8 @@
             <div id="navAuth" class="nav-auth">
                 <button id="loginBtn" class="btn-login" onclick="openAuth()"><i class="fas fa-user"></i> Login</button>
                 <div id="userInfo" style="display:none;align-items:center;gap:10px">
-                    <div class="user-chip"><i class="fas fa-user-circle"></i><span id="userEmailText"></span></div>
+                    <div class="user-chip" onclick="openProfile()"><i class="fas fa-user-circle"></i><span id="userEmailText"></span></div>
                     <button id="adminBtn" class="btn-login" style="display:none;background:var(--primary-color)" onclick="openAdmin()"><i class="fas fa-cog"></i> Admin</button>
-                    <button class="btn-login" onclick="logout()"><i class="fas fa-sign-out-alt"></i></button>
                 </div>
             </div>
             <button class="menu-btn" onclick="toggleMenu()">MENU <i class="fas fa-bars"></i></button>
@@ -351,7 +391,6 @@
         <ul>
             <li><a href="#home" onclick="toggleMenu()">Home</a></li>
             <li><a href="#services" onclick="toggleMenu()">Services</a></li>
-            <li><a href="#pricing" onclick="toggleMenu()">Pricing</a></li>
             <li><a href="#guarantee" onclick="toggleMenu()">Guarantee</a></li>
             <li><a href="#reviews" onclick="toggleMenu()">Reviews</a></li>
             <li><a href="#about" onclick="toggleMenu()">About Me</a></li>
@@ -366,9 +405,8 @@
         <p>Owner of Google Marketing. We help businesses scale rapidly with safe, authentic reviews, powerful Google Map SEO, and targeted digital marketing solutions.</p>
         <div style="display:flex;gap:15px;flex-wrap:wrap">
             <a href="#contact" class="btn btn-primary">Start Your Project</a>
-            <a href="#pricing" class="btn btn-outline">View Pricing <i class="fas fa-lock" id="pricingLockIcon"></i></a>
         </div>
-        <div id="heroLoginNote" style="margin-top:20px;padding:12px 18px;background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.3);border-radius:10px;display:none"><i class="fas fa-info-circle" style="color:var(--primary-color)"></i> <span style="font-size:.9rem">Pricing দেখতে Login করুন - শুধু account খুললেই pricing দেখতে পাবেন</span></div>
+        <div id="heroLoginNote" style="margin-top:20px;padding:12px 18px;background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.3);border-radius:10px;display:none"><i class="fas fa-info-circle" style="color:var(--primary-color)"></i> <span style="font-size:.9rem">Login to view pricing and dashboard - exclusively for registered members</span></div>
     </section>
 
     <div class="trust-counter">
@@ -390,40 +428,16 @@
         </div>
     </section>
 
-    <!-- NEW PREMIUM PRACTICAL PRICING SECTION - GATED -->
-    <section id="pricing" style="background:linear-gradient(180deg,#02040a 0%,#0f172a 100%);position:relative;overflow:hidden">
-        <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:800px;height:400px;background:radial-gradient(circle,rgba(59,130,246,0.15) 0%,transparent 70%);pointer-events:none"></div>
-        <div class="section-header" style="position:relative">
+    <!-- PRICING SECTION - GATED (Hidden by default, visible only to logged-in users) -->
+    <section id="pricing" style="background:linear-gradient(180deg,#02040a 0%,#0f172a 100%); display:none;">
+        <div class="section-header">
             <span class="badge"><i class="fas fa-gem"></i> Transparent & Honest Pricing</span>
             <h2>Pay Only For <span style="background:linear-gradient(135deg,#3b82f6,#a855f7);-webkit-background-clip:text;color:transparent">Live Reviews</span></h2>
-            <p style="max-width:700px">কোনো advance না। Daily report দেখে শুধু live review এর টাকা দেবেন। নিচে calculator দিয়ে হিসাব দেখুন।</p>
+            <p style="max-width:700px">No advance payment required. Pay only for live reviews after checking the daily report.</p>
         </div>
 
-        <!-- Practical Calculator -->
-        <div style="max-width:900px;margin:0 auto 50px;background:rgba(30,41,59,0.6);border:1px solid var(--border-color);border-radius:20px;padding:25px;backdrop-filter:blur(12px);position:relative">
-            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;align-items:end">
-                <div class="input-group"><label><i class="fas fa-tasks"></i> Service Type</label><select id="calcService" class="admin-input" style="padding:13px"><option value="1.2">Google Map Review - $1.2</option><option value="1.5">Play Store Review - $1.5</option><option value="99">GMB SEO - $99/month</option></select></div>
-                <div class="input-group"><label><i class="fas fa-sort-numeric-up"></i> Quantity</label><input id="calcQty" type="number" class="admin-input" style="padding:13px" value="10" min="1" oninput="updateCalc()"></div>
-                <div style="background:linear-gradient(135deg,#2563eb,#3b82f6);border-radius:12px;padding:16px;text-align:center;color:white"><div style="font-size:0.85rem;opacity:0.9">Estimated Total</div><div id="calcTotal" style="font-size:1.8rem;font-weight:800;font-family:'Outfit'">$12</div><div style="font-size:0.75rem;opacity:0.8">Pay after live report</div></div>
-            </div>
-        </div>
-
-        <div class="pricing-locked-wrapper" style="max-width:1200px;margin:0 auto">
-            <div id="pricingLockOverlay" class="pricing-lock-overlay" style="background:rgba(3,7,18,0.92);backdrop-filter:blur(16px);border:1px solid rgba(59,130,246,0.2)">
-                <div style="width:80px;height:80px;background:linear-gradient(135deg,#2563eb,#a855f7);border-radius:20px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;box-shadow:0 10px 30px rgba(59,130,246,0.4)"><i class="fas fa-lock" style="font-size:2rem;color:white"></i></div>
-                <h3 style="font-size:1.8rem;margin-bottom:12px">Premium Pricing Locked 🔒</h3>
-                <p style="color:var(--text-muted);max-width:450px;margin:0 auto 8px">আমাদের real pricing, bulk discount, এবং daily report system শুধু verified clients দের জন্য।</p>
-                <div style="display:flex;gap:15px;justify-content:center;margin:20px 0;flex-wrap:wrap">
-                    <div style="display:flex;align-items:center;gap:6px;color:#10b981;font-size:0.85rem"><i class="fas fa-check-circle"></i> No Advance</div>
-                    <div style="display:flex;align-items:center;gap:6px;color:#10b981;font-size:0.85rem"><i class="fas fa-check-circle"></i> Daily Live Report</div>
-                    <div style="display:flex;align-items:center;gap:6px;color:#10b981;font-size:0.85rem"><i class="fas fa-check-circle"></i> Bkash/Nagad/USDT</div>
-                </div>
-                <button class="btn btn-primary" onclick="openAuth()" style="padding:14px 28px;font-size:1.05rem"><i class="fas fa-rocket"></i> Free Account খুলে Pricing দেখুন</button>
-                <p style="font-size:0.75rem;color:var(--text-muted);margin-top:12px">30 সেকেন্ডে signup • Google দিয়ে 1 ক্লিকে login</p>
-            </div>
-
+        <div style="max-width:1200px;margin:0 auto">
             <div id="pricingGrid" class="pricing-grid" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:28px">
-                <!-- Will be replaced by Firebase, fallback premium design -->
                 <div class="pricing-card popular" style="background:linear-gradient(180deg,rgba(30,41,59,0.8) 0%,rgba(15,23,42,0.9) 100%);border:1px solid rgba(59,130,246,0.4);box-shadow:0 0 40px rgba(59,130,246,0.15),inset 0 1px 0 rgba(255,255,255,0.05)">
                     <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#3b82f6,#a855f7)"></div>
                     <span class="popular-tag" style="background:linear-gradient(135deg,#3b82f6,#a855f7);padding:6px 14px;font-size:0.7rem;letter-spacing:1px"><i class="fas fa-crown"></i> MOST POPULAR</span>
@@ -455,7 +469,7 @@
             </div>
 
             <div style="text-align:center;margin-top:35px;padding:16px;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);border-radius:12px;max-width:700px;margin-left:auto;margin-right:auto">
-                <p style="font-size:0.9rem;color:#10b981"><i class="fas fa-info-circle"></i> <strong>Honest Policy:</strong> আমরা শুধু live review এর টাকা নিই। Report এ 10 টা live থাকলে 10 টার টাকা। Drop হলে টাকা লাগবে না।</p>
+                <p style="font-size:0.9rem;color:#10b981"><i class="fas fa-info-circle"></i> <strong>Honest Policy:</strong> We only charge for live reviews. If the report shows 10 live reviews, you pay for 10. You won't be charged for any drops.</p>
             </div>
         </div>
     </section>
@@ -484,7 +498,6 @@
     <section id="reviews" style="background-color:var(--surface-color)">
         <div class="section-header"><span class="badge">Proof of Work</span><h2>Delivered Excellence</h2><p>Real results from real campaigns. Browse through some of the authentic reviews we've successfully delivered for our global clients.</p></div>
         <div id="reviewsGrid" class="gallery-grid">
-            <!-- Dynamic from Firebase + static fallback -->
             <div class="gallery-item" onclick="openModal('https://i.ibb.co.com/mVcbPvkH/Screenshot-20261017-172628.jpg')"><img src="https://i.ibb.co.com/mVcbPvkH/Screenshot-20261017-172628.jpg" alt="Review 1"></div>
             <div class="gallery-item" onclick="openModal('https://i.ibb.co.com/s9Z91s78/Screenshot-20261017-172704.jpg')"><img src="https://i.ibb.co.com/s9Z91s78/Screenshot-20261017-172704.jpg" alt="Review 2"></div>
             <div class="gallery-item" onclick="openModal('https://i.ibb.co.com/rfZS4sk5/Screenshot-20261017-172755.jpg')"><img src="https://i.ibb.co.com/rfZS4sk5/Screenshot-20261017-172755.jpg" alt="Review 3"></div>
@@ -536,7 +549,6 @@
 
     <div id="imageModal" class="modal" onclick="closeModal()"><span class="close-modal">&times;</span><img class="modal-content" id="modalImg"></div>
 
-    <!-- Firebase + Logic -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
         import { getAuth, onAuthStateChanged, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
@@ -555,73 +567,106 @@
         };
         // ========================================================================
 
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-        const rtdb = getDatabase(app);
-        const provider = new GoogleAuthProvider();
-        const ADMIN_EMAIL = "afshakil279@gmail.com";
+        let app, auth, db, rtdb, provider;
         
+        try {
+            app = initializeApp(firebaseConfig);
+            auth = getAuth(app);
+            db = getFirestore(app);
+            rtdb = getDatabase(app);
+            provider = new GoogleAuthProvider();
+        } catch(error) {
+            console.error("Firebase Initialization Error. Check your API Keys.", error);
+        }
+
+        const ADMIN_EMAIL = "afshakil279@gmail.com";
         let currentUser = null;
         let authMode = 'login';
 
-        // ---- Auth UI ----
         window.openAuth = () => document.getElementById('authModal').classList.add('active');
         window.closeAuth = () => document.getElementById('authModal').classList.remove('active');
+        
+        window.openProfile = () => document.getElementById('profileModal').classList.add('active');
+        window.closeProfile = () => document.getElementById('profileModal').classList.remove('active');
+
         window.switchAuthTab = (mode) => {
             authMode = mode;
             document.getElementById('tabLogin').classList.toggle('active', mode==='login');
             document.getElementById('tabSignup').classList.toggle('active', mode==='signup');
             document.getElementById('authTitle').innerText = mode==='login' ? 'Welcome Back' : 'Create Account';
             document.getElementById('authSubmitBtn').innerText = mode==='login' ? 'Login' : 'Sign Up';
-            document.getElementById('authDesc').innerText = mode==='login' ? 'Login to view pricing & chat' : 'Account খুললেই pricing দেখতে পাবেন';
+            document.getElementById('authDesc').innerText = mode==='login' ? 'Login to view pricing & chat with us' : 'Create an account to view pricing and tools';
         }
+
         window.handleAuth = async () => {
+            if(!auth) {
+                alert("Firebase API Error: Please ensure you have replaced the YOUR_API_KEY placeholders with your actual Firebase config.");
+                return;
+            }
             const email = document.getElementById('authEmail').value.trim();
             const pass = document.getElementById('authPass').value.trim();
             const errEl = document.getElementById('authError');
             errEl.style.display='none';
-            if(!email || !pass){ errEl.innerText='Email & password দিন'; errEl.style.display='block'; return; }
-            try{
+            
+            if(!email || !pass){ errEl.innerText='Please enter email and password'; errEl.style.display='block'; return; }
+            
+            try {
                 if(authMode==='signup') await createUserWithEmailAndPassword(auth,email,pass);
                 else await signInWithEmailAndPassword(auth,email,pass);
                 closeAuth();
-            }catch(e){ errEl.innerText=e.message; errEl.style.display='block'; }
-        }
-        window.loginWithGoogle = async () => {
-            try{ await signInWithPopup(auth, provider); closeAuth(); }catch(e){ document.getElementById('authError').innerText=e.message; document.getElementById('authError').style.display='block'; }
-        }
-        window.logout = async () => { await signOut(auth); location.reload(); }
-
-        onAuthStateChanged(auth, (user) => {
-            currentUser = user;
-            const loginBtn = document.getElementById('loginBtn');
-            const userInfo = document.getElementById('userInfo');
-            const lockOverlay = document.getElementById('pricingLockOverlay');
-            const heroNote = document.getElementById('heroLoginNote');
-            const adminBtn = document.getElementById('adminBtn');
-            const lockIcon = document.getElementById('pricingLockIcon');
-
-            if(user){
-                loginBtn.style.display='none';
-                userInfo.style.display='flex';
-                document.getElementById('userEmailText').innerText = user.email || 'Guest';
-                lockOverlay.style.display='none';
-                heroNote.style.display='none';
-                lockIcon.className='fas fa-check-circle';
-                if(user.email===ADMIN_EMAIL){ adminBtn.style.display='inline-flex'; }
-                initChatListener();
-            }else{
-                loginBtn.style.display='inline-flex';
-                userInfo.style.display='none';
-                lockOverlay.style.display='flex';
-                heroNote.style.display='block';
-                lockIcon.className='fas fa-lock';
-                adminBtn.style.display='none';
+            } catch(e) { 
+                errEl.innerText=e.message; 
+                errEl.style.display='block'; 
             }
-        });
+        }
 
-        // ---- Menu & FAQ & Modal (original) ----
+        window.loginWithGoogle = async () => {
+            if(!auth) return alert("Firebase setup required.");
+            try { 
+                await signInWithPopup(auth, provider); 
+                closeAuth(); 
+            } catch(e) { 
+                document.getElementById('authError').innerText=e.message; 
+                document.getElementById('authError').style.display='block'; 
+            }
+        }
+
+        window.logout = async () => { 
+            if(auth) await signOut(auth); 
+            location.reload(); 
+        }
+
+        if(auth) {
+            onAuthStateChanged(auth, (user) => {
+                currentUser = user;
+                const loginBtn = document.getElementById('loginBtn');
+                const userInfo = document.getElementById('userInfo');
+                const heroNote = document.getElementById('heroLoginNote');
+                const adminBtn = document.getElementById('adminBtn');
+                const pricingSection = document.getElementById('pricing');
+
+                if(user) {
+                    loginBtn.style.display='none';
+                    userInfo.style.display='flex';
+                    document.getElementById('userEmailText').innerText = user.email || 'Dashboard';
+                    document.getElementById('profileEmailDisplay').innerText = user.email || 'User';
+                    heroNote.style.display='none';
+                    pricingSection.style.display='block';
+
+                    if(user.email===ADMIN_EMAIL) { 
+                        adminBtn.style.display='inline-flex'; 
+                    }
+                    initChatListener();
+                } else {
+                    loginBtn.style.display='inline-flex';
+                    userInfo.style.display='none';
+                    heroNote.style.display='block';
+                    pricingSection.style.display='none';
+                    adminBtn.style.display='none';
+                }
+            });
+        }
+
         window.toggleMenu = () => document.getElementById('mobileMenu').classList.toggle('active');
         const modal = document.getElementById("imageModal");
         const modalImg = document.getElementById("modalImg");
@@ -636,7 +681,6 @@
             })
         });
 
-        // ---- Pricing (Firestore) ----
         function renderPricing(docs){
             const grid = document.getElementById('pricingGrid');
             if(!docs.length) return;
@@ -653,18 +697,20 @@
                 </div>`;
             });
         }
-        onSnapshot(collection(db,'pricing'), snap=>{
-            const docs = snap.docs;
-            renderPricing(docs);
-            // admin list
-            const adminList = document.getElementById('adminPricingList');
-            if(adminList){
-                adminList.innerHTML = docs.map(d=>`<div class="admin-list-item"><span>${d.data().title} - ${d.data().price}</span><div class="admin-actions"><button class="btn-sm btn-danger" onclick="deletePricing('${d.id}')">Delete</button></div></div>`).join('') || 'No pricing';
-            }
-        });
+        
+        if(db) {
+            onSnapshot(collection(db,'pricing'), snap=>{
+                const docs = snap.docs;
+                renderPricing(docs);
+                const adminList = document.getElementById('adminPricingList');
+                if(adminList){
+                    adminList.innerHTML = docs.map(d=>`<div class="admin-list-item"><span>${d.data().title} - ${d.data().price}</span><div class="admin-actions"><button class="btn-sm btn-danger" onclick="deletePricing('${d.id}')">Delete</button></div></div>`).join('') || 'No pricing found.';
+                }
+            });
+        }
 
-        // ---- Stats (Firestore) ----
         async function loadStats(){
+            if(!db) return;
             try{
                 const snap = await getDoc(doc(db,'config','stats'));
                 if(snap.exists()){
@@ -677,7 +723,7 @@
                     document.getElementById('stat-clients-label').innerText = s.clients_label||'Global Clients';
                     document.getElementById('stat-years-label').innerText = s.years_label||'Years Experience';
                     document.getElementById('stat-safe-label').innerText = s.safe_label||'Safe & Non-Drop';
-                    // fill admin inputs
+                    
                     document.getElementById('stat_projects').value=s.projects||500;
                     document.getElementById('stat_clients').value=s.clients||300;
                     document.getElementById('stat_years').value=s.years||3;
@@ -690,7 +736,9 @@
             }catch(e){ console.log('stats load error',e); }
         }
         loadStats();
+
         window.saveStats = async ()=>{
+            if(!db) return;
             const data = {
                 projects: parseInt(document.getElementById('stat_projects').value)||500,
                 clients: parseInt(document.getElementById('stat_clients').value)||300,
@@ -707,103 +755,110 @@
             loadStats();
         }
 
-        // ---- Reviews (Firestore) ----
-        onSnapshot(collection(db,'reviews'), snap=>{
-            const grid = document.getElementById('reviewsGrid');
-            if(snap.docs.length){
-                const existingStatic = grid.innerHTML; 
-                snap.docs.forEach(d=>{
-                    const r = d.data();
-                });
-                const adminDiv = document.getElementById('adminReviewsList');
-                adminDiv.innerHTML = snap.docs.map(d=>{
-                    const r=d.data();
-                    return `<div style="position:relative;border:1px solid var(--border-color);border-radius:10px;overflow:hidden"><img src="${r.imageUrl}" style="width:100%;height:150px;object-fit:cover"><button class="btn-sm btn-danger" style="position:absolute;top:5px;right:5px" onclick="deleteReview('${d.id}')">X</button></div>`;
-                }).join('') || 'No reviews';
-            }
-        });
+        if(db) {
+            onSnapshot(collection(db,'reviews'), snap=>{
+                const grid = document.getElementById('reviewsGrid');
+                if(snap.docs.length){
+                    const adminDiv = document.getElementById('adminReviewsList');
+                    adminDiv.innerHTML = snap.docs.map(d=>{
+                        const r=d.data();
+                        return `<div style="position:relative;border:1px solid var(--border-color);border-radius:10px;overflow:hidden"><img src="${r.imageUrl}" style="width:100%;height:150px;object-fit:cover"><button class="btn-sm btn-danger" style="position:absolute;top:5px;right:5px" onclick="deleteReview('${d.id}')">X</button></div>`;
+                    }).join('') || 'No reviews available.';
+                }
+            });
+        }
+
         window.addReview = async ()=>{
+            if(!db) return;
             const url = document.getElementById('reviewImageUrl').value.trim();
-            if(!url) return alert('Image URL দিন');
+            if(!url) return alert('Please enter an image URL.');
             await addDoc(collection(db,'reviews'), { imageUrl:url, alt:document.getElementById('reviewAlt').value, createdAt:serverTimestamp() });
             document.getElementById('reviewImageUrl').value='';
-            // also render immediately in UI
             const grid = document.getElementById('reviewsGrid');
             const div = document.createElement('div'); div.className='gallery-item'; div.onclick=()=>openModal(url); div.innerHTML=`<img src="${url}" alt="Review">`; grid.prepend(div);
         }
-        window.deleteReview = async (id)=>{ if(confirm('Delete?')) await deleteDoc(doc(db,'reviews',id)); }
+        
+        window.deleteReview = async (id)=>{ if(confirm('Delete this review?')) await deleteDoc(doc(db,'reviews',id)); }
 
-        // ---- Pricing Admin ----
         window.addPricing = async ()=>{
+            if(!db) return;
             const title = document.getElementById('pricingTitle').value.trim();
             const price = document.getElementById('pricingPrice').value.trim();
-            if(!title||!price) return alert('Title & Price দিন');
+            if(!title||!price) return alert('Please provide Title and Price.');
             const features = document.getElementById('pricingFeatures').value.split(',').map(s=>s.trim()).filter(Boolean);
             await addDoc(collection(db,'pricing'), { title, price, per:document.getElementById('pricingPer').value, features, popular:document.getElementById('pricingPopular').checked, createdAt:serverTimestamp() });
             document.getElementById('pricingTitle').value=''; document.getElementById('pricingPrice').value=''; document.getElementById('pricingFeatures').value='';
         }
-        window.deletePricing = async (id)=>{ if(confirm('Delete pricing?')) await deleteDoc(doc(db,'pricing',id)); }
+        
+        window.deletePricing = async (id)=>{ if(confirm('Delete pricing plan?')) await deleteDoc(doc(db,'pricing',id)); }
 
-        // ---- Leads ----
         window.showOptions = ()=>{
             const appName = document.getElementById('appName').value.trim();
             const contact = document.getElementById('userContact').value.trim();
-            if(!appName||!contact){ alert("App Name/ID and Contact Info fill করুন"); return; }
+            if(!appName||!contact){ alert("Please fill out App Name/ID and Contact Info."); return; }
             document.getElementById('mainSubmitBtn').style.display='none';
             document.getElementById('sendOptionsBlock').style.display='flex';
         }
+
         window.sendLead = async (platform)=>{
             const appName = document.getElementById('appName').value.trim();
             const contact = document.getElementById('userContact').value.trim();
             const message = document.getElementById('userMessage').value.trim()||'No additional message.';
-            try{
-                await addDoc(collection(db,'leads'), { appName, contact, message, platform, createdAt:serverTimestamp(), user: currentUser?.email||'guest' });
-                document.getElementById('leadStatus').innerText='✅ Lead saved to Firebase!';
-                document.getElementById('leadStatus').style.display='block';
-            }catch(e){ console.log(e); }
+            
+            if(db) {
+                try{
+                    await addDoc(collection(db,'leads'), { appName, contact, message, platform, createdAt:serverTimestamp(), user: currentUser?.email||'guest' });
+                    document.getElementById('leadStatus').innerText='✅ Lead saved successfully!';
+                    document.getElementById('leadStatus').style.display='block';
+                }catch(e){ console.log(e); }
+            }
+            
             const textRaw = `🚀 New Service Request 🚀\n\n📱 App/Target: ${appName}\n📞 Client: ${contact}\n💬 Message: ${message}`;
             const encoded = encodeURIComponent(textRaw);
             if(platform==='whatsapp') window.open(`https://wa.me/8801647323233?text=${encoded}`,'_blank');
             else if(platform==='telegram') window.open(`https://t.me/DirectorShakil?text=${encoded}`,'_blank');
             else window.open(`mailto:24.7.g00glemarketing@gmail.com?subject=${encodeURIComponent("New Service Request")}&body=${encoded}`,'_blank');
         }
-        onSnapshot(query(collection(db,'leads'), orderBy('createdAt','desc')), snap=>{
-            const el = document.getElementById('adminLeadsList');
-            if(!el) return;
-            el.innerHTML = snap.docs.map(d=>{
-                const l=d.data(); const t = l.createdAt?.toDate ? l.createdAt.toDate().toLocaleString() : '';
-                return `<div class="admin-list-item"><div><strong>${l.appName}</strong> - ${l.contact}<br><small>${l.message} | ${t} | ${l.platform}</small></div><button class="btn-sm btn-danger" onclick="deleteDoc(doc(db,'leads','${d.id}')).then(()=>{} )">Del</button></div>`;
-            }).join('') || 'No leads yet';
-        });
 
-        // ---- Real-time Chat (Realtime DB) & Direct Telegram Bot Notification ----
+        if(db) {
+            onSnapshot(query(collection(db,'leads'), orderBy('createdAt','desc')), snap=>{
+                const el = document.getElementById('adminLeadsList');
+                if(!el) return;
+                el.innerHTML = snap.docs.map(d=>{
+                    const l=d.data(); const t = l.createdAt?.toDate ? l.createdAt.toDate().toLocaleString() : '';
+                    return `<div class="admin-list-item"><div><strong>${l.appName}</strong> - ${l.contact}<br><small>${l.message} | ${t} | ${l.platform}</small></div><button class="btn-sm btn-danger" onclick="deleteDoc(doc(db,'leads','${d.id}')).then(()=>{} )">Del</button></div>`;
+                }).join('') || 'No leads yet.';
+            });
+        }
+
         let chatUnsub = null;
         let guestId = localStorage.getItem('guestId') || 'guest_'+Date.now();
         localStorage.setItem('guestId', guestId);
 
-        // Update these with your Telegram details for direct notifications without Cloud Functions
         const TG_BOT_TOKEN = "YOUR_BOT_TOKEN_HERE"; 
         const TG_CHAT_ID = "YOUR_CHAT_ID_HERE"; 
 
         window.toggleChat = ()=>{
             document.getElementById('chatBox').classList.toggle('active');
         }
+
         window.sendChatMessage = async ()=>{
+            if(!rtdb) return;
             const input = document.getElementById('chatInput');
             const text = input.value.trim();
             if(!text) return;
+            
             let uid = currentUser?.uid || guestId;
             let email = currentUser?.email || 'guest';
             
-            // if not logged in, try anonymous
-            if(!currentUser){
+            if(!currentUser && auth){
                 try{ const cred = await signInAnonymously(auth); uid = cred.user.uid; }catch(e){ uid = guestId; }
             }
+            
             const chatRef = ref(rtdb, `chats/${uid}/messages`);
             await push(chatRef, { from:'client', text, time:Date.now(), email: email, uid });
             input.value='';
             
-            // Send direct Telegram Notification
             if (TG_BOT_TOKEN !== "YOUR_BOT_TOKEN_HERE") {
                 try {
                     const tgMessage = `📩 *New Live Chat Message*\n\n*User:* ${email}\n*UID:* ${uid}\n*Message:* ${text}\n\n_Reply directly via Telegram bot using:_ \n\`/reply ${uid} your_message\``;
@@ -817,9 +872,10 @@
         }
         
         function initChatListener(){
+            if(!rtdb) return;
             const uid = currentUser?.uid || guestId;
             const chatRef = ref(rtdb, `chats/${uid}/messages`);
-            if(chatUnsub) return; // avoid multiple
+            if(chatUnsub) return;
             onChildAdded(chatRef, (snap)=>{
                 const m = snap.val();
                 const box = document.getElementById('chatMessages');
@@ -835,32 +891,33 @@
                 }
             });
         }
-        initChatListener();
-
-        // Admin Chats view
-        onValue(ref(rtdb, 'chats'), (snap)=>{
-            const data = snap.val();
-            const el = document.getElementById('adminChatsList');
-            if(!el) return;
-            if(!data){ el.innerHTML='No chats'; return; }
-            let html='';
-            Object.entries(data).forEach(([uid, chatObj])=>{
-                const msgs = chatObj.messages ? Object.entries(chatObj.messages).map(([k,v])=>v) : [];
-                const last = msgs[msgs.length-1]?.text || '';
-                html+=`<div class="admin-list-item"><div><strong>${uid}</strong><br><small>${last.slice(0,80)}</small><br><small>${msgs.length} messages</small></div><button class="btn-sm btn-edit" onclick="openChatAsAdmin('${uid}')">Open</button></div>`;
+        
+        if(rtdb) {
+            initChatListener();
+            onValue(ref(rtdb, 'chats'), (snap)=>{
+                const data = snap.val();
+                const el = document.getElementById('adminChatsList');
+                if(!el) return;
+                if(!data){ el.innerHTML='No chats found.'; return; }
+                let html='';
+                Object.entries(data).forEach(([uid, chatObj])=>{
+                    const msgs = chatObj.messages ? Object.entries(chatObj.messages).map(([k,v])=>v) : [];
+                    const last = msgs[msgs.length-1]?.text || '';
+                    html+=`<div class="admin-list-item"><div><strong>${uid}</strong><br><small>${last.slice(0,80)}</small><br><small>${msgs.length} messages</small></div><button class="btn-sm btn-edit" onclick="openChatAsAdmin('${uid}')">Open</button></div>`;
+                });
+                el.innerHTML = html;
             });
-            el.innerHTML = html;
-        });
+        }
+
         window.openChatAsAdmin = (uid)=>{
+            if(!rtdb) return;
             const chatRef = ref(rtdb, `chats/${uid}/messages`);
             onValue(chatRef, (snap)=>{
                 const msgs = snap.val();
-                alert('Chat '+uid+':\n'+ (msgs ? Object.values(msgs).map(m=>m.from+': '+m.text).join('\n') : 'empty') + '\n\nTelegram থেকে /reply '+uid+' your_message লিখলে client real-time পাবে');
+                alert('Chat '+uid+':\n'+ (msgs ? Object.values(msgs).map(m=>m.from+': '+m.text).join('\n') : 'empty') + '\n\nReply via Telegram using /reply '+uid+' your_message');
             }, {onlyOnce:true});
         }
 
-        
-        // Pricing Calculator
         window.updateCalc = () => {
             const price = parseFloat(document.getElementById('calcService').value) || 1.2;
             const qty = parseInt(document.getElementById('calcQty').value) || 1;
@@ -872,7 +929,6 @@
         document.getElementById('calcService')?.addEventListener('change', updateCalc);
         updateCalc();
 
-        // ---- Admin Panel ----
         window.openAdmin = ()=> document.getElementById('adminPanel').classList.add('active');
         window.closeAdmin = ()=> document.getElementById('adminPanel').classList.remove('active');
         window.switchAdminTab = (id)=>{
@@ -882,50 +938,9 @@
             document.getElementById('tab-'+id).classList.add('active');
         }
 
-        // Expose doc for inline onclick delete
         window.doc = doc;
         window.deleteDoc = deleteDoc;
         window.db = db;
     </script>
-
-    <!-- 
-    ================= TELEGRAM BOT CLOUD FUNCTION - DEPLOY IN FIREBASE =================
-    1. firebase init functions
-    2. npm install axios
-    3. firebase functions:config:set telegram.token="YOUR_BOT_TOKEN" telegram.admin_id="YOUR_TELEGRAM_ID"
-    4. Paste this code in functions/index.js and deploy:
-
-    const functions = require("firebase-functions");
-    const admin = require("firebase-admin");
-    const axios = require("axios");
-    admin.initializeApp();
-
-    exports.onNewChatMessage = functions.database.ref("/chats/{uid}/messages/{msgId}").onCreate(async (snap, context) => {
-      const msg = snap.val();
-      if (msg.from !== 'client') return null;
-      const token = functions.config().telegram.token;
-      const adminId = functions.config().telegram.admin_id;
-      const uid = context.params.uid;
-      const text = `📩 New message from ${uid}\nEmail: ${msg.email||'guest'}\nMessage: ${msg.text}\n\nReply: /reply ${uid} your_message`;
-      await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, { chat_id: adminId, text });
-      return null;
-    });
-
-    exports.telegramWebhook = functions.https.onRequest(async (req, res) => {
-      const message = req.body.message;
-      if (!message || !message.text) return res.send("ok");
-      if (message.text.startsWith("/reply")) {
-        const parts = message.text.split(" ");
-        const uid = parts[1];
-        const replyText = parts.slice(2).join(" ");
-        await admin.database().ref(`chats/${uid}/messages`).push({ from: "admin", text: replyText, time: Date.now() });
-      }
-      res.send("ok");
-    });
-
-    Then set webhook: https://api.telegram.org/bot<TOKEN>/setWebhook?url=https://<region>-<project>.cloudfunctions.net/telegramWebhook
-
-    ===============================================================================
-    -->
 </body>
 </html>
