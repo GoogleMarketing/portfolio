@@ -872,8 +872,8 @@
         let guestId = localStorage.getItem('guestId') || 'guest_'+Date.now();
         localStorage.setItem('guestId', guestId);
 
-        const TG_BOT_TOKEN = "YOUR_BOT_TOKEN_HERE"; 
-        const TG_CHAT_ID = "YOUR_CHAT_ID_HERE"; 
+        const TG_BOT_TOKEN = "__TELEGRAM_BOT_TOKEN__"; 
+        const TG_CHAT_ID = "__TELEGRAM_CHAT_ID__"; 
 
         window.toggleChat = ()=>{
             document.getElementById('chatBox').classList.toggle('active');
