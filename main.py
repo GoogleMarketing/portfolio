@@ -45,6 +45,7 @@ IMGBB_API_KEY = os.getenv("IMGBB_API_KEY", "").strip()
 WEBHOOK_SECRET = os.getenv("TELEGRAM_WEBHOOK_SECRET", "").strip()
 DATABASE_URL = os.getenv("FIREBASE_DATABASE_URL", "").strip()
 SERVICE_ACCOUNT_RAW = os.getenv("FIREBASE_SERVICE_ACCOUNT", "").strip()
+ADMIN_EMAIL = os.getenv("ADMIN_EMAIL", "").strip()
 
 firebase_ready = False
 firebase_error = ""
@@ -70,6 +71,25 @@ except Exception as exc:  # keep health route available so Render logs show the 
     firebase_error = f"Firebase initialization failed: {exc}"
     log.exception(firebase_error)
 
+def configure_admin_claim() -> None:
+    if not firebase_ready or not ADMIN_EMAIL:
+        log.warning("Admin claim skipped: Firebase or ADMIN_EMAIL is missing.")
+        return
+
+    try:
+        user = firebase_auth.get_user_by_email(ADMIN_EMAIL)
+        claims = dict(user.custom_claims or {})
+        if claims.get("admin") is True:
+            log.info("Admin claim is already configured.")
+            return
+
+        claims["admin"] = True
+        firebase_auth.set_custom_user_claims(user.uid, claims)
+        log.info("Firebase admin claim configured for ADMIN_EMAIL.")
+    except Exception:
+        log.exception("Could not configure the Firebase admin claim.")
+
+configure_admin_claim()
 
 def require_ready() -> None:
     if not firebase_ready:
