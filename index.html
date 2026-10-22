@@ -1640,15 +1640,15 @@
       import { getDatabase, ref, get, set, update, push, onValue, off, increment, remove, query, orderByChild, equalTo } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js';
 
       /* SETUP REQUIRED: paste your Firebase Web App config below. Do not put Telegram bot tokens or service-account keys in this HTML. */
-      const GM_FIREBASE_CONFIG = {
-        apiKey: '__FIREBASE_API_KEY__',
-        authDomain: '__FIREBASE_AUTH_DOMAIN__',
-        databaseURL: '__FIREBASE_DATABASE_URL__',
-        projectId: '__FIREBASE_PROJECT_ID__',
-        storageBucket: '__FIREBASE_STORAGE_BUCKET__',
-        messagingSenderId: '__FIREBASE_MESSAGING_SENDER_ID__',
-        appId: '__FIREBASE_APP_ID__'
-      };
+      const firebaseConfig = {
+  apiKey: "AIzaSyAJK5FOVso0_7RzRahSeAE45hr16KaiaYo",
+  authDomain: "marketingportfolio-sr.firebaseapp.com",
+  databaseURL: "https://marketingportfolio-sr-default-rtdb.firebaseio.com",
+  projectId: "marketingportfolio-sr",
+  storageBucket: "marketingportfolio-sr.firebasestorage.app",
+  messagingSenderId: "886293886597",
+  appId: "1:886293886597:web:44aab056bde3df1e059bec"
+};
       /* Use the ImgBB upload API key for profile/chat images. This is a public client key; restrict/monitor it where possible. */
       const GM_IMGBB_API_KEY = '__IMGBB_API_KEY__';
       /* Optional HTTPS endpoint must be implemented by your existing Render/Python backend; never put TELEGRAM_BOT_TOKEN here. */
