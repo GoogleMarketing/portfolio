@@ -1640,7 +1640,7 @@
       import { getDatabase, ref, get, set, update, push, onValue, off, increment, remove, query, orderByChild, equalTo } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js';
 
       /* SETUP REQUIRED: paste your Firebase Web App config below. Do not put Telegram bot tokens or service-account keys in this HTML. */
-      const GM_FIREBASE_CONFIG = {
+      const firebaseConfig = {
         apiKey: "__FIREBASE_API_KEY__",
         authDomain: "__FIREBASE_AUTH_DOMAIN__",
         databaseURL: "__FIREBASE_DATABASE_URL__",
@@ -1663,7 +1663,7 @@
         let visitorTrackingStarted = false;
         const $ = id => document.getElementById(id);
         const firebaseConfigured = () => ['apiKey','authDomain','databaseURL','projectId','storageBucket','messagingSenderId','appId'].every(key => {
-          const value = String(GM_FIREBASE_CONFIG[key] || '').trim();
+          const value = String(firebaseConfig[key] || '').trim();
           return Boolean(value) && !value.startsWith('PASTE_') && !value.startsWith('__FIREBASE_');
         });
         const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
@@ -2104,7 +2104,7 @@
         function copyText(value) { if(navigator.clipboard?.writeText)navigator.clipboard.writeText(value).then(()=>alert('Copied: '+value)).catch(()=>prompt('Copy this ID:',value));else prompt('Copy this ID:',value); }
         function init() {
           if(firebaseConfigured()) {
-            try { app=initializeApp(GM_FIREBASE_CONFIG);auth=getAuth(app);db=getDatabase(app);onAuthStateChanged(auth,handleAuthChanged); $('gmChatConfigNote').classList.add('gm-hidden'); }
+            try { app=initializeApp(firebaseConfig);auth=getAuth(app);db=getDatabase(app);onAuthStateChanged(auth,handleAuthChanged); $('gmChatConfigNote').classList.add('gm-hidden'); }
             catch(error) { console.error('Firebase initialization failed:',error); $('gmChatConfigNote').textContent='Firebase setup is incomplete or invalid. Please check the configuration values.'; }
           } else {
             $('gmChatConfigNote').textContent='Setup required: add Firebase Web App configuration to activate real-time chat, profiles, orders and admin tools.';
