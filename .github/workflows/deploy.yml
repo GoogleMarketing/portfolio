@@ -41,11 +41,8 @@ jobs:
           python3 <<'PY'
           import os
           import re
+          import shutil
           from pathlib import Path
-
-          source = Path('index.html')
-          if not source.is_file():
-              raise SystemExit('ERROR: index.html is missing from the repository root.')
 
           replacements = {
               '__FIREBASE_API_KEY__': os.environ.get('FIREBASE_API_KEY', '').strip(),
@@ -67,22 +64,65 @@ jobs:
           if invalid:
               raise SystemExit('ERROR: One or more Actions secrets still contain placeholder text: ' + ', '.join(invalid))
 
-          content = source.read_text(encoding='utf-8')
-          absent = [marker for marker in replacements if marker not in content]
-          if absent:
-              raise SystemExit('ERROR: Expected configuration placeholders are absent from index.html: ' + ', '.join(absent))
-
-          for marker, value in replacements.items():
-              content = content.replace(marker, value)
-
-          remaining = [marker for marker in replacements if marker in content]
-          if remaining or re.search(r'__FIREBASE_[A-Z_]+__|__IMGBB_[A-Z_]+__', content):
-              raise SystemExit('ERROR: Unresolved configuration placeholder found; website was not published.')
-
+          # _site ফোল্ডার প্রস্তুত - পুরো সাইট কপি করো, শুধু index.html না
           site = Path('_site')
+          if site.exists():
+              shutil.rmtree(site)
           site.mkdir(exist_ok=True)
-          (site / 'index.html').write_text(content, encoding='utf-8')
-          print('Website built and configuration markers validated. Publishing only _site/index.html.')
+
+          exclude_names = {'.git', '.github', '_site', '.gitignore', 'README.md'}
+          for item in Path('.').iterdir():
+              if item.name in exclude_names:
+                  continue
+              dest = site / item.name
+              if item.is_dir():
+                  shutil.copytree(item, dest, dirs_exist_ok=True)
+              else:
+                  shutil.copy2(item, dest)
+
+          # এখন _site এর ভিতরে সব .html, .js, .json ফাইলে replace করো
+          patterns = ['*.html', '*.js', '*.json']
+          targets = []
+          for pat in patterns:
+              targets.extend(site.rglob(pat))
+
+          injected_files = []
+          placeholder_found_anywhere = False
+
+          for target in targets:
+              try:
+                  content = target.read_text(encoding='utf-8')
+              except Exception:
+                  continue  # binary বা পড়া যায় না এমন ফাইল skip
+
+              original = content
+              for marker, value in replacements.items():
+                  if marker in content:
+                      placeholder_found_anywhere = True
+                      content = content.replace(marker, value)
+
+              if content != original:
+                  target.write_text(content, encoding='utf-8')
+                  injected_files.append(str(target.relative_to(site)))
+
+          if not placeholder_found_anywhere:
+              raise SystemExit('ERROR: কোনো ফাইলেই __FIREBASE_...__ placeholder পাওয়া যায়নি। index.html এ placeholder আছে কিনা চেক করো।')
+
+          # শেষ চেক - কোথাও placeholder রয়ে গেছে কিনা
+          remaining = []
+          for target in targets:
+              try:
+                  c = target.read_text(encoding='utf-8')
+                  if re.search(r'__FIREBASE_[A-Z_]+__|__IMGBB_[A-Z_]+__', c):
+                      remaining.append(str(target.relative_to(site)))
+              except Exception:
+                  pass
+
+          if remaining:
+              raise SystemExit(f'ERROR: Unresolved placeholder রয়ে গেছে এই ফাইলগুলোতে: {", ".join(remaining)}')
+
+          print(f'Success! Injected Firebase config into {len(injected_files)} files: {", ".join(injected_files)}')
+          print(f'Publishing full site from _site/ ({len(list(site.rglob("*")))} files total)')
           PY
 
       - name: Upload artifact
