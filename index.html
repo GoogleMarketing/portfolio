@@ -1870,9 +1870,15 @@
               headers:{'Content-Type':'application/json','Authorization':`Bearer ${token}`},
               body:JSON.stringify({event, payload, sentAt:new Date().toISOString()})
             });
-            if (!response.ok) throw new Error(`Bridge returned HTTP ${response.status}`);
-            return await response.json().catch(() => ({ok:true}));
-          } catch (error) { console.warn('Telegram bridge is unavailable:', error); return { error:error.message }; }
+            const result = await response.json().catch(() => ({}));
+            if (!response.ok || result?.ok === false) {
+              throw new Error(result?.error || `Bridge returned HTTP ${response.status}`);
+            }
+            return result;
+          } catch (error) {
+            console.error('Telegram bridge delivery failed:', error);
+            return { error: error.message || 'Unknown Telegram bridge error' };
+          }
         }
         function setAuthUi(user) {
           const nameWrap = $('gmAuthNameWrap'), contactWrap = $('gmAuthContactWrap'), photoWrap = $('gmAuthPhotoWrap');
@@ -2089,9 +2095,14 @@
             const messageRef = push(ref(db,`chats/${id}/messages`)); await set(messageRef,message);
             $('gmChatComposer').innerHTML=''; $('gmChatImageInput').value=''; $('gmChatImageLabel').textContent='';
             if (orderId) $('gmChatOrderRef').value='';
-            showToast('Message sent successfully.');
             try { await update(chatRef,{chatId:id,uid:currentUser?.uid || null,name:profile.name || currentUser?.displayName || old.name || 'Website Visitor',contact:profile.contact || currentUser?.email || old.contact || '',isGuest:!hasAccount(),lastMessage:textContent || (imageUrl ? 'Image attachment' : 'New message'),lastSender:'user',updatedAt:Date.now(),unreadForAdmin:increment(1)}); } catch (metadataError) { console.warn('Message saved but chat metadata update failed:',metadataError); }
-            void bridge('chat_message',{chatId:id,messageId:messageRef.key,uid:currentUser?.uid || null,name:profile.name || currentUser?.displayName || 'Website Visitor',contact:profile.contact || currentUser?.email || '',text:textContent,html,imageUrl,orderId,createdAt:new Date().toISOString()});
+            const delivery = await bridge('chat_message',{chatId:id,messageId:messageRef.key,uid:currentUser?.uid || null,name:profile.name || currentUser?.displayName || 'Website Visitor',contact:profile.contact || currentUser?.email || '',text:textContent,html,imageUrl,orderId,createdAt:new Date().toISOString()});
+            if (delivery?.error || delivery?.ok === false) {
+              console.error('Website chat message was saved, but Telegram notification was not confirmed:', delivery?.error || delivery);
+              showToast('Message saved on website, but Telegram delivery failed. Please try again later or contact support.',true);
+            } else {
+              showToast('Message sent successfully.');
+            }
           } catch (error) { showToast(error.message || 'Message could not be sent.',true); }
           finally { sendBtn.disabled = false; }
         }
