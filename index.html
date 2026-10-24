@@ -1,6 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><style>
+@font-face {
+  font-family: "Optimistic";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Optimistic Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+}
+:where(html) {
+  font-family: "Optimistic", system-ui, sans-serif;
+}
+:where(code, pre, kbd, samp) {
+  font-family: "Optimistic Mono", ui-monospace, monospace;
+}
+</style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Google Marketing - Authentic Online Review Provider & Google Map SEO Specialist</title>
@@ -954,7 +975,262 @@
             .gm-stat strong { font-size:1.35rem; }
         }
 
-    </style>
+    
+/* ===== PROFESSIONAL AUTH REDESIGN ===== */
+.gm-overlay#gmAuthOverlay {
+    background: radial-gradient(1200px 600px at 20% 10%, rgba(59,130,246,0.18), transparent),
+                radial-gradient(900px 500px at 80% 90%, rgba(168,85,247,0.15), transparent),
+                rgba(2,6,18,0.92);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    padding: 20px;
+}
+.gm-dialog.auth-pro {
+    width: min(960px, 100%);
+    max-width: 960px;
+    display: grid;
+    grid-template-columns: 1.05fr 1.25fr;
+    gap: 0;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 28px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: linear-gradient(180deg, rgba(17,24,39,0.95), rgba(11,20,35,0.98));
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(59,130,246,0.15) inset;
+}
+.auth-pro-left {
+    padding: 38px 32px;
+    background: radial-gradient(600px 300px at 20% 0%, rgba(59,130,246,0.25), transparent),
+                radial-gradient(500px 300px at 90% 80%, rgba(245,158,11,0.18), transparent),
+                linear-gradient(180deg, #0f172a, #0b1220);
+    border-right: 1px solid rgba(255,255,255,0.08);
+    display:flex; flex-direction:column; justify-content:space-between;
+}
+.auth-pro-left h2 { font-size:2rem; line-height:1.1; margin-bottom:12px; }
+.auth-pro-left .brand-badge {
+    display:inline-flex; align-items:center; gap:8px;
+    background: rgba(59,130,246,0.12); border:1px solid rgba(59,130,246,0.25);
+    padding:6px 12px; border-radius:999px; font-size:.75rem; color:#93c5fd; font-weight:600;
+    margin-bottom:18px;
+}
+.auth-pro-left ul { list-style:none; margin-top:22px; }
+.auth-pro-left ul li { display:flex; gap:10px; margin:14px 0; color:#cbd5e1; font-size:.9rem; }
+.auth-pro-left ul li i { color:#34d399; margin-top:3px; }
+
+.auth-pro-right { padding:28px 28px 22px; position:relative; }
+.auth-pro-tabs {
+    display:flex; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.08);
+    border-radius:14px; padding:4px; gap:4px; margin-bottom:18px;
+}
+.auth-pro-tabs button {
+    flex:1; border:0; border-radius:10px; padding:10px 14px; font-weight:600; cursor:pointer;
+    background:transparent; color:#94a3b8; transition:all .25s;
+}
+.auth-pro-tabs button.active {
+    background:#fff; color:#0f172a; box-shadow:0 4px 16px rgba(0,0,0,0.2);
+}
+.auth-pro-tabs button.gm-hidden { display:none !important; }
+
+.auth-pro .gm-field label { font-weight:500; color:#e2e8f0; }
+.auth-pro .gm-field input {
+    background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.12);
+    padding:13px 14px; border-radius:12px; color:#fff; transition:border .2s, background .2s;
+}
+.auth-pro .gm-field input:focus { outline:none; border-color:#3b82f6; background:rgba(59,130,246,0.08); }
+.auth-pro .gm-field input:disabled { opacity:.6; }
+
+.auth-pro .gm-action {
+    border-radius:12px; padding:12px 16px; font-weight:600; border:1px solid rgba(255,255,255,0.12);
+}
+.auth-pro .gm-action.gm-primary {
+    background: linear-gradient(135deg, #2563eb, #3b82f6); border-color:transparent; color:#fff;
+    box-shadow:0 8px 20px rgba(37,99,235,0.35);
+}
+.auth-pro .gm-action.gm-primary:hover { transform:translateY(-1px); box-shadow:0 12px 28px rgba(37,99,235,0.45); }
+
+.auth-pro .gm-action-row { display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
+.auth-pro .gm-privacy { margin-top:14px; }
+
+.gm-icon-btn.close-auth {
+    position:absolute; top:14px; right:14px; width:36px; height:36px; border-radius:50%;
+    background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.08);
+}
+
+/* Profile avatar upload */
+.profile-avatar-preview {
+    width:72px; height:72px; border-radius:50%; object-fit:cover; border:2px solid rgba(59,130,246,0.4);
+}
+
+/* ===== WORKSPACE REDESIGN WITH SIDEBAR ===== */
+.gm-workspace {
+    background: #020617;
+}
+.gm-work-top {
+    padding: 12px clamp(14px,2.5vw,28px);
+    background: rgba(3,7,18,0.88);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    height:64px;
+}
+.gm-work-top-left { gap:14px; }
+.gm-work-top .menu-hamburger {
+    width:42px; height:42px; border-radius:12px; border:1px solid rgba(255,255,255,0.1);
+    background:rgba(255,255,255,0.04); color:#fff; cursor:pointer; display:grid; place-items:center;
+    font-size:1.1rem; transition:all .2s;
+}
+.gm-work-top .menu-hamburger:hover { background:rgba(59,130,246,0.15); border-color:#3b82f6; }
+
+.gm-work-top-right {
+    display:flex; align-items:center; gap:10px; margin-left:auto;
+}
+.gm-work-top-right .top-action {
+    width:40px; height:40px; border-radius:12px; border:1px solid rgba(255,255,255,0.08);
+    background:rgba(255,255,255,0.04); color:#cbd5e1; cursor:pointer; display:grid; place-items:center;
+    position:relative;
+}
+.gm-work-top-right .top-action:hover { background:rgba(255,255,255,0.08); color:#fff; }
+.gm-work-profile {
+    display:flex; align-items:center; gap:10px; padding:6px 12px 6px 6px;
+    border:1px solid rgba(255,255,255,0.1); border-radius:999px;
+    background:rgba(255,255,255,0.04); cursor:pointer;
+}
+.gm-work-profile img { width:32px; height:32px; border-radius:50%; object-fit:cover; }
+.gm-work-profile span { font-size:.85rem; font-weight:600; max-width:120px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+
+.gm-work-layout {
+    display:flex; min-height: calc(100vh - 64px);
+}
+.gm-work-sidebar {
+    width:280px; flex-shrink:0;
+    background: linear-gradient(180deg, rgba(15,23,42,0.98), rgba(3,7,18,0.98));
+    border-right:1px solid rgba(255,255,255,0.06);
+    padding:18px 14px 20px;
+    position:sticky; top:64px; height:calc(100vh - 64px); overflow:auto;
+    transition:transform .35s cubic-bezier(.4,0,.2,1);
+    z-index:10;
+}
+.gm-work-sidebar .side-section { margin-bottom:22px; }
+.gm-work-sidebar .side-label {
+    font-size:.7rem; letter-spacing:1.2px; text-transform:uppercase; color:#64748b;
+    font-weight:700; padding:0 10px; margin-bottom:10px;
+}
+.gm-work-sidebar .side-nav { display:flex; flex-direction:column; gap:4px; }
+.gm-work-sidebar .side-nav button {
+    display:flex; align-items:center; gap:12px; width:100%; text-align:left;
+    padding:11px 12px; border-radius:12px; border:1px solid transparent;
+    background:transparent; color:#94a3b8; cursor:pointer; font-size:.9rem; font-weight:500;
+    transition:all .2s;
+}
+.gm-work-sidebar .side-nav button i { width:18px; text-align:center; font-size:.95rem; }
+.gm-work-sidebar .side-nav button:hover { background:rgba(255,255,255,0.05); color:#e2e8f0; }
+.gm-work-sidebar .side-nav button.active {
+    background:rgba(59,130,246,0.14); border-color:rgba(59,130,246,0.25); color:#fff;
+}
+.gm-work-sidebar .side-nav button .count-badge {
+    margin-left:auto; background:#1e293b; border:1px solid rgba(255,255,255,0.08);
+    padding:2px 7px; border-radius:999px; font-size:.7rem; color:#94a3b8;
+}
+.gm-work-content {
+    flex:1; min-width:0; max-width: none;
+    padding:24px clamp(16px,2.5vw,32px) 60px;
+}
+
+.gm-work-tabs { display:none !important; } /* hide old tabs, use sidebar */
+
+.gm-sidebar-overlay {
+    position:fixed; inset:64px 0 0 0; background:rgba(0,0,0,0.45); backdrop-filter:blur(2px);
+    z-index:9; opacity:0; pointer-events:none; transition:opacity .25s;
+}
+.gm-sidebar-overlay.show { opacity:1; pointer-events:auto; }
+
+@media(max-width: 960px){
+    .gm-work-sidebar {
+        position:fixed; left:0; top:64px; transform:translateX(-100%);
+        box-shadow: 20px 0 50px rgba(0,0,0,0.5);
+    }
+    .gm-work-sidebar.open { transform:translateX(0); }
+    .gm-dialog.auth-pro { grid-template-columns:1fr; }
+    .auth-pro-left { display:none; }
+}
+
+/* ===== PUBLIC REVIEWS MARQUEE ===== */
+.gm-public-reviews-wrap {
+    margin-top:34px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06);
+    border-radius:18px; padding:18px; overflow:hidden;
+}
+.gm-public-reviews-wrap h3 { font-family:'Outfit',sans-serif; margin-bottom:14px; display:flex; align-items:center; gap:10px; }
+.gm-marquee-track {
+    display:flex; gap:16px; overflow-x:auto; scrollbar-width:none; padding-bottom:6px;
+    scroll-behavior:smooth;
+}
+.gm-marquee-track::-webkit-scrollbar { display:none; }
+.gm-review-marquee-card {
+    min-width:300px; max-width:340px; flex-shrink:0;
+    background:rgba(30,41,59,0.6); border:1px solid rgba(255,255,255,0.08); border-radius:16px; padding:16px;
+}
+.gm-review-marquee-card .review-head { display:flex; gap:10px; align-items:center; margin-bottom:10px; }
+.gm-review-marquee-card .review-avatar {
+    width:38px; height:38px; border-radius:50%; background:linear-gradient(135deg,#3b82f6,#a855f7);
+    display:grid; place-items:center; font-weight:700; color:#fff; font-size:.9rem;
+}
+.gm-review-marquee-card .stars { color:#fbbf24; font-size:.8rem; letter-spacing:1px; }
+.gm-review-marquee-card p { color:#cbd5e1; font-size:.86rem; line-height:1.5; margin-top:6px;
+  display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+
+@keyframes gmMarqueeScroll {
+    0% { transform:translateX(0); }
+    100% { transform:translateX(-50%); }
+}
+.gm-marquee-anim {
+    display:flex; gap:16px; width:max-content;
+    animation: gmMarqueeScroll 60s linear infinite;
+}
+.gm-marquee-anim:hover { animation-play-state:paused; }
+
+/* Play Store style reviews under service cards */
+.gm-service-card .service-reviews {
+    margin-top:14px; border-top:1px solid rgba(255,255,255,0.06); padding-top:12px;
+}
+.gm-service-card .service-reviews-toggle {
+    display:flex; align-items:center; justify-content:space-between;
+    background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06);
+    border-radius:10px; padding:8px 12px; cursor:pointer; color:#94a3b8; font-size:.82rem;
+    width:100%; margin-top:8px;
+}
+.gm-service-card .service-reviews-list {
+    margin-top:10px; display:flex; flex-direction:column; gap:10px; max-height:320px; overflow:auto;
+}
+.gm-review-playstore {
+    background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:12px; padding:12px;
+}
+.gm-review-playstore .rp-head { display:flex; gap:10px; align-items:center; }
+.gm-review-playstore .rp-avatar {
+    width:32px; height:32px; border-radius:50%; background:#1e293b; display:grid; place-items:center;
+    font-weight:700; font-size:.8rem; color:#93c5fd; border:1px solid rgba(255,255,255,0.08);
+}
+.gm-review-playstore .rp-meta { flex:1; min-width:0; }
+.gm-review-playstore .rp-name { font-weight:600; font-size:.85rem; color:#e2e8f0; }
+.gm-review-playstore .rp-time { font-size:.72rem; color:#64748b; }
+.gm-review-playstore .rp-stars { color:#fbbf24; font-size:.75rem; letter-spacing:1px; margin:4px 0; }
+.gm-review-playstore .rp-text { color:#cbd5e1; font-size:.82rem; line-height:1.5; margin-top:4px; }
+
+/* Chat fixes */
+.gm-chat-launcher { z-index: 3550 !important; }
+.gm-chat-window { z-index: 3555 !important; }
+.gm-chat-window.gm-hidden { display:none !important; }
+
+/* Admin tabs nicer */
+.gm-work-tabs.admin-subtabs { display:flex !important; gap:8px; flex-wrap:wrap; margin:16px 0 20px; }
+.gm-work-tabs.admin-subtabs .gm-tab { border-radius:12px; padding:10px 14px; }
+
+@media(max-width:640px){
+  .gm-dialog.auth-pro { border-radius:20px; }
+  .auth-pro-right { padding:20px 18px; }
+  .gm-service-card { padding:16px; }
+}
+
+</style>
 </head>
 <body>
 
@@ -1221,6 +1497,14 @@
                 <img src="https://i.ibb.co.com/qFcJbjZB/20261017-133905.jpg" alt="Review 15">
             </div>
         </div>
+    
+        <div class="gm-public-reviews-wrap" id="gmPublicReviewsWrap" style="margin-top:32px;">
+            <h3><i class="fas fa-star" style="color:#fbbf24;"></i> Live Client Reviews - Trusted by All Users</h3>
+            <p class="gm-muted" style="margin-bottom:12px; font-size:.85rem;">Verified reviews from real clients - visible to everyone like Play Store. Auto-scrolling showcase.</p>
+            <div class="gm-marquee-track" id="gmPublicReviewsMarquee">
+                <div class="gm-empty">Loading live reviews... Reviews published by admin will appear here for all users (logged in or not).</div>
+            </div>
+        </div>
     </section>
 
     <!-- About Section -->
@@ -1417,56 +1701,160 @@
     </aside>
 
     <!-- Sign in, sign up and profile -->
+    
+    <!-- Sign in, sign up and profile - PROFESSIONAL REDESIGN -->
     <div class="gm-overlay gm-hidden" id="gmAuthOverlay" role="dialog" aria-modal="true" aria-labelledby="gmAuthTitle">
-        <div class="gm-dialog">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px">
-                <div><h2 id="gmAuthTitle">Your Google Marketing Profile</h2><p class="gm-muted" id="gmAuthSubtitle">Sign in to view your private workspace, orders and notifications.</p></div>
-                <button class="gm-icon-btn" type="button" onclick="GM.closeProfile()" aria-label="Close"><i class="fas fa-times"></i></button>
+        <div class="gm-dialog auth-pro">
+            <div class="auth-pro-left">
+                <div>
+                    <div class="brand-badge"><i class="fas fa-shield-check"></i> Trusted by 500+ Businesses</div>
+                    <h2 id="gmAuthTitleLeft">Your Google Marketing Profile</h2>
+                    <p class="gm-muted" id="gmAuthSubtitleLeft" style="color:#94a3b8; line-height:1.6;">Sign in to access your private workspace, pricing, orders and 24/7 live support. Secure, fast and professional.</p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <span>Pay only for live & published reviews</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>Real-time order tracking & notifications</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>24/7 live chat support with admin</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>Secure Firebase authentication</span></li>
+                    </ul>
+                </div>
+                <div style="margin-top:20px; display:flex; gap:10px; align-items:center; color:#64748b; font-size:.78rem;">
+                    <img src="https://i.ibb.co.com/GfswcC5V/FB-IMG-1791925489216.jpg" style="width:32px; height:32px; border-radius:8px; border:1px solid rgba(255,255,255,0.1);" alt="logo">
+                    <span>Google Marketing • Professional Agency</span>
+                </div>
             </div>
-            <div class="gm-action-row" style="margin:15px 0">
-                <button class="gm-action gm-primary" type="button" id="gmModeSignIn" onclick="GM.setAuthMode('signin')">Sign In</button>
-                <button class="gm-action" type="button" id="gmModeSignUp" onclick="GM.setAuthMode('signup')">Create Account</button>
+            <div class="auth-pro-right">
+                <button class="gm-icon-btn close-auth" type="button" onclick="GM.closeProfile()" aria-label="Close"><i class="fas fa-times"></i></button>
+                <div style="margin-bottom:6px;">
+                    <h2 id="gmAuthTitle" style="font-size:1.6rem; margin-bottom:6px;">Sign In to Your Account</h2>
+                    <p class="gm-muted" id="gmAuthSubtitle" style="color:#94a3b8;">Sign in to access your private workspace.</p>
+                </div>
+
+                <div class="auth-pro-tabs" id="gmAuthModeTabs">
+                    <button type="button" id="gmModeSignIn" class="active" onclick="GM.setAuthMode('signin')"><i class="fas fa-sign-in-alt"></i> Sign In</button>
+                    <button type="button" id="gmModeSignUp" onclick="GM.setAuthMode('signup')"><i class="fas fa-user-plus"></i> Create Account</button>
+                </div>
+
+                <div class="gm-form-grid">
+                    <div class="gm-field gm-full gm-hidden" id="gmAuthNameWrap"><label for="gmAuthName">Full name *</label><input id="gmAuthName" autocomplete="name" placeholder="Your full name"></div>
+                    <div class="gm-field gm-full gm-hidden" id="gmAuthContactWrap"><label for="gmAuthContact">Contact information *</label><input id="gmAuthContact" autocomplete="tel" placeholder="Email, WhatsApp or Telegram username"></div>
+                    <div class="gm-field gm-full"><label for="gmAuthEmail">Email address</label><input id="gmAuthEmail" type="email" autocomplete="email" placeholder="you@example.com"></div>
+                    <div class="gm-field gm-full" id="gmAuthPasswordWrap"><label for="gmAuthPassword">Password</label><input id="gmAuthPassword" type="password" autocomplete="current-password" placeholder="At least 6 characters"></div>
+                    <div class="gm-field gm-full gm-hidden" id="gmAuthPhotoWrap">
+                        <label>Profile photo (optional)</label>
+                        <div style="display:flex; gap:12px; align-items:center;">
+                            <img id="gmAuthPhotoPreview" class="profile-avatar-preview" src="https://i.ibb.co.com/GfswcC5V/FB-IMG-1791925489216.jpg" alt="preview">
+                            <input id="gmAuthPhoto" type="file" accept="image/*" style="flex:1;">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gm-action-row" id="gmAuthActions">
+                    <button class="gm-action gm-primary" type="button" id="gmAuthSubmit" onclick="GM.submitAuth()" style="flex:1;"><i class="fas fa-arrow-right"></i> <span id="gmAuthSubmitText">Sign In</span></button>
+                    <button class="gm-action" type="button" onclick="GM.googleAuth()" style="flex:1;"><i class="fab fa-google"></i> Continue with Google</button>
+                </div>
+
+                <div class="gm-action-row gm-hidden" id="gmSignedInActions">
+                    <!-- Open My Workspace button REMOVED as per requirement - auto redirect now -->
+                    <div style="display:flex; gap:10px; width:100%;">
+                        <img id="gmSignedInAvatar" class="profile-avatar-preview" src="https://i.ibb.co.com/GfswcC5V/FB-IMG-1791925489216.jpg" alt="profile" style="width:56px; height:56px;">
+                        <div style="flex:1; min-width:0;">
+                            <div style="font-weight:700; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" id="gmSignedInName">Your Profile</div>
+                            <div class="gm-muted" id="gmSignedInEmail" style="font-size:.82rem; overflow:hidden; text-overflow:ellipsis;">Manage your contact information</div>
+                        </div>
+                    </div>
+                    <div style="display:flex; gap:10px; width:100%; margin-top:4px;">
+                        <button class="gm-action gm-primary" type="button" onclick="GM.saveProfile()" style="flex:1;"><i class="fas fa-save"></i> Save Profile</button>
+                        <button class="gm-action gm-danger" type="button" onclick="GM.logout()" style="flex:1;"><i class="fas fa-sign-out-alt"></i> Sign Out</button>
+                    </div>
+                    <button class="gm-action" type="button" onclick="GM.openWorkspace()" style="width:100%; justify-content:center;"><i class="fas fa-th-large"></i> Go to Workspace</button>
+                </div>
+
+                <div class="gm-inline-status" id="gmAuthStatus" role="status"></div>
+                <p class="gm-privacy">Account details are used to manage your profile, orders and support conversation. Secure & encrypted.</p>
             </div>
-            <div class="gm-form-grid">
-                <div class="gm-field gm-full gm-hidden" id="gmAuthNameWrap"><label for="gmAuthName">Full name *</label><input id="gmAuthName" autocomplete="name" placeholder="Your full name"></div>
-                <div class="gm-field gm-full gm-hidden" id="gmAuthContactWrap"><label for="gmAuthContact">Contact information *</label><input id="gmAuthContact" autocomplete="tel" placeholder="Email, WhatsApp or Telegram username"></div>
-                <div class="gm-field gm-full"><label for="gmAuthEmail">Email address</label><input id="gmAuthEmail" type="email" autocomplete="email" placeholder="you@example.com"></div>
-                <div class="gm-field gm-full" id="gmAuthPasswordWrap"><label for="gmAuthPassword">Password</label><input id="gmAuthPassword" type="password" autocomplete="current-password" placeholder="At least 6 characters"></div>
-                <div class="gm-field gm-full gm-hidden" id="gmAuthPhotoWrap"><label for="gmAuthPhoto">Profile photo (optional)</label><input id="gmAuthPhoto" type="file" accept="image/*"></div>
-            </div>
-            <div class="gm-action-row" id="gmAuthActions">
-                <button class="gm-action gm-primary" type="button" id="gmAuthSubmit" onclick="GM.submitAuth()">Sign In</button>
-                <button class="gm-action" type="button" onclick="GM.googleAuth()"><i class="fab fa-google"></i> Continue with Google</button>
-            </div>
-            <div class="gm-action-row gm-hidden" id="gmSignedInActions">
-                <button class="gm-action gm-primary" type="button" onclick="GM.openWorkspace()">Open My Workspace</button>
-                <button class="gm-action" type="button" onclick="GM.saveProfile()">Save Profile</button>
-                <button class="gm-action gm-danger" type="button" onclick="GM.logout()">Sign Out</button>
-            </div>
-            <div class="gm-inline-status" id="gmAuthStatus" role="status"></div>
-            <p class="gm-privacy">Account details are used to manage your profile, orders and support conversation.</p>
         </div>
     </div>
 
     <!-- Private signed-in workspace, visually separate from the public portfolio -->
+<!-- Private signed-in workspace, visually separate from the public portfolio -->
+    
+    <!-- Private signed-in workspace - PROFESSIONAL REDESIGN WITH SIDEBAR MENU -->
     <div class="gm-workspace gm-hidden" id="gmWorkspaceOverlay">
         <div class="gm-work-top">
-            <div class="gm-work-top-left"><img class="gm-avatar" id="gmWorkspaceAvatar" src="https://i.ibb.co.com/GfswcC5V/FB-IMG-1791925489216.jpg" alt="Profile"><div style="min-width:0"><div class="gm-work-title" id="gmWorkspaceTitle">My Workspace</div><div class="gm-muted" id="gmWorkspaceSubtitle" style="overflow-wrap:anywhere">Google Marketing Client Area</div></div></div>
-            <div style="display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end"><button class="gm-action" type="button" onclick="GM.openProfile()"><i class="fas fa-user"></i> Profile</button><button class="gm-action" type="button" onclick="GM.closeWorkspace()"><i class="fas fa-arrow-left"></i> Website</button></div>
+            <div class="gm-work-top-left">
+                <button class="menu-hamburger" type="button" onclick="GM.toggleSidebar()" title="Menu"><i class="fas fa-bars"></i></button>
+                <img class="gm-avatar" id="gmWorkspaceAvatar" src="https://i.ibb.co.com/GfswcC5V/FB-IMG-1791925489216.jpg" alt="Profile" style="width:38px; height:38px;">
+                <div style="min-width:0">
+                    <div class="gm-work-title" id="gmWorkspaceTitle" style="font-size:1.05rem; margin:0; line-height:1;">My Workspace</div>
+                    <div class="gm-muted" id="gmWorkspaceSubtitle" style="font-size:.78rem; overflow-wrap:anywhere">Google Marketing Client Area</div>
+                </div>
+            </div>
+            <div class="gm-work-top-right">
+                <button class="top-action" type="button" onclick="GM.selectTab('notifications')" title="Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span id="gmNotificationBadge" class="gm-pill gm-hidden" style="position:absolute; top:-4px; right:-4px; background:#ef4444; color:#fff; border:0; min-width:18px; height:18px; font-size:.65rem; display:grid; place-items:center; border-radius:999px;">0</span>
+                </button>
+                <button class="top-action" type="button" onclick="GM.toggleChat(true)" title="Live Support">
+                    <i class="fas fa-comments"></i>
+                </button>
+                <div class="gm-work-profile" onclick="GM.openProfile()" title="Your Profile">
+                    <img id="gmWorkspaceAvatar2" src="https://i.ibb.co.com/GfswcC5V/FB-IMG-1791925489216.jpg" alt="avatar">
+                    <span id="gmWorkspaceProfileName">Profile</span>
+                    <i class="fas fa-chevron-down" style="font-size:.65rem; color:#64748b;"></i>
+                </div>
+                <button class="top-action" type="button" onclick="GM.closeWorkspace()" title="Back to Website"><i class="fas fa-external-link-alt"></i></button>
+            </div>
         </div>
-        <main class="gm-work-content">
-            <div class="gm-stat-grid" id="gmOverviewStats"></div>
-            <nav class="gm-work-tabs" id="gmWorkspaceTabs" aria-label="Workspace sections">
-                <button class="gm-tab active" data-gm-tab="overview" onclick="GM.selectTab('overview')">Overview</button>
-                <button class="gm-tab" data-gm-tab="calculator" onclick="GM.selectTab('calculator')">Price Calculator</button>
-                <button class="gm-tab" data-gm-tab="services" onclick="GM.selectTab('services')">Services</button>
-                <button class="gm-tab" data-gm-tab="orders" onclick="GM.selectTab('orders')">My Orders</button>
-                <button class="gm-tab" data-gm-tab="reviews" onclick="GM.selectTab('reviews')">Reviews</button>
-                <button class="gm-tab" data-gm-tab="notifications" onclick="GM.selectTab('notifications')">Notifications <span id="gmNotificationBadge" class="gm-pill gm-hidden">0</span></button>
-                <button class="gm-tab gm-hidden" data-gm-tab="admin" id="gmAdminTab" onclick="GM.selectTab('admin')">Admin Panel</button>
-            </nav>
 
-            <section data-gm-section="overview" id="gmSectionOverview">
+        <div class="gm-sidebar-overlay" id="gmSidebarOverlay" onclick="GM.toggleSidebar(false)"></div>
+
+        <div class="gm-work-layout">
+            <aside class="gm-work-sidebar" id="gmWorkSidebar">
+                <div class="side-section">
+                    <div class="side-label">Main Menu</div>
+                    <div class="side-nav">
+                        <button type="button" class="active" data-side-tab="overview" onclick="GM.selectTab('overview')"><i class="fas fa-th-large"></i> Overview <span class="count-badge" id="sideBadgeOverview">•</span></button>
+                        <button type="button" data-side-tab="services" onclick="GM.selectTab('services')"><i class="fas fa-box"></i> Services & Pricing</button>
+                        <button type="button" data-side-tab="calculator" onclick="GM.selectTab('calculator')"><i class="fas fa-calculator"></i> Price Calculator</button>
+                        <button type="button" data-side-tab="orders" onclick="GM.selectTab('orders')"><i class="fas fa-shopping-bag"></i> My Orders</button>
+                        <button type="button" data-side-tab="reviews" onclick="GM.selectTab('reviews')"><i class="fas fa-star"></i> Reviews</button>
+                        <button type="button" data-side-tab="notifications" onclick="GM.selectTab('notifications')"><i class="fas fa-bell"></i> Notifications <span class="count-badge" id="sideBadgeNotif">0</span></button>
+                        <button type="button" data-side-tab="admin" id="gmAdminSideTab" class="gm-hidden" onclick="GM.selectTab('admin')"><i class="fas fa-shield-alt"></i> Admin Panel</button>
+                    </div>
+                </div>
+                <div class="side-section">
+                    <div class="side-label">Account</div>
+                    <div class="side-nav">
+                        <button type="button" onclick="GM.openProfile()"><i class="fas fa-user-cog"></i> Your Profile</button>
+                        <button type="button" onclick="GM.toggleChat(true)"><i class="fas fa-headset"></i> Live Support Chat</button>
+                        <button type="button" onclick="GM.closeWorkspace()"><i class="fas fa-globe"></i> Back to Website</button>
+                        <button type="button" onclick="GM.logout()" style="color:#f87171;"><i class="fas fa-sign-out-alt"></i> Sign Out</button>
+                    </div>
+                </div>
+                <div class="side-section" style="margin-top:auto; padding:12px; background:rgba(255,255,255,0.03); border-radius:12px; border:1px solid rgba(255,255,255,0.06);">
+                    <div style="display:flex; gap:10px; align-items:center;">
+                        <div style="width:36px; height:36px; border-radius:10px; background:linear-gradient(135deg,#3b82f6,#a855f7); display:grid; place-items:center; color:#fff;"><i class="fas fa-rocket"></i></div>
+                        <div>
+                            <div style="font-weight:700; font-size:.85rem; color:#fff;">Need help?</div>
+                            <div style="font-size:.72rem; color:#94a3b8;">Chat with us 24/7</div>
+                        </div>
+                    </div>
+                    <button class="gm-action gm-primary" style="width:100%; margin-top:10px; justify-content:center; padding:9px;" onclick="GM.toggleChat(true)"><i class="fas fa-comments"></i> Open Chat</button>
+                </div>
+            </aside>
+
+            <main class="gm-work-content">
+                <div class="gm-stat-grid" id="gmOverviewStats"></div>
+                <nav class="gm-work-tabs" id="gmWorkspaceTabs" aria-label="Workspace sections">
+                    <button class="gm-tab active" data-gm-tab="overview" onclick="GM.selectTab('overview')">Overview</button>
+                    <button class="gm-tab" data-gm-tab="calculator" onclick="GM.selectTab('calculator')">Price Calculator</button>
+                    <button class="gm-tab" data-gm-tab="services" onclick="GM.selectTab('services')">Services</button>
+                    <button class="gm-tab" data-gm-tab="orders" onclick="GM.selectTab('orders')">My Orders</button>
+                    <button class="gm-tab" data-gm-tab="reviews" onclick="GM.selectTab('reviews')">Reviews</button>
+                    <button class="gm-tab" data-gm-tab="notifications" onclick="GM.selectTab('notifications')">Notifications <span id="gmNotificationBadge2" class="gm-pill gm-hidden">0</span></button>
+                    <button class="gm-tab gm-hidden" data-gm-tab="admin" id="gmAdminTab" onclick="GM.selectTab('admin')">Admin Panel</button>
+                </nav>
+<section data-gm-section="overview" id="gmSectionOverview">
                 <div class="gm-panel" style="margin-bottom:16px"><h3>Welcome to your workspace</h3><p class="gm-muted">Your private area for service pricing, order tracking, support messages and account notifications. This workspace is separate from the public portfolio.</p><div class="gm-action-row"><button class="gm-action gm-primary" onclick="GM.selectTab('services')" type="button">Explore Services</button><button class="gm-action" onclick="GM.toggleChat(true)" type="button">Open Live Support</button></div></div>
                 <div class="gm-panel"><h3>Available Services</h3><div class="gm-service-grid" id="gmOverviewServices"></div></div>
             </section>
@@ -1747,14 +2135,36 @@
         }
         function setAuthUi(user) {
           const nameWrap = $('gmAuthNameWrap'), contactWrap = $('gmAuthContactWrap'), photoWrap = $('gmAuthPhotoWrap');
+          const leftTitle = $('gmAuthTitleLeft'), leftSub = $('gmAuthSubtitleLeft');
           if (user && !user.isAnonymous) {
-            $('gmAuthTitle').textContent = 'Your Profile'; $('gmAuthSubtitle').textContent = 'Manage your contact information and open your private workspace.';
-            $('gmAuthEmail').value = user.email || ''; $('gmAuthEmail').disabled = true; $('gmAuthName').value = user.displayName || $('gmAuthName').value || '';
-            $('gmAuthPasswordWrap').classList.add('gm-hidden'); nameWrap.classList.remove('gm-hidden'); contactWrap.classList.remove('gm-hidden'); photoWrap.classList.remove('gm-hidden');
-            $('gmAuthActions').classList.add('gm-hidden'); $('gmSignedInActions').classList.remove('gm-hidden'); $('gmModeSignIn').classList.add('gm-hidden'); $('gmModeSignUp').classList.add('gm-hidden');
+            $('gmAuthTitle').textContent = 'Your Profile';
+            $('gmAuthSubtitle').textContent = 'Manage your contact information. Changes are saved securely.';
+            if(leftTitle) leftTitle.textContent = 'Your Profile Settings';
+            if(leftSub) leftSub.textContent = 'Update your name, contact and photo. Your workspace is already open.';
+            $('gmAuthEmail').value = user.email || '';
+            $('gmAuthEmail').disabled = true;
+            $('gmAuthName').value = user.displayName || $('gmAuthName').value || '';
+            if($('gmSignedInName')) $('gmSignedInName').textContent = user.displayName || $('gmAuthName').value || 'Your Profile';
+            if($('gmSignedInEmail')) $('gmSignedInEmail').textContent = user.email || '';
+            if($('gmWorkspaceProfileName')) $('gmWorkspaceProfileName').textContent = (user.displayName || user.email || 'Profile').split(' ')[0];
+            if($('gmAuthPhotoPreview')) {
+               // keep existing
+            }
+            $('gmAuthPasswordWrap').classList.add('gm-hidden');
+            nameWrap.classList.remove('gm-hidden'); contactWrap.classList.remove('gm-hidden'); photoWrap.classList.remove('gm-hidden');
+            $('gmAuthActions').classList.add('gm-hidden');
+            $('gmSignedInActions').classList.remove('gm-hidden');
+            $('gmModeSignIn').classList.add('gm-hidden'); $('gmModeSignUp').classList.add('gm-hidden');
+            const tabs = $('gmAuthModeTabs'); if(tabs) tabs.classList.add('gm-hidden');
           } else {
-            $('gmAuthEmail').disabled = false; $('gmAuthPasswordWrap').classList.remove('gm-hidden'); $('gmAuthActions').classList.remove('gm-hidden'); $('gmSignedInActions').classList.add('gm-hidden');
+            $('gmAuthEmail').disabled = false;
+            $('gmAuthPasswordWrap').classList.remove('gm-hidden');
+            $('gmAuthActions').classList.remove('gm-hidden');
+            $('gmSignedInActions').classList.add('gm-hidden');
             $('gmModeSignIn').classList.remove('gm-hidden'); $('gmModeSignUp').classList.remove('gm-hidden');
+            const tabs = $('gmAuthModeTabs'); if(tabs) tabs.classList.remove('gm-hidden');
+            if(leftTitle) leftTitle.textContent = authMode==='signup' ? 'Create Your Professional Account' : 'Welcome Back';
+            if(leftSub) leftSub.textContent = authMode==='signup' ? 'Create an account to access pricing, orders, notifications and live support.' : 'Sign in to access your private workspace and 24/7 support.';
             $('gmAuthName').value = ''; $('gmAuthContact').value = ''; $('gmAuthPhoto').value = '';
             setAuthMode(authMode, true);
           }
@@ -1765,8 +2175,14 @@
           const signup = authMode === 'signup';
           $('gmAuthTitle').textContent = signup ? 'Create Your Account' : 'Sign In to Your Account';
           $('gmAuthSubtitle').textContent = signup ? 'Create an account to access pricing, orders, notifications and live support.' : 'Sign in to access your private workspace.';
+          const leftTitle = $('gmAuthTitleLeft'), leftSub = $('gmAuthSubtitleLeft');
+          if(leftTitle) leftTitle.textContent = signup ? 'Create Your Professional Account' : 'Welcome Back';
+          if(leftSub) leftSub.textContent = signup ? 'Join 500+ businesses scaling with authentic reviews and SEO services.' : 'Sign in to access your private workspace, pricing and 24/7 support.';
           $('gmAuthNameWrap').classList.toggle('gm-hidden', !signup); $('gmAuthContactWrap').classList.toggle('gm-hidden', !signup); $('gmAuthPhotoWrap').classList.toggle('gm-hidden', !signup); $('gmAuthPasswordWrap').classList.remove('gm-hidden');
-          $('gmAuthSubmit').textContent = signup ? 'Create Account' : 'Sign In';
+          const submitText = $('gmAuthSubmitText') || $('gmAuthSubmit');
+          if(submitText) submitText.textContent = signup ? 'Create Account' : 'Sign In';
+          if($('gmAuthSubmit')) $('gmAuthSubmit').innerHTML = signup ? '<i class="fas fa-user-plus"></i> <span id="gmAuthSubmitText">Create Account</span>' : '<i class="fas fa-arrow-right"></i> <span id="gmAuthSubmitText">Sign In</span>';
+          $('gmModeSignIn').classList.toggle('active', !signup); $('gmModeSignUp').classList.toggle('active', signup);
           $('gmModeSignIn').classList.toggle('gm-primary', !signup); $('gmModeSignUp').classList.toggle('gm-primary', signup);
           if (!quiet) setStatus('gmAuthStatus', '');
         }
@@ -1795,26 +2211,44 @@
           };
           onValue(ref(db,`chatMetadata/${id}/unreadForUser`),badgeListener);
         }
-        async function handleAuthChanged(user) {
+        async         async function handleAuthChanged(user) {
           currentUser = user; authReady = true; isAdmin = false;
           if (!user && auth) { signInAnonymously(auth).catch(error => console.warn('Anonymous chat sign-in failed:', error)); }
           if (user) {
             try { const token = await getIdTokenResult(user, true); isAdmin = token.claims?.admin === true; } catch (err) { console.warn(err); }
             const profile = await getUserProfile(user.uid).catch(() => ({}));
             if (profile.name && !user.displayName) { try { await updateProfile(user, {displayName:profile.name}); } catch {} }
-            $('gmWorkspaceAvatar').src = profile.photoUrl || user.photoURL || 'https://i.ibb.co.com/GfswcC5V/FB-IMG-1791925489216.jpg';
-            $('gmWorkspaceSubtitle').textContent = profile.contact || user.email || 'Google Marketing Client Area';
+            const photo = profile.photoUrl || user.photoURL || 'https://i.ibb.co.com/GfswcC5V/FB-IMG-1791925489216.jpg';
+            if($('gmWorkspaceAvatar')) $('gmWorkspaceAvatar').src = photo;
+            if($('gmWorkspaceAvatar2')) $('gmWorkspaceAvatar2').src = photo;
+            if($('gmAuthPhotoPreview')) $('gmAuthPhotoPreview').src = photo;
+            if($('gmSignedInAvatar')) $('gmSignedInAvatar').src = photo;
+            if($('gmWorkspaceSubtitle')) $('gmWorkspaceSubtitle').textContent = profile.contact || user.email || 'Google Marketing Client Area';
             $('gmAuthName').value = profile.name || user.displayName || '';
             $('gmAuthContact').value = profile.contact || '';
             setAuthUi(user);
-          } else { isAdmin = false; setAuthUi(null); }
-          if (workspaceOpened && hasAccount()) openWorkspace();
+            // AUTO OPEN WORKSPACE - PROFESSIONAL FLOW (no need to click Open My Workspace)
+            if(hasAccount()){
+                setTimeout(()=>{
+                    $('gmAuthOverlay').classList.add('gm-hidden');
+                    openWorkspace();
+                }, 400);
+            }
+          } else {
+            isAdmin = false; setAuthUi(null);
+            // close workspace when signed out
+            if(workspaceOpened){ closeWorkspace(); }
+          }
+          // always refresh
           watchChatBadge();
           updateChatBadge();
           if (user && !visitorTrackingStarted) trackVisit();
+          // load public reviews for all visitors
+          loadPublicReviews();
         }
-        function openProfile() {
-          $('gmAuthOverlay').classList.remove('gm-hidden'); $('gmChatWindow').classList.add('gm-hidden');
+                function openProfile() {
+          $('gmAuthOverlay').classList.remove('gm-hidden');
+          // Don't hide chat window here, keep it accessible
           if (!auth) {
             setStatus('gmAuthStatus', 'Firebase is not configured. Add your Firebase Web App settings to activate accounts, chat, and orders.', true);
             $('gmAuthActions').querySelectorAll('button').forEach(button => button.disabled = true);
@@ -1822,9 +2256,11 @@
             return;
           }
           $('gmAuthActions').querySelectorAll('button').forEach(button => button.disabled = false);
-          setAuthUi(hasAccount() ? currentUser : null); if (!hasAccount()) setAuthMode(authMode, true); else setStatus('gmAuthStatus', '');
+          setAuthUi(hasAccount() ? currentUser : null); if (!hasAccount()) setAuthMode(authMode);
+          // close sidebar on mobile when profile opens
+          toggleSidebar(false);
         }
-        function closeProfile() { $('gmAuthOverlay').classList.add('gm-hidden'); }
+                function closeProfile() { $('gmAuthOverlay').classList.add('gm-hidden'); }
         async function readProfilePhoto() {
           const file = $('gmAuthPhoto').files?.[0]; if (!file) return '';
           setStatus('gmAuthStatus', 'Uploading profile photo…'); return await uploadImage(file);
@@ -1943,11 +2379,13 @@
         }
         function setChatInputFromOrder(orderId) { $('gmChatOrderRef').value = orderId || ''; toggleChat(true); }
 
-        function selectTab(tab) {
-          document.querySelectorAll('[data-gm-section]').forEach(section => section.classList.toggle('gm-hidden',section.dataset.gmSection !== tab));
-          document.querySelectorAll('#gmWorkspaceTabs [data-gm-tab]').forEach(button => button.classList.toggle('active',button.dataset.gmTab === tab));
-          if (tab === 'admin' && !isAdmin) { selectTab('overview'); return; }
-          if (tab === 'notifications') markNotificationsRead();
+                function selectTab(tab) {
+          const target = tab || 'overview';
+          document.querySelectorAll('[data-gm-section]').forEach(sec=> sec.classList.toggle('gm-hidden', sec.dataset.gmSection!==target));
+          document.querySelectorAll('#gmWorkspaceTabs [data-gm-tab]').forEach(button => button.classList.toggle('active',button.dataset.gmTab === target));
+          document.querySelectorAll('#gmWorkSidebar [data-side-tab]').forEach(button => button.classList.toggle('active',button.dataset.sideTab === target));
+          // auto close sidebar on mobile after selection
+          if(window.innerWidth <= 960) toggleSidebar(false);
         }
         function selectAdminTab(tab) {
           document.querySelectorAll('[data-gm-admin-section]').forEach(section => section.classList.toggle('gm-hidden',section.dataset.gmAdminSection !== tab));
@@ -1960,7 +2398,7 @@
         async function openWorkspace() {
           if (!currentUser) { openProfile(); setStatus('gmAuthStatus','Please sign in or create an account to access your private workspace.'); return; }
           if (!db) { openProfile(); return; }
-          workspaceOpened = true; $('gmWorkspaceOverlay').classList.remove('gm-hidden'); $('gmChatWindow').classList.add('gm-hidden'); closeProfile();
+          workspaceOpened = true; $('gmWorkspaceOverlay').classList.remove('gm-hidden'); closeProfile();
           $('gmWorkspaceTitle').textContent = isAdmin ? 'Administrator Workspace' : 'My Workspace'; $('gmAdminTab').classList.toggle('gm-hidden',!isAdmin);
           $('gmAdminSection').classList.toggle('gm-hidden',!isAdmin);
           $('gmWorkspaceSubtitle').textContent = currentUser.displayName || currentUser.email || 'Google Marketing Client Area';
@@ -1993,10 +2431,47 @@
           }
           selectTab('overview');
         }
-        function closeWorkspace() { workspaceOpened=false; clearWorkspaceListeners(); $('gmWorkspaceOverlay').classList.add('gm-hidden'); }
+                function closeWorkspace() { workspaceOpened=false; clearWorkspaceListeners(); $('gmWorkspaceOverlay').classList.add('gm-hidden'); toggleSidebar(false); }
+        function toggleSidebar(force) {
+          const sidebar = $('gmWorkSidebar'), overlay = $('gmSidebarOverlay');
+          if(!sidebar) return;
+          const shouldOpen = typeof force === 'boolean' ? force : !sidebar.classList.contains('open');
+          sidebar.classList.toggle('open', shouldOpen);
+          if(overlay) overlay.classList.toggle('show', shouldOpen);
+        }
+        function syncSidebarActive(tab) {
+          document.querySelectorAll('#gmWorkSidebar [data-side-tab]').forEach(btn=> btn.classList.toggle('active', btn.dataset.sideTab===tab));
+          document.querySelectorAll('#gmWorkspaceTabs [data-gm-tab]').forEach(btn=> btn.classList.toggle('active', btn.dataset.gmTab===tab));
+        }
         function renderServiceCard(id,s) {
           const features=Array.isArray(s.features) ? s.features : String(s.features || '').split('\n').filter(Boolean);
-          return `<article class="gm-service-card"><div style="color:#60a5fa;font-size:1.5rem;margin-bottom:12px"><i class="${escapeHtml(s.icon || 'fas fa-check-circle')}"></i></div><h3>${escapeHtml(s.name || 'Service')}</h3><p>${escapeHtml(s.description || '')}</p><ul>${features.map(f=>`<li><i class="fas fa-check-circle"></i><span>${escapeHtml(f)}</span></li>`).join('')}</ul><div class="gm-service-price">${money(s.price)} <span style="font-size:.78rem;font-weight:400;color:var(--text-muted)">/ unit</span></div><button class="gm-action gm-primary" type="button" onclick="GM.startOrder('${escapeHtml(id)}')">Order Service</button></article>`;
+          const publishedReviews = Object.values(window._publicReviewsCache || {}).filter(r=> r.serviceId===id && r.status==='published');
+          const avg = publishedReviews.length ? (publishedReviews.reduce((a,b)=>a+ (Number(b.rating)||5),0)/publishedReviews.length).toFixed(1) : null;
+          const reviewsCount = publishedReviews.length;
+          const reviewsPreview = reviewsCount ? `<div class="service-reviews">
+            <button class="service-reviews-toggle" onclick="this.nextElementSibling.classList.toggle('gm-hidden'); this.querySelector('i').classList.toggle('fa-chevron-down'); this.querySelector('i').classList.toggle('fa-chevron-up');">
+                <span><i class="fas fa-star" style="color:#fbbf24;"></i> ${avg} • ${reviewsCount} reviews</span>
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="service-reviews-list gm-hidden">
+                ${publishedReviews.slice(0,10).map(r=>`
+                    <div class="gm-review-playstore">
+                        <div class="rp-head">
+                            <div class="rp-avatar">${escapeHtml((r.customerName||'U')[0].toUpperCase())}</div>
+                            <div class="rp-meta">
+                                <div class="rp-name">${escapeHtml(r.customerName||'Client')}</div>
+                                <div class="rp-time">${prettyDate(r.createdAt)}</div>
+                            </div>
+                        </div>
+                        <div class="rp-stars">${'★'.repeat(Math.max(1,Math.min(5,Number(r.rating)||5)))}${'☆'.repeat(5-Math.max(1,Math.min(5,Number(r.rating)||5)))}</div>
+                        ${r.title?`<div style="font-weight:600; font-size:.84rem; color:#e2e8f0; margin-top:4px;">${escapeHtml(r.title)}</div>`:''}
+                        <div class="rp-text">${escapeHtml(r.text||'')}</div>
+                    </div>
+                `).join('') || '<div class="gm-empty" style="padding:12px;">No reviews yet. Be first to review!</div>'}
+            </div>
+          </div>` : `<div class="service-reviews"><div class="gm-empty" style="padding:10px; font-size:.8rem;">No reviews yet - Play Store style reviews will appear here after admin approval</div></div>`;
+
+          return `<article class="gm-service-card"><div style="color:#60a5fa;font-size:1.5rem;margin-bottom:12px"><i class="${escapeHtml(s.icon || 'fas fa-check-circle')}"></i></div><h3>${escapeHtml(s.name || 'Service')}</h3><p>${escapeHtml(s.description || '')}</p><ul>${features.map(f=>`<li><i class="fas fa-check-circle"></i><span>${escapeHtml(f)}</span></li>`).join('')}</ul><div class="gm-service-price">${money(s.price)} <span style="font-size:.78rem;font-weight:400;color:var(--text-muted)">/ unit</span></div><button class="gm-action gm-primary" type="button" onclick="GM.startOrder('${escapeHtml(id)}')">Order Service</button>${reviewsPreview}</article>`;
         }
         function loadServices() {
           if (serviceListener) off(ref(db,'services'),'value',serviceListener);
@@ -2102,6 +2577,75 @@
           const csv=rows.map(row=>row.map(cell=>`"${String(cell??'').replace(/"/g,'""')}"`).join(',')).join('\r\n');const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`google-marketing-visits-${new Date().toISOString().slice(0,10)}.csv`;a.click();URL.revokeObjectURL(url);
         }
         function copyText(value) { if(navigator.clipboard?.writeText)navigator.clipboard.writeText(value).then(()=>alert('Copied: '+value)).catch(()=>prompt('Copy this ID:',value));else prompt('Copy this ID:',value); }
+
+        window._publicReviewsCache = {};
+        function loadPublicReviews(){
+          try {
+            if(!db) return;
+            const pubRef = ref(db,'reviews');
+            onValue(pubRef, (snapshot)=>{
+              const all = snapshot.val() || {};
+              window._publicReviewsCache = all;
+              const published = Object.entries(all).filter(([k,v])=> v.status==='published').map(([k,v])=>({...v,id:k})).sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
+              // Render marquee on portfolio page
+              const marquee = document.getElementById('gmPublicReviewsMarquee');
+              const wrap = document.getElementById('gmPublicReviewsWrap');
+              const portfolioServicesSection = document.getElementById('services');
+              // Ensure marquee container exists, if not create it
+              if(!marquee && portfolioServicesSection){
+                let existingWrap = document.getElementById('gmPublicReviewsWrap');
+                if(!existingWrap){
+                  const div = document.createElement('div');
+                  div.id='gmPublicReviewsWrap';
+                  div.className='gm-public-reviews-wrap';
+                  div.innerHTML=`<h3><i class="fas fa-star" style="color:#fbbf24;"></i> Live Client Reviews - Trusted by All Users</h3><div class="gm-marquee-track" id="gmPublicReviewsMarquee"></div><p class="gm-muted" style="margin-top:10px; font-size:.8rem;">Verified reviews from real clients - visible to everyone like Play Store. Auto-scrolling showcase.</p>`;
+                  // insert after service-grid or after services section header
+                  const serviceGrid = portfolioServicesSection.querySelector('.services-grid') || portfolioServicesSection.querySelector('.service-grid') || portfolioServicesSection;
+                  if(serviceGrid && serviceGrid.parentElement){
+                    serviceGrid.parentElement.insertBefore(div, serviceGrid.nextSibling);
+                  } else {
+                    portfolioServicesSection.appendChild(div);
+                  }
+                }
+              }
+              const track = document.getElementById('gmPublicReviewsMarquee');
+              if(track){
+                if(!published.length){
+                  track.innerHTML = '<div class="gm-empty">No published reviews yet. Client reviews will appear here like Play Store marquee.</div>';
+                  if(wrap) wrap.style.display='block';
+                } else {
+                  // duplicate for infinite scroll effect
+                  const cardsHtml = published.map(r=>`
+                    <div class="gm-review-marquee-card">
+                        <div class="review-head">
+                            <div class="review-avatar">${escapeHtml((r.customerName||'U')[0].toUpperCase())}</div>
+                            <div style="flex:1; min-width:0;">
+                                <div style="font-weight:700; color:#fff; font-size:.9rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(r.customerName||'Client')}</div>
+                                <div style="font-size:.72rem; color:#94a3b8;">${escapeHtml(r.serviceName||'Service')} • ${prettyDate(r.createdAt)}</div>
+                            </div>
+                        </div>
+                        <div class="stars">${'★'.repeat(Math.max(1,Math.min(5,Number(r.rating)||5)))}${'☆'.repeat(5-Math.max(1,Math.min(5,Number(r.rating)||5)))} <span style="color:#94a3b8; font-size:.75rem;">${Number(r.rating)||5}.0</span></div>
+                        ${r.title?`<div style="font-weight:600; font-size:.86rem; color:#e2e8f0; margin-top:6px;">${escapeHtml(r.title)}</div>`:''}
+                        <p>${escapeHtml(r.text||'')}</p>
+                    </div>
+                  `).join('');
+                  // For auto scroll, use anim container with duplicated content
+                  track.innerHTML = `<div class="gm-marquee-anim">${cardsHtml}${cardsHtml}</div>`;
+                }
+              }
+              // Re-render service cards to update review counts
+              if(Object.keys(servicesCache||{}).length){
+                const entries=Object.entries(servicesCache).filter(([id,s])=>s && s.active !== false);
+                const cards=entries.length ? entries.map(([id,s])=>renderServiceCard(id,s)).join('') : empty('Service pricing has not been published yet.');
+                const grid = document.getElementById('gmServiceGrid');
+                const overviewGrid = document.getElementById('gmOverviewServices');
+                if(grid) grid.innerHTML=cards;
+                if(overviewGrid) overviewGrid.innerHTML=entries.length ? entries.slice(0,3).map(([id,s])=>renderServiceCard(id,s)).join('') : empty('No services have been published yet.');
+              }
+            });
+          } catch(e){ console.warn('Public reviews load failed', e); }
+        }
+
         function init() {
           if(firebaseConfigured()) {
             try { app=initializeApp(firebaseConfig);auth=getAuth(app);db=getDatabase(app);onAuthStateChanged(auth,handleAuthChanged); $('gmChatConfigNote').classList.add('gm-hidden'); }
@@ -2111,6 +2655,7 @@
             setStatus('gmAuthStatus','Firebase configuration is missing. The original public portfolio remains available.');
           }
           // If a customer returns to an open chat after an earlier visit, refresh its unread indicator.
+          const photoInput = $('gmAuthPhoto'); if(photoInput){ photoInput.addEventListener('change', function(e){ const file=e.target.files?.[0]; if(file){ const url=URL.createObjectURL(file); const prev=$('gmAuthPhotoPreview'); if(prev) prev.src=url; }}); }
           window.addEventListener('focus',updateChatBadge);
         }
         // Defer initialization until after this module exposes window.GM. This prevents an
@@ -2124,5 +2669,11 @@
       })();
       window.GM = GM;
     </script>
-</body>
+<script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script></body>
 </html>
+            </main>
+        </div>
+    </div>
+
+    <button class="gm-chat-launcher"
+
