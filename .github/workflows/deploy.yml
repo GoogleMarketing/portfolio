@@ -2,7 +2,8 @@ name: Deploy Google Marketing Portfolio
 
 on:
   push:
-    branches: ["main"]
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -11,23 +12,25 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: github-pages
   cancel-in-progress: true
 
 jobs:
   deploy:
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Pages
+      - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Build public website and inject Firebase configuration
+      - name: Build site and inject Firebase client configuration
+        shell: bash
         env:
           FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
           FIREBASE_AUTH_DOMAIN: ${{ secrets.FIREBASE_AUTH_DOMAIN }}
@@ -38,97 +41,172 @@ jobs:
           FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
           IMGBB_API_KEY: ${{ secrets.IMGBB_API_KEY }}
         run: |
+          set -euo pipefail
           python3 <<'PY'
+          import json
           import os
           import re
           import shutil
           from pathlib import Path
 
-          replacements = {
-              '__FIREBASE_API_KEY__': os.environ.get('FIREBASE_API_KEY', '').strip(),
-              '__FIREBASE_AUTH_DOMAIN__': os.environ.get('FIREBASE_AUTH_DOMAIN', '').strip(),
-              '__FIREBASE_DATABASE_URL__': os.environ.get('FIREBASE_DATABASE_URL', '').strip(),
-              '__FIREBASE_PROJECT_ID__': os.environ.get('FIREBASE_PROJECT_ID', '').strip(),
-              '__FIREBASE_STORAGE_BUCKET__': os.environ.get('FIREBASE_STORAGE_BUCKET', '').strip(),
-              '__FIREBASE_MESSAGING_SENDER_ID__': os.environ.get('FIREBASE_MESSAGING_SENDER_ID', '').strip(),
-              '__FIREBASE_APP_ID__': os.environ.get('FIREBASE_APP_ID', '').strip(),
-              '__IMGBB_API_KEY__': os.environ.get('IMGBB_API_KEY', '').strip(),
+          root = Path.cwd()
+          site = root / "_site"
+          source_index = root / "index.html"
+
+          if not source_index.is_file():
+              raise SystemExit("ERROR: index.html was not found in the repository root.")
+
+          # Every value must exist. Never print secret values in logs.
+          env_names = {
+              "__FIREBASE_API_KEY__": "FIREBASE_API_KEY",
+              "__FIREBASE_AUTH_DOMAIN__": "FIREBASE_AUTH_DOMAIN",
+              "__FIREBASE_DATABASE_URL__": "FIREBASE_DATABASE_URL",
+              "__FIREBASE_PROJECT_ID__": "FIREBASE_PROJECT_ID",
+              "__FIREBASE_STORAGE_BUCKET__": "FIREBASE_STORAGE_BUCKET",
+              "__FIREBASE_MESSAGING_SENDER_ID__": "FIREBASE_MESSAGING_SENDER_ID",
+              "__FIREBASE_APP_ID__": "FIREBASE_APP_ID",
+              "__IMGBB_API_KEY__": "IMGBB_API_KEY",
           }
 
-          missing = [marker for marker, value in replacements.items() if not value]
-          if missing:
-              raise SystemExit('ERROR: Add these GitHub Actions secrets: ' + ', '.join(missing))
+          replacements = {}
+          for marker, env_name in env_names.items():
+              value = os.environ.get(env_name, "").strip()
+              if not value:
+                  raise SystemExit(
+                      f"ERROR: GitHub Actions Secret {env_name} is missing or empty."
+                  )
+              if value.startswith(("__", "PASTE_")) or marker in value:
+                  raise SystemExit(
+                      f"ERROR: GitHub Actions Secret {env_name} still contains placeholder text."
+                  )
+              # The placeholders in index.html are inside quoted JavaScript strings.
+              # Escape special characters without adding a second pair of quotes.
+              replacements[marker] = json.dumps(value, ensure_ascii=False)[1:-1]
 
-          invalid = [marker for marker, value in replacements.items()
-                     if value.startswith(('__', 'PASTE_')) or marker in value]
-          if invalid:
-              raise SystemExit('ERROR: One or more Actions secrets still contain placeholder text: ' + ', '.join(invalid))
-
-          # _site ফোল্ডার প্রস্তুত - পুরো সাইট কপি করো, শুধু index.html না
-          site = Path('_site')
           if site.exists():
               shutil.rmtree(site)
-          site.mkdir(exist_ok=True)
+          site.mkdir(parents=True)
 
-          exclude_names = {'.git', '.github', '_site', '.gitignore', 'README.md'}
-          for item in Path('.').iterdir():
-              if item.name in exclude_names:
+          # Publish website assets only; do not publish Python/backend files or local secrets.
+          excluded_names = {
+              ".git", ".github", "_site", ".gitignore", ".gitattributes",
+              "README.md", "README.txt", "main.py", "render.yaml", "render.yml",
+              "Procfile", "requirements.txt", "requirements-dev.txt",
+              "serviceAccountKey.json", "firebase-adminsdk.json",
+          }
+
+          def ignore_generated_or_private(directory, names):
+              ignored = []
+              for name in names:
+                  p = Path(directory) / name
+                  if name in excluded_names:
+                      ignored.append(name)
+                  elif name.startswith(".env") or name in {".venv", "venv", "__pycache__", "node_modules"}:
+                      ignored.append(name)
+                  elif p.is_file() and (
+                      p.suffix.lower() in {".py", ".pyc", ".pyo"}
+                      or name.endswith(".pem")
+                      or name.endswith(".key")
+                      or name.endswith(".service-account.json")
+                  ):
+                      ignored.append(name)
+              return ignored
+
+          for item in root.iterdir():
+              if item.name in excluded_names:
                   continue
-              dest = site / item.name
+              if item.name.startswith(".env") or item.name in {
+                  ".venv", "venv", "__pycache__", "node_modules"
+              }:
+                  continue
+              destination = site / item.name
               if item.is_dir():
-                  shutil.copytree(item, dest, dirs_exist_ok=True)
-              else:
-                  shutil.copy2(item, dest)
+                  shutil.copytree(
+                      item,
+                      destination,
+                      ignore=ignore_generated_or_private,
+                      dirs_exist_ok=True,
+                  )
+              elif item.suffix.lower() not in {".py", ".pyc", ".pyo"} and not (
+                  item.name.endswith(".pem")
+                  or item.name.endswith(".key")
+                  or item.name.endswith(".service-account.json")
+              ):
+                  shutil.copy2(item, destination)
 
-          # এখন _site এর ভিতরে সব .html, .js, .json ফাইলে replace করো
-          patterns = ['*.html', '*.js', '*.json']
-          targets = []
-          for pat in patterns:
-              targets.extend(site.rglob(pat))
+          # Inject only into publishable text assets.
+          text_suffixes = {".html", ".js", ".json", ".css", ".txt", ".webmanifest"}
+          targets = [
+              p for p in site.rglob("*")
+              if p.is_file() and p.suffix.lower() in text_suffixes
+          ]
 
-          injected_files = []
-          placeholder_found_anywhere = False
+          if not (site / "index.html").is_file():
+              raise SystemExit("ERROR: _site/index.html is missing after copying the website.")
+
+          found = {marker: 0 for marker in replacements}
+          changed_files = []
 
           for target in targets:
               try:
-                  content = target.read_text(encoding='utf-8')
-              except Exception:
-                  continue  # binary বা পড়া যায় না এমন ফাইল skip
+                  content = target.read_text(encoding="utf-8")
+              except (UnicodeDecodeError, OSError):
+                  continue
 
               original = content
-              for marker, value in replacements.items():
-                  if marker in content:
-                      placeholder_found_anywhere = True
-                      content = content.replace(marker, value)
+              for marker, escaped_value in replacements.items():
+                  count = content.count(marker)
+                  if count:
+                      found[marker] += count
+                      content = content.replace(marker, escaped_value)
 
               if content != original:
-                  target.write_text(content, encoding='utf-8')
-                  injected_files.append(str(target.relative_to(site)))
+                  target.write_text(content, encoding="utf-8")
+                  changed_files.append(str(target.relative_to(site)))
 
-          if not placeholder_found_anywhere:
-              raise SystemExit('ERROR: কোনো ফাইলেই __FIREBASE_...__ placeholder পাওয়া যায়নি। index.html এ placeholder আছে কিনা চেক করো।')
+          missing_markers = [
+              marker for marker, count in found.items() if count == 0
+          ]
+          if missing_markers:
+              raise SystemExit(
+                  "ERROR: Expected placeholders were not found in published files: "
+                  + ", ".join(missing_markers)
+              )
 
-          # শেষ চেক - কোথাও placeholder রয়ে গেছে কিনা
-          remaining = []
+          # Fail the build if any known placeholder remains anywhere in publishable text.
+          unresolved_pattern = re.compile(r"__(?:FIREBASE_[A-Z_]+|IMGBB_[A-Z_]+)__")
+          unresolved_files = []
           for target in targets:
               try:
-                  c = target.read_text(encoding='utf-8')
-                  if re.search(r'__FIREBASE_[A-Z_]+__|__IMGBB_[A-Z_]+__', c):
-                      remaining.append(str(target.relative_to(site)))
-              except Exception:
-                  pass
+                  text = target.read_text(encoding="utf-8")
+              except (UnicodeDecodeError, OSError):
+                  continue
+              if unresolved_pattern.search(text):
+                  unresolved_files.append(str(target.relative_to(site)))
 
-          if remaining:
-              raise SystemExit(f'ERROR: Unresolved placeholder রয়ে গেছে এই ফাইলগুলোতে: {", ".join(remaining)}')
+          if unresolved_files:
+              raise SystemExit(
+                  "ERROR: Unresolved configuration placeholders remain in: "
+                  + ", ".join(unresolved_files)
+              )
 
-          print(f'Success! Injected Firebase config into {len(injected_files)} files: {", ".join(injected_files)}')
-          print(f'Publishing full site from _site/ ({len(list(site.rglob("*")))} files total)')
+          # Basic safety check: backend Python files must not be published.
+          leaked_python = [str(p.relative_to(site)) for p in site.rglob("*.py")]
+          if leaked_python:
+              raise SystemExit(
+                  "ERROR: Python/backend files would be publicly published: "
+                  + ", ".join(leaked_python)
+              )
+
+          print("Configuration injection check passed.")
+          print("Updated files: " + ", ".join(changed_files))
+          print(f"Prepared GitHub Pages artifact with {sum(1 for p in site.rglob('*') if p.is_file())} files.")
           PY
 
-      - name: Upload artifact
+      - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '_site'
+          path: _site
 
       - name: Deploy to GitHub Pages
         id: deployment
