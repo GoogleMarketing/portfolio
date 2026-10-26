@@ -743,7 +743,7 @@ async def telegram_webhook(request: Request):
         send_telegram_message(chat_id_str, f"❌ Failed to send message to <code>{target_chat_id}</code>: {e}")
         raise HTTPException(status_code=500, detail=f"Routing failed: {e}")
 
-@app.post("/api/telegram/set-webhook")
+@app.api_route("/api/telegram/set-webhook", methods=["GET", "POST"])
 async def set_telegram_webhook(request: Request):
     """
     Set Telegram webhook URL. Call this once after deployment.
