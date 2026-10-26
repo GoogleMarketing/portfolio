@@ -954,110 +954,11 @@
             .gm-stat strong { font-size:1.35rem; }
         }
 
-
-
-        /* Focused account/workspace polish and requested additions */
-        .gm-chat-launcher { z-index: 3700; }
-        .gm-chat-window { z-index: 3701; }
-        .gm-overlay { z-index: 3800; }
-        .gm-dialog { width:min(540px,100%); padding:clamp(22px,4vw,34px); border-color:rgba(96,165,250,.35); background:linear-gradient(155deg,#101d33 0%,#0b1423 55%,#070d19 100%); }
-        .gm-dialog h2 { font-size:clamp(1.55rem,4vw,2rem); letter-spacing:-.025em; }
-        #gmAuthOverlay .gm-dialog > div:first-child { padding-bottom:17px; border-bottom:1px solid var(--border-color); }
-        #gmAuthOverlay .gm-action-row { gap:10px; }
-        #gmAuthOverlay #gmAuthActions { display:grid; grid-template-columns:1fr; }
-        #gmAuthOverlay #gmAuthActions .gm-action { min-height:46px; justify-content:center; }
-        #gmAuthOverlay .gm-form-grid { margin-top:17px; }
-        #gmAuthOverlay .gm-field input { min-height:46px; }
-        #gmAuthOverlay .gm-field input:focus, #gmAuthOverlay .gm-field textarea:focus, #gmAuthOverlay .gm-field select:focus { outline:2px solid rgba(59,130,246,.65); outline-offset:1px; border-color:#60a5fa; }
-        #gmAuthOverlay .gm-privacy { margin-top:14px; line-height:1.5; }
-        .gm-auth-kicker { display:inline-flex; align-items:center; gap:8px; margin-bottom:9px; color:#93c5fd; font-size:.75rem; letter-spacing:.13em; text-transform:uppercase; font-weight:800; }
-        .gm-google-action { background:#f8fafc !important; color:#111827 !important; border-color:#e2e8f0 !important; }
-        .gm-google-action:hover { background:#eaf1fb !important; }
-        .gm-work-top { gap:12px; }
-        .gm-work-top-actions { display:flex; align-items:center; gap:8px; justify-content:flex-end; flex-wrap:wrap; }
-        .gm-work-tool-btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:42px; padding:9px 13px; border:1px solid var(--border-color); border-radius:11px; color:#e2e8f0; background:rgba(255,255,255,.045); cursor:pointer; font-weight:650; }
-        .gm-work-tool-btn:hover { border-color:var(--primary-color); background:rgba(59,130,246,.12); }
-        .gm-work-search { position:absolute; right:clamp(14px,4vw,42px); top:75px; z-index:12; width:min(390px,calc(100vw - 28px)); padding:10px; border:1px solid var(--border-color); border-radius:15px; background:#0b1423; box-shadow:0 18px 50px rgba(0,0,0,.45); }
-        .gm-work-search input { width:100%; min-height:43px; padding:10px 12px; color:#f8fafc; background:#050b15; border:1px solid var(--border-color); border-radius:10px; font:inherit; }
-        .gm-work-search input:focus { outline:2px solid rgba(59,130,246,.55); }
-        .gm-search-results { display:flex; flex-direction:column; gap:6px; margin-top:9px; max-height:48vh; overflow:auto; }
-        .gm-search-result { display:flex; align-items:center; gap:10px; width:100%; padding:10px 11px; text-align:left; border:1px solid var(--border-color); border-radius:10px; color:#e2e8f0; background:rgba(255,255,255,.035); cursor:pointer; }
-        .gm-search-result:hover { border-color:var(--primary-color); background:rgba(59,130,246,.12); }
-        .gm-search-result small { display:block; color:#94a3b8; font-size:.72rem; margin-top:2px; }
-        #gmWorkspaceTabs { display:none; position:absolute; top:75px; right:clamp(14px,4vw,42px); z-index:11; width:min(320px,calc(100vw - 28px)); margin:0; padding:10px; flex-direction:column; gap:6px; border:1px solid var(--border-color); border-radius:15px; background:#0b1423; box-shadow:0 18px 50px rgba(0,0,0,.5); }
-        #gmWorkspaceTabs.gm-menu-open { display:flex; }
-        #gmWorkspaceTabs .gm-tab { display:flex; width:100%; text-align:left; justify-content:flex-start; align-items:center; gap:9px; padding:11px 12px; }
-        #gmWorkspaceTabs .gm-tab[style*="display: none"] { display:none !important; }
-        .gm-section-toolbar { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:0 0 19px; }
-        .gm-section-toolbar h2 { font:700 1.35rem 'Outfit',sans-serif; margin:0; }
-        .gm-section-toolbar .gm-action { white-space:nowrap; }
-        .gm-admin-menu-button { margin:0 0 12px; }
-        #gmAdminTabs { display:none; margin:0 0 16px; padding:10px; border:1px solid var(--border-color); border-radius:13px; background:rgba(3,7,18,.4); }
-        #gmAdminTabs.gm-menu-open { display:flex; }
-        .gm-toast-region { position:fixed; top:90px; right:18px; z-index:5000; display:flex; flex-direction:column; gap:10px; width:min(380px,calc(100vw - 28px)); pointer-events:none; }
-        .gm-toast { display:flex; align-items:flex-start; gap:10px; padding:13px 15px; border:1px solid rgba(52,211,153,.35); border-radius:13px; color:#ecfdf5; background:rgba(6,35,31,.97); box-shadow:0 16px 40px rgba(0,0,0,.4); font-size:.9rem; line-height:1.45; animation:gm-toast-in .22s ease-out; }
-        .gm-toast.gm-toast-error { border-color:rgba(248,113,113,.42); color:#fff1f2; background:rgba(69,10,10,.97); }
-        .gm-toast i { margin-top:3px; color:#34d399; }
-        .gm-toast.gm-toast-error i { color:#f87171; }
-        @keyframes gm-toast-in { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } }
-        .gm-live-catalog { margin-top:45px; padding-top:32px; border-top:1px solid var(--border-color); }
-        .gm-live-catalog-head { text-align:center; margin-bottom:24px; }
-        .gm-live-catalog-head h3 { font:700 clamp(1.5rem,3vw,2rem) 'Outfit',sans-serif; margin-bottom:8px; }
-        .gm-live-catalog-head p { color:var(--text-muted); max-width:650px; margin:0 auto; }
-        .gm-catalog-viewport { overflow:hidden; width:100%; mask-image:linear-gradient(to right,transparent,black 2%,black 98%,transparent); }
-        .gm-catalog-track { display:flex; align-items:stretch; gap:18px; width:max-content; animation:gm-catalog-scroll 42s linear infinite; padding:4px 0 12px; }
-        .gm-catalog-viewport:hover .gm-catalog-track, .gm-catalog-viewport:focus-within .gm-catalog-track { animation-play-state:paused; }
-        .gm-public-service-card { width:min(350px,80vw); display:flex; flex-direction:column; padding:21px; border:1px solid var(--border-color); border-radius:18px; background:linear-gradient(160deg,rgba(30,41,59,.9),rgba(8,15,28,.96)); box-shadow:0 12px 35px rgba(0,0,0,.2); }
-        .gm-public-service-card h4 { font:700 1.18rem 'Outfit',sans-serif; margin:5px 0 8px; }
-        .gm-public-service-card > p { color:var(--text-muted); font-size:.87rem; }
-        .gm-public-service-card ul { padding-left:0; margin:12px 0; list-style:none; color:#cbd5e1; font-size:.84rem; }
-        .gm-public-service-card li { display:flex; gap:8px; margin:6px 0; }
-        .gm-public-service-card li i { color:#34d399; margin-top:4px; }
-        .gm-public-service-card .gm-service-price { font-size:1.35rem; }
-        .gm-public-service-card .gm-action { margin-top:8px; }
-        @keyframes gm-catalog-scroll { from { transform:translateX(0); } to { transform:translateX(-50%); } }
-        .gm-card-reviews { border-top:1px solid var(--border-color); padding-top:12px; margin-top:14px; }
-        .gm-card-review-head { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:8px; }
-        .gm-card-review-head strong { font:650 .9rem 'Outfit',sans-serif; }
-        .gm-link-action { border:0; padding:4px 0; color:#93c5fd; background:transparent; cursor:pointer; font-size:.78rem; font-weight:700; }
-        .gm-review-marquee { overflow:hidden; width:100%; border-radius:10px; }
-        .gm-review-track { display:flex; align-items:stretch; gap:9px; width:max-content; animation:gm-review-scroll 34s linear infinite; }
-        .gm-review-marquee:hover .gm-review-track { animation-play-state:paused; }
-        .gm-mini-review { width:220px; flex-shrink:0; padding:10px; border:1px solid rgba(255,255,255,.09); border-radius:10px; background:rgba(255,255,255,.035); white-space:normal; overflow-wrap:anywhere; }
-        .gm-mini-review .gm-review-stars { font-size:.8rem; letter-spacing:1px; }
-        .gm-mini-review p { margin-top:5px; color:#cbd5e1; font-size:.79rem; line-height:1.45; }
-        .gm-mini-review small { display:block; margin-top:7px; color:#94a3b8; font-size:.7rem; }
-        @keyframes gm-review-scroll { from { transform:translateX(0); } to { transform:translateX(-50%); } }
-        .gm-all-reviews { display:flex; flex-direction:column; gap:8px; margin-top:10px; max-height:280px; overflow:auto; }
-        .gm-all-review-item { padding:10px; border:1px solid var(--border-color); border-radius:10px; background:rgba(255,255,255,.025); }
-        .gm-all-review-item p { margin-top:5px; color:#cbd5e1; font-size:.82rem; white-space:normal; }
-        .gm-all-review-item small { color:#94a3b8; font-size:.72rem; }
-        .gm-work-search-hint { color:#94a3b8; padding:7px 3px 1px; font-size:.75rem; }
-        @media(max-width:640px) {
-            .gm-work-top { align-items:flex-start; flex-wrap:wrap; }
-            .gm-work-top-left { gap:8px; }
-            .gm-work-top-actions { width:100%; gap:5px; }
-            .gm-work-search { top:112px; }
-            #gmWorkspaceTabs { top:112px; }
-            .gm-work-tool-btn { min-height:38px; padding:8px 9px; font-size:.78rem; }
-            .gm-work-tool-btn .gm-action-label { display:none; }
-            .gm-work-search { top:68px; right:10px; }
-            #gmWorkspaceTabs { top:68px; right:10px; }
-            .gm-section-toolbar h2 { font-size:1.12rem; }
-            .gm-toast-region { top:72px; right:10px; }
-            .gm-catalog-track { animation-duration:50s; }
-        }
-        @media(prefers-reduced-motion:reduce) {
-            .gm-catalog-track, .gm-review-track { animation:none !important; }
-            .gm-toast { animation:none; }
-        }
-
     </style>
 </head>
 <body>
 
     <div class="ambient-glow"></div>
-    <div class="gm-toast-region" id="gmToastRegion" aria-live="polite" aria-atomic="false"></div>
 
     <!-- Navbar -->
     <nav>
@@ -1182,18 +1083,6 @@
                     <li><i class="fas fa-check-circle"></i> High ROI Campaigns</li>
                 </ul>
                 <a href="#contact" class="cta-badge">📩 Get Custom Quote - Contact Us</a>
-            </div>
-        </div>
-
-        <!-- Additional live catalog: populated from active administrator-managed services. Existing portfolio cards above remain unchanged. -->
-        <div class="gm-live-catalog" id="gmLiveCatalogSection">
-            <div class="gm-live-catalog-head">
-                <span class="badge">Live Service Catalog</span>
-                <h3>Explore Our Current Services</h3>
-                <p>Browse the latest services and pricing configured by our team. Published customer reviews appear below each service.</p>
-            </div>
-            <div class="gm-catalog-viewport" id="gmPublicCatalogViewport" aria-label="Automatically moving service cards">
-                <div class="gm-catalog-track" id="gmPublicCatalogTrack"><div class="gm-public-service-card"><p>Loading current services…</p></div></div>
             </div>
         </div>
     </section>
@@ -1531,7 +1420,7 @@
     <div class="gm-overlay gm-hidden" id="gmAuthOverlay" role="dialog" aria-modal="true" aria-labelledby="gmAuthTitle">
         <div class="gm-dialog">
             <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px">
-                <div><span class="gm-auth-kicker"><i class="fas fa-shield-alt"></i> Secure Client Portal</span><h2 id="gmAuthTitle">Your Google Marketing Profile</h2><p class="gm-muted" id="gmAuthSubtitle">Sign in to view your private workspace, orders and notifications.</p></div>
+                <div><h2 id="gmAuthTitle">Your Google Marketing Profile</h2><p class="gm-muted" id="gmAuthSubtitle">Sign in to view your private workspace, orders and notifications.</p></div>
                 <button class="gm-icon-btn" type="button" onclick="GM.closeProfile()" aria-label="Close"><i class="fas fa-times"></i></button>
             </div>
             <div class="gm-action-row" style="margin:15px 0">
@@ -1547,10 +1436,11 @@
             </div>
             <div class="gm-action-row" id="gmAuthActions">
                 <button class="gm-action gm-primary" type="button" id="gmAuthSubmit" onclick="GM.submitAuth()">Sign In</button>
-                <button class="gm-action gm-google-action" type="button" onclick="GM.googleAuth()"><i class="fab fa-google"></i> Continue with Google</button>
+                <button class="gm-action" type="button" onclick="GM.googleAuth()"><i class="fab fa-google"></i> Continue with Google</button>
             </div>
             <div class="gm-action-row gm-hidden" id="gmSignedInActions">
-                <button class="gm-action gm-primary" type="button" onclick="GM.saveProfile()"><i class="fas fa-save"></i> Save Profile</button>
+                <button class="gm-action gm-primary" type="button" onclick="GM.openWorkspace()">Open My Workspace</button>
+                <button class="gm-action" type="button" onclick="GM.saveProfile()">Save Profile</button>
                 <button class="gm-action gm-danger" type="button" onclick="GM.logout()">Sign Out</button>
             </div>
             <div class="gm-inline-status" id="gmAuthStatus" role="status"></div>
@@ -1562,16 +1452,9 @@
     <div class="gm-workspace gm-hidden" id="gmWorkspaceOverlay">
         <div class="gm-work-top">
             <div class="gm-work-top-left"><img class="gm-avatar" id="gmWorkspaceAvatar" src="https://i.ibb.co.com/GfswcC5V/FB-IMG-1791925489216.jpg" alt="Profile"><div style="min-width:0"><div class="gm-work-title" id="gmWorkspaceTitle">My Workspace</div><div class="gm-muted" id="gmWorkspaceSubtitle" style="overflow-wrap:anywhere">Google Marketing Client Area</div></div></div>
-            <div class="gm-work-top-actions">
-                <button class="gm-work-tool-btn" type="button" onclick="GM.toggleWorkspaceSearch()" aria-label="Search workspace options" title="Search"><i class="fas fa-search"></i><span class="gm-action-label">Search</span></button>
-                <button class="gm-work-tool-btn" type="button" onclick="GM.toggleWorkspaceMenu()" aria-expanded="false" aria-controls="gmWorkspaceTabs" id="gmWorkspaceMenuButton"><i class="fas fa-bars"></i><span class="gm-action-label">Menu</span></button>
-                <button class="gm-work-tool-btn" type="button" onclick="GM.openProfile()"><i class="fas fa-user-circle"></i><span class="gm-action-label">Profile</span></button>
-                <button class="gm-work-tool-btn" type="button" onclick="GM.closeWorkspace()"><i class="fas fa-arrow-left"></i><span class="gm-action-label">Portfolio</span></button>
-            </div>
-            <div class="gm-work-search gm-hidden" id="gmWorkspaceSearch"><input id="gmWorkspaceSearchInput" type="search" placeholder="Search services, orders, reviews, chats…" aria-label="Search workspace options" oninput="GM.searchWorkspace(this.value)" onkeydown="GM.handleWorkspaceSearchKey(event)"><div class="gm-work-search-hint">Search any workspace section or service below.</div><div class="gm-search-results" id="gmWorkspaceSearchResults"></div></div>
+            <div style="display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end"><button class="gm-action" type="button" onclick="GM.openProfile()"><i class="fas fa-user"></i> Profile</button><button class="gm-action" type="button" onclick="GM.closeWorkspace()"><i class="fas fa-arrow-left"></i> Website</button></div>
         </div>
         <main class="gm-work-content">
-            <div class="gm-section-toolbar"><button class="gm-action gm-hidden" type="button" id="gmWorkspaceBackButton" onclick="GM.workspaceBack()"><i class="fas fa-arrow-left"></i> Back</button><h2 id="gmCurrentSectionTitle">Overview</h2><span></span></div>
             <div class="gm-stat-grid" id="gmOverviewStats"></div>
             <nav class="gm-work-tabs" id="gmWorkspaceTabs" aria-label="Workspace sections">
                 <button class="gm-tab active" data-gm-tab="overview" onclick="GM.selectTab('overview')">Overview</button>
@@ -1580,9 +1463,6 @@
                 <button class="gm-tab" data-gm-tab="orders" onclick="GM.selectTab('orders')">My Orders</button>
                 <button class="gm-tab" data-gm-tab="reviews" onclick="GM.selectTab('reviews')">Reviews</button>
                 <button class="gm-tab" data-gm-tab="notifications" onclick="GM.selectTab('notifications')">Notifications <span id="gmNotificationBadge" class="gm-pill gm-hidden">0</span></button>
-                <button class="gm-tab" data-gm-action="chat" onclick="GM.openWorkspaceChat()"><i class="fas fa-comments" aria-hidden="true"></i> Live Support</button>
-                <button class="gm-tab" data-gm-action="profile" onclick="GM.openProfile()"><i class="fas fa-user-circle" aria-hidden="true"></i> Your Profile</button>
-                <button class="gm-tab" data-gm-action="portfolio" onclick="GM.closeWorkspace()"><i class="fas fa-globe" aria-hidden="true"></i> Back to Portfolio</button>
                 <button class="gm-tab gm-hidden" data-gm-tab="admin" id="gmAdminTab" onclick="GM.selectTab('admin')">Admin Panel</button>
             </nav>
 
@@ -1622,8 +1502,8 @@
 
             <!-- Admin-only controls appear only for a Firebase account with the admin custom claim. -->
             <section data-gm-section="admin" class="gm-hidden" id="gmAdminSection">
-                <div class="gm-panel" style="margin-bottom:16px"><h3><i class="fas fa-shield-alt"></i> Administrator Console</h3><p class="gm-muted">Manage the customer workspace, service pricing, orders, support chats, moderated reviews and visit analytics.</p><div class="gm-action-row gm-admin-menu-button"><button class="gm-action gm-primary" type="button" onclick="GM.toggleAdminMenu()" aria-expanded="false" aria-controls="gmAdminTabs" id="gmAdminMenuButton"><i class="fas fa-list"></i> Admin Sections</button></div></div>
-                <div class="gm-work-tabs" id="gmAdminTabs"><button class="gm-tab active" data-gm-admin-tab="catalog" onclick="GM.selectAdminTab('catalog')">Services & Pricing</button><button class="gm-tab" data-gm-admin-tab="orders" onclick="GM.selectAdminTab('orders')">Orders</button><button class="gm-tab" data-gm-admin-tab="chats" onclick="GM.selectAdminTab('chats')">Live Chats</button><button class="gm-tab" data-gm-admin-tab="reviews" onclick="GM.selectAdminTab('reviews')">Review Moderation</button><button class="gm-tab" data-gm-admin-tab="analytics" onclick="GM.selectAdminTab('analytics')">Visit Analytics</button></div>
+                <div class="gm-panel" style="margin-bottom:16px"><h3><i class="fas fa-shield-alt"></i> Administrator Console</h3><p class="gm-muted">Manage the customer workspace, service pricing, orders, support chats, moderated reviews and visit analytics.</p></div>
+                <div class="gm-work-tabs" style="margin-top:0"><button class="gm-tab active" data-gm-admin-tab="catalog" onclick="GM.selectAdminTab('catalog')">Services & Pricing</button><button class="gm-tab" data-gm-admin-tab="orders" onclick="GM.selectAdminTab('orders')">Orders</button><button class="gm-tab" data-gm-admin-tab="chats" onclick="GM.selectAdminTab('chats')">Live Chats</button><button class="gm-tab" data-gm-admin-tab="reviews" onclick="GM.selectAdminTab('reviews')">Review Moderation</button><button class="gm-tab" data-gm-admin-tab="analytics" onclick="GM.selectAdminTab('analytics')">Visit Analytics</button></div>
                 <div data-gm-admin-section="catalog" id="gmAdminCatalog">
                     <div class="gm-panel" style="margin-bottom:16px"><h3 id="gmServiceEditorTitle">Add a Service</h3><div class="gm-form-grid">
                         <div class="gm-field gm-full"><label for="gmAdminServiceName">Service title *</label><input id="gmAdminServiceName" placeholder="e.g. App Testing & Feedback"></div>
@@ -1761,14 +1641,14 @@
 
       /* SETUP REQUIRED: paste your Firebase Web App config below. Do not put Telegram bot tokens or service-account keys in this HTML. */
       const firebaseConfig = {
-        apiKey: "__FIREBASE_API_KEY__",
-        authDomain: "__FIREBASE_AUTH_DOMAIN__",
-        databaseURL: "__FIREBASE_DATABASE_URL__",
-        projectId: "__FIREBASE_PROJECT_ID__",
-        storageBucket: "__FIREBASE_STORAGE_BUCKET__",
-        messagingSenderId: "__FIREBASE_MESSAGING_SENDER_ID__",
-        appId: "__FIREBASE_APP_ID__"
-      };
+  apiKey: "__FIREBASE_API_KEY__",
+  authDomain: "marketingportfolio-sr.firebaseapp.com",
+  databaseURL: "https://marketingportfolio-sr-default-rtdb.firebaseio.com",
+  projectId: "marketingportfolio-sr",
+  storageBucket: "marketingportfolio-sr.firebasestorage.app",
+  messagingSenderId: "886293886597",
+  appId: "1:886293886597:web:44aab056bde3df1e059bec"
+};
       /* Use the ImgBB upload API key for profile/chat images. This is a public client key; restrict/monitor it where possible. */
       const GM_IMGBB_API_KEY = '__IMGBB_API_KEY__';
       /* Optional HTTPS endpoint must be implemented by your existing Render/Python backend; never put TELEGRAM_BOT_TOKEN here. */
@@ -1782,25 +1662,13 @@
         let chatListCallback = null, orderListener = null, serviceListener = null, reviewsListener = null, notificationsListener = null, analyticsListener = null, adminOrdersListener = null, adminReviewsListener = null;
         let visitorTrackingStarted = false;
         const $ = id => document.getElementById(id);
-        const firebaseConfigured = () => ['apiKey','authDomain','databaseURL','projectId','storageBucket','messagingSenderId','appId'].every(key => {
-          const value = String(firebaseConfig[key] || '').trim();
-          return Boolean(value) && !value.startsWith('PASTE_') && !value.startsWith('__FIREBASE_');
-        });
+        const firebaseConfigured = () => ['apiKey','authDomain','databaseURL','projectId','appId'].every(key => { const value = String(GM_FIREBASE_CONFIG[key] || ''); return value && !value.startsWith('PASTE_') && !value.startsWith('__FIREBASE_'); });
         const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
         const money = value => '$' + (Number(value) || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         const prettyDate = value => { let n = typeof value === 'number' ? value : (value && typeof value === 'object' && value['.sv'] ? Date.now() : Number(value)); return n ? new Date(n).toLocaleString() : 'Just now'; };
         const statusText = value => String(value || 'pending').replace(/_/g, ' ').replace(/\b\w/g, ch => ch.toUpperCase());
         const empty = message => `<div class="gm-empty">${escapeHtml(message)}</div>`;
         const setStatus = (id, message, bad = false) => { const node = $(id); if (node) { node.textContent = message || ''; node.style.color = bad ? '#fca5a5' : '#93c5fd'; } };
-        function showToast(message, bad = false) {
-          const region = $('gmToastRegion'); if (!region || !message) return;
-          const toast = document.createElement('div'); toast.className = `gm-toast${bad ? ' gm-toast-error' : ''}`;
-          const icon = document.createElement('i'); icon.className = `fas ${bad ? 'fa-circle-exclamation' : 'fa-circle-check'}`;
-          const text = document.createElement('span'); text.textContent = String(message);
-          toast.append(icon, text); region.appendChild(toast);
-          while (region.children.length > 4) region.firstElementChild.remove();
-          window.setTimeout(() => { toast.style.opacity = '0'; toast.style.transform = 'translateY(-6px)'; window.setTimeout(() => toast.remove(), 220); }, 4200);
-        }
         const uuid = prefix => `${prefix}_${(crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36) + Math.random().toString(36).slice(2))}`;
         const getGuestId = () => { let id = localStorage.getItem('gm_guest_chat_id'); if (!id) { id = uuid('guest'); localStorage.setItem('gm_guest_chat_id', id); } return id; };
         const hasAccount = () => !!currentUser && !currentUser.isAnonymous;
@@ -1870,15 +1738,9 @@
               headers:{'Content-Type':'application/json','Authorization':`Bearer ${token}`},
               body:JSON.stringify({event, payload, sentAt:new Date().toISOString()})
             });
-            const result = await response.json().catch(() => ({}));
-            if (!response.ok || result?.ok === false) {
-              throw new Error(result?.error || `Bridge returned HTTP ${response.status}`);
-            }
-            return result;
-          } catch (error) {
-            console.error('Telegram bridge delivery failed:', error);
-            return { error: error.message || 'Unknown Telegram bridge error' };
-          }
+            if (!response.ok) throw new Error(`Bridge returned HTTP ${response.status}`);
+            return await response.json().catch(() => ({ok:true}));
+          } catch (error) { console.warn('Telegram bridge is unavailable:', error); return { error:error.message }; }
         }
         function setAuthUi(user) {
           const nameWrap = $('gmAuthNameWrap'), contactWrap = $('gmAuthContactWrap'), photoWrap = $('gmAuthPhotoWrap');
@@ -1908,13 +1770,13 @@
         async function saveUserProfile(user, { name, contact, photoUrl, isNew = false } = {}) {
           const old = (await get(ref(db, `users/${user.uid}/profile`))).val() || {};
           const finalName = (name || user.displayName || old.name || 'Client').trim();
-          const finalContact = String((contact ?? old.contact ?? user.email ?? '') || user.email || '').trim();
+          const finalContact = (contact || old.contact || '').trim();
           let finalPhoto = photoUrl || user.photoURL || old.photoUrl || '';
           if (name && name !== user.displayName) await updateProfile(user, { displayName:name.trim(), ...(finalPhoto ? {photoURL:finalPhoto} : {}) });
           else if (finalPhoto && finalPhoto !== user.photoURL) await updateProfile(user, { photoURL:finalPhoto });
           const profile = { name:finalName, contact:finalContact, email:user.email || '', photoUrl:finalPhoto, uid:user.uid, updatedAt:Date.now(), createdAt:old.createdAt || Date.now() };
           await set(ref(db, `users/${user.uid}/profile`), profile);
-          if (isNew) void bridge('account_created', { name:finalName, email:profile.email, contact:finalContact, uid:user.uid, createdAt:new Date().toISOString() });
+          if (isNew) await bridge('account_created', { name:finalName, email:profile.email, contact:finalContact, uid:user.uid, createdAt:new Date().toISOString() });
           return profile;
         }
         async function getUserProfile(uid = currentUser?.uid) { if (!uid || !db) return {}; const snapshot = await get(ref(db, `users/${uid}/profile`)); return snapshot.val() || {}; }
@@ -1949,8 +1811,6 @@
           if (user && !visitorTrackingStarted) trackVisit();
         }
         function openProfile() {
-          const workspaceVisible = !$('gmWorkspaceOverlay')?.classList.contains('gm-hidden');
-          if (hasAccount() && !workspaceVisible) { openWorkspace(); return; }
           $('gmAuthOverlay').classList.remove('gm-hidden'); $('gmChatWindow').classList.add('gm-hidden');
           if (!auth) {
             setStatus('gmAuthStatus', 'Firebase is not configured. Add your Firebase Web App settings to activate accounts, chat, and orders.', true);
@@ -1970,42 +1830,31 @@
           if (!auth) { setStatus('gmAuthStatus','Firebase is not configured. Add the Firebase settings first.',true); return; }
           const email = $('gmAuthEmail').value.trim(), password = $('gmAuthPassword').value, name = $('gmAuthName').value.trim(), contact = $('gmAuthContact').value.trim();
           if (!email || !password) { setStatus('gmAuthStatus','Enter your email and password.',true); return; }
-          if (authMode === 'signup' && (!name || !contact)) { setStatus('gmAuthStatus','Full name and contact information are required for manual sign-up.',true); return; }
-          const submitButton = $('gmAuthSubmit');
           try {
-            submitButton.disabled = true; setStatus('gmAuthStatus', authMode === 'signup' ? 'Creating your account…' : 'Signing in…');
-            let result;
+            $('gmAuthSubmit').disabled = true; setStatus('gmAuthStatus', authMode === 'signup' ? 'Creating your account…' : 'Signing in…');
             if (authMode === 'signup') {
+              if (!name || !contact) throw new Error('Full name and contact information are required.');
               if (password.length < 6) throw new Error('Password must contain at least 6 characters.');
               const photoUrl = await readProfilePhoto();
               const credential = EmailAuthProvider.credential(email,password);
-              result = currentUser?.isAnonymous ? await linkWithCredential(currentUser,credential) : await createUserWithEmailAndPassword(auth,email,password);
+              const result = currentUser?.isAnonymous ? await linkWithCredential(currentUser,credential) : await createUserWithEmailAndPassword(auth,email,password);
               await saveUserProfile(result.user,{name,contact,photoUrl,isNew:true});
+              setStatus('gmAuthStatus','Account created successfully.');
             } else {
-              result = await signInWithEmailAndPassword(auth,email,password);
+              const result = await signInWithEmailAndPassword(auth,email,password);
               const profile = await getUserProfile(result.user.uid);
-              if (contact || name) await saveUserProfile(result.user,{name:name || profile.name,contact:contact || profile.contact});
+              if (contact || name) await saveUserProfile(result.user,{name,contact});
+              setStatus('gmAuthStatus','Signed in successfully.');
             }
-            currentUser = result.user;
-            try { const token = await getIdTokenResult(result.user, true); isAdmin = token.claims?.admin === true; } catch { isAdmin = false; }
-            const profile = await getUserProfile(result.user.uid).catch(() => ({}));
-            $('gmWorkspaceAvatar').src = profile.photoUrl || result.user.photoURL || 'https://i.ibb.co.com/GfswcC5V/FB-IMG-1791925489216.jpg';
-            $('gmWorkspaceSubtitle').textContent = profile.contact || result.user.email || 'Google Marketing Client Area';
-            setAuthUi(result.user);
-            closeProfile();
-            await openWorkspace();
-            setStatus('gmAuthStatus', authMode === 'signup' ? 'Account created successfully.' : 'Signed in successfully.');
-            showToast(authMode === 'signup' ? 'Account created successfully. Welcome to your workspace!' : 'Signed in successfully. Welcome back!');
-          } catch (error) { setStatus('gmAuthStatus', error.message || 'Authentication failed.', true); showToast(error.message || 'Authentication failed.', true); }
-          finally { submitButton.disabled = false; }
+            setTimeout(() => { if (currentUser) { closeProfile(); openWorkspace(); } }, 450);
+          } catch (error) { setStatus('gmAuthStatus', error.message || 'Authentication failed.', true); }
+          finally { $('gmAuthSubmit').disabled = false; }
         }
         async function googleAuth() {
           if (!auth) return setStatus('gmAuthStatus','Firebase is not configured. Add the Firebase settings first.',true);
           const name = $('gmAuthName').value.trim(), contact = $('gmAuthContact').value.trim();
-          const googleButton = document.querySelector('#gmAuthActions .gm-google-action');
+          if (authMode === 'signup' && (!name || !contact)) return setStatus('gmAuthStatus','Enter your full name and contact information before continuing with Google.',true);
           try {
-            if (googleButton) googleButton.disabled = true;
-            setStatus('gmAuthStatus','Connecting securely with Google…');
             const provider = new GoogleAuthProvider();
             let result;
             if (currentUser?.isAnonymous) {
@@ -2015,28 +1864,18 @@
                 else throw linkError;
               }
             } else result = await signInWithPopup(auth,provider);
-            currentUser = result.user;
             const old = await getUserProfile(result.user.uid);
-            const finalName = name || result.user.displayName || old.name || (result.user.email || '').split('@')[0] || 'Client';
-            const finalContact = contact || old.contact || result.user.email || '';
-            await saveUserProfile(result.user,{name:finalName,contact:finalContact,photoUrl:result.user.photoURL || old.photoUrl || '',isNew:!old.uid});
-            try { const token = await getIdTokenResult(result.user, true); isAdmin = token.claims?.admin === true; } catch { isAdmin = false; }
-            const profile = await getUserProfile(result.user.uid).catch(() => ({}));
-            $('gmWorkspaceAvatar').src = profile.photoUrl || result.user.photoURL || 'https://i.ibb.co.com/GfswcC5V/FB-IMG-1791925489216.jpg';
-            $('gmWorkspaceSubtitle').textContent = profile.contact || result.user.email || 'Google Marketing Client Area';
-            setAuthUi(result.user);
-            closeProfile();
-            await openWorkspace();
-            showToast('Google sign-in successful. Your profile details have been added automatically.');
-          } catch (error) { setStatus('gmAuthStatus',error.message || 'Google sign-in failed.',true); showToast(error.message || 'Google sign-in failed.',true); }
-          finally { if (googleButton) googleButton.disabled = false; }
+            if (!old.contact && !contact) { setStatus('gmAuthStatus','Google sign-in worked, but please enter your contact information and select Save Profile.',true); $('gmAuthContactWrap').classList.remove('gm-hidden'); closeProfile(); openProfile(); return; }
+            await saveUserProfile(result.user,{name:name || result.user.displayName || old.name,contact:contact || old.contact,isNew:!old.uid});
+            closeProfile(); openWorkspace();
+          } catch (error) { setStatus('gmAuthStatus',error.message || 'Google sign-in failed.',true); }
         }
         async function saveProfile() {
           if (!hasAccount()) return setStatus('gmAuthStatus','Please create an account or sign in first.',true);
           const name = $('gmAuthName').value.trim(), contact = $('gmAuthContact').value.trim();
           if (!name || !contact) return setStatus('gmAuthStatus','Full name and contact information are required.',true);
-          try { const photoUrl = await readProfilePhoto(); const profile = await saveUserProfile(currentUser,{name,contact,photoUrl}); $('gmAuthPhoto').value=''; $('gmWorkspaceAvatar').src = profile.photoUrl || currentUser.photoURL || $('gmWorkspaceAvatar').src; $('gmWorkspaceSubtitle').textContent = profile.contact || currentUser.email || 'Google Marketing Client Area'; setStatus('gmAuthStatus','Profile updated successfully.'); showToast('Profile saved successfully.'); }
-          catch (error) { setStatus('gmAuthStatus',error.message || 'Could not update profile.',true); showToast(error.message || 'Could not update profile.',true); }
+          try { const photoUrl = await readProfilePhoto(); await saveUserProfile(currentUser,{name,contact,photoUrl}); setStatus('gmAuthStatus','Profile updated successfully.'); $('gmWorkspaceAvatar').src = photoUrl || currentUser.photoURL || $('gmWorkspaceAvatar').src; }
+          catch (error) { setStatus('gmAuthStatus',error.message || 'Could not update profile.',true); }
         }
         async function logout() { try { if (auth) await signOut(auth); workspaceOpened = false; $('gmWorkspaceOverlay').classList.add('gm-hidden'); closeProfile(); setStatus('gmAuthStatus','You have signed out.'); } catch (error) { setStatus('gmAuthStatus',error.message,true); } }
 
@@ -2093,99 +1932,23 @@
             const profile = hasAccount() ? await getUserProfile(currentUser.uid) : {};
             const message = {sender:'user',senderUid:currentUser?.uid || null,html,text:textContent || '',imageUrl,orderId:orderId || null,createdAt:Date.now()};
             const messageRef = push(ref(db,`chats/${id}/messages`)); await set(messageRef,message);
+            await update(chatRef,{chatId:id,uid:currentUser?.uid || null,name:profile.name || currentUser?.displayName || old.name || 'Website Visitor',contact:profile.contact || currentUser?.email || old.contact || '',isGuest:!hasAccount(),lastMessage:textContent || (imageUrl ? 'Image attachment' : 'New message'),lastSender:'user',updatedAt:Date.now(),unreadForAdmin:increment(1)});
             $('gmChatComposer').innerHTML=''; $('gmChatImageInput').value=''; $('gmChatImageLabel').textContent='';
-            if (orderId) $('gmChatOrderRef').value='';
-            try { await update(chatRef,{chatId:id,uid:currentUser?.uid || null,name:profile.name || currentUser?.displayName || old.name || 'Website Visitor',contact:profile.contact || currentUser?.email || old.contact || '',isGuest:!hasAccount(),lastMessage:textContent || (imageUrl ? 'Image attachment' : 'New message'),lastSender:'user',updatedAt:Date.now(),unreadForAdmin:increment(1)}); } catch (metadataError) { console.warn('Message saved but chat metadata update failed:',metadataError); }
-            const delivery = await bridge('chat_message',{chatId:id,messageId:messageRef.key,uid:currentUser?.uid || null,name:profile.name || currentUser?.displayName || 'Website Visitor',contact:profile.contact || currentUser?.email || '',text:textContent,html,imageUrl,orderId,createdAt:new Date().toISOString()});
-            if (delivery?.error || delivery?.ok === false) {
-              console.error('Website chat message was saved, but Telegram notification was not confirmed:', delivery?.error || delivery);
-              showToast('Message saved on website, but Telegram delivery failed. Please try again later or contact support.',true);
-            } else {
-              showToast('Message sent successfully.');
-            }
-          } catch (error) { showToast(error.message || 'Message could not be sent.',true); }
+            await bridge('chat_message',{chatId:id,messageId:messageRef.key,uid:currentUser?.uid || null,name:profile.name || currentUser?.displayName || 'Website Visitor',contact:profile.contact || currentUser?.email || '',text:textContent,html,imageUrl,orderId,createdAt:new Date().toISOString()});
+          } catch (error) { alert(error.message || 'Message could not be sent.'); }
           finally { sendBtn.disabled = false; }
         }
         function setChatInputFromOrder(orderId) { $('gmChatOrderRef').value = orderId || ''; toggleChat(true); }
 
-        const workspaceSectionTitles = {overview:'Overview',calculator:'Price Calculator',services:'Services & Pricing',orders:'My Orders',reviews:'Reviews',notifications:'Notifications',admin:'Admin Panel'};
-        function closeWorkspaceMenu() { $('gmWorkspaceTabs')?.classList.remove('gm-menu-open'); $('gmWorkspaceMenuButton')?.setAttribute('aria-expanded','false'); }
-        function toggleWorkspaceMenu(force) {
-          const nav = $('gmWorkspaceTabs'); const open = typeof force === 'boolean' ? force : !nav.classList.contains('gm-menu-open');
-          nav.classList.toggle('gm-menu-open',open); $('gmWorkspaceMenuButton')?.setAttribute('aria-expanded',String(open));
-          if (open && $('gmWorkspaceSearchInput')?.value.trim()) searchWorkspace($('gmWorkspaceSearchInput').value);
-        }
-        function toggleWorkspaceSearch(force) {
-          const panel = $('gmWorkspaceSearch'); const opening = typeof force === 'boolean' ? force : panel.classList.contains('gm-hidden');
-          panel.classList.toggle('gm-hidden',!opening);
-          if (opening) { $('gmWorkspaceSearchInput').focus(); }
-          else { $('gmWorkspaceSearchInput').value=''; searchWorkspace(''); }
-        }
-        function searchWorkspace(value) {
-          const queryText = String(value || '').trim().toLowerCase();
-          const results = [];
-          const tabLabels = {overview:'Overview',calculator:'Price Calculator',services:'Services & Pricing',orders:'My Orders',reviews:'Reviews',notifications:'Notifications',admin:'Admin Panel'};
-          const tabs = [...document.querySelectorAll('#gmWorkspaceTabs [data-gm-tab]')];
-          tabs.forEach(button => {
-            if (button.classList.contains('gm-hidden')) return;
-            const key=button.dataset.gmTab, label=(tabLabels[key] || button.textContent).trim();
-            if (!queryText || label.toLowerCase().includes(queryText)) results.push({kind:'tab',value:key,label,detail:'Workspace section',icon:key==='admin'?'fa-shield-alt':'fa-layer-group'});
-          });
-          const actionLabels={chat:'Live Support',profile:'Your Profile',portfolio:'Back to Portfolio'};
-          [...document.querySelectorAll('#gmWorkspaceTabs [data-gm-action]')].forEach(button=>{
-            const key=button.dataset.gmAction,label=actionLabels[key] || button.textContent.trim();
-            if (!queryText || label.toLowerCase().includes(queryText)) results.push({kind:'action',value:key,label,detail:'Workspace action',icon:key==='chat'?'fa-comments':key==='profile'?'fa-user-circle':'fa-globe'});
-          });
-          Object.entries(servicesCache || {}).forEach(([id,service]) => {
-            if (service && service.active !== false && (!queryText || String(service.name || '').toLowerCase().includes(queryText))) results.push({kind:'service',value:id,label:String(service.name || 'Service'),detail:'Service card · open Services & Pricing',icon:'fa-box'});
-          });
-          if (isAdmin) {
-            const adminLabels={catalog:'Services & Pricing',orders:'Orders',chats:'Live Chats',reviews:'Review Moderation',analytics:'Visit Analytics'};
-            Object.entries(adminLabels).forEach(([key,label])=>{ if (!queryText || label.toLowerCase().includes(queryText)) results.push({kind:'admin',value:key,label,detail:'Administrator section',icon:'fa-shield-alt'}); });
-          }
-          const holder=$('gmWorkspaceSearchResults');
-          if (!holder) return;
-          if (!results.length) { holder.innerHTML='<div class="gm-work-search-hint">No matching section or service found.</div>'; return; }
-          holder.innerHTML=results.slice(0,18).map(item=>`<button type="button" class="gm-search-result" onclick="GM.chooseWorkspaceSearchResult('${item.kind}','${escapeHtml(item.value)}')"><i class="fas ${item.icon}" aria-hidden="true"></i><span><strong>${escapeHtml(item.label)}</strong><small>${escapeHtml(item.detail)}</small></span></button>`).join('');
-        }
-        function chooseWorkspaceSearchResult(kind,value) {
-          if (kind==='admin') { selectTab('admin'); selectAdminTab(value); }
-          else if (kind==='action') { closeWorkspaceMenu(); if(value==='chat') openWorkspaceChat(); else if(value==='profile') openProfile(); else if(value==='portfolio') closeWorkspace(); }
-          else if (kind==='service') {
-            selectTab('services');
-            const card=[...document.querySelectorAll('[data-gm-service-id]')].find(node=>node.dataset.gmServiceId===String(value));
-            card?.scrollIntoView({behavior:'smooth',block:'center'});
-          } else selectTab(value);
-          toggleWorkspaceSearch(false);
-        }
-        function handleWorkspaceSearchKey(event) {
-          if (event.key !== 'Enter') return;
-          const first=$('gmWorkspaceSearchResults')?.querySelector('.gm-search-result');
-          if (first) first.click();
-        }
-        function workspaceBack() {
-          const active = [...document.querySelectorAll('[data-gm-section]')].find(section => !section.classList.contains('gm-hidden'));
-          if (active && active.dataset.gmSection !== 'overview') { selectTab('overview'); return; }
-          closeWorkspace();
-        }
-        function toggleAdminMenu(force) {
-          const nav=$('gmAdminTabs'); const open=typeof force==='boolean'?force:!nav.classList.contains('gm-menu-open');
-          nav.classList.toggle('gm-menu-open',open); $('gmAdminMenuButton')?.setAttribute('aria-expanded',String(open));
-        }
         function selectTab(tab) {
-          if (tab === 'admin' && !isAdmin) { selectTab('overview'); return; }
           document.querySelectorAll('[data-gm-section]').forEach(section => section.classList.toggle('gm-hidden',section.dataset.gmSection !== tab));
           document.querySelectorAll('#gmWorkspaceTabs [data-gm-tab]').forEach(button => button.classList.toggle('active',button.dataset.gmTab === tab));
-          $('gmCurrentSectionTitle').textContent = workspaceSectionTitles[tab] || 'Workspace';
-          $('gmWorkspaceBackButton').classList.toggle('gm-hidden',tab === 'overview');
-          closeWorkspaceMenu();
+          if (tab === 'admin' && !isAdmin) { selectTab('overview'); return; }
           if (tab === 'notifications') markNotificationsRead();
-          if (tab === 'admin') toggleAdminMenu(false);
         }
         function selectAdminTab(tab) {
           document.querySelectorAll('[data-gm-admin-section]').forEach(section => section.classList.toggle('gm-hidden',section.dataset.gmAdminSection !== tab));
           document.querySelectorAll('#gmAdminSection [data-gm-admin-tab]').forEach(button => button.classList.toggle('active',button.dataset.gmAdminTab === tab));
-          toggleAdminMenu(false);
         }
         function addWorkspaceListener(path, callback) { return addWorkspaceListenerRef(ref(db,path),callback); }
         function addWorkspaceListenerRef(databaseRef, callback) { onValue(databaseRef,callback); return () => off(databaseRef,'value',callback); }
@@ -2195,7 +1958,7 @@
           if (!currentUser) { openProfile(); setStatus('gmAuthStatus','Please sign in or create an account to access your private workspace.'); return; }
           if (!db) { openProfile(); return; }
           workspaceOpened = true; $('gmWorkspaceOverlay').classList.remove('gm-hidden'); $('gmChatWindow').classList.add('gm-hidden'); closeProfile();
-          $('gmWorkspaceTitle').textContent = isAdmin ? 'Administrator Workspace' : 'My Workspace'; $('gmAdminTab').classList.toggle('gm-hidden',!isAdmin); closeWorkspaceMenu(); toggleWorkspaceSearch(false);
+          $('gmWorkspaceTitle').textContent = isAdmin ? 'Administrator Workspace' : 'My Workspace'; $('gmAdminTab').classList.toggle('gm-hidden',!isAdmin);
           $('gmAdminSection').classList.toggle('gm-hidden',!isAdmin);
           $('gmWorkspaceSubtitle').textContent = currentUser.displayName || currentUser.email || 'Google Marketing Client Area';
           $('gmOverviewStats').innerHTML = ['<div class="gm-stat"><strong id="gmStatOrders">0</strong><span>My Orders</span></div>','<div class="gm-stat"><strong id="gmStatPending">0</strong><span>Pending Orders</span></div>','<div class="gm-stat"><strong id="gmStatReviews">0</strong><span>My Reviews</span></div>','<div class="gm-stat"><strong id="gmStatUnread">0</strong><span>Unread Notifications</span></div>'].join('');
@@ -2226,13 +1989,11 @@
             workspaceUnsubs.push(addWorkspaceListener('analytics/visits',snapshot=>{analyticsCache=snapshot.val() || {};renderAnalytics(analyticsCache);if($('gmStatVisits'))$('gmStatVisits').textContent=Object.keys(analyticsCache).length;}));
           }
           selectTab('overview');
-          renderPublishedReviewsEverywhere();
         }
-        function closeWorkspace() { workspaceOpened=false; clearWorkspaceListeners(); closeWorkspaceMenu(); toggleWorkspaceSearch(false); $('gmWorkspaceOverlay').classList.add('gm-hidden'); }
-        function openWorkspaceChat() { closeWorkspaceMenu(); toggleChat(true); }
+        function closeWorkspace() { workspaceOpened=false; clearWorkspaceListeners(); $('gmWorkspaceOverlay').classList.add('gm-hidden'); }
         function renderServiceCard(id,s) {
           const features=Array.isArray(s.features) ? s.features : String(s.features || '').split('\n').filter(Boolean);
-          return `<article class="gm-service-card" data-gm-service-id="${escapeHtml(id)}"><div style="color:#60a5fa;font-size:1.5rem;margin-bottom:12px"><i class="${escapeHtml(s.icon || 'fas fa-check-circle')}"></i></div><h3>${escapeHtml(s.name || 'Service')}</h3><p>${escapeHtml(s.description || '')}</p><ul>${features.map(f=>`<li><i class="fas fa-check-circle"></i><span>${escapeHtml(f)}</span></li>`).join('')}</ul><div class="gm-service-price">${money(s.price)} <span style="font-size:.78rem;font-weight:400;color:var(--text-muted)">/ unit</span></div><button class="gm-action gm-primary" type="button" onclick="GM.startOrder('${escapeHtml(id)}')">Order Service</button><div class="gm-card-reviews" data-service-reviews="${escapeHtml(id)}"></div></article>`;
+          return `<article class="gm-service-card"><div style="color:#60a5fa;font-size:1.5rem;margin-bottom:12px"><i class="${escapeHtml(s.icon || 'fas fa-check-circle')}"></i></div><h3>${escapeHtml(s.name || 'Service')}</h3><p>${escapeHtml(s.description || '')}</p><ul>${features.map(f=>`<li><i class="fas fa-check-circle"></i><span>${escapeHtml(f)}</span></li>`).join('')}</ul><div class="gm-service-price">${money(s.price)} <span style="font-size:.78rem;font-weight:400;color:var(--text-muted)">/ unit</span></div><button class="gm-action gm-primary" type="button" onclick="GM.startOrder('${escapeHtml(id)}')">Order Service</button></article>`;
         }
         function loadServices() {
           if (serviceListener) off(ref(db,'services'),'value',serviceListener);
@@ -2244,60 +2005,9 @@
             $('gmCalcService').innerHTML=options || '<option value="">No services available yet</option>';
             $('gmReviewService').innerHTML='<option value="">Select a service</option>'+entries.map(([id,s])=>`<option value="${escapeHtml(id)}">${escapeHtml(s.name)}</option>`).join('');
             if (isAdmin) renderAdminServiceList(servicesCache);
-            updateCalculator(); renderPublishedReviewsEverywhere();
+            updateCalculator();
           };
           onValue(ref(db,'services'),serviceListener);
-        }
-        let publicCatalogCache = { services:[], reviews:[] }, publicCatalogRequest = null;
-        const PUBLIC_CATALOG_URL = GM_TELEGRAM_BRIDGE_URL.replace(/\/api\/bridge\/?$/, '/api/public/catalog');
-        function reviewStars(value) { const rating=Math.max(1,Math.min(5,Number(value)||5)); return '★'.repeat(rating)+'☆'.repeat(5-rating); }
-        function reviewsForService(serviceId) { return (publicCatalogCache.reviews || []).filter(review => String(review.serviceId || '') === String(serviceId || '')); }
-        function renderMiniReview(review) {
-          return `<article class="gm-mini-review"><div class="gm-review-stars">${reviewStars(review.rating)}</div><strong>${escapeHtml(review.title || 'Customer review')}</strong><p>${escapeHtml(review.text || '')}</p><small>${escapeHtml(review.customerName || 'Customer')} · ${prettyDate(review.createdAt)}</small></article>`;
-        }
-        function renderAllReviewItem(review) {
-          return `<article class="gm-all-review-item"><div style="display:flex;align-items:center;justify-content:space-between;gap:9px;flex-wrap:wrap"><strong>${escapeHtml(review.title || 'Customer review')}</strong><span class="gm-review-stars">${reviewStars(review.rating)}</span></div><p>${escapeHtml(review.text || '')}</p><small>${escapeHtml(review.customerName || 'Customer')} · ${prettyDate(review.createdAt)}</small></article>`;
-        }
-        function renderReviewWidget(serviceId) {
-          const reviews=reviewsForService(serviceId), key=escapeHtml(serviceId);
-          const content = reviews.length ? `<div class="gm-review-marquee"><div class="gm-review-track">${reviews.map(renderMiniReview).join('')}${reviews.map(renderMiniReview).join('')}</div></div>` : `<p class="gm-muted" style="font-size:.78rem">No published reviews yet.</p>`;
-          return `<div class="gm-card-review-head"><strong><i class="fas fa-star" style="color:#fbbf24"></i> Reviews (${reviews.length})</strong><button class="gm-link-action" type="button" onclick="GM.toggleServiceReviews('${key}')">${reviews.length ? 'See all' : 'Reviews'}</button></div>${content}<div class="gm-all-reviews gm-hidden" data-gm-review-list="${key}">${reviews.length ? reviews.map(renderAllReviewItem).join('') : '<p class="gm-muted">Reviews approved by the administrator will appear here.</p>'}</div>`;
-        }
-        function renderPublishedReviewsEverywhere() {
-          document.querySelectorAll('[data-service-reviews]').forEach(node => { node.innerHTML=renderReviewWidget(node.dataset.serviceReviews || ''); });
-          renderPublicCatalog();
-        }
-        function toggleServiceReviews(serviceId) {
-          document.querySelectorAll('[data-gm-review-list]').forEach(node => {
-            if (node.dataset.gmReviewList === String(serviceId)) node.classList.toggle('gm-hidden');
-          });
-        }
-        function renderPublicServiceCard(service) {
-          const features=Array.isArray(service.features)?service.features:String(service.features||'').split('\n').filter(Boolean);
-          return `<article class="gm-public-service-card"><div style="color:#60a5fa;font-size:1.35rem"><i class="${escapeHtml(service.icon || 'fas fa-check-circle')}"></i></div><h4>${escapeHtml(service.name || 'Service')}</h4><p>${escapeHtml(service.description || 'Professional digital support tailored to your project.')}</p><ul>${features.slice(0,5).map(feature=>`<li><i class="fas fa-check-circle"></i><span>${escapeHtml(feature)}</span></li>`).join('')}</ul><div class="gm-service-price">${money(service.price)} <span style="font-size:.76rem;font-weight:400;color:var(--text-muted)">/ unit</span></div><div class="gm-card-reviews">${renderReviewWidget(service.id)}</div><button class="gm-action gm-primary" type="button" onclick="GM.openProfile()"><i class="fas fa-user-lock"></i> Sign in to order</button></article>`;
-        }
-        function renderPublicCatalog() {
-          const track=$('gmPublicCatalogTrack'); if (!track) return;
-          const services=publicCatalogCache.services || [];
-          if (!services.length) { track.innerHTML='<div class="gm-public-service-card"><h4>Service catalog</h4><p>Current services will appear here once the live catalog is available.</p></div>'; return; }
-          const cards=services.map(renderPublicServiceCard).join('');
-          track.innerHTML=cards+cards;
-        }
-        async function loadPublicCatalog() {
-          if (publicCatalogRequest) return publicCatalogRequest;
-          publicCatalogRequest=(async()=>{
-            try {
-              const controller=new AbortController(); const timeout=window.setTimeout(()=>controller.abort(),9000);
-              const response=await fetch(PUBLIC_CATALOG_URL,{method:'GET',headers:{'Accept':'application/json'},signal:controller.signal,cache:'no-store'});
-              window.clearTimeout(timeout);
-              if (!response.ok) throw new Error(`Catalog request returned HTTP ${response.status}`);
-              const data=await response.json();
-              publicCatalogCache={services:Array.isArray(data.services)?data.services:[],reviews:Array.isArray(data.reviews)?data.reviews:[]};
-              renderPublishedReviewsEverywhere();
-            } catch(error) { console.warn('Public service catalog could not be loaded:',error); }
-            finally { publicCatalogRequest=null; }
-          })();
-          return publicCatalogRequest;
         }
         function updateCalculator() { const s=servicesCache[$('gmCalcService')?.value]; const qty=Math.max(1,Math.floor(Number($('gmCalcQty')?.value)||1)); $('gmCalcUnit').value=s?money(s.price):money(0); $('gmCalcTotal').textContent=money(s?(Number(s.price)||0)*qty:0); }
         function prepareOrderFromCalculator() { const id=$('gmCalcService').value; if (!id) return alert('No service pricing is available yet.'); startOrder(id); $('gmOrderQty').value=$('gmCalcQty').value || 1; updateOrderTotal(); selectTab('services'); }
@@ -2308,18 +2018,14 @@
           if (!hasAccount() || !db || !activeServiceId) return;
           const service=servicesCache[activeServiceId], qty=Math.max(1,Math.floor(Number($('gmOrderQty').value)||0)), contact=$('gmOrderContact').value.trim(), details=$('gmOrderDetails').value.trim();
           if (!contact || !details || qty < 1) return setStatus('gmOrderStatus','Quantity, contact information and project details are required.',true);
-          const submitButton=document.querySelector('#gmOrderFormPanel button[onclick="GM.submitOrder()"]'); if (submitButton?.disabled) return;
           try {
-            if (submitButton) submitButton.disabled=true;
             const orderId=`ORD-${Date.now().toString(36).toUpperCase()}-${Math.random().toString(36).slice(2,6).toUpperCase()}`;
             const profile=await getUserProfile(); const data={orderId,uid:currentUser.uid,customerName:profile.name || currentUser.displayName || 'Client',customerEmail:currentUser.email || '',contact,serviceId:activeServiceId,serviceName:service.name,unitPrice:Number(service.price)||0,quantity:qty,total:(Number(service.price)||0)*qty,details,status:'pending',createdAt:Date.now(),updatedAt:Date.now()};
             await set(ref(db,`orders/${orderId}`),data);
-            $('gmOrderDetails').value=''; setStatus('gmOrderStatus',`Order submitted successfully. Your Order ID is ${orderId}.`); showToast(`Order submitted successfully. Order ID: ${orderId}`);
-            try { await set(push(ref(db,`notifications/${currentUser.uid}`)),{title:'Order received',body:`Order ${orderId} has been submitted and is awaiting review.`,orderId,createdAt:Date.now(),read:false}); } catch(notificationError) { console.warn('Order saved but notification could not be created:',notificationError); }
-            void bridge('new_order',data);
+            await set(push(ref(db,`notifications/${currentUser.uid}`)),{title:'Order received',body:`Order ${orderId} has been submitted and is awaiting review.`,orderId,createdAt:Date.now(),read:false});
+            await bridge('new_order',data); setStatus('gmOrderStatus',`Order submitted successfully. Your Order ID is ${orderId}.`); $('gmOrderDetails').value='';
             setTimeout(()=>{cancelOrderForm();selectTab('orders');},700);
-          } catch (error) { setStatus('gmOrderStatus',error.message || 'Could not submit your order.',true); showToast(error.message || 'Could not submit your order.',true); }
-          finally { if (submitButton) submitButton.disabled=false; }
+          } catch (error) { setStatus('gmOrderStatus',error.message || 'Could not submit your order.',true); }
         }
         function renderMyOrders(orders) {
           const area=$('gmMyOrders'); if(!orders.length){area.innerHTML=empty('You have not placed an order yet.');return;}
@@ -2332,43 +2038,35 @@
         async function submitReview() {
           if (!hasAccount()) return openProfile(); const serviceId=$('gmReviewService').value, rating=Number($('gmReviewRating').value), title=$('gmReviewTitle').value.trim(), text=$('gmReviewText').value.trim();
           if (!serviceId || !text) return setStatus('gmReviewStatus','Select a service and enter your review.',true);
-          const submitButton=document.querySelector('button[onclick="GM.submitReview()"]'); if (submitButton?.disabled) return;
-          try {
-            if (submitButton) submitButton.disabled=true;
-            const profile=await getUserProfile(), service=servicesCache[serviceId]; const id=push(ref(db,'reviews')).key;
-            await set(ref(db,`reviews/${id}`),{uid:currentUser.uid,customerName:profile.name || currentUser.displayName || 'Client',serviceId,serviceName:service?.name || 'Service',rating,title,text,status:'pending',createdAt:Date.now()});
-            $('gmReviewText').value=''; $('gmReviewTitle').value=''; $('gmReviewService').value=''; $('gmReviewRating').value='5';
-            setStatus('gmReviewStatus','Review submitted for administrator approval.'); showToast('Review submitted successfully and sent for approval.');
-            void bridge('new_review',{reviewId:id,serviceName:service?.name,rating,title,text,uid:currentUser.uid});
-          } catch(error) { setStatus('gmReviewStatus',error.message || 'Review could not be submitted.',true); showToast(error.message || 'Review could not be submitted.',true); }
-          finally { if (submitButton) submitButton.disabled=false; }
+          try { const profile=await getUserProfile(), service=servicesCache[serviceId]; const id=push(ref(db,'reviews')).key; await set(ref(db,`reviews/${id}`),{uid:currentUser.uid,customerName:profile.name || currentUser.displayName || 'Client',serviceId,serviceName:service?.name || 'Service',rating,title,text,status:'pending',createdAt:Date.now()}); $('gmReviewText').value='';$('gmReviewTitle').value='';setStatus('gmReviewStatus','Review submitted for administrator approval.'); await bridge('new_review',{reviewId:id,serviceName:service?.name,rating,title,text,uid:currentUser.uid}); }
+          catch(error){setStatus('gmReviewStatus',error.message || 'Review could not be submitted.',true);}
         }
 
         function resetServiceEditor() { activeServiceId=null; $('gmAdminServiceName').value='';$('gmAdminServicePrice').value='';$('gmAdminServiceIcon').value='';$('gmAdminServiceDescription').value='';$('gmAdminServiceFeatures').value='';$('gmServiceEditorTitle').textContent='Add a Service';$('gmSaveServiceBtn').textContent='Save Service';setStatus('gmAdminServiceStatus',''); }
         async function saveService() {
           if(!isAdmin || !currentUser) return; const name=$('gmAdminServiceName').value.trim(), price=Number($('gmAdminServicePrice').value), description=$('gmAdminServiceDescription').value.trim(), icon=$('gmAdminServiceIcon').value.trim() || 'fas fa-check-circle', features=$('gmAdminServiceFeatures').value.split('\n').map(s=>s.trim()).filter(Boolean);
           if(!name || $('gmAdminServicePrice').value==='' || !Number.isFinite(price) || price<0) return setStatus('gmAdminServiceStatus','Service title and a valid non-negative unit price are required.',true);
-          try { const id=activeServiceId || push(ref(db,'services')).key; await set(ref(db,`services/${id}`),{name,price,description,icon,features,active:true,updatedAt:Date.now(),updatedBy:currentUser.uid,createdAt:servicesCache[id]?.createdAt || Date.now()}); resetServiceEditor(); setStatus('gmAdminServiceStatus','Service saved.'); showToast('Service saved successfully.'); void loadPublicCatalog(); }
-          catch(error){setStatus('gmAdminServiceStatus',error.message || 'Could not save service.',true); showToast(error.message || 'Could not save service.',true);}
+          try { const id=activeServiceId || push(ref(db,'services')).key; await set(ref(db,`services/${id}`),{name,price,description,icon,features,active:true,updatedAt:Date.now(),updatedBy:currentUser.uid,createdAt:servicesCache[id]?.createdAt || Date.now()}); resetServiceEditor(); setStatus('gmAdminServiceStatus','Service saved.'); }
+          catch(error){setStatus('gmAdminServiceStatus',error.message || 'Could not save service.',true);}
         }
         function renderAdminServiceList(items) { const list=Object.entries(items).map(([id,s])=>`<div class="gm-list-item"><div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap"><div><strong>${escapeHtml(s.name)}</strong><p class="gm-muted">${money(s.price)} per unit · ${s.active===false?'Hidden':'Active'}</p><p class="gm-muted">${escapeHtml(s.description || '')}</p><small class="gm-muted">${(s.features||[]).map(escapeHtml).join(' · ')}</small></div><div class="gm-action-row" style="margin-top:0"><button class="gm-action" onclick="GM.editService('${escapeHtml(id)}')" type="button">Edit</button><button class="gm-action" onclick="GM.toggleService('${escapeHtml(id)}')" type="button">${s.active===false?'Publish':'Hide'}</button><button class="gm-action gm-danger" onclick="GM.deleteService('${escapeHtml(id)}')" type="button">Delete</button></div></div></div>`).join(''); $('gmAdminServiceList').innerHTML=list || empty('No services are configured. Add your first service above.'); }
         function editService(id) { const s=servicesCache[id]; if(!s) return; activeServiceId=id; $('gmAdminServiceName').value=s.name||'';$('gmAdminServicePrice').value=s.price ?? '';$('gmAdminServiceIcon').value=s.icon||'';$('gmAdminServiceDescription').value=s.description||'';$('gmAdminServiceFeatures').value=(s.features||[]).join('\n');$('gmServiceEditorTitle').textContent='Edit Service';$('gmSaveServiceBtn').textContent='Update Service';$('gmAdminServiceName').scrollIntoView({behavior:'smooth',block:'center'}); }
-        async function toggleService(id) { if(!isAdmin)return;const s=servicesCache[id];if(!s)return;try { await update(ref(db,`services/${id}`),{active:s.active===false,updatedAt:Date.now()}); void loadPublicCatalog(); showToast(s.active===false?'Service published.':'Service hidden from public catalog.'); } catch(e) { showToast(e.message,true); } }
-        async function deleteService(id) { if(!isAdmin || !confirm('Delete this service from the catalog? Past orders will remain.'))return; try { await remove(ref(db,`services/${id}`)); void loadPublicCatalog(); showToast('Service deleted from the catalog.'); } catch(e) { showToast(e.message,true); } }
+        async function toggleService(id) { if(!isAdmin)return;const s=servicesCache[id];if(!s)return;await update(ref(db,`services/${id}`),{active:s.active===false,updatedAt:Date.now()}).catch(e=>alert(e.message)); }
+        async function deleteService(id) { if(!isAdmin || !confirm('Delete this service from the catalog? Past orders will remain.'))return; await remove(ref(db,`services/${id}`)).catch(e=>alert(e.message)); }
         function renderAdminOrders(items) {
           const rows=Object.entries(items).sort((a,b)=>(Number(b[1].createdAt)||0)-(Number(a[1].createdAt)||0)).map(([id,o])=>`<tr><td><b>${escapeHtml(o.orderId||id)}</b><br><small>${prettyDate(o.createdAt)}</small></td><td>${escapeHtml(o.customerName||'Client')}<br><small>${escapeHtml(o.contact||o.customerEmail||'')}</small></td><td>${escapeHtml(o.serviceName||'Service')}<br>${Number(o.quantity)||0} × ${money(o.unitPrice)}<br><b>${money(o.total)}</b></td><td>${escapeHtml(o.details||'')}</td><td><select onchange="GM.updateOrderStatus('${escapeHtml(id)}',this.value)" aria-label="Order status"><option value="pending" ${o.status==='pending'?'selected':''}>Pending</option><option value="in_progress" ${o.status==='in_progress'?'selected':''}>In Progress</option><option value="completed" ${o.status==='completed'?'selected':''}>Completed</option><option value="cancelled" ${o.status==='cancelled'?'selected':''}>Cancelled</option></select><br><button type="button" class="gm-action" style="margin-top:6px" onclick="GM.adminOrderChat('${escapeHtml(o.orderId||id)}','${escapeHtml(o.uid||'')}')">Chat</button></td></tr>`).join('');
           $('gmAdminOrders').innerHTML=rows?`<table class="gm-table"><thead><tr><th>Order</th><th>Customer</th><th>Service / Total</th><th>Details</th><th>Status / Support</th></tr></thead><tbody>${rows}</tbody></table>`:empty('No orders received yet.');
           const pending=Object.values(items).filter(o=>['pending','in_progress'].includes(o.status)).length;if($('gmStatPending'))$('gmStatPending').textContent=pending;
         }
-        async function updateOrderStatus(id,status) { if(!isAdmin || !['pending','in_progress','completed','cancelled'].includes(status))return; try { await update(ref(db,`orders/${id}`),{status,updatedAt:Date.now(),updatedBy:currentUser.uid}); const order=ordersCache[id]; if(order?.uid) await set(push(ref(db,`notifications/${order.uid}`)),{title:'Order status updated',body:`Your order ${order.orderId||id} is now ${statusText(status)}.`,orderId:order.orderId||id,createdAt:Date.now(),read:false}); void bridge('order_status_updated',{orderId:order?.orderId||id,status}); showToast('Order status updated.'); } catch(e){alert(e.message || 'Could not update order.');} }
+        async function updateOrderStatus(id,status) { if(!isAdmin || !['pending','in_progress','completed','cancelled'].includes(status))return; try { await update(ref(db,`orders/${id}`),{status,updatedAt:Date.now(),updatedBy:currentUser.uid}); const order=ordersCache[id]; if(order?.uid) await set(push(ref(db,`notifications/${order.uid}`)),{title:'Order status updated',body:`Your order ${order.orderId||id} is now ${statusText(status)}.`,orderId:order.orderId||id,createdAt:Date.now(),read:false}); await bridge('order_status_updated',{orderId:order?.orderId||id,status}); } catch(e){alert(e.message || 'Could not update order.');} }
         function adminOrderChat(orderId,uid) { const match=Object.entries(chatCache).find(([id,c])=>c.uid===uid); if(match) { selectAdminTab('chats'); openAdminChat(match[0]); $('gmAdminChatTitle').textContent=`${match[1].name || 'Customer'} · ${orderId}`; } else alert('No support conversation is linked to this customer yet. Ask the customer to send a message through Live Support and include this Order ID.'); }
         function renderAdminReviews(items) {
           const entries=Object.entries(items).sort((a,b)=>(Number(b[1].createdAt)||0)-(Number(a[1].createdAt)||0));
           $('gmAdminReviews').innerHTML=entries.length?entries.map(([id,r])=>`<div class="gm-list-item"><div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap"><strong>${escapeHtml(r.serviceName||'Service')} · ${escapeHtml(r.customerName||'Client')}</strong><span class="gm-pill">${escapeHtml(statusText(r.status))}</span></div><div class="gm-review-stars">${'★'.repeat(Math.max(1,Math.min(5,Number(r.rating)||5)))}${'☆'.repeat(5-Math.max(1,Math.min(5,Number(r.rating)||5)))}</div><p style="margin:6px 0"><b>${escapeHtml(r.title||'')}</b></p><p>${escapeHtml(r.text||'')}</p><small class="gm-muted">${prettyDate(r.createdAt)}</small><div class="gm-action-row">${r.status==='published'?'':`<button type="button" class="gm-action gm-success" onclick="GM.moderateReview('${escapeHtml(id)}','published')">Approve & Publish</button>`}<button type="button" class="gm-action" onclick="GM.moderateReview('${escapeHtml(id)}','rejected')">Reject</button><button type="button" class="gm-action gm-danger" onclick="GM.deleteReview('${escapeHtml(id)}')">Delete</button></div></div>`).join(''):empty('No reviews have been submitted.');
           if($('gmStatReviewQueue'))$('gmStatReviewQueue').textContent=entries.filter(([id,r])=>r.status==='pending').length;
         }
-        async function moderateReview(id,status) { if(!isAdmin)return; try { await update(ref(db,`reviews/${id}`),{status,moderatedAt:Date.now(),moderatedBy:currentUser.uid}); const r=reviewsCache[id]; if(r?.uid) await set(push(ref(db,`notifications/${r.uid}`)),{title:status==='published'?'Review approved':'Review update',body:status==='published'?`Your review for ${r.serviceName} has been approved.`:`Your review for ${r.serviceName} was not approved for publication.`,createdAt:Date.now(),read:false}); void loadPublicCatalog(); showToast(status==='published'?'Review published successfully.':'Review moderation updated.'); }catch(e){showToast(e.message,true);} }
-        async function deleteReview(id) { if(!isAdmin||!confirm('Permanently delete this review?'))return; try { await remove(ref(db,`reviews/${id}`)); void loadPublicCatalog(); showToast('Review deleted.'); } catch(e) { showToast(e.message,true); } }
+        async function moderateReview(id,status) { if(!isAdmin)return; try { await update(ref(db,`reviews/${id}`),{status,moderatedAt:Date.now(),moderatedBy:currentUser.uid}); const r=reviewsCache[id]; if(r?.uid) await set(push(ref(db,`notifications/${r.uid}`)),{title:status==='published'?'Review approved':'Review update',body:status==='published'?`Your review for ${r.serviceName} has been approved.`:`Your review for ${r.serviceName} was not approved for publication.`,createdAt:Date.now(),read:false}); }catch(e){alert(e.message);} }
+        async function deleteReview(id) { if(!isAdmin||!confirm('Permanently delete this review?'))return; await remove(ref(db,`reviews/${id}`)).catch(e=>alert(e.message)); }
         function renderAdminChats(items) {
           const arr=Object.entries(items).map(([id,c])=>({id,...c})).sort((a,b)=>(Number(b.updatedAt)||0)-(Number(a.updatedAt)||0));
           $('gmAdminChatList').innerHTML=arr.length?arr.map(c=>`<button type="button" class="gm-list-item" style="text-align:left;color:inherit;cursor:pointer" onclick="GM.openAdminChat('${escapeHtml(c.id)}')"><div style="display:flex;justify-content:space-between;gap:8px"><strong>${escapeHtml(c.name||'Website Visitor')}</strong>${Number(c.unreadForAdmin)>0?`<span class="gm-pill">${Number(c.unreadForAdmin)} new</span>`:''}</div><p class="gm-muted">${escapeHtml(c.lastMessage||'No message text')} </p><small class="gm-muted">${escapeHtml(c.id)} · ${prettyDate(c.updatedAt)}</small>${c.contact?`<p class="gm-muted">${escapeHtml(c.contact)}</p>`:''}</button>`).join(''):empty('No live conversations yet.');
@@ -2380,10 +2078,8 @@
         }
         async function adminSendChat() {
           if(!isAdmin||!activeAdminChatId)return alert('Select a conversation first.'); const html=getComposerHtml('gmAdminChatComposer'), textContent=composerText('gmAdminChatComposer'), file=$('gmAdminChatImageInput').files?.[0]; if(!textContent&&!html.replace(/<[^>]*>/g,'').trim()&&!file)return;
-          const sendButton=document.querySelector('button[onclick="GM.adminSendChat()"]'); if(sendButton?.disabled)return;
-          try { if(sendButton)sendButton.disabled=true; let imageUrl='';if(file){$('gmAdminChatImageLabel').textContent='Uploading image…';imageUrl=await uploadImage(file);} const c=chatCache[activeAdminChatId]||{};const message={sender:'admin',senderUid:currentUser.uid,html,text:textContent||'',imageUrl,createdAt:Date.now()};await set(push(ref(db,`chats/${activeAdminChatId}/messages`)),message);$('gmAdminChatComposer').innerHTML='';$('gmAdminChatImageInput').value='';$('gmAdminChatImageLabel').textContent='';showToast('Reply sent successfully.');try{await update(ref(db,`chatMetadata/${activeAdminChatId}`),{lastMessage:textContent||(imageUrl?'Image attachment':'New reply'),lastSender:'admin',updatedAt:Date.now(),unreadForUser:increment(1)});}catch(metadataError){console.warn('Reply saved but metadata update failed:',metadataError);}if(c.uid) void set(push(ref(db,`notifications/${c.uid}`)),{title:'New support reply',body:`Google Marketing replied to your conversation${c.lastOrderId?' about '+c.lastOrderId:''}.`,createdAt:Date.now(),read:false}).catch(e=>console.warn('Reply notification failed:',e));void bridge('admin_chat_reply',{chatId:activeAdminChatId,uid:c.uid||null,name:c.name||'Website Visitor',text:textContent,html,imageUrl,createdAt:new Date().toISOString()}); }
-          catch(e){showToast(e.message||'Reply could not be sent.',true);}
-          finally { if(sendButton)sendButton.disabled=false; }
+          try { let imageUrl='';if(file){$('gmAdminChatImageLabel').textContent='Uploading image…';imageUrl=await uploadImage(file);} const c=chatCache[activeAdminChatId]||{};const message={sender:'admin',senderUid:currentUser.uid,html,text:textContent||'',imageUrl,createdAt:Date.now()};await set(push(ref(db,`chats/${activeAdminChatId}/messages`)),message);await update(ref(db,`chatMetadata/${activeAdminChatId}`),{lastMessage:textContent||(imageUrl?'Image attachment':'New reply'),lastSender:'admin',updatedAt:Date.now(),unreadForUser:increment(1)}); if(c.uid) await set(push(ref(db,`notifications/${c.uid}`)),{title:'New support reply',body:`Google Marketing replied to your conversation${c.lastOrderId?' about '+c.lastOrderId:''}.`,createdAt:Date.now(),read:false}); await bridge('admin_chat_reply',{chatId:activeAdminChatId,uid:c.uid||null,name:c.name||'Website Visitor',text:textContent,html,imageUrl,createdAt:new Date().toISOString()});$('gmAdminChatComposer').innerHTML='';$('gmAdminChatImageInput').value='';$('gmAdminChatImageLabel').textContent=''; }
+          catch(e){alert(e.message||'Reply could not be sent.');}
         }
         function renderAnalytics(items) {
           const entries=Object.entries(items).map(([id,v])=>({id,...v})).sort((a,b)=>(Number(b.createdAt)||0)-(Number(a.createdAt)||0));
@@ -2404,11 +2100,8 @@
         }
         function copyText(value) { if(navigator.clipboard?.writeText)navigator.clipboard.writeText(value).then(()=>alert('Copied: '+value)).catch(()=>prompt('Copy this ID:',value));else prompt('Copy this ID:',value); }
         function init() {
-          loadPublicCatalog();
-          window.addEventListener('focus',loadPublicCatalog);
-          window.setInterval(() => { if (!document.hidden) loadPublicCatalog(); }, 60000);
           if(firebaseConfigured()) {
-            try { app=initializeApp(firebaseConfig);auth=getAuth(app);db=getDatabase(app);onAuthStateChanged(auth,handleAuthChanged); $('gmChatConfigNote').classList.add('gm-hidden'); }
+            try { app=initializeApp(GM_FIREBASE_CONFIG);auth=getAuth(app);db=getDatabase(app);onAuthStateChanged(auth,handleAuthChanged); $('gmChatConfigNote').classList.add('gm-hidden'); }
             catch(error) { console.error('Firebase initialization failed:',error); $('gmChatConfigNote').textContent='Firebase setup is incomplete or invalid. Please check the configuration values.'; }
           } else {
             $('gmChatConfigNote').textContent='Setup required: add Firebase Web App configuration to activate real-time chat, profiles, orders and admin tools.';
@@ -2417,14 +2110,8 @@
           // If a customer returns to an open chat after an earlier visit, refresh its unread indicator.
           window.addEventListener('focus',updateChatBadge);
         }
-        // Defer initialization until after this module exposes window.GM. This prevents an
-        // initialization error from leaving every inline GM.* button without its handler.
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', init, { once: true });
-        } else {
-          window.setTimeout(init, 0);
-        }
-        return {openProfile,closeProfile,setAuthMode,submitAuth,googleAuth,saveProfile,logout,toggleChat,formatChat,addChatLink,sendChatMessage,setChatImageLabel,openWorkspace,closeWorkspace,selectTab,selectAdminTab,toggleWorkspaceMenu,toggleWorkspaceSearch,searchWorkspace,chooseWorkspaceSearchResult,handleWorkspaceSearchKey,workspaceBack,toggleAdminMenu,toggleServiceReviews,openWorkspaceChat,updateCalculator,prepareOrderFromCalculator,startOrder,updateOrderTotal,cancelOrderForm,submitOrder,chatAboutOrder,submitReview,resetServiceEditor,saveService,editService,toggleService,deleteService,updateOrderStatus,adminOrderChat,moderateReview,deleteReview,openAdminChat,formatAdminChat,addAdminChatLink,setAdminImageLabel,adminSendChat,exportAnalytics,copyText};
+        if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+        return {openProfile,closeProfile,setAuthMode,submitAuth,googleAuth,saveProfile,logout,toggleChat,formatChat,addChatLink,sendChatMessage,setChatImageLabel,openWorkspace,closeWorkspace,selectTab,selectAdminTab,updateCalculator,prepareOrderFromCalculator,startOrder,updateOrderTotal,cancelOrderForm,submitOrder,chatAboutOrder,submitReview,resetServiceEditor,saveService,editService,toggleService,deleteService,updateOrderStatus,adminOrderChat,moderateReview,deleteReview,openAdminChat,formatAdminChat,addAdminChatLink,setAdminImageLabel,adminSendChat,exportAnalytics,copyText};
       })();
       window.GM = GM;
     </script>
