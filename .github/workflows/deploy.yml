@@ -7,6 +7,9 @@ permissions:
   contents: read
   pages: write
   id-token: write
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -14,7 +17,9 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Prepare frontend build
         env:
           FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
@@ -27,22 +32,46 @@ jobs:
           IMGBB_API_KEY: ${{ secrets.IMGBB_API_KEY }}
           TELEGRAM_BRIDGE_URL: ${{ secrets.TELEGRAM_BRIDGE_URL }}
         run: |
+          echo "Injecting secrets using Python (safe replacement)..."
           BRIDGE_URL="${TELEGRAM_BRIDGE_URL:-https://portfolio-live-chat-bot.onrender.com/api/bridge}"
-          sed -i "s|__FIREBASE_API_KEY__|${FIREBASE_API_KEY}|g" index.html
-          sed -i "s|__FIREBASE_AUTH_DOMAIN__|${FIREBASE_AUTH_DOMAIN}|g" index.html
-          sed -i "s|__FIREBASE_DATABASE_URL__|${FIREBASE_DATABASE_URL}|g" index.html
-          sed -i "s|__FIREBASE_PROJECT_ID__|${FIREBASE_PROJECT_ID}|g" index.html
-          sed -i "s|__FIREBASE_STORAGE_BUCKET__|${FIREBASE_STORAGE_BUCKET}|g" index.html
-          sed -i "s|__FIREBASE_MESSAGING_SENDER_ID__|${FIREBASE_MESSAGING_SENDER_ID}|g" index.html
-          sed -i "s|__FIREBASE_APP_ID__|${FIREBASE_APP_ID}|g" index.html
-          sed -i "s|__IMGBB_API_KEY__|${IMGBB_API_KEY}|g" index.html
-          sed -i "s|__TELEGRAM_BRIDGE_URL__|${BRIDGE_URL}|g" index.html
+          python3 << 'PY'
+          import os
+          replacements = {
+            "__FIREBASE_API_KEY__": os.environ.get("FIREBASE_API_KEY",""),
+            "__FIREBASE_AUTH_DOMAIN__": os.environ.get("FIREBASE_AUTH_DOMAIN",""),
+            "__FIREBASE_DATABASE_URL__": os.environ.get("FIREBASE_DATABASE_URL",""),
+            "__FIREBASE_PROJECT_ID__": os.environ.get("FIREBASE_PROJECT_ID",""),
+            "__FIREBASE_STORAGE_BUCKET__": os.environ.get("FIREBASE_STORAGE_BUCKET",""),
+            "__FIREBASE_MESSAGING_SENDER_ID__": os.environ.get("FIREBASE_MESSAGING_SENDER_ID",""),
+            "__FIREBASE_APP_ID__": os.environ.get("FIREBASE_APP_ID",""),
+            "__IMGBB_API_KEY__": os.environ.get("IMGBB_API_KEY",""),
+            "__TELEGRAM_BRIDGE_URL__": os.environ.get("TELEGRAM_BRIDGE_URL") or "https://portfolio-live-chat-bot.onrender.com/api/bridge",
+          }
+          with open("index.html","r",encoding="utf-8") as f:
+            content = f.read()
+          for k,v in replacements.items():
+            content = content.replace(k, v)
+          # Also replace hardcoded default bridge url if custom provided
+          custom_bridge = os.environ.get("TELEGRAM_BRIDGE_URL")
+          if custom_bridge and custom_bridge != "https://portfolio-live-chat-bot.onrender.com/api/bridge":
+            content = content.replace("https://portfolio-live-chat-bot.onrender.com/api/bridge", custom_bridge)
+          with open("index.html","w",encoding="utf-8") as f:
+            f.write(content)
+          print("All placeholders replaced safely")
+          PY
           mkdir -p _site
           cp index.html _site/index.html
           touch _site/.nojekyll
-      - uses: actions/configure-pages@v4
-      - uses: actions/upload-pages-artifact@v3
+          echo "Build ready"
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
           path: _site
-      - uses: actions/deploy-pages@v4
+
+      - name: Deploy to GitHub Pages
         id: deployment
+        uses: actions/deploy-pages@v4
