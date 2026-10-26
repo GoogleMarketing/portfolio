@@ -27,7 +27,7 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Inject public web configuration
+      - name: Build public website and inject Firebase configuration
         env:
           FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
           FIREBASE_AUTH_DOMAIN: ${{ secrets.FIREBASE_AUTH_DOMAIN }}
@@ -40,40 +40,55 @@ jobs:
         run: |
           python3 <<'PY'
           import os
+          import re
           from pathlib import Path
 
-          path = Path('index.html')
-          if not path.exists():
+          source = Path('index.html')
+          if not source.is_file():
               raise SystemExit('ERROR: index.html is missing from the repository root.')
 
           replacements = {
-              '__FIREBASE_API_KEY__': os.environ.get('FIREBASE_API_KEY', ''),
-              '__FIREBASE_AUTH_DOMAIN__': os.environ.get('FIREBASE_AUTH_DOMAIN', ''),
-              '__FIREBASE_DATABASE_URL__': os.environ.get('FIREBASE_DATABASE_URL', ''),
-              '__FIREBASE_PROJECT_ID__': os.environ.get('FIREBASE_PROJECT_ID', ''),
-              '__FIREBASE_STORAGE_BUCKET__': os.environ.get('FIREBASE_STORAGE_BUCKET', ''),
-              '__FIREBASE_MESSAGING_SENDER_ID__': os.environ.get('FIREBASE_MESSAGING_SENDER_ID', ''),
-              '__FIREBASE_APP_ID__': os.environ.get('FIREBASE_APP_ID', ''),
-              '__IMGBB_API_KEY__': os.environ.get('IMGBB_API_KEY', ''),
+              '__FIREBASE_API_KEY__': os.environ.get('FIREBASE_API_KEY', '').strip(),
+              '__FIREBASE_AUTH_DOMAIN__': os.environ.get('FIREBASE_AUTH_DOMAIN', '').strip(),
+              '__FIREBASE_DATABASE_URL__': os.environ.get('FIREBASE_DATABASE_URL', '').strip(),
+              '__FIREBASE_PROJECT_ID__': os.environ.get('FIREBASE_PROJECT_ID', '').strip(),
+              '__FIREBASE_STORAGE_BUCKET__': os.environ.get('FIREBASE_STORAGE_BUCKET', '').strip(),
+              '__FIREBASE_MESSAGING_SENDER_ID__': os.environ.get('FIREBASE_MESSAGING_SENDER_ID', '').strip(),
+              '__FIREBASE_APP_ID__': os.environ.get('FIREBASE_APP_ID', '').strip(),
+              '__IMGBB_API_KEY__': os.environ.get('IMGBB_API_KEY', '').strip(),
           }
-          missing = [key for key, value in replacements.items() if not value.strip()]
-          if missing:
-              raise SystemExit('ERROR: Add these GitHub Actions secrets before deploying: ' + ', '.join(missing))
 
-          content = path.read_text(encoding='utf-8')
+          missing = [marker for marker, value in replacements.items() if not value]
+          if missing:
+              raise SystemExit('ERROR: Add these GitHub Actions secrets: ' + ', '.join(missing))
+
+          invalid = [marker for marker, value in replacements.items()
+                     if value.startswith(('__', 'PASTE_')) or marker in value]
+          if invalid:
+              raise SystemExit('ERROR: One or more Actions secrets still contain placeholder text: ' + ', '.join(invalid))
+
+          content = source.read_text(encoding='utf-8')
+          absent = [marker for marker in replacements if marker not in content]
+          if absent:
+              raise SystemExit('ERROR: Expected configuration placeholders are absent from index.html: ' + ', '.join(absent))
+
           for marker, value in replacements.items():
               content = content.replace(marker, value)
+
           remaining = [marker for marker in replacements if marker in content]
-          if remaining:
-              raise SystemExit('ERROR: Configuration placeholders remain in index.html: ' + ', '.join(remaining))
-          path.write_text(content, encoding='utf-8')
-          print('Public Firebase and ImgBB configuration injected; no server-side credentials were included.')
+          if remaining or re.search(r'__FIREBASE_[A-Z_]+__|__IMGBB_[A-Z_]+__', content):
+              raise SystemExit('ERROR: Unresolved configuration placeholder found; website was not published.')
+
+          site = Path('_site')
+          site.mkdir(exist_ok=True)
+          (site / 'index.html').write_text(content, encoding='utf-8')
+          print('Website built and configuration markers validated. Publishing only _site/index.html.')
           PY
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: '_site'
 
       - name: Deploy to GitHub Pages
         id: deployment
