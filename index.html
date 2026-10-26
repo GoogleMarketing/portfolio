@@ -1641,14 +1641,14 @@
 
       /* SETUP REQUIRED: paste your Firebase Web App config below. Do not put Telegram bot tokens or service-account keys in this HTML. */
       const firebaseConfig = {
-  apiKey: "__FIREBASE_API_KEY__",
-  authDomain: "marketingportfolio-sr.firebaseapp.com",
-  databaseURL: "https://marketingportfolio-sr-default-rtdb.firebaseio.com",
-  projectId: "marketingportfolio-sr",
-  storageBucket: "marketingportfolio-sr.firebasestorage.app",
-  messagingSenderId: "886293886597",
-  appId: "1:886293886597:web:44aab056bde3df1e059bec"
-};
+        apiKey: "__FIREBASE_API_KEY__",
+        authDomain: "__FIREBASE_AUTH_DOMAIN__",
+        databaseURL: "__FIREBASE_DATABASE_URL__",
+        projectId: "__FIREBASE_PROJECT_ID__",
+        storageBucket: "__FIREBASE_STORAGE_BUCKET__",
+        messagingSenderId: "__FIREBASE_MESSAGING_SENDER_ID__",
+        appId: "__FIREBASE_APP_ID__"
+      };
       /* Use the ImgBB upload API key for profile/chat images. This is a public client key; restrict/monitor it where possible. */
       const GM_IMGBB_API_KEY = '__IMGBB_API_KEY__';
       /* Optional HTTPS endpoint must be implemented by your existing Render/Python backend; never put TELEGRAM_BOT_TOKEN here. */
@@ -1662,7 +1662,10 @@
         let chatListCallback = null, orderListener = null, serviceListener = null, reviewsListener = null, notificationsListener = null, analyticsListener = null, adminOrdersListener = null, adminReviewsListener = null;
         let visitorTrackingStarted = false;
         const $ = id => document.getElementById(id);
-        const firebaseConfigured = () => ['apiKey','authDomain','databaseURL','projectId','appId'].every(key => { const value = String(GM_FIREBASE_CONFIG[key] || ''); return value && !value.startsWith('PASTE_') && !value.startsWith('__FIREBASE_'); });
+        const firebaseConfigured = () => ['apiKey','authDomain','databaseURL','projectId','storageBucket','messagingSenderId','appId'].every(key => {
+          const value = String(firebaseConfig[key] || '').trim();
+          return Boolean(value) && !value.startsWith('PASTE_') && !value.startsWith('__FIREBASE_');
+        });
         const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
         const money = value => '$' + (Number(value) || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         const prettyDate = value => { let n = typeof value === 'number' ? value : (value && typeof value === 'object' && value['.sv'] ? Date.now() : Number(value)); return n ? new Date(n).toLocaleString() : 'Just now'; };
@@ -2101,7 +2104,7 @@
         function copyText(value) { if(navigator.clipboard?.writeText)navigator.clipboard.writeText(value).then(()=>alert('Copied: '+value)).catch(()=>prompt('Copy this ID:',value));else prompt('Copy this ID:',value); }
         function init() {
           if(firebaseConfigured()) {
-            try { app=initializeApp(GM_FIREBASE_CONFIG);auth=getAuth(app);db=getDatabase(app);onAuthStateChanged(auth,handleAuthChanged); $('gmChatConfigNote').classList.add('gm-hidden'); }
+            try { app=initializeApp(firebaseConfig);auth=getAuth(app);db=getDatabase(app);onAuthStateChanged(auth,handleAuthChanged); $('gmChatConfigNote').classList.add('gm-hidden'); }
             catch(error) { console.error('Firebase initialization failed:',error); $('gmChatConfigNote').textContent='Firebase setup is incomplete or invalid. Please check the configuration values.'; }
           } else {
             $('gmChatConfigNote').textContent='Setup required: add Firebase Web App configuration to activate real-time chat, profiles, orders and admin tools.';
@@ -2110,7 +2113,13 @@
           // If a customer returns to an open chat after an earlier visit, refresh its unread indicator.
           window.addEventListener('focus',updateChatBadge);
         }
-        if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+        // Defer initialization until after this module exposes window.GM. This prevents an
+        // initialization error from leaving every inline GM.* button without its handler.
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', init, { once: true });
+        } else {
+          window.setTimeout(init, 0);
+        }
         return {openProfile,closeProfile,setAuthMode,submitAuth,googleAuth,saveProfile,logout,toggleChat,formatChat,addChatLink,sendChatMessage,setChatImageLabel,openWorkspace,closeWorkspace,selectTab,selectAdminTab,updateCalculator,prepareOrderFromCalculator,startOrder,updateOrderTotal,cancelOrderForm,submitOrder,chatAboutOrder,submitReview,resetServiceEditor,saveService,editService,toggleService,deleteService,updateOrderStatus,adminOrderChat,moderateReview,deleteReview,openAdminChat,formatAdminChat,addAdminChatLink,setAdminImageLabel,adminSendChat,exportAnalytics,copyText};
       })();
       window.GM = GM;
