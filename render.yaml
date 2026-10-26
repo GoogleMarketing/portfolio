@@ -1,17 +1,32 @@
 services:
   - type: web
     name: portfolio-live-chat-bot
-    runtime: python
+    env: python
+    region: singapore
     plan: free
+    rootDir: backend
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn main:app --bind 0.0.0.0:$PORT --workers 1 --threads 4 --timeout 120
-    healthCheckPath: /health
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: PYTHON_VERSION
-        value: 3.11.9
-      - key: FIREBASE_SERVICE_ACCOUNT
+        value: 3.11.0
+      - key: FIREBASE_API_KEY
+        sync: false
+      - key: FIREBASE_AUTH_DOMAIN
         sync: false
       - key: FIREBASE_DATABASE_URL
+        sync: false
+      - key: FIREBASE_PROJECT_ID
+        sync: false
+      - key: FIREBASE_STORAGE_BUCKET
+        sync: false
+      - key: FIREBASE_MESSAGING_SENDER_ID
+        sync: false
+      - key: FIREBASE_APP_ID
+        sync: false
+      - key: FIREBASE_SERVICE_ACCOUNT
+        sync: false
+      - key: IMGBB_API_KEY
         sync: false
       - key: TELEGRAM_BOT_TOKEN
         sync: false
@@ -20,10 +35,4 @@ services:
       - key: BOT_ADMIN_ID
         sync: false
       - key: ADMIN_EMAIL
-        sync: false
-      - key: IMGBB_API_KEY
-        sync: false
-      - key: TELEGRAM_WEBHOOK_SECRET
-        sync: false
-      - key: WEBSITE_ORIGINS
-        sync: false
+        value: afshakil279@gmail.com
