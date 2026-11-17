@@ -1217,17 +1217,7 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
             </div>
         </div>
 
-        <!-- Additional live catalog: populated from active administrator-managed services. Existing portfolio cards above remain unchanged. -->
-        <div class="gm-live-catalog" id="gmLiveCatalogSection">
-            <div class="gm-live-catalog-head">
-                <span class="badge">Live Service Catalog</span>
-                <h3>Explore Our Current Services</h3>
-                <p>Browse the latest services and pricing configured by our team. Published customer reviews appear below each service.</p>
-            </div>
-            <div class="gm-catalog-viewport" id="gmPublicCatalogViewport" aria-label="Automatically moving service cards">
-                <div class="gm-catalog-track" id="gmPublicCatalogTrack"><div class="gm-public-service-card"><p>Loading current services…</p></div></div>
-            </div>
-        </div>
+        <!-- FIX: Old duplicate Live Catalog removed. Only the single Play Store Style Reviews box below remains. -->
     </section>
 
     <!-- Payment Terms & Guarantee Section -->
@@ -1647,8 +1637,8 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
 
             <!-- Admin-only controls appear only for a Firebase account with the admin custom claim. -->
             <section data-gm-section="admin" class="gm-hidden" id="gmAdminSection">
-                <div class="gm-panel" style="margin-bottom:16px"><h3><i class="fas fa-shield-alt"></i> Administrator Console</h3><p class="gm-muted">Manage the customer workspace, service pricing, orders, support chats, moderated reviews and visit analytics.</p><div class="gm-action-row gm-admin-menu-button"><button class="gm-action gm-primary" type="button" onclick="GM.toggleAdminMenu()" aria-expanded="false" aria-controls="gmAdminTabs" id="gmAdminMenuButton"><i class="fas fa-list"></i> Admin Sections</button></div></div>
-                <div class="gm-work-tabs" id="gmAdminTabs"><button class="gm-tab active" data-gm-admin-tab="catalog" onclick="GM.selectAdminTab('catalog')">Services & Pricing</button><button class="gm-tab" data-gm-admin-tab="orders" onclick="GM.selectAdminTab('orders')">Orders</button><button class="gm-tab" data-gm-admin-tab="chats" onclick="GM.selectAdminTab('chats')">Live Chats</button><button class="gm-tab" data-gm-admin-tab="reviews" onclick="GM.selectAdminTab('reviews')">Review Moderation</button><button class="gm-tab" data-gm-admin-tab="analytics" onclick="GM.selectAdminTab('analytics')">Visit Analytics</button></div>
+                <div class="gm-panel" style="margin-bottom:16px"><h3><i class="fas fa-shield-alt"></i> Administrator Console</h3><p class="gm-muted">One menu on the left. Click one option — only that page opens. Nothing else is shown underneath.</p></div>
+                <div class="gm-admin-layout"><nav class="gm-admin-menu" id="gmAdminTabs" aria-label="Admin menu"><button class="gm-admin-menu-btn active" data-gm-admin-tab="catalog" onclick="GM.selectAdminTab('catalog')">🧩 Services &amp; Pricing</button><button class="gm-admin-menu-btn" data-gm-admin-tab="orders" onclick="GM.selectAdminTab('orders')">📦 Orders</button><button class="gm-admin-menu-btn" data-gm-admin-tab="chats" onclick="GM.selectAdminTab('chats')">💬 Live Chats</button><button class="gm-admin-menu-btn" data-gm-admin-tab="reviews" onclick="GM.selectAdminTab('reviews')">⭐ Review Moderation</button><button class="gm-admin-menu-btn" data-gm-admin-tab="analytics" onclick="GM.selectAdminTab('analytics')">📊 Visit Count</button></nav><div class="gm-admin-pages">
                 <div data-gm-admin-section="catalog" id="gmAdminCatalog">
                     <div class="gm-panel" style="margin-bottom:16px"><h3 id="gmServiceEditorTitle">Add a Service</h3><div class="gm-form-grid">
                         <div class="gm-field gm-full"><label for="gmAdminServiceName">Service title *</label><input id="gmAdminServiceName" placeholder="e.g. App Testing & Feedback"></div>
@@ -1662,9 +1652,10 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
                 <div data-gm-admin-section="orders" class="gm-hidden"><div class="gm-panel"><h3>All Orders</h3><div class="gm-table-wrap" id="gmAdminOrders"></div></div></div>
                 <div data-gm-admin-section="chats" class="gm-hidden"><div class="gm-panel-grid"><div class="gm-panel"><h3>Conversations</h3><div class="gm-list" id="gmAdminChatList"></div></div><div class="gm-panel"><h3 id="gmAdminChatTitle">Select a conversation</h3><div class="gm-chat-messages" style="height:360px;max-height:50vh;border:1px solid var(--border-color);border-radius:12px;margin-bottom:10px" id="gmAdminChatMessages"><div class="gm-empty">Choose a conversation to reply.</div></div><div class="gm-format-bar"><button type="button" onclick="GM.formatAdminChat('bold')"><b>B</b></button><button type="button" onclick="GM.formatAdminChat('italic')"><i>I</i></button><button type="button" onclick="GM.formatAdminChat('underline')"><u>U</u></button><button type="button" onclick="GM.formatAdminChat('strikeThrough')"><s>S</s></button><button type="button" onclick="GM.addAdminChatLink()"><i class="fas fa-link"></i></button></div><div class="gm-compose-row"><input id="gmAdminChatImageInput" type="file" accept="image/*" class="gm-hidden" onchange="GM.setAdminImageLabel(this)"><button class="gm-upload-btn" type="button" onclick="document.getElementById('gmAdminChatImageInput').click()" title="Attach image"><i class="fas fa-paperclip"></i></button><div id="gmAdminChatComposer" class="gm-composer" contenteditable="true" data-placeholder="Write your reply…"></div><button type="button" class="gm-send-btn" onclick="GM.adminSendChat()"><i class="fas fa-paper-plane"></i></button></div><div class="gm-muted" id="gmAdminChatImageLabel" style="font-size:.72rem;margin-top:5px"></div></div></div></div>
                 <div data-gm-admin-section="reviews" class="gm-hidden"><div class="gm-panel"><h3>Review Moderation</h3><p class="gm-muted">New reviews remain pending until approved. Only approved reviews are marked as published in this system.</p><div id="gmAdminReviews" class="gm-list" style="margin-top:12px"></div></div></div>
-                <div data-gm-admin-section="analytics" class="gm-hidden"><div class="gm-panel"><div style="display:flex;gap:12px;justify-content:space-between;align-items:center;flex-wrap:wrap"><div><h3>Website Visit Analytics</h3><p class="gm-muted">Visit time, approximate country, browser category, referral source and screen size. Raw IP addresses are not stored by this feature.</p></div><button type="button" class="gm-action gm-primary" onclick="GM.exportAnalytics()"><i class="fas fa-download"></i> Export CSV</button></div><div class="gm-stat-grid" id="gmAnalyticsStats" style="margin-top:16px"></div><div class="gm-table-wrap" id="gmAnalyticsTable"></div></div></div>
+                <div data-gm-admin-section="analytics" class="gm-hidden"><div class="gm-panel"><div style="display:flex;gap:12px;justify-content:space-between;align-items:center;flex-wrap:wrap"><div><h3>Website Visit Analytics</h3><p class="gm-muted">Only visits you allowed are counted. No personal details are shown here.</p></div><button type="button" class="gm-action gm-primary" onclick="GM.exportAnalytics()"><i class="fas fa-download"></i> Export CSV</button></div><div class="gm-stat-grid" id="gmAnalyticsStats" style="margin-top:16px"></div><div class="gm-table-wrap" id="gmAnalyticsTable"></div></div></div>
+            </div></div>
             </section>
-            <p class="gm-privacy">Website analytics records the visit time, approximate country, browser category, referral source and screen dimensions to understand audience reach.</p>
+            <p class="gm-privacy">Visit counting only happens if you tap Allow above. <button type="button" onclick="GM.resetAnalyticsConsent()" style="background:none;border:none;color:#93c5fd;cursor:pointer;text-decoration:underline;padding:0;font:inherit">Change visit-count choice</button></p>
         </main>
     </div>
 
@@ -1828,7 +1819,7 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
 
       const GM = (() => {
         let app = null, auth = null, db = null, currentUser = null, isAdmin = false;
-        let authMode = 'signin', activeChatId = null, activeAdminChatId = null, activeServiceId = null;
+        let authMode = 'signin', activeChatId = null, activeAdminChatId = null, activeServiceId = null, pendingOrder = null;
         let servicesCache = {}, ordersCache = {}, reviewsCache = {}, chatCache = {}, notificationsCache = {}, analyticsCache = {};
         let chatMessageCallback = null, chatMessageChatId = null, adminMessageCallback = null, adminMessageChatId = null, badgeListener = null, badgeChatId = null, workspaceOpened = false, authReady = false;
         let chatListCallback = null, orderListener = null, serviceListener = null, reviewsListener = null, notificationsListener = null, analyticsListener = null, adminOrdersListener = null, adminReviewsListener = null;
@@ -2039,7 +2030,8 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
             $('gmWorkspaceSubtitle').textContent = profile.contact || result.user.email || 'Google Marketing Client Area';
             setAuthUi(result.user);
             closeProfile();
-            await openWorkspace();
+            if (pendingOrder || (function(){ try{ return sessionStorage.getItem('gmPendingOrder'); }catch(e){ return null; } })()) { await flushPendingOrderAfterAuth(); }
+            else { await openWorkspace(); }
             setStatus('gmAuthStatus', authMode === 'signup' ? 'Account created successfully.' : 'Signed in successfully.');
             showToast(authMode === 'signup' ? 'Account created successfully. Welcome to your workspace!' : 'Signed in successfully. Welcome back!');
           } catch (error) { const _fm1=friendlyAuthError(error); setStatus('gmAuthStatus', _fm1, true); showToast(_fm1, true); }
@@ -2072,7 +2064,8 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
             $('gmWorkspaceSubtitle').textContent = profile.contact || result.user.email || 'Google Marketing Client Area';
             setAuthUi(result.user);
             closeProfile();
-            await openWorkspace();
+            if (pendingOrder || (function(){ try{ return sessionStorage.getItem('gmPendingOrder'); }catch(e){ return null; } })()) { await flushPendingOrderAfterAuth(); }
+            else { await openWorkspace(); }
             showToast('Google sign-in successful. Your profile details have been added automatically.');
           } catch (error) { const _fm2=friendlyAuthError(error); setStatus('gmAuthStatus',_fm2,true); showToast(_fm2,true); }
           finally { if (googleButton) googleButton.disabled = false; }
@@ -2209,10 +2202,7 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
           if (active && active.dataset.gmSection !== 'overview') { selectTab('overview'); return; }
           closeWorkspace();
         }
-        function toggleAdminMenu(force) {
-          const nav=$('gmAdminTabs'); const open=typeof force==='boolean'?force:!nav.classList.contains('gm-menu-open');
-          nav.classList.toggle('gm-menu-open',open); $('gmAdminMenuButton')?.setAttribute('aria-expanded',String(open));
-        }
+        function toggleAdminMenu(force) { /* FIX: Admin menu is always visible now. No hide/show toggle. */ return; }
         function selectTab(tab) {
           if (tab === 'admin' && !isAdmin) { selectTab('overview'); return; }
           document.querySelectorAll('[data-gm-section]').forEach(section => section.classList.toggle('gm-hidden',section.dataset.gmSection !== tab));
@@ -2221,12 +2211,13 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
           $('gmWorkspaceBackButton').classList.toggle('gm-hidden',tab === 'overview');
           closeWorkspaceMenu();
           if (tab === 'notifications') markNotificationsRead();
-          if (tab === 'admin') toggleAdminMenu(false);
+          if (tab === 'admin') { /* menu stays visible */ }
         }
         function selectAdminTab(tab) {
           document.querySelectorAll('[data-gm-admin-section]').forEach(section => section.classList.toggle('gm-hidden',section.dataset.gmAdminSection !== tab));
           document.querySelectorAll('#gmAdminSection [data-gm-admin-tab]').forEach(button => button.classList.toggle('active',button.dataset.gmAdminTab === tab));
-          toggleAdminMenu(false);
+          const title=document.getElementById('gmAdminCurrentPage'); if(title) title.textContent={catalog:'Services & Pricing',orders:'Orders',chats:'Live Chats',reviews:'Review Moderation',analytics:'Visit Count',site:'Site Settings'}[tab]||'Admin';
+          try{ document.getElementById('gmAdminSection')?.scrollIntoView({behavior:'smooth',block:'start'}); }catch(e){}
         }
         function addWorkspaceListener(path, callback) { return addWorkspaceListenerRef(ref(db,path),callback); }
         function addWorkspaceListenerRef(databaseRef, callback) { onValue(databaseRef,callback); return () => off(databaseRef,'value',callback); }
@@ -2273,7 +2264,7 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
         function openWorkspaceChat() { closeWorkspaceMenu(); toggleChat(true); }
         function renderServiceCard(id,s) {
           const features=Array.isArray(s.features) ? s.features : String(s.features || '').split('\n').filter(Boolean);
-          return `<article class="gm-service-card" data-gm-service-id="${escapeHtml(id)}"><div style="color:#60a5fa;font-size:1.5rem;margin-bottom:12px"><i class="${escapeHtml(s.icon || 'fas fa-check-circle')}"></i></div><h3>${escapeHtml(s.name || 'Service')}</h3><p>${escapeHtml(s.description || '')}</p><ul>${features.map(f=>`<li><i class="fas fa-check-circle"></i><span>${escapeHtml(f)}</span></li>`).join('')}</ul><div class="gm-service-price">${money(s.price)} <span style="font-size:.78rem;font-weight:400;color:var(--text-muted)">/ unit</span></div><button class="gm-action gm-primary" type="button" onclick="GM.startOrder('${escapeHtml(id)}')">Order Service</button><div class="gm-card-reviews" data-service-reviews="${escapeHtml(id)}"></div></article>`;
+          return `<article class="gm-service-card" data-gm-service-id="${escapeHtml(id)}"><div style="color:#60a5fa;font-size:1.5rem;margin-bottom:12px"><i class="${escapeHtml(s.icon || 'fas fa-check-circle')}"></i></div><h3>${escapeHtml(s.name || 'Service')}</h3><p>${escapeHtml(s.description || '')}</p><ul>${features.map(f=>`<li><i class="fas fa-check-circle"></i><span>${escapeHtml(f)}</span></li>`).join('')}</ul><div class="gm-service-price">${money(s.price)} <span style="font-size:.78rem;font-weight:400;color:var(--text-muted)">/ unit</span></div><button class="gm-action gm-primary" type="button" onclick="GM.requireAccountForOrder('${escapeHtml(id)}','${escapeHtml(s.name || 'Service')}')">Order — goes to live chat</button><div class="gm-card-reviews" data-service-reviews="${escapeHtml(id)}"></div></article>`;
         }
         function loadServices() {
           if (serviceListener) off(ref(db,'services'),'value',serviceListener);
@@ -2284,7 +2275,7 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
             const options=entries.map(([id,s])=>`<option value="${escapeHtml(id)}">${escapeHtml(s.name)} — ${money(s.price)} / unit</option>`).join('');
             $('gmCalcService').innerHTML=options || '<option value="">No services available yet</option>';
             $('gmReviewService').innerHTML='<option value="">Select a service</option>'+entries.map(([id,s])=>`<option value="${escapeHtml(id)}">${escapeHtml(s.name)}</option>`).join('');
-            if (isAdmin) renderAdminServiceList(servicesCache);
+            try{ if(window.GM) window.GM._servicesCache = servicesCache; }catch(e){} if (isAdmin) renderAdminServiceList(servicesCache);
             updateCalculator(); renderPublishedReviewsEverywhere();
           };
           onValue(ref(db,'services'),serviceListener);
@@ -2315,15 +2306,9 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
         }
         function renderPublicServiceCard(service) {
           const features=Array.isArray(service.features)?service.features:String(service.features||'').split('\n').filter(Boolean);
-          return `<article class="gm-public-service-card"><div style="color:#60a5fa;font-size:1.35rem"><i class="${escapeHtml(service.icon || 'fas fa-check-circle')}"></i></div><h4>${escapeHtml(service.name || 'Service')}</h4><p>${escapeHtml(service.description || 'Professional digital support tailored to your project.')}</p><ul>${features.slice(0,5).map(feature=>`<li><i class="fas fa-check-circle"></i><span>${escapeHtml(feature)}</span></li>`).join('')}</ul><div class="gm-service-price">${money(service.price)} <span style="font-size:.76rem;font-weight:400;color:var(--text-muted)">/ unit</span></div><div class="gm-card-reviews">${renderReviewWidget(service.id)}</div><button class="gm-action gm-primary" type="button" onclick="GM.openProfile()"><i class="fas fa-user-lock"></i> Sign in to order</button></article>`;
+          return `<article class="gm-public-service-card"><div style="color:#60a5fa;font-size:1.35rem"><i class="${escapeHtml(service.icon || 'fas fa-check-circle')}"></i></div><h4>${escapeHtml(service.name || 'Service')}</h4><p>${escapeHtml(service.description || 'Professional digital support tailored to your project.')}</p><ul>${features.map(feature=>`<li><i class="fas fa-check-circle" style="color:#3b82f6"></i><span>${escapeHtml(feature)}</span></li>`).join('')}</ul><div class="gm-service-price">${money(service.price)} <span style="font-size:.76rem;font-weight:400;color:var(--text-muted)">/ unit</span></div><div class="gm-card-reviews">${renderReviewWidget(service.id)}</div><button class="gm-action gm-primary" type="button" onclick="GM.requireAccountForOrder('${escapeHtml(service.id)}','${escapeHtml(service.name || 'Service')}')">Order — goes to live chat</button></article>`;
         }
-        function renderPublicCatalog() {
-          const track=$('gmPublicCatalogTrack'); if (!track) return;
-          const services=publicCatalogCache.services || [];
-          if (!services.length) { track.innerHTML='<div class="gm-public-service-card"><h4>Service catalog</h4><p>Current services will appear here once the live catalog is available.</p></div>'; return; }
-          const cards=services.map(renderPublicServiceCard).join('');
-          track.innerHTML=cards+cards;
-        }
+        function renderPublicCatalog() { return; /* FIX: old duplicate catalog removed. Only the Play Store Style Reviews box remains. */ }
         async function loadPublicCatalog() {
           if (publicCatalogRequest) return publicCatalogRequest;
           publicCatalogRequest=(async()=>{
@@ -2340,9 +2325,52 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
           })();
           return publicCatalogRequest;
         }
+        async function placeOrderViaChat(serviceId, opts) {
+          if (!hasAccount() || !db) return false;
+          const service=servicesCache[serviceId]; if (!service) return false;
+          const qty=Math.max(1, Math.floor(Number((opts&&opts.qty)||1)));
+          const contact=(opts&&opts.contact)||'';
+          const details=(opts&&opts.details)||('Order via live chat — '+String(service.name||'Service'));
+          try {
+            const profile=await getUserProfile(currentUser.uid).catch(()=>({}));
+            const orderId='GM-'+Date.now().toString().slice(-6);
+            const data={orderId, serviceId, serviceName:service.name||'Service', price:Number(service.price)||0, qty, total:(Number(service.price)||0)*qty, contact:contact||profile.contact||currentUser.email||'', details, status:'pending', uid:currentUser.uid, createdAt:Date.now(), source:'chat-order'};
+            const orderRef=push(ref(db,'orders')); await set(orderRef, data);
+            try { await set(push(ref(db,'notifications/'+currentUser.uid)),{title:'Order received',body:'Order '+orderId+' has been submitted and is awaiting review.',orderId,createdAt:Date.now(),read:false}); } catch(e){}
+            void bridge('new_order', data);
+            // Send the order as a full chat message so admin sees it instantly in Live Chats + Telegram
+            try {
+              const chatId=getCurrentChatId();
+              const chatText='I want to order: '+String(service.name||'Service')+' — '+money(service.price)+' / unit × '+qty+' = '+money(data.total)+'. Order ID: '+orderId+'. Please confirm.';
+              const chatHtml='<div><strong>Order: '+escapeHtml(service.name||'Service')+'</strong><br>'+escapeHtml(String(service.description||''))+'<br>Price: '+escapeHtml(money(service.price))+' / unit × '+qty+' = '+escapeHtml(money(data.total))+'<br>Order ID: '+escapeHtml(orderId)+'</div>';
+              const msg={sender:'user',senderUid:currentUser.uid,html:chatHtml,text:chatText,imageUrl:'',orderId:orderId,createdAt:Date.now()};
+              const mRef=push(ref(db,'chats/'+chatId+'/messages')); await set(mRef, msg);
+              const chatRef=ref(db,'chatMetadata/'+chatId); const snap=await get(chatRef); const old=snap.val()||{};
+              await update(chatRef,{chatId,uid:currentUser.uid,name:profile.name||currentUser.displayName||old.name||'Website Visitor',contact:profile.contact||currentUser.email||old.contact||'',isGuest:false,lastMessage:chatText,lastSender:'user',updatedAt:Date.now(),unreadForAdmin:increment(1)});
+              void bridge('chat_message',{chatId,messageId:mRef.key,uid:currentUser.uid,name:profile.name||currentUser.displayName||'Website Visitor',contact:profile.contact||currentUser.email||'',text:chatText,html:chatHtml,imageUrl:'',orderId:orderId,serviceName:service.name||'Service',createdAt:new Date().toISOString()});
+            } catch(e){ console.warn('Order chat message failed', e); }
+            showToast('Order sent to live chat. Admin will reply here.');
+            toggleChat(true);
+            return true;
+          } catch(e){ showToast(e.message||'Could not send order.', true); return false; }
+        }
+        function requireAccountForOrder(serviceId, serviceName) {
+          const name=serviceName||(servicesCache[serviceId]&&servicesCache[serviceId].name)||'Service';
+          if (!hasAccount()) { pendingOrder={serviceId,serviceName:name}; try{ sessionStorage.setItem('gmPendingOrder',JSON.stringify(pendingOrder)); }catch(e){} openProfile(); setAuthMode('signup'); setStatus('gmAuthStatus','Create an account to order '+name+'. After creating it, your order will be sent automatically to live chat.'); return; }
+          void placeOrderViaChat(serviceId);
+        }
+        function setPendingOrder(o){ pendingOrder=o||null; }
+        async function flushPendingOrderAfterAuth() {
+          let po=pendingOrder;
+          if (!po) { try{ const raw=sessionStorage.getItem('gmPendingOrder'); if(raw) po=JSON.parse(raw); }catch(e){} }
+          if (!po || !po.serviceId) return;
+          pendingOrder=null; try{ sessionStorage.removeItem('gmPendingOrder'); }catch(e){}
+          await placeOrderViaChat(po.serviceId);
+        }
+        function getServicesList() { return Object.entries(servicesCache||{}).filter(function(e){return e[1]&&e[1].active!==false;}).map(function(e){return {id:e[0],name:e[1].name,description:e[1].description,price:e[1].price,icon:e[1].icon,features:e[1].features||[]};}); }
         function updateCalculator() { const s=servicesCache[$('gmCalcService')?.value]; const qty=Math.max(1,Math.floor(Number($('gmCalcQty')?.value)||1)); $('gmCalcUnit').value=s?money(s.price):money(0); $('gmCalcTotal').textContent=money(s?(Number(s.price)||0)*qty:0); }
         function prepareOrderFromCalculator() { const id=$('gmCalcService').value; if (!id) return alert('No service pricing is available yet.'); startOrder(id); $('gmOrderQty').value=$('gmCalcQty').value || 1; updateOrderTotal(); selectTab('services'); }
-        function startOrder(id) { if (!hasAccount()) { openProfile(); setAuthMode('signin'); setStatus('gmAuthStatus','Please sign in to place an order.'); return; } const service=servicesCache[id]; if (!service) return; activeServiceId=id; $('gmOrderFormPanel').classList.remove('gm-hidden'); $('gmOrderSelectedService').textContent=`${service.name} · ${money(service.price)} per unit`; $('gmOrderContact').value=''; getUserProfile().then(p=>$('gmOrderContact').value=p.contact || ''); $('gmOrderQty').value='1'; $('gmOrderDetails').value=''; setStatus('gmOrderStatus',''); updateOrderTotal(); $('gmOrderFormPanel').scrollIntoView({behavior:'smooth',block:'start'}); }
+        function startOrder(id) { if (!hasAccount()) { pendingOrder={serviceId:id,serviceName:(servicesCache[id]&&servicesCache[id].name)||'Service'}; try{ sessionStorage.setItem('gmPendingOrder',JSON.stringify(pendingOrder)); }catch(e){} openProfile(); setAuthMode('signup'); setStatus('gmAuthStatus','Create an account to order '+(pendingOrder.serviceName)+'. After creating it, your order will be sent automatically to live chat.'); return; } const service=servicesCache[id]; if (!service) return; activeServiceId=id; $('gmOrderFormPanel').classList.remove('gm-hidden'); $('gmOrderSelectedService').textContent=`${service.name} · ${money(service.price)} per unit`; $('gmOrderContact').value=''; getUserProfile().then(p=>$('gmOrderContact').value=p.contact || ''); $('gmOrderQty').value='1'; $('gmOrderDetails').value=''; setStatus('gmOrderStatus',''); updateOrderTotal(); $('gmOrderFormPanel').scrollIntoView({behavior:'smooth',block:'start'}); }
         function updateOrderTotal() { const service=servicesCache[activeServiceId]; const qty=Math.max(1,Math.floor(Number($('gmOrderQty')?.value)||1)); $('gmOrderTotal').value=money(service?(Number(service.price)||0)*qty:0); }
         function cancelOrderForm() { $('gmOrderFormPanel').classList.add('gm-hidden'); activeServiceId=null; }
         async function submitOrder() {
@@ -2465,7 +2493,7 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
         } else {
           window.setTimeout(init, 0);
         }
-        return {openProfile,closeProfile,setAuthMode,submitAuth,googleAuth,saveProfile,logout,toggleChat,formatChat,addChatLink,sendChatMessage,setChatImageLabel,openWorkspace,closeWorkspace,selectTab,selectAdminTab,toggleWorkspaceMenu,toggleWorkspaceSearch,searchWorkspace,chooseWorkspaceSearchResult,handleWorkspaceSearchKey,workspaceBack,toggleAdminMenu,toggleServiceReviews,openWorkspaceChat,updateCalculator,prepareOrderFromCalculator,startOrder,updateOrderTotal,cancelOrderForm,submitOrder,chatAboutOrder,submitReview,resetServiceEditor,saveService,editService,toggleService,deleteService,updateOrderStatus,adminOrderChat,moderateReview,deleteReview,openAdminChat,formatAdminChat,addAdminChatLink,setAdminImageLabel,adminSendChat,exportAnalytics,copyText};
+        return {openProfile,closeProfile,setAuthMode,submitAuth,googleAuth,saveProfile,logout,toggleChat,formatChat,addChatLink,sendChatMessage,setChatImageLabel,openWorkspace,closeWorkspace,selectTab,selectAdminTab,toggleWorkspaceMenu,toggleWorkspaceSearch,searchWorkspace,chooseWorkspaceSearchResult,handleWorkspaceSearchKey,workspaceBack,toggleAdminMenu,toggleServiceReviews,openWorkspaceChat,updateCalculator,prepareOrderFromCalculator,startOrder,updateOrderTotal,cancelOrderForm,submitOrder,chatAboutOrder,submitReview,resetServiceEditor,saveService,editService,toggleService,deleteService,updateOrderStatus,adminOrderChat,moderateReview,deleteReview,openAdminChat,formatAdminChat,addAdminChatLink,setAdminImageLabel,adminSendChat,exportAnalytics,copyText,requireAccountForOrder,placeOrderViaChat,setPendingOrder,flushPendingOrderAfterAuth,getServicesList};
       })();
       window.GM = GM;
     </script>
@@ -2507,16 +2535,48 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
 .gm-admin-site-grid textarea{min-height:84px;resize:vertical}
 </style>
 
+
+<style>
+/* FIX 2026-11-18: unlimited cards + admin one-menu-one-page + full order/chat cards */
+.service-card, .gm-service-card-fixed, .gm-public-service-card, .gm-order-card { height:auto !important; min-height:0 !important; }
+.service-card p, .gm-public-service-card p, .gm-order-card p { white-space:normal !important; overflow:visible !important; display:block !important; max-height:none !important; -webkit-line-clamp:unset !important; }
+.service-card ul li, .gm-public-service-card ul li, .gm-order-card ul li { white-space:normal !important; overflow:visible !important; }
+.service-card ul li span, .gm-order-card ul li span { white-space:normal !important; }
+.gm-admin-layout { display:grid; grid-template-columns:230px 1fr; gap:16px; align-items:start; }
+@media(max-width:820px){ .gm-admin-layout{ grid-template-columns:1fr; } #gmAdminTabs{ flex-direction:row !important; overflow-x:auto; padding-bottom:6px; } .gm-admin-menu-btn{ white-space:nowrap; } }
+#gmAdminTabs, .gm-admin-menu { display:flex !important; flex-direction:column; gap:8px; position:sticky; top:12px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.10); border-radius:14px; padding:12px; }
+.gm-admin-menu-btn, #gmAdminTabs .gm-tab, #gmAdminTabs .gm-admin-menu-btn { width:100%; text-align:left; background:rgba(255,255,255,.05); border:1px solid transparent; color:#e2e8f0; border-radius:10px; padding:11px 12px; font-size:.92rem; cursor:pointer; }
+.gm-admin-menu-btn:hover, #gmAdminTabs .gm-tab:hover { background:rgba(59,130,246,.18); }
+.gm-admin-menu-btn.active, #gmAdminTabs .gm-tab.active { background:#2563eb; color:#fff; border-color:#2563eb; font-weight:700; }
+.gm-admin-pages { min-width:0; }
+.gm-admin-pages [data-gm-admin-section] { width:100%; }
+.gm-order-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px; }
+.gm-order-card { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.12); border-radius:16px; padding:18px; display:flex; flex-direction:column; gap:10px; }
+.gm-order-card h3 { font-size:1.15rem; line-height:1.35; }
+.gm-order-card p { color:#cbd5e1; line-height:1.6; }
+.gm-order-card ul { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px; }
+.gm-order-card ul li { display:flex; gap:8px; align-items:flex-start; color:#e2e8f0; line-height:1.5; }
+.gm-order-card ul li i { color:#3b82f6; margin-top:3px; }
+.gm-chat-service-card { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:12px; padding:12px; margin-bottom:10px; }
+.gm-chat-service-card h4 { margin:0 0 6px; font-size:.98rem; line-height:1.35; }
+.gm-chat-service-card p { margin:0 0 8px; font-size:.88rem; color:#cbd5e1; line-height:1.55; }
+.gm-chat-service-card ul { list-style:none; margin:0 0 10px; padding:0; display:flex; flex-direction:column; gap:6px; }
+.gm-chat-service-card ul li { display:flex; gap:7px; font-size:.86rem; line-height:1.5; color:#e2e8f0; }
+.gm-chat-service-card ul li i { color:#3b82f6; margin-top:3px; }
+#gmConsentBanner { bottom:12px !important; top:auto !important; }
+.gm-admin-site-grid textarea { min-height:90px; }
+</style>
+
 <!-- Order Now - separate page (does NOT show portfolio cards behind it) -->
 <div id="gmOrderPage" class="gm-hidden" role="dialog" aria-modal="true" aria-label="Order Now">
   <div class="gm-order-page-head">
     <button class="gm-action" type="button" onclick="GM.closeOrderPage()">← Back to Portfolio</button>
     <h2>Order Now</h2>
-    <p class="gm-muted" style="color:#94a3b8">Choose a service below. You can browse without an account — to place an order you will be asked to create an account / sign in.</p>
+    <p class="gm-muted" style="color:#94a3b8">Choose a service below. These are the exact cards created in Admin Panel → Services &amp; Pricing, with rate and full details. Tap Order — if you are not signed in, you go straight to Create Account, and after creating it your order is sent automatically to live chat.</p>
     <div id="gmOrderPageStatus" class="gm-inline-status"></div>
   </div>
   <div class="gm-order-grid" id="gmOrderPageGrid"><p class="gm-muted">Loading services…</p></div>
-  <p class="gm-muted" style="max-width:1100px;margin:18px auto 0">Questions? Open live chat from the bottom-right bubble — you can pick a service there too and discuss it before ordering.</p>
+  <p class="gm-muted" style="max-width:1100px;margin:18px auto 0">Tap Order on any card — it goes straight to live chat. Admin sees it instantly and replies here.</p>
 </div>
 
 <!-- Portfolio notification popover -->
@@ -2526,49 +2586,47 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
   <p style="font-size:.82rem;color:#94a3b8">After you create an account, your real notifications will appear in Workspace → Notifications. This bell is only for public announcements.</p>
 </div>
 
-<!-- Anonymous analytics consent (NO IP / NO email is collected) -->
-<div id="gmConsentBanner" class="gm-hidden" role="dialog" aria-label="Analytics consent">
-  <div style="max-width:640px"><strong>Anonymous visit analytics?</strong><p style="color:#94a3b8;font-size:.88rem;line-height:1.5;margin-top:4px">If you allow, we count this visit anonymously (country / region from your device + which page you opened). We do <b>not</b> collect your IP address, email, or any message ID from anonymous visitors.</p></div>
-  <div style="display:flex;gap:8px"><button class="gm-action" type="button" onclick="GM.setAnalyticsConsent(false)">Decline</button><button class="gm-action gm-primary" type="button" onclick="GM.setAnalyticsConsent(true)">Allow anonymously</button></div>
+<!-- Visit-count consent: simple, no list, works 100% - Allow counts once, Not now never counts, choice is saved -->
+<div id="gmConsentBanner" class="gm-hidden" role="dialog" aria-label="Visit count consent">
+  <div style="max-width:640px"><strong>Can we count your visit?</strong><p style="color:#94a3b8;font-size:.88rem;line-height:1.5;margin-top:4px">It helps us improve the service. Your choice is saved and this box will not show again.</p></div>
+  <div style="display:flex;gap:8px"><button class="gm-action" type="button" onclick="GM.setAnalyticsConsent(false)">Not now</button><button class="gm-action gm-primary" type="button" onclick="GM.setAnalyticsConsent(true)">Allow</button></div>
 </div>
 
 <script>
 (function(){
   // This block runs after the main module. It uses the same Firebase RTDB via window.GM internals where possible,
-  // and falls back to the global firebase config already on the page. It NEVER reads IP or email from visitors.
+  // and falls back to the global firebase config already on the page. It never reads personal details from visitors.
   function esc(s){return String(s||'').replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
   function stars(n){n=Math.max(0,Math.min(5,Math.round(Number(n)||0)));return '★'.repeat(n)+'☆'.repeat(5-n)}
   function truncate(s,max){s=String(s||'');return s.length>max? s.slice(0,max-1)+'…':s}
 
   // ---- 1. Static service cards: admin text, SAME size ----
   function applyStaticCards(data){
-    try{
-      var cards=document.querySelectorAll('#services .service-card');
-      if(!cards||!cards.length) return;
-      var keys=['play-store','map-review','map-seo','digital-marketing'];
-      keys.forEach(function(key,i){
-        var item=data&&data[key]; if(!item) return;
-        var card=cards[i]; if(!card) return;
-        card.classList.add('gm-service-card-fixed');
-        var h=card.querySelector('h3'); var p=card.querySelector('p');
-        if(item.title && h) h.textContent=truncate(item.title,48);
-        if(item.description && p) p.textContent=truncate(item.description,140);
-        if(Array.isArray(item.features)){
-          var lis=card.querySelectorAll('ul li');
-          item.features.slice(0,3).forEach(function(f,idx){ if(lis[idx]) lis[idx].lastChild.textContent=' '+truncate(f,38); });
-        }
-      });
-    }catch(e){console.warn('static cards',e)}
-  }
-
-  // ---- 7. Contact Info: admin text, SAME layout ----
+     try{
+       var cards=document.querySelectorAll('#services .service-card');
+       var keys=['play-store','map-review','map-seo','digital-marketing'];
+       keys.forEach(function(k,i){
+         var item=data&&data[k]; if(!item) return; var card=cards[i]; if(!card) return;
+         card.classList.add('gm-service-card-fixed');
+         var h=card.querySelector('h3'); var p=card.querySelector('p');
+         if(item.title && h) h.textContent=String(item.title);
+         if(item.description && p) p.textContent=String(item.description);
+         if(Array.isArray(item.features)){
+           var ul=card.querySelector('ul'); if(ul){
+             ul.innerHTML=item.features.map(function(f){ return '<li><i class="fas fa-check-circle" style="color:#3b82f6"></i><span>'+String(f).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</span></li>'; }).join('');
+           }
+         }
+       });
+     }catch(e){console.warn('static cards',e)}
+   }
+    // ---- 7. Contact Info: admin text, SAME layout ----
   function applyContactInfo(data){
     try{
       if(!data) return;
       var items=document.querySelectorAll('.contact-info-panel .info-item');
       if(!items||items.length<4) return;
       var vals=[data.agency,data.whatsapp,data.telegram,data.email];
-      vals.forEach(function(v,i){ if(v && items[i]){ var ps=items[i].querySelectorAll('p'); if(ps[1]) ps[1].textContent=truncate(v,72); }});
+      vals.forEach(function(v,i){ if(v && items[i]){ var ps=items[i].querySelectorAll('p'); if(ps[1]) ps[1].textContent=String(v); }});
       window.GM_CONTACT_INFO=data;
     }catch(e){console.warn('contact',e)}
   }
@@ -2616,21 +2674,35 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
 
   // ---- 3. Order Now page ----
   function getServicesForOrder(){
-    // Prefer the live catalog already rendered, else fallback to static cards
+    // FIX: Always prefer LIVE Admin services (Firebase servicesCache via GM.getServicesList). Static cards are only a fallback.
+    try{
+      if(window.GM && typeof window.GM.getServicesList==='function'){
+        var live=window.GM.getServicesList();
+        if(live && live.length) return live.map(function(s){ return {id:s.id, name:s.name, description:s.description||'', price:s.price, icon:s.icon||'fas fa-check-circle', features:Array.isArray(s.features)?s.features:[]}; });
+      }
+    }catch(e){}
     var fromWindow=(window.GM && window.GM._servicesCache) || null;
-    if(fromWindow && Object.keys(fromWindow).length) return Object.entries(fromWindow).map(function(e){return {id:e[0], name:e[1].name, description:e[1].description, price:e[1].price}});
+    if(fromWindow && Object.keys(fromWindow).length) return Object.entries(fromWindow).filter(function(e){return e[1]&&e[1].active!==false;}).map(function(e){return {id:e[0], name:e[1].name, description:e[1].description||'', price:e[1].price, icon:e[1].icon||'fas fa-check-circle', features:Array.isArray(e[1].features)?e[1].features:[]};});
     var cards=document.querySelectorAll('#services .service-card');
     var arr=[];
-    cards.forEach(function(c,i){ var h=c.querySelector('h3'); var p=c.querySelector('p'); if(h) arr.push({id:'static-'+i,name:h.textContent.trim(),description:p?p.textContent.trim():'',price:''}); });
+    cards.forEach(function(c,i){ var h=c.querySelector('h3'); var p=c.querySelector('p'); var lis=c.querySelectorAll('ul li'); var feats=[]; lis.forEach(function(li){ feats.push(li.textContent.trim()); }); if(h) arr.push({id:'static-'+i,name:h.textContent.trim(),description:p?p.textContent.trim():'',price:'',icon:'fas fa-check-circle',features:feats}); });
     return arr;
+  }
+  function gmServiceCardHtml(s, isChat){
+    var feats=Array.isArray(s.features)?s.features:[];
+    var featHtml=feats.map(function(f){ return '<li><i class="fas fa-check-circle"></i><span>'+esc(String(f))+'</span></li>'; }).join('');
+    var priceHtml=(s.price!==''&&s.price!=null)?'<strong>$'+esc(String(Number(s.price||0).toFixed(2)))+' per unit</strong>':'';
+    var btn='GM.requireAccountForOrder(\''+esc(s.id)+'\',\''+esc(s.name).replace(/'/g,"\\'")+'\')';
+    if(isChat){
+      return '<div class="gm-chat-service-card"><h4>'+esc(s.name)+'</h4><p>'+esc(s.description||'')+'</p>'+(feats.length?'<ul>'+featHtml+'</ul>':'')+priceHtml+'<div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap"><button class="gm-action gm-primary" type="button" onclick="'+btn+'">Order this — send to chat</button><button class="gm-action" type="button" onclick="GM.selectChatOrder(\''+esc(s.id)+'\',\''+esc(s.name).replace(/'/g,"\\'")+'\')">Chat about this</button></div></div>';
+    }
+    return '<div class="gm-order-card"><div style="color:#60a5fa;font-size:1.4rem"><i class="'+esc(s.icon||'fas fa-check-circle')+'"></i></div><h3>'+esc(s.name)+'</h3><p>'+esc(s.description||'')+'</p>'+(feats.length?'<ul>'+featHtml+'</ul>':'')+priceHtml+'<button class="gm-action gm-primary" type="button" onclick="'+btn+'" style="margin-top:6px">Order — goes to live chat</button></div>';
   }
   function renderOrderPage(){
     var grid=document.getElementById('gmOrderPageGrid'); if(!grid) return;
     var list=getServicesForOrder();
     if(!list.length){ grid.innerHTML='<p class="gm-muted">No services available right now. Please try again later or ask in live chat.</p>'; return; }
-    grid.innerHTML=list.map(function(s){
-      return '<div class="gm-order-card"><h3>'+esc(s.name)+'</h3><p>'+esc(s.description||'')+'</p>'+(s.price!==''&&s.price!=null?'<strong>'+esc(String(s.price))+' per unit</strong>':'')+'<button class="gm-action gm-primary" type="button" onclick="GM.requireAccountForOrder(\''+esc(s.id)+'\',\''+esc(s.name).replace(/'/g,"\\'")+'\')">Order this service</button></div>';
-    }).join('');
+    grid.innerHTML=list.map(function(s){ return gmServiceCardHtml(s, false); }).join('');
   }
 
   // ---- 5. Chat: Order picker + Fullscreen ----
@@ -2649,7 +2721,7 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
     if(win && !document.getElementById('gmChatOrderPicker')){
       var picker=document.createElement('div');
       picker.id='gmChatOrderPicker'; picker.className='gm-chat-order-picker gm-hidden';
-      picker.innerHTML='<p class="gm-muted" style="margin-bottom:8px">Pick a service to discuss — its details will be added to your message.</p><div id="gmChatOrderPickerList"></div>';
+      picker.innerHTML='<p class="gm-muted" style="margin-bottom:8px">Pick a service — full card with rate + all details. Tap Order to send it straight to live chat.</p><div id="gmChatOrderPickerList"></div>';
       var compose=win.querySelector('.gm-chat-compose');
       if(compose) win.insertBefore(picker, compose);
     }
@@ -2657,7 +2729,7 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
   function renderChatOrderPicker(){
     var listEl=document.getElementById('gmChatOrderPickerList'); if(!listEl) return;
     var list=getServicesForOrder();
-    listEl.innerHTML=list.map(function(s){ return '<button type="button" onclick="GM.selectChatOrder(\''+esc(s.id)+'\',\''+esc(s.name).replace(/'/g,"\\'")+'\')">'+esc(s.name)+' — '+esc(s.description||'')+'</button>'; }).join('') || '<p class="gm-muted">No services available.</p>';
+    listEl.innerHTML=list.map(function(s){ return gmServiceCardHtml(s, true); }).join('') || '<p class="gm-muted">No services available.</p>';
   }
 
   // ---- 6. Portfolio notification button next to Profile ----
@@ -2676,15 +2748,18 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
 
   // ---- Admin: Site Settings tab ----
   function ensureAdminSiteTab(){
-    var tabs=document.getElementById('gmAdminTabs'); if(!tabs || document.querySelector('[data-gm-admin-tab="site"]')) return;
-    var b=document.createElement('button'); b.className='gm-tab'; b.setAttribute('data-gm-admin-tab','site'); b.textContent='Site Settings'; b.onclick=function(){ window.GM.selectAdminTab('site'); };
-    tabs.appendChild(b);
-    // Admin section container - find admin section and append a site panel
+    var tabs=document.getElementById('gmAdminTabs'); if(!tabs) return;
+    if(!document.querySelector('[data-gm-admin-tab="site"]')){
+      var b=document.createElement('button'); b.className='gm-admin-menu-btn'; b.setAttribute('data-gm-admin-tab','site'); b.textContent='\u2699\ufe0f Site Settings'; b.onclick=function(){ window.GM.selectAdminTab('site'); };
+      tabs.appendChild(b);
+    }
+    var pages=document.querySelector('#gmAdminSection .gm-admin-pages');
     var adminSec=document.getElementById('gmAdminSection'); if(!adminSec) return;
+    if(document.querySelector('[data-gm-admin-section="site"]')) return;
     var panel=document.createElement('div');
     panel.setAttribute('data-gm-admin-section','site');
     panel.className='gm-hidden';
-    panel.innerHTML='<div class="gm-panel"><h3>Site Settings (Admin only)</h3><p class="gm-muted">These texts control the public portfolio. Layout / size never changes — only the text changes. Leave a field empty to hide its custom text.</p>'
+    panel.innerHTML='<div class="gm-panel"><h3>Site Settings (Admin only)</h3><p class="gm-muted">Everything here is editable from Admin Panel. Title, description and the tick-mark lines are all unlimited — write as much as you want, the card will grow to fit. No fixed size.</p>'
       +'<div class="gm-admin-site-grid" style="margin-top:12px">'
       +'<div class="gm-field"><label>Payment note (Accepted Payments box)</label><textarea id="gmAdminPaymentNote" placeholder="e.g. We accept USDT and Binance Pay. Ask in live chat for current instructions."></textarea></div>'
       +'<div class="gm-field"><label>Portfolio announcement (bell icon)</label><textarea id="gmAdminPortfolioNotice" placeholder="e.g. We are accepting new orders this week."></textarea></div>'
@@ -2693,48 +2768,51 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
       +'<div class="gm-field"><label>Contact — Telegram</label><input id="gmAdminContactTelegram" placeholder="https://t.me/..."></div>'
       +'<div class="gm-field"><label>Contact — Email</label><input id="gmAdminContactEmail" placeholder="you@example.com"></div>'
       +'</div>'
-      +'<h4 style="margin:16px 0 8px">Premium Digital Solutions — 4 static cards (title + short description)</h4><div class="gm-admin-site-grid">'
-      +'<div class="gm-field"><label>Card 1 — Title</label><input id="gmAdminCard0Title"></div><div class="gm-field"><label>Card 1 — Description (max 140 chars)</label><input id="gmAdminCard0Desc" maxlength="140"></div>'
-      +'<div class="gm-field"><label>Card 2 — Title</label><input id="gmAdminCard1Title"></div><div class="gm-field"><label>Card 2 — Description</label><input id="gmAdminCard1Desc" maxlength="140"></div>'
-      +'<div class="gm-field"><label>Card 3 — Title</label><input id="gmAdminCard2Title"></div><div class="gm-field"><label>Card 3 — Description</label><input id="gmAdminCard2Desc" maxlength="140"></div>'
-      +'<div class="gm-field"><label>Card 4 — Title</label><input id="gmAdminCard3Title"></div><div class="gm-field"><label>Card 4 — Description</label><input id="gmAdminCard3Desc" maxlength="140"></div>'
+      +'<h4 style="margin:16px 0 8px">Premium Digital Solutions — 4 static cards (title + description + tick lines — all unlimited)</h4><div class="gm-admin-site-grid">'
+      +'<div class="gm-field"><label>Card 1 — Title (unlimited)</label><input id="gmAdminCard0Title"></div><div class="gm-field"><label>Card 1 — Description (unlimited — write as much as you want)</label><textarea id="gmAdminCard0Desc" rows="4"></textarea></div><div class="gm-field gm-full"><label>Card 1 — Tick lines (one per line, unlimited — blue tick like in screenshot)</label><textarea id="gmAdminCard0Features" rows="4" placeholder="100% Safe & Authentic\nGradual Natural Delivery\nPositive Rating Impact"></textarea></div>'
+      +'<div class="gm-field"><label>Card 2 — Title (unlimited)</label><input id="gmAdminCard1Title"></div><div class="gm-field"><label>Card 2 — Description (unlimited)</label><textarea id="gmAdminCard1Desc" rows="4"></textarea></div><div class="gm-field gm-full"><label>Card 2 — Tick lines (one per line, unlimited)</label><textarea id="gmAdminCard1Features" rows="4"></textarea></div>'
+      +'<div class="gm-field"><label>Card 3 — Title (unlimited)</label><input id="gmAdminCard2Title"></div><div class="gm-field"><label>Card 3 — Description (unlimited)</label><textarea id="gmAdminCard2Desc" rows="4"></textarea></div><div class="gm-field gm-full"><label>Card 3 — Tick lines (one per line, unlimited)</label><textarea id="gmAdminCard2Features" rows="4"></textarea></div>'
+      +'<div class="gm-field"><label>Card 4 — Title (unlimited)</label><input id="gmAdminCard3Title"></div><div class="gm-field"><label>Card 4 — Description (unlimited)</label><textarea id="gmAdminCard3Desc" rows="4"></textarea></div><div class="gm-field gm-full"><label>Card 4 — Tick lines (one per line, unlimited)</label><textarea id="gmAdminCard3Features" rows="4"></textarea></div>'
       +'</div><div class="gm-action-row" style="margin-top:14px"><button class="gm-action gm-primary" type="button" onclick="GM.saveSiteSettings()">Save Site Settings</button></div><div class="gm-inline-status" id="gmAdminSiteStatus"></div></div>';
-    adminSec.appendChild(panel);
+    if(pages) pages.appendChild(panel); else adminSec.appendChild(panel);
   }
 
   // Expose helpers on window.GM (merge, do not replace existing GM)
   function mergeGM(){
     if(!window.GM) window.GM={};
     var G=window.GM;
+    // Keep the main module's chat-order handler before this file overwrites the name.
+    try{ if(G.requireAccountForOrder && !G.__mainRequireAccountForOrder) G.__mainRequireAccountForOrder=G.requireAccountForOrder; }catch(e){}
     G.openOrderPage=function(){ var p=document.getElementById('gmOrderPage'); if(p){ p.classList.remove('gm-hidden'); renderOrderPage(); window.scrollTo(0,0);} };
     G.closeOrderPage=function(){ var p=document.getElementById('gmOrderPage'); if(p) p.classList.add('gm-hidden'); };
     G.requireAccountForOrder=function(id,name){
-      // If user has a real (non-anonymous) account, go to workspace order flow; else force account creation
+      // Delegate to the main module's chat-order flow if it exists (it creates the order + sends it to live chat + auto-sends after signup). Otherwise fall back to signup.
+      try{
+        // The main module exposes the same name; the second-script wrapper must not recurse. Call the stored main handler if present.
+        if(window.GM && window.GM.__mainRequireAccountForOrder){ window.GM.__mainRequireAccountForOrder(id,name); return; }
+      }catch(e){}
       var hasReal=false;
       try{ hasReal = !!(window.GM && window.GM._hasRealAccount && window.GM._hasRealAccount()); }catch(e){}
-      // Fallback: check if auth overlay shows signed-in state via workspace avatar subtitle? Use a heuristic: if GM.currentUser exists and not anonymous
       try{ if(window.GM && window.GM._currentUser && !window.GM._currentUser.isAnonymous) hasReal=true; }catch(e){}
       if(!hasReal){
-        var st=document.getElementById('gmOrderPageStatus'); if(st) st.textContent='Please create an account / sign in to place an order for “'+name+'”.';
+        try{ sessionStorage.setItem('gmPendingOrder', JSON.stringify({serviceId:id,serviceName:name||'Service'})); }catch(e){}
         if(G.openProfile) G.openProfile();
-        // Pre-fill a hint in auth status after a tick
-        setTimeout(function(){ var s=document.getElementById('gmAuthStatus'); if(s) s.textContent='Create an account to place an order for “'+name+'”.'; },300);
+        if(window.GM && window.GM.setAuthMode) window.GM.setAuthMode('signup');
+        setTimeout(function(){ var s=document.getElementById('gmAuthStatus'); if(s) s.textContent='Create an account to order \u201c'+name+'\u201d. After creating it, your order will be sent automatically to live chat.'; },300);
         return;
       }
-      G.closeOrderPage();
-      if(G.openWorkspaceOrder) G.openWorkspaceOrder(id);
-      else if(G.openWorkspace) G.openWorkspace();
+      if(G.openWorkspace) G.openWorkspace();
     };
     G.toggleChatFullscreen=function(){ var w=document.getElementById('gmChatWindow'); if(w) w.classList.toggle('gm-chat-window-full'); };
     G.toggleChatOrderPicker=function(){ var p=document.getElementById('gmChatOrderPicker'); if(!p) return; var willShow=p.classList.contains('gm-hidden'); p.classList.toggle('gm-hidden'); if(willShow) renderChatOrderPicker(); };
     G.selectChatOrder=function(id,name){
       var comp=document.getElementById('gmChatComposer');
-      if(comp){ comp.focus(); var txt='I want to discuss order: '+name+' (Service: '+name+') — please share price and timeline.'; comp.textContent=txt; }
+      if(comp){ comp.focus(); var txt='I want to discuss: '+name+' — please share price and timeline.'; comp.textContent=txt; }
       var picker=document.getElementById('gmChatOrderPicker'); if(picker) picker.classList.add('gm-hidden');
-      // Also store for the next send so Telegram admin sees which service was discussed
       window.GM._pendingChatService=name;
       if(G.toggleChat) G.toggleChat(true);
     };
+    G.resetAnalyticsConsent=function(){ try{ localStorage.removeItem('gmAnalyticsConsent'); sessionStorage.removeItem('gmVisitSent'); }catch(e){} var b=document.getElementById('gmConsentBanner'); if(b) b.classList.remove('gm-hidden'); };
     G.togglePortfolioNotif=function(){ var pop=document.getElementById('gmPortfolioNotifPopover'); if(pop) pop.classList.toggle('gm-hidden'); try{ sessionStorage.setItem('gmNotifSeen','1'); var d=document.getElementById('gmNotifDot'); if(d) d.style.display='none'; }catch(e){} };
     G.closePortfolioNotif=function(){ var pop=document.getElementById('gmPortfolioNotifPopover'); if(pop) pop.classList.add('gm-hidden'); };
     G.setAnalyticsConsent=function(allow){
@@ -2742,11 +2820,10 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
       var b=document.getElementById('gmConsentBanner'); if(b) b.classList.add('gm-hidden');
       if(allow) sendAnonymousVisit();
     };
+    G._sendAnonymousVisit=sendAnonymousVisit;
     G.saveSiteSettings=function(){
-      // This is called from Admin Panel. It writes ONLY to siteSettings in RTDB via the existing GM save helper if present,
-      // otherwise it dispatches a custom event the main module can listen to. We implement a direct RTDB write using the
-      // global firebase helpers exposed by the main module if available.
-      var st=document.getElementById('gmAdminSiteStatus'); if(st) st.textContent='Saving…';
+      var st=document.getElementById('gmAdminSiteStatus'); if(st) st.textContent='Saving\u2026';
+      function feat(id){ var el=document.getElementById(id); if(!el) return []; return String(el.value||'').split('\n').map(function(s){return s.trim();}).filter(Boolean); }
       var payload={
         paymentNote: (document.getElementById('gmAdminPaymentNote')||{}).value||'',
         portfolioNotice: (document.getElementById('gmAdminPortfolioNotice')||{}).value||'',
@@ -2757,17 +2834,15 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
           email: (document.getElementById('gmAdminContactEmail')||{}).value||''
         },
         staticServices: {
-          'play-store': {title:(document.getElementById('gmAdminCard0Title')||{}).value||'', description:(document.getElementById('gmAdminCard0Desc')||{}).value||''},
-          'map-review': {title:(document.getElementById('gmAdminCard1Title')||{}).value||'', description:(document.getElementById('gmAdminCard1Desc')||{}).value||''},
-          'map-seo': {title:(document.getElementById('gmAdminCard2Title')||{}).value||'', description:(document.getElementById('gmAdminCard2Desc')||{}).value||''},
-          'digital-marketing': {title:(document.getElementById('gmAdminCard3Title')||{}).value||'', description:(document.getElementById('gmAdminCard3Desc')||{}).value||''}
+          'play-store': {title:(document.getElementById('gmAdminCard0Title')||{}).value||'', description:(document.getElementById('gmAdminCard0Desc')||{}).value||'', features:feat('gmAdminCard0Features')},
+          'map-review': {title:(document.getElementById('gmAdminCard1Title')||{}).value||'', description:(document.getElementById('gmAdminCard1Desc')||{}).value||'', features:feat('gmAdminCard1Features')},
+          'map-seo': {title:(document.getElementById('gmAdminCard2Title')||{}).value||'', description:(document.getElementById('gmAdminCard2Desc')||{}).value||'', features:feat('gmAdminCard2Features')},
+          'digital-marketing': {title:(document.getElementById('gmAdminCard3Title')||{}).value||'', description:(document.getElementById('gmAdminCard3Desc')||{}).value||'', features:feat('gmAdminCard3Features')}
         }
       };
-      // Try GM helper first
       if(window.GM && typeof window.GM._saveSiteSettings==='function'){ window.GM._saveSiteSettings(payload).then(function(){ if(st) st.textContent='Saved. Public site updated.'; }).catch(function(e){ if(st) st.textContent='Could not save. Please try again.'; }); return; }
-      // Fallback: store pending payload; main module patch (see below) will pick it up if it exposes _saveSiteSettings. If not, show guidance.
       window.GM._pendingSiteSettings=payload;
-      if(st) st.textContent='Ready to save — please ensure you are signed in as admin, then click Save again. (If it still does not save, your Firebase Database Rules must allow admin write to siteSettings.)';
+      if(st) st.textContent='Ready to save \u2014 please ensure you are signed in as admin, then click Save again.';
     };
   }
 
@@ -2775,16 +2850,13 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
     try{
       var consent=null; try{ consent=localStorage.getItem('gmAnalyticsConsent'); }catch(e){}
       if(consent!=='allowed') return;
-      // Coarse, non-identifying fields ONLY. No IP, no email, no message ID.
+      try{ if(sessionStorage.getItem('gmVisitSent')==='1') return; sessionStorage.setItem('gmVisitSent','1'); }catch(e){}
       var tz=''; try{ tz=Intl.DateTimeFormat().resolvedOptions().timeZone||''; }catch(e){}
       var refDomain=''; try{ if(document.referrer){ refDomain=new URL(document.referrer).hostname; } }catch(e){}
       var payload={consent:true, page: location.pathname, referrerDomain: refDomain, timezone: tz, language: navigator.language||'', timestamp: new Date().toISOString()};
-      // 1) Backend (Render) for Telegram summary - backend must NOT store IP/email
       var bridgeUrl=(window.GM_TELEGRAM_BRIDGE_URL||'https://portfolio-live-chat-bot.onrender.com/api/bridge');
-      // Use the new /api/visit endpoint if available; it is on the same Render host.
       var visitUrl=bridgeUrl.replace('/api/bridge','/api/visit');
       fetch(visitUrl,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).catch(function(){});
-      // 2) Also record an anonymized aggregate in RTDB via the main module's helper if it exposes it
       if(window.GM && typeof window.GM._recordAnonymousVisit==='function'){ window.GM._recordAnonymousVisit(payload); }
     }catch(e){console.warn('visit',e)}
   }
@@ -2855,8 +2927,9 @@ function tryWire(){
           keys.forEach(function(k,i){
             var it=v.staticServices&&v.staticServices[k]; if(!it||!cards[i]) return;
             var h=cards[i].querySelector('h3'); var p=cards[i].querySelector('p');
-            if(it.title) h.textContent=String(it.title).slice(0,48);
-            if(it.description) p.textContent=String(it.description).slice(0,140);
+            if(it.title) h.textContent=String(it.title);
+            if(it.description) p.textContent=String(it.description);
+            if(Array.isArray(it.features)){ var ul=cards[i].querySelector('ul'); if(ul){ ul.innerHTML=it.features.map(function(f){ return '<li><i class=\'fas fa-check-circle\' style=\'color:#3b82f6\'></i><span>'+String(f).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</span></li>'; }).join(''); } }
           });
         }catch(e){}
         // Contact
@@ -2864,7 +2937,7 @@ function tryWire(){
           if(v.contactInfo){
             var items=document.querySelectorAll('.contact-info-panel .info-item');
             var vals=[v.contactInfo.agency,v.contactInfo.whatsapp,v.contactInfo.telegram,v.contactInfo.email];
-            vals.forEach(function(val,i){ if(val&&items[i]){ var ps=items[i].querySelectorAll('p'); if(ps[1]) ps[1].textContent=String(val).slice(0,72); }});
+            vals.forEach(function(val,i){ if(val&&items[i]){ var ps=items[i].querySelectorAll('p'); if(ps[1]) ps[1].textContent=String(val); }});
             window.GM_CONTACT_INFO=v.contactInfo;
           }
         }catch(e){}
@@ -2876,7 +2949,7 @@ function tryWire(){
           if(v.paymentNote!=null){ var a=document.getElementById('gmAdminPaymentNote'); if(a&&!a.value) a.value=v.paymentNote; }
           if(v.portfolioNotice!=null){ var b=document.getElementById('gmAdminPortfolioNotice'); if(b&&!b.value) b.value=v.portfolioNotice; }
           if(v.contactInfo){ var m={agency:'gmAdminContactAgency',whatsapp:'gmAdminContactWhatsApp',telegram:'gmAdminContactTelegram',email:'gmAdminContactEmail'}; Object.keys(m).forEach(function(k){ var el=document.getElementById(m[k]); if(el&&!el.value&&v.contactInfo[k]) el.value=v.contactInfo[k]; }); }
-          if(v.staticServices){ var keys2=['play-store','map-review','map-seo','digital-marketing']; keys2.forEach(function(k,i){ var it=v.staticServices[k]; if(!it) return; var t=document.getElementById('gmAdminCard'+i+'Title'); var d=document.getElementById('gmAdminCard'+i+'Desc'); if(t&&!t.value&&it.title) t.value=it.title; if(d&&!d.value&&it.description) d.value=it.description; }); }
+          if(v.staticServices){ var keys2=['play-store','map-review','map-seo','digital-marketing']; keys2.forEach(function(k,i){ var it=v.staticServices[k]; if(!it) return; var t=document.getElementById('gmAdminCard'+i+'Title'); var d=document.getElementById('gmAdminCard'+i+'Desc'); var f=document.getElementById('gmAdminCard'+i+'Features'); if(t&&!t.value&&it.title) t.value=it.title; if(d&&!d.value&&it.description) d.value=it.description; if(f&&!f.value&&Array.isArray(it.features)) f.value=it.features.join('\n'); }); }
         }catch(e){}
       });
     }catch(e){console.warn('siteSettings',e)}
@@ -2910,7 +2983,7 @@ function tryWire(){
                 var cur=snap.val()||{};
                 var merged={ paymentNote: payload.paymentNote, portfolioNotice: payload.portfolioNotice, contactInfo: Object.assign({}, cur.contactInfo||{}, payload.contactInfo||{}), staticServices: Object.assign({}, cur.staticServices||{}, payload.staticServices||{}) };
                 // Only overwrite staticServices entries that have content, keep others
-                Object.keys(payload.staticServices||{}).forEach(function(k){ if(!payload.staticServices[k].title && !payload.staticServices[k].description) merged.staticServices[k]=cur.staticServices&&cur.staticServices[k]||payload.staticServices[k]; });
+                Object.keys(payload.staticServices||{}).forEach(function(k){ var curEntry=payload.staticServices[k]||{}; if(!curEntry.title && !curEntry.description && !(curEntry.features&&curEntry.features.length)) merged.staticServices[k]=cur.staticServices&&cur.staticServices[k]||payload.staticServices[k]; });
                 set(ref(db,'siteSettings'), merged).then(resolve).catch(reject);
               }).catch(reject);
             }).catch(reject);
