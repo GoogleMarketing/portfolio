@@ -63,6 +63,17 @@ TELEGRAM_FILE_BASE = f"https://api.telegram.org/file/bot{TELEGRAM_BOT_TOKEN}" if
 # Pending replies: admin_telegram_chat_id -> target_client_chat_id
 pending_replies: Dict[str, Dict[str, Any]] = {}
 
+# App - MUST be defined BEFORE any @app.post / @app.get below, otherwise Render crashes with "name 'app' is not defined"
+app = FastAPI(title="Google Marketing Portfolio - Updated Bot", version="3.0.0")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 # --- Visit counting: only consented visits, no personal details stored ---
 class VisitIn(BaseModel):
     consent: bool = False
@@ -266,16 +277,7 @@ def upload_to_imgbb(image_bytes: bytes, name: Optional[str] = None) -> str:
         logger.error(f"ImgBB upload failed: {e}")
         raise
 
-# App
-app = FastAPI(title="Google Marketing Portfolio - Updated Bot", version="3.0.0")
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+# App already created above (before /api/visit) - do not create twice.
 
 class BridgePayload(BaseModel):
     event: str
