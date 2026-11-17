@@ -63,6 +63,37 @@ TELEGRAM_FILE_BASE = f"https://api.telegram.org/file/bot{TELEGRAM_BOT_TOKEN}" if
 # Pending replies: admin_telegram_chat_id -> target_client_chat_id
 pending_replies: Dict[str, Dict[str, Any]] = {}
 
+# --- Visit counting: only consented visits, no personal details stored ---
+class VisitIn(BaseModel):
+    consent: bool = False
+    page: Optional[str] = ""
+    referrerDomain: Optional[str] = ""
+    timezone: Optional[str] = ""
+    language: Optional[str] = ""
+    timestamp: Optional[str] = ""
+
+@app.post("/api/visit")
+async def api_visit(payload: VisitIn):
+    # Only consented visits are accepted. No personal details are read or stored here.
+    if not payload.consent:
+        return {"ok": False, "reason": "consent_required"}
+    # Summary only: timezone + referrer domain + page.
+    try:
+        if TELEGRAM_CHAT_ID:
+            page_val = payload.page or '/'
+            from_val = payload.referrerDomain or 'direct'
+            tz_val = payload.timezone or '-'
+            lang_val = payload.language or '-'
+            time_val = payload.timestamp or datetime.utcnow().isoformat()
+            text = 'Visit counted (allowed)' + chr(10) + 'Page: ' + page_val + chr(10) + 'From: ' + from_val + chr(10) + 'Timezone: ' + tz_val + ' / Lang: ' + lang_val + chr(10) + 'Time: ' + time_val
+            # Do not block the response on Telegram
+            try:
+                send_telegram_message(TELEGRAM_CHAT_ID, text)
+            except Exception as e:
+                logger.warning(f"visit telegram failed: {e}")
+    except Exception as e:
+        logger.warning(f"visit handler: {e}")
+    return {"ok": True}
 
 
 firebase_app = None
@@ -245,37 +276,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-# --- Privacy-safe anonymous visit (NO IP / NO email stored) ---
-class VisitIn(BaseModel):
-    consent: bool = False
-    page: Optional[str] = ""
-    referrerDomain: Optional[str] = ""
-    timezone: Optional[str] = ""
-    language: Optional[str] = ""
-    timestamp: Optional[str] = ""
-
-@app.post("/api/visit")
-async def api_visit(payload: VisitIn):
-    # Only consented, anonymized visits are accepted. We never read/store client IP or email here.
-    if not payload.consent:
-        return {"ok": False, "reason": "consent_required"}
-    try:
-        if TELEGRAM_CHAT_ID:
-            page_val = payload.page or '/'
-            from_val = payload.referrerDomain or 'direct'
-            tz_val = payload.timezone or '-'
-            lang_val = payload.language or '-'
-            time_val = payload.timestamp or datetime.utcnow().isoformat()
-            text = 'Anonymous visit (consented)' + chr(10) + 'Page: ' + page_val + chr(10) + 'From: ' + from_val + chr(10) + 'Timezone: ' + tz_val + ' / Lang: ' + lang_val + chr(10) + 'Time: ' + time_val + chr(10) + 'No IP / email collected for anonymous visitors.'
-            try:
-                send_telegram_message(TELEGRAM_CHAT_ID, text)
-            except Exception as e:
-                logger.warning(f"visit telegram failed: {e}")
-    except Exception as e:
-        logger.warning(f"visit handler: {e}")
-    return {"ok": True}
-
 
 class BridgePayload(BaseModel):
     event: str
