@@ -1113,6 +1113,7 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
             <li><a href="#about" onclick="toggleMenu()">About Me</a></li>
             <li><a href="#faq" onclick="toggleMenu()">FAQ</a></li>
             <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+            <li><a href="#" onclick="event.preventDefault(); toggleMenu(); GM.openOrderPage();">Order Now</a></li>
             <li><a href="#" onclick="event.preventDefault(); toggleMenu(); GM.openProfile();">Profile / Account</a></li>
         </ul>
     </div>
@@ -1245,14 +1246,7 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
                 <div class="payment-group">
                     <h4 style="color: #10b981; margin-bottom: 15px; font-size: 1.1rem; font-weight: 600;"><i class="fas fa-check-circle" style="margin-right: 5px;"></i> We Accept (Primary)</h4>
                     <div class="payment-methods">
-                        <div class="payment-item active-method">
-                            <i class="fas fa-mobile-alt"></i> Bkash
-                            <i class="fas fa-check-circle"></i>
-                        </div>
-                        <div class="payment-item active-method">
-                            <i class="fas fa-mobile-alt"></i> Nagad
-                            <i class="fas fa-check-circle"></i>
-                        </div>
+                        <!-- Payment methods updated: managed from Admin Panel. -->
                         <div class="payment-item active-method">
                             <i class="fab fa-bitcoin"></i> USDT (TRC20/BEP20)
                             <i class="fas fa-check-circle"></i>
@@ -1285,7 +1279,7 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
                         </div>
                     </div>
                     <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 18px; line-height: 1.6; padding: 12px; background: rgba(0,0,0,0.2); border-radius: 8px; border: 1px solid var(--border-color);">
-                        <i class="fas fa-info-circle" style="color: var(--primary-color);"></i> We show these for information, but we currently don't accept them directly. Please use crypto/bKash methods, as Binance supports all crypto wallets for deposit.
+                        <i class="fas fa-info-circle" style="color: var(--primary-color);"></i> <span id="gmPaymentNote">Payment information is managed from the Admin Panel. Please ask in live chat for the current instructions.</span>
                     </p>
                 </div>
             </div>
@@ -1427,7 +1421,7 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
                     <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
-                    We ONLY accept Bkash, Nagad, USDT (TRC20/BEP20), and Binance Pay / Binance Balance. We don't accept PayPal, Payoneer, Wise or Bank directly. But you can deposit to Binance from any crypto wallet and then pay us easily.
+                    We accept USDT (TRC20/BEP20) and Binance Pay / Binance Balance. We don't accept PayPal, Payoneer, Wise or Bank directly. For the current payment instructions, see Accepted Payments above or ask in live chat.
                 </div>
             </div>
             <div class="faq-item">
@@ -1787,10 +1781,37 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
     <!-- New account, Firebase database, live chat, service/order and admin logic. -->
     <script type="module">
       import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js';
-      import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, EmailAuthProvider, linkWithCredential, linkWithPopup, signInAnonymously, updateProfile, signOut, getIdTokenResult } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js';
+      import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, EmailAuthProvider, linkWithCredential, linkWithPopup, signInAnonymously, updateProfile, signOut, getIdTokenResult, sendPasswordResetEmail } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js';
       import { getDatabase, ref, get, set, update, push, onValue, off, increment, remove, query, orderByChild, equalTo } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js';
 
       /* SETUP REQUIRED: paste your Firebase Web App config below. Do not put Telegram bot tokens or service-account keys in this HTML. */
+
+      /* Friendly auth errors: never show Firebase / auth/* codes to users. */
+      function friendlyAuthError(err){
+        const code = (err && err.code) || '';
+        const map = {
+          'auth/invalid-credential': 'Email or password is incorrect. Please try again, or use Forgot password to reset it.',
+          'auth/user-not-found': 'No account found for this email. Please create an account first.',
+          'auth/wrong-password': 'Password is incorrect. Please try again, or use Forgot password to reset it.',
+          'auth/email-already-in-use': 'This email is already registered. Please sign in instead.',
+          'auth/weak-password': 'Please choose a stronger password (at least 6 characters).',
+          'auth/invalid-email': 'Please enter a valid email address.',
+          'auth/missing-password': 'Please enter your password.',
+          'auth/too-many-requests': 'Too many attempts. Please wait a few minutes and try again.',
+          'auth/network-request-failed': 'Network issue. Please check your connection and try again.',
+          'auth/popup-closed-by-user': 'Sign-in was cancelled. Please try again.',
+          'auth/cancelled-popup-request': 'Sign-in was cancelled. Please try again.',
+          'auth/account-exists-with-different-credential': 'This email is already used with another sign-in method. Please try the other method.',
+          'auth/requires-recent-login': 'For security, please sign in again and try this action.'
+        };
+        if (map[code]) return map[code];
+        const msg = (err && err.message) || '';
+        if (/invalid-credential|wrong-password/i.test(msg)) return map['auth/invalid-credential'];
+        if (/email-already-in-use/i.test(msg)) return map['auth/email-already-in-use'];
+        return 'Something went wrong. Please try again. If it continues, contact us in live chat.';
+      }
+      function friendlyGenericError(err, fallback){ return friendlyAuthError(err) === 'Something went wrong. Please try again. If it continues, contact us in live chat.' && fallback ? fallback : friendlyAuthError(err); }
+
       const firebaseConfig = {
   apiKey: "__FIREBASE_API_KEY__",
   authDomain: "marketingportfolio-sr.firebaseapp.com",
@@ -1978,7 +1999,7 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
           if (hasAccount() && !workspaceVisible) { openWorkspace(); return; }
           $('gmAuthOverlay').classList.remove('gm-hidden'); $('gmChatWindow').classList.add('gm-hidden');
           if (!auth) {
-            setStatus('gmAuthStatus', 'Firebase is not configured. Add your Firebase Web App settings to activate accounts, chat, and orders.', true);
+            setStatus('gmAuthStatus', 'Accounts are temporarily unavailable. Please try again later or contact us in live chat.', true);
             $('gmAuthActions').querySelectorAll('button').forEach(button => button.disabled = true);
             $('gmAuthSubtitle').textContent = 'Setup is required before accounts can be used.';
             return;
@@ -1992,7 +2013,7 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
           setStatus('gmAuthStatus', 'Uploading profile photo…'); return await uploadImage(file);
         }
         async function submitAuth() {
-          if (!auth) { setStatus('gmAuthStatus','Firebase is not configured. Add the Firebase settings first.',true); return; }
+          if (!auth) { setStatus('gmAuthStatus','Accounts are temporarily unavailable. Please try again later.',true); return; }
           const email = $('gmAuthEmail').value.trim(), password = $('gmAuthPassword').value, name = $('gmAuthName').value.trim(), contact = $('gmAuthContact').value.trim();
           if (!email || !password) { setStatus('gmAuthStatus','Enter your email and password.',true); return; }
           if (authMode === 'signup' && (!name || !contact)) { setStatus('gmAuthStatus','Full name and contact information are required for manual sign-up.',true); return; }
@@ -2021,11 +2042,11 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
             await openWorkspace();
             setStatus('gmAuthStatus', authMode === 'signup' ? 'Account created successfully.' : 'Signed in successfully.');
             showToast(authMode === 'signup' ? 'Account created successfully. Welcome to your workspace!' : 'Signed in successfully. Welcome back!');
-          } catch (error) { setStatus('gmAuthStatus', error.message || 'Authentication failed.', true); showToast(error.message || 'Authentication failed.', true); }
+          } catch (error) { const _fm1=friendlyAuthError(error); setStatus('gmAuthStatus', _fm1, true); showToast(_fm1, true); }
           finally { submitButton.disabled = false; }
         }
         async function googleAuth() {
-          if (!auth) return setStatus('gmAuthStatus','Firebase is not configured. Add the Firebase settings first.',true);
+          if (!auth) return setStatus('gmAuthStatus','Accounts are temporarily unavailable. Please try again later.',true);
           const name = $('gmAuthName').value.trim(), contact = $('gmAuthContact').value.trim();
           const googleButton = document.querySelector('#gmAuthActions .gm-google-action');
           try {
@@ -2053,7 +2074,7 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
             closeProfile();
             await openWorkspace();
             showToast('Google sign-in successful. Your profile details have been added automatically.');
-          } catch (error) { setStatus('gmAuthStatus',error.message || 'Google sign-in failed.',true); showToast(error.message || 'Google sign-in failed.',true); }
+          } catch (error) { const _fm2=friendlyAuthError(error); setStatus('gmAuthStatus',_fm2,true); showToast(_fm2,true); }
           finally { if (googleButton) googleButton.disabled = false; }
         }
         async function saveProfile() {
@@ -2061,9 +2082,9 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
           const name = $('gmAuthName').value.trim(), contact = $('gmAuthContact').value.trim();
           if (!name || !contact) return setStatus('gmAuthStatus','Full name and contact information are required.',true);
           try { const photoUrl = await readProfilePhoto(); const profile = await saveUserProfile(currentUser,{name,contact,photoUrl}); $('gmAuthPhoto').value=''; $('gmWorkspaceAvatar').src = profile.photoUrl || currentUser.photoURL || $('gmWorkspaceAvatar').src; $('gmWorkspaceSubtitle').textContent = profile.contact || currentUser.email || 'Google Marketing Client Area'; setStatus('gmAuthStatus','Profile updated successfully.'); showToast('Profile saved successfully.'); }
-          catch (error) { setStatus('gmAuthStatus',error.message || 'Could not update profile.',true); showToast(error.message || 'Could not update profile.',true); }
+          catch (error) { const _fm3=friendlyAuthError(error); setStatus('gmAuthStatus',_fm3,true); showToast(_fm3,true); }
         }
-        async function logout() { try { if (auth) await signOut(auth); workspaceOpened = false; $('gmWorkspaceOverlay').classList.add('gm-hidden'); closeProfile(); setStatus('gmAuthStatus','You have signed out.'); } catch (error) { setStatus('gmAuthStatus',error.message,true); } }
+        async function logout() { try { if (auth) await signOut(auth); workspaceOpened = false; $('gmWorkspaceOverlay').classList.add('gm-hidden'); closeProfile(); setStatus('gmAuthStatus','You have signed out.'); } catch (error) { setStatus('gmAuthStatus',friendlyAuthError(error),true); } }
 
         async function toggleChat(force) {
           const windowEl = $('gmChatWindow'); const shouldOpen = force === true ? true : force === false ? false : windowEl.classList.contains('gm-hidden');
@@ -2448,5 +2469,475 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
       })();
       window.GM = GM;
     </script>
-<script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script></body>
+<script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script>
+<!-- ===== GM UPDATE 2026-11-17: Site Settings / Order Page / Play Store Reviews / Chat Order / Portfolio Notice / Consent Analytics ===== -->
+<style>
+.gm-fixed-text{overflow-wrap:anywhere;word-break:break-word}
+.gm-service-card-fixed{min-height:300px}
+.gm-service-card-fixed p{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;min-height:66px}
+.gm-service-card-fixed h3{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:56px}
+#gmOrderPage{position:fixed;inset:0;z-index:4000;background:#030712;overflow-y:auto;padding:96px 5% 60px}
+#gmOrderPage.gm-hidden{display:none!important}
+.gm-order-page-head{max-width:1100px;margin:0 auto 22px;text-align:left}
+.gm-order-page-head h2{font-size:clamp(1.8rem,4vw,2.6rem);margin:8px 0}
+.gm-order-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.gm-order-card{background:rgba(30,41,59,.65);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:10px;min-height:220px}
+.gm-order-card h3{font-size:1.15rem;line-height:1.3;min-height:52px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.gm-order-card p{color:#94a3b8;font-size:.92rem;line-height:1.55;min-height:66px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}
+.gm-playstore{max-width:1100px;margin:28px auto 0;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:22px}
+.gm-playstore-head{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:flex-end}
+.gm-playstore-scroll{display:flex;gap:14px;overflow-x:auto;padding:16px 2px 8px;scroll-snap-type:x mandatory}
+.gm-playstore-card{flex:0 0 320px;max-width:320px;scroll-snap-align:start;background:#0f172a;border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:8px;min-height:190px}
+.gm-playstore-card p{color:#cbd5e1;font-size:.9rem;line-height:1.55;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;min-height:88px}
+.gm-stars{color:#f59e0b;letter-spacing:2px}
+.gm-chat-window-full{width:min(920px,96vw)!important;height:min(760px,92vh)!important;right:2vw!important;bottom:2vh!important}
+.gm-chat-order-picker{border-top:1px solid rgba(255,255,255,.1);padding:10px;max-height:220px;overflow-y:auto;background:rgba(0,0,0,.18)}
+.gm-chat-order-picker button{width:100%;text-align:left;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#f8fafc;padding:10px 12px;border-radius:10px;margin-bottom:8px;cursor:pointer}
+.gm-portfolio-notif{position:relative}
+.gm-notif-dot{position:absolute;top:-2px;right:-2px;width:11px;height:11px;border-radius:50%;background:#ef4444;box-shadow:0 0 0 0 rgba(239,68,68,.7);animation:gmPulse 1.6s infinite}
+@keyframes gmPulse{0%{box-shadow:0 0 0 0 rgba(239,68,68,.6)}70%{box-shadow:0 0 0 9px rgba(239,68,68,0)}100%{box-shadow:0 0 0 0 rgba(239,68,68,0)}}
+#gmPortfolioNotifPopover{position:fixed;top:72px;right:5%;z-index:3500;width:min(360px,92vw);background:#0f172a;border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:16px;box-shadow:0 20px 50px rgba(0,0,0,.55)}
+#gmPortfolioNotifPopover.gm-hidden{display:none!important}
+#gmConsentBanner{position:fixed;left:12px;right:12px;bottom:12px;z-index:3600;background:#0f172a;border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:14px 16px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between;box-shadow:0 16px 40px rgba(0,0,0,.5)}
+#gmConsentBanner.gm-hidden{display:none!important}
+.gm-admin-site-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:700px){.gm-admin-site-grid{grid-template-columns:1fr}}
+.gm-admin-site-grid .gm-field label{font-size:.85rem}
+.gm-admin-site-grid input,.gm-admin-site-grid textarea{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#f8fafc;border-radius:10px;padding:10px 12px}
+.gm-admin-site-grid textarea{min-height:84px;resize:vertical}
+</style>
+
+<!-- Order Now - separate page (does NOT show portfolio cards behind it) -->
+<div id="gmOrderPage" class="gm-hidden" role="dialog" aria-modal="true" aria-label="Order Now">
+  <div class="gm-order-page-head">
+    <button class="gm-action" type="button" onclick="GM.closeOrderPage()">← Back to Portfolio</button>
+    <h2>Order Now</h2>
+    <p class="gm-muted" style="color:#94a3b8">Choose a service below. You can browse without an account — to place an order you will be asked to create an account / sign in.</p>
+    <div id="gmOrderPageStatus" class="gm-inline-status"></div>
+  </div>
+  <div class="gm-order-grid" id="gmOrderPageGrid"><p class="gm-muted">Loading services…</p></div>
+  <p class="gm-muted" style="max-width:1100px;margin:18px auto 0">Questions? Open live chat from the bottom-right bubble — you can pick a service there too and discuss it before ordering.</p>
+</div>
+
+<!-- Portfolio notification popover -->
+<div id="gmPortfolioNotifPopover" class="gm-hidden" role="dialog" aria-label="Announcement">
+  <div style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start"><strong>Announcement</strong><button class="gm-icon-btn" type="button" onclick="GM.closePortfolioNotif()" aria-label="Close">✕</button></div>
+  <p id="gmPortfolioNotifText" style="margin:10px 0;color:#cbd5e1;line-height:1.6">No new announcement yet.</p>
+  <p style="font-size:.82rem;color:#94a3b8">After you create an account, your real notifications will appear in Workspace → Notifications. This bell is only for public announcements.</p>
+</div>
+
+<!-- Anonymous analytics consent (NO IP / NO email is collected) -->
+<div id="gmConsentBanner" class="gm-hidden" role="dialog" aria-label="Analytics consent">
+  <div style="max-width:640px"><strong>Anonymous visit analytics?</strong><p style="color:#94a3b8;font-size:.88rem;line-height:1.5;margin-top:4px">If you allow, we count this visit anonymously (country / region from your device + which page you opened). We do <b>not</b> collect your IP address, email, or any message ID from anonymous visitors.</p></div>
+  <div style="display:flex;gap:8px"><button class="gm-action" type="button" onclick="GM.setAnalyticsConsent(false)">Decline</button><button class="gm-action gm-primary" type="button" onclick="GM.setAnalyticsConsent(true)">Allow anonymously</button></div>
+</div>
+
+<script>
+(function(){
+  // This block runs after the main module. It uses the same Firebase RTDB via window.GM internals where possible,
+  // and falls back to the global firebase config already on the page. It NEVER reads IP or email from visitors.
+  function esc(s){return String(s||'').replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+  function stars(n){n=Math.max(0,Math.min(5,Math.round(Number(n)||0)));return '★'.repeat(n)+'☆'.repeat(5-n)}
+  function truncate(s,max){s=String(s||'');return s.length>max? s.slice(0,max-1)+'…':s}
+
+  // ---- 1. Static service cards: admin text, SAME size ----
+  function applyStaticCards(data){
+    try{
+      var cards=document.querySelectorAll('#services .service-card');
+      if(!cards||!cards.length) return;
+      var keys=['play-store','map-review','map-seo','digital-marketing'];
+      keys.forEach(function(key,i){
+        var item=data&&data[key]; if(!item) return;
+        var card=cards[i]; if(!card) return;
+        card.classList.add('gm-service-card-fixed');
+        var h=card.querySelector('h3'); var p=card.querySelector('p');
+        if(item.title && h) h.textContent=truncate(item.title,48);
+        if(item.description && p) p.textContent=truncate(item.description,140);
+        if(Array.isArray(item.features)){
+          var lis=card.querySelectorAll('ul li');
+          item.features.slice(0,3).forEach(function(f,idx){ if(lis[idx]) lis[idx].lastChild.textContent=' '+truncate(f,38); });
+        }
+      });
+    }catch(e){console.warn('static cards',e)}
+  }
+
+  // ---- 7. Contact Info: admin text, SAME layout ----
+  function applyContactInfo(data){
+    try{
+      if(!data) return;
+      var items=document.querySelectorAll('.contact-info-panel .info-item');
+      if(!items||items.length<4) return;
+      var vals=[data.agency,data.whatsapp,data.telegram,data.email];
+      vals.forEach(function(v,i){ if(v && items[i]){ var ps=items[i].querySelectorAll('p'); if(ps[1]) ps[1].textContent=truncate(v,72); }});
+      window.GM_CONTACT_INFO=data;
+    }catch(e){console.warn('contact',e)}
+  }
+
+  // ---- 4. Payment note: admin only, no hardcoded default ----
+  function applyPaymentNote(text){
+    var el=document.getElementById('gmPaymentNote');
+    if(!el) return;
+    if(text && String(text).trim()) el.textContent=String(text);
+    else el.textContent='Payment information is managed from the Admin Panel. Please ask in live chat for the current instructions.';
+  }
+
+  // ---- 6. Portfolio notice ----
+  function applyPortfolioNotice(text){
+    var el=document.getElementById('gmPortfolioNotifText');
+    if(el) el.textContent=(text&&String(text).trim())? String(text) : 'No new announcement yet.';
+  }
+
+  // ---- 2. Play Store style review box (approved real reviews only) ----
+  function renderPlayStoreReviews(list){
+    var box=document.getElementById('gmPlayStoreBox');
+    if(!box) return;
+    var grid=document.getElementById('gmPlayStoreList');
+    var avgEl=document.getElementById('gmPlayStoreAvg');
+    if(!list||!list.length){
+      if(grid) grid.innerHTML='<div class="gm-playstore-card"><strong>No published reviews yet</strong><p>Approved client reviews will appear here. If you used a service, please leave a review from your workspace — it will show here after admin approval.</p><button class="gm-action gm-primary" type="button" onclick="GM.openProfile()">Write a review</button></div>';
+      if(avgEl) avgEl.textContent='—';
+      return;
+    }
+    var avg=(list.reduce(function(a,r){return a+(Number(r.rating)||0)},0)/list.length);
+    if(avgEl) avgEl.textContent=avg.toFixed(1);
+    grid.innerHTML=list.map(function(r){
+      return '<article class="gm-playstore-card"><div style="display:flex;justify-content:space-between;gap:8px"><strong>'+esc(r.name||'Client')+'</strong><span class="gm-stars">'+stars(r.rating)+'</span></div><p>'+esc(r.title? (r.title+' — '+r.text): r.text)+'</p><small style="color:#94a3b8">'+esc(r.serviceName||'')+' · '+esc(r.date||'')+'</small></article>';
+    }).join('');
+  }
+  function ensurePlayStoreBox(){
+    if(document.getElementById('gmPlayStoreBox')) return;
+    var services=document.getElementById('services'); if(!services) return;
+    var div=document.createElement('div');
+    div.id='gmPlayStoreBox';
+    div.className='gm-playstore';
+    div.innerHTML='<div class="gm-playstore-head"><div><span class="badge">Client Reviews</span><h3 style="margin:6px 0">Play Store Style Reviews</h3><p class="gm-muted" style="color:#94a3b8">Only approved reviews from real clients. Swipe to browse.</p></div><div style="text-align:right"><div style="font-size:2rem;font-weight:800" id="gmPlayStoreAvg">—</div><div class="gm-stars">★★★★★</div><button class="gm-action gm-primary" type="button" onclick="GM.openProfile()" style="margin-top:8px">Write a review</button></div></div><div class="gm-playstore-scroll" id="gmPlayStoreList"><div class="gm-playstore-card"><p>Loading approved reviews…</p></div></div>';
+    services.appendChild(div);
+  }
+
+  // ---- 3. Order Now page ----
+  function getServicesForOrder(){
+    // Prefer the live catalog already rendered, else fallback to static cards
+    var fromWindow=(window.GM && window.GM._servicesCache) || null;
+    if(fromWindow && Object.keys(fromWindow).length) return Object.entries(fromWindow).map(function(e){return {id:e[0], name:e[1].name, description:e[1].description, price:e[1].price}});
+    var cards=document.querySelectorAll('#services .service-card');
+    var arr=[];
+    cards.forEach(function(c,i){ var h=c.querySelector('h3'); var p=c.querySelector('p'); if(h) arr.push({id:'static-'+i,name:h.textContent.trim(),description:p?p.textContent.trim():'',price:''}); });
+    return arr;
+  }
+  function renderOrderPage(){
+    var grid=document.getElementById('gmOrderPageGrid'); if(!grid) return;
+    var list=getServicesForOrder();
+    if(!list.length){ grid.innerHTML='<p class="gm-muted">No services available right now. Please try again later or ask in live chat.</p>'; return; }
+    grid.innerHTML=list.map(function(s){
+      return '<div class="gm-order-card"><h3>'+esc(s.name)+'</h3><p>'+esc(s.description||'')+'</p>'+(s.price!==''&&s.price!=null?'<strong>'+esc(String(s.price))+' per unit</strong>':'')+'<button class="gm-action gm-primary" type="button" onclick="GM.requireAccountForOrder(\''+esc(s.id)+'\',\''+esc(s.name).replace(/'/g,"\\'")+'\')">Order this service</button></div>';
+    }).join('');
+  }
+
+  // ---- 5. Chat: Order picker + Fullscreen ----
+  function ensureChatButtons(){
+    var head=document.querySelector('#gmChatWindow .gm-chat-head');
+    if(!head || head.dataset.gmEnhanced) return;
+    head.dataset.gmEnhanced='1';
+    var btnWrap=head.querySelector('div:last-child');
+    if(btnWrap){
+      var orderBtn=document.createElement('button'); orderBtn.className='gm-icon-btn'; orderBtn.type='button'; orderBtn.title='Order a service'; orderBtn.innerHTML='<i class="fas fa-shopping-bag"></i>'; orderBtn.onclick=function(){ window.GM.toggleChatOrderPicker(); };
+      var fullBtn=document.createElement('button'); fullBtn.className='gm-icon-btn'; fullBtn.type='button'; fullBtn.title='Fullscreen chat'; fullBtn.innerHTML='<i class="fas fa-expand"></i>'; fullBtn.onclick=function(){ window.GM.toggleChatFullscreen(); };
+      btnWrap.insertBefore(orderBtn, btnWrap.firstChild);
+      btnWrap.insertBefore(fullBtn, btnWrap.firstChild);
+    }
+    var win=document.getElementById('gmChatWindow');
+    if(win && !document.getElementById('gmChatOrderPicker')){
+      var picker=document.createElement('div');
+      picker.id='gmChatOrderPicker'; picker.className='gm-chat-order-picker gm-hidden';
+      picker.innerHTML='<p class="gm-muted" style="margin-bottom:8px">Pick a service to discuss — its details will be added to your message.</p><div id="gmChatOrderPickerList"></div>';
+      var compose=win.querySelector('.gm-chat-compose');
+      if(compose) win.insertBefore(picker, compose);
+    }
+  }
+  function renderChatOrderPicker(){
+    var listEl=document.getElementById('gmChatOrderPickerList'); if(!listEl) return;
+    var list=getServicesForOrder();
+    listEl.innerHTML=list.map(function(s){ return '<button type="button" onclick="GM.selectChatOrder(\''+esc(s.id)+'\',\''+esc(s.name).replace(/'/g,"\\'")+'\')">'+esc(s.name)+' — '+esc(s.description||'')+'</button>'; }).join('') || '<p class="gm-muted">No services available.</p>';
+  }
+
+  // ---- 6. Portfolio notification button next to Profile ----
+  function ensurePortfolioNotif(){
+    var nav=document.querySelector('nav'); if(!nav || document.getElementById('gmPortfolioNotifBtn')) return;
+    var profileBtn=nav.querySelector('.gm-nav-profile');
+    var btn=document.createElement('button');
+    btn.type='button'; btn.id='gmPortfolioNotifBtn'; btn.className='gm-nav-profile gm-portfolio-notif'; btn.setAttribute('aria-label','Announcements');
+    btn.innerHTML='<i class="fas fa-bell"></i><span class="gm-notif-dot" id="gmNotifDot"></span><span style="margin-left:6px">Alerts</span>';
+    btn.onclick=function(){ window.GM.togglePortfolioNotif(); };
+    if(profileBtn) nav.insertBefore(btn, profileBtn.nextSibling);
+    else nav.appendChild(btn);
+    // Hide dot after first click in this session
+    try{ if(sessionStorage.getItem('gmNotifSeen')==='1'){ var d=document.getElementById('gmNotifDot'); if(d) d.style.display='none'; } }catch(e){}
+  }
+
+  // ---- Admin: Site Settings tab ----
+  function ensureAdminSiteTab(){
+    var tabs=document.getElementById('gmAdminTabs'); if(!tabs || document.querySelector('[data-gm-admin-tab="site"]')) return;
+    var b=document.createElement('button'); b.className='gm-tab'; b.setAttribute('data-gm-admin-tab','site'); b.textContent='Site Settings'; b.onclick=function(){ window.GM.selectAdminTab('site'); };
+    tabs.appendChild(b);
+    // Admin section container - find admin section and append a site panel
+    var adminSec=document.getElementById('gmAdminSection'); if(!adminSec) return;
+    var panel=document.createElement('div');
+    panel.setAttribute('data-gm-admin-section','site');
+    panel.className='gm-hidden';
+    panel.innerHTML='<div class="gm-panel"><h3>Site Settings (Admin only)</h3><p class="gm-muted">These texts control the public portfolio. Layout / size never changes — only the text changes. Leave a field empty to hide its custom text.</p>'
+      +'<div class="gm-admin-site-grid" style="margin-top:12px">'
+      +'<div class="gm-field"><label>Payment note (Accepted Payments box)</label><textarea id="gmAdminPaymentNote" placeholder="e.g. We accept USDT and Binance Pay. Ask in live chat for current instructions."></textarea></div>'
+      +'<div class="gm-field"><label>Portfolio announcement (bell icon)</label><textarea id="gmAdminPortfolioNotice" placeholder="e.g. We are accepting new orders this week."></textarea></div>'
+      +'<div class="gm-field"><label>Contact — Agency</label><input id="gmAdminContactAgency" placeholder="Google Marketing"></div>'
+      +'<div class="gm-field"><label>Contact — WhatsApp</label><input id="gmAdminContactWhatsApp" placeholder="https://wa.me/..."></div>'
+      +'<div class="gm-field"><label>Contact — Telegram</label><input id="gmAdminContactTelegram" placeholder="https://t.me/..."></div>'
+      +'<div class="gm-field"><label>Contact — Email</label><input id="gmAdminContactEmail" placeholder="you@example.com"></div>'
+      +'</div>'
+      +'<h4 style="margin:16px 0 8px">Premium Digital Solutions — 4 static cards (title + short description)</h4><div class="gm-admin-site-grid">'
+      +'<div class="gm-field"><label>Card 1 — Title</label><input id="gmAdminCard0Title"></div><div class="gm-field"><label>Card 1 — Description (max 140 chars)</label><input id="gmAdminCard0Desc" maxlength="140"></div>'
+      +'<div class="gm-field"><label>Card 2 — Title</label><input id="gmAdminCard1Title"></div><div class="gm-field"><label>Card 2 — Description</label><input id="gmAdminCard1Desc" maxlength="140"></div>'
+      +'<div class="gm-field"><label>Card 3 — Title</label><input id="gmAdminCard2Title"></div><div class="gm-field"><label>Card 3 — Description</label><input id="gmAdminCard2Desc" maxlength="140"></div>'
+      +'<div class="gm-field"><label>Card 4 — Title</label><input id="gmAdminCard3Title"></div><div class="gm-field"><label>Card 4 — Description</label><input id="gmAdminCard3Desc" maxlength="140"></div>'
+      +'</div><div class="gm-action-row" style="margin-top:14px"><button class="gm-action gm-primary" type="button" onclick="GM.saveSiteSettings()">Save Site Settings</button></div><div class="gm-inline-status" id="gmAdminSiteStatus"></div></div>';
+    adminSec.appendChild(panel);
+  }
+
+  // Expose helpers on window.GM (merge, do not replace existing GM)
+  function mergeGM(){
+    if(!window.GM) window.GM={};
+    var G=window.GM;
+    G.openOrderPage=function(){ var p=document.getElementById('gmOrderPage'); if(p){ p.classList.remove('gm-hidden'); renderOrderPage(); window.scrollTo(0,0);} };
+    G.closeOrderPage=function(){ var p=document.getElementById('gmOrderPage'); if(p) p.classList.add('gm-hidden'); };
+    G.requireAccountForOrder=function(id,name){
+      // If user has a real (non-anonymous) account, go to workspace order flow; else force account creation
+      var hasReal=false;
+      try{ hasReal = !!(window.GM && window.GM._hasRealAccount && window.GM._hasRealAccount()); }catch(e){}
+      // Fallback: check if auth overlay shows signed-in state via workspace avatar subtitle? Use a heuristic: if GM.currentUser exists and not anonymous
+      try{ if(window.GM && window.GM._currentUser && !window.GM._currentUser.isAnonymous) hasReal=true; }catch(e){}
+      if(!hasReal){
+        var st=document.getElementById('gmOrderPageStatus'); if(st) st.textContent='Please create an account / sign in to place an order for “'+name+'”.';
+        if(G.openProfile) G.openProfile();
+        // Pre-fill a hint in auth status after a tick
+        setTimeout(function(){ var s=document.getElementById('gmAuthStatus'); if(s) s.textContent='Create an account to place an order for “'+name+'”.'; },300);
+        return;
+      }
+      G.closeOrderPage();
+      if(G.openWorkspaceOrder) G.openWorkspaceOrder(id);
+      else if(G.openWorkspace) G.openWorkspace();
+    };
+    G.toggleChatFullscreen=function(){ var w=document.getElementById('gmChatWindow'); if(w) w.classList.toggle('gm-chat-window-full'); };
+    G.toggleChatOrderPicker=function(){ var p=document.getElementById('gmChatOrderPicker'); if(!p) return; var willShow=p.classList.contains('gm-hidden'); p.classList.toggle('gm-hidden'); if(willShow) renderChatOrderPicker(); };
+    G.selectChatOrder=function(id,name){
+      var comp=document.getElementById('gmChatComposer');
+      if(comp){ comp.focus(); var txt='I want to discuss order: '+name+' (Service: '+name+') — please share price and timeline.'; comp.textContent=txt; }
+      var picker=document.getElementById('gmChatOrderPicker'); if(picker) picker.classList.add('gm-hidden');
+      // Also store for the next send so Telegram admin sees which service was discussed
+      window.GM._pendingChatService=name;
+      if(G.toggleChat) G.toggleChat(true);
+    };
+    G.togglePortfolioNotif=function(){ var pop=document.getElementById('gmPortfolioNotifPopover'); if(pop) pop.classList.toggle('gm-hidden'); try{ sessionStorage.setItem('gmNotifSeen','1'); var d=document.getElementById('gmNotifDot'); if(d) d.style.display='none'; }catch(e){} };
+    G.closePortfolioNotif=function(){ var pop=document.getElementById('gmPortfolioNotifPopover'); if(pop) pop.classList.add('gm-hidden'); };
+    G.setAnalyticsConsent=function(allow){
+      try{ localStorage.setItem('gmAnalyticsConsent', allow?'allowed':'declined'); }catch(e){}
+      var b=document.getElementById('gmConsentBanner'); if(b) b.classList.add('gm-hidden');
+      if(allow) sendAnonymousVisit();
+    };
+    G.saveSiteSettings=function(){
+      // This is called from Admin Panel. It writes ONLY to siteSettings in RTDB via the existing GM save helper if present,
+      // otherwise it dispatches a custom event the main module can listen to. We implement a direct RTDB write using the
+      // global firebase helpers exposed by the main module if available.
+      var st=document.getElementById('gmAdminSiteStatus'); if(st) st.textContent='Saving…';
+      var payload={
+        paymentNote: (document.getElementById('gmAdminPaymentNote')||{}).value||'',
+        portfolioNotice: (document.getElementById('gmAdminPortfolioNotice')||{}).value||'',
+        contactInfo: {
+          agency: (document.getElementById('gmAdminContactAgency')||{}).value||'',
+          whatsapp: (document.getElementById('gmAdminContactWhatsApp')||{}).value||'',
+          telegram: (document.getElementById('gmAdminContactTelegram')||{}).value||'',
+          email: (document.getElementById('gmAdminContactEmail')||{}).value||''
+        },
+        staticServices: {
+          'play-store': {title:(document.getElementById('gmAdminCard0Title')||{}).value||'', description:(document.getElementById('gmAdminCard0Desc')||{}).value||''},
+          'map-review': {title:(document.getElementById('gmAdminCard1Title')||{}).value||'', description:(document.getElementById('gmAdminCard1Desc')||{}).value||''},
+          'map-seo': {title:(document.getElementById('gmAdminCard2Title')||{}).value||'', description:(document.getElementById('gmAdminCard2Desc')||{}).value||''},
+          'digital-marketing': {title:(document.getElementById('gmAdminCard3Title')||{}).value||'', description:(document.getElementById('gmAdminCard3Desc')||{}).value||''}
+        }
+      };
+      // Try GM helper first
+      if(window.GM && typeof window.GM._saveSiteSettings==='function'){ window.GM._saveSiteSettings(payload).then(function(){ if(st) st.textContent='Saved. Public site updated.'; }).catch(function(e){ if(st) st.textContent='Could not save. Please try again.'; }); return; }
+      // Fallback: store pending payload; main module patch (see below) will pick it up if it exposes _saveSiteSettings. If not, show guidance.
+      window.GM._pendingSiteSettings=payload;
+      if(st) st.textContent='Ready to save — please ensure you are signed in as admin, then click Save again. (If it still does not save, your Firebase Database Rules must allow admin write to siteSettings.)';
+    };
+  }
+
+  function sendAnonymousVisit(){
+    try{
+      var consent=null; try{ consent=localStorage.getItem('gmAnalyticsConsent'); }catch(e){}
+      if(consent!=='allowed') return;
+      // Coarse, non-identifying fields ONLY. No IP, no email, no message ID.
+      var tz=''; try{ tz=Intl.DateTimeFormat().resolvedOptions().timeZone||''; }catch(e){}
+      var refDomain=''; try{ if(document.referrer){ refDomain=new URL(document.referrer).hostname; } }catch(e){}
+      var payload={consent:true, page: location.pathname, referrerDomain: refDomain, timezone: tz, language: navigator.language||'', timestamp: new Date().toISOString()};
+      // 1) Backend (Render) for Telegram summary - backend must NOT store IP/email
+      var bridgeUrl=(window.GM_TELEGRAM_BRIDGE_URL||'https://portfolio-live-chat-bot.onrender.com/api/bridge');
+      // Use the new /api/visit endpoint if available; it is on the same Render host.
+      var visitUrl=bridgeUrl.replace('/api/bridge','/api/visit');
+      fetch(visitUrl,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).catch(function(){});
+      // 2) Also record an anonymized aggregate in RTDB via the main module's helper if it exposes it
+      if(window.GM && typeof window.GM._recordAnonymousVisit==='function'){ window.GM._recordAnonymousVisit(payload); }
+    }catch(e){console.warn('visit',e)}
+  }
+
+  function showConsentIfNeeded(){
+    try{
+      var v=localStorage.getItem('gmAnalyticsConsent');
+      if(!v){ var b=document.getElementById('gmConsentBanner'); if(b) b.classList.remove('gm-hidden'); }
+      else if(v==='allowed'){ sendAnonymousVisit(); }
+    }catch(e){}
+  }
+
+  // Forgot password button (uses sendPasswordResetEmail from main module via GM helper if present)
+  function ensureForgotBtn(){
+    var actions=document.getElementById('gmAuthActions'); if(!actions || document.getElementById('gmForgotBtn')) return;
+    var btn=document.createElement('button'); btn.type='button'; btn.id='gmForgotBtn'; btn.className='gm-action'; btn.textContent='Forgot password?';
+    btn.onclick=function(){
+      var email=(document.getElementById('gmAuthEmail')||{}).value||'';
+      if(!email){ var s=document.getElementById('gmAuthStatus'); if(s) s.textContent='Please enter your email above, then click Forgot password.'; return; }
+      if(window.GM && typeof window.GM._forgotPassword==='function'){ window.GM._forgotPassword(email); return; }
+      var s2=document.getElementById('gmAuthStatus'); if(s2) s2.textContent='Password reset is available after sign-in setup. Please contact us in live chat.';
+    };
+    actions.appendChild(btn);
+    var hint=document.getElementById('gmAuthPasswordWrap');
+    if(hint && !document.getElementById('gmPasswordHint')){
+      var p=document.createElement('p'); p.id='gmPasswordHint'; p.className='gm-muted'; p.style.cssText='font-size:.82rem;margin-top:6px'; p.textContent='Use at least 6 characters. If you forgot your password, enter your email above and click “Forgot password?” — we will send a reset link.';
+      hint.appendChild(p);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    mergeGM();
+    ensurePlayStoreBox();
+    ensureChatButtons();
+    ensurePortfolioNotif();
+    ensureAdminSiteTab();
+    ensureForgotBtn();
+    showConsentIfNeeded();
+    // Re-apply when GM becomes ready (module loads async)
+    var tries=0; var iv=setInterval(function(){ tries++; mergeGM(); ensureChatButtons(); ensurePortfolioNotif(); ensureAdminSiteTab(); ensureForgotBtn(); if(tries>20) clearInterval(iv); },800);
+  });
+  // Also run immediately if DOM already ready
+  if(document.readyState!=='loading'){ setTimeout(function(){ mergeGM(); ensurePlayStoreBox(); ensureChatButtons(); ensurePortfolioNotif(); ensureAdminSiteTab(); ensureForgotBtn(); showConsentIfNeeded(); },200); }
+})();
+</script>
+
+<!-- Patch for main module: expose _saveSiteSettings / _recordAnonymousVisit / _forgotPassword / _hasRealAccount and apply siteSettings + approved reviews -->
+<script type="module">
+/* This module patch is intentionally minimal: it waits for the main GM module, then wires Site Settings + Play Store reviews
+   to Firebase RTDB (siteSettings + reviews). It does NOT change login / chat logic. */
+import { getDatabase, ref, onValue, set, push } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js';
+import { getAuth, sendPasswordResetEmail } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js';
+// NOTE: The main module already initialised Firebase. We reuse its app via getAuth()/getDatabase() on the default app.
+// If Firebase is not configured, this patch silently does nothing and the public portfolio stays visible.
+function tryWire(){
+  try{
+    var db=null, auth=null;
+    try{ db=getDatabase(); auth=getAuth(); }catch(e){ return; }
+    if(!db) return;
+    // Site Settings -> apply to public site
+    try{
+      onValue(ref(db,'siteSettings'), function(snap){
+        var v=snap.val()||{};
+        // Static cards
+        try{
+          var cards=document.querySelectorAll('#services .service-card');
+          var keys=['play-store','map-review','map-seo','digital-marketing'];
+          keys.forEach(function(k,i){
+            var it=v.staticServices&&v.staticServices[k]; if(!it||!cards[i]) return;
+            var h=cards[i].querySelector('h3'); var p=cards[i].querySelector('p');
+            if(it.title) h.textContent=String(it.title).slice(0,48);
+            if(it.description) p.textContent=String(it.description).slice(0,140);
+          });
+        }catch(e){}
+        // Contact
+        try{
+          if(v.contactInfo){
+            var items=document.querySelectorAll('.contact-info-panel .info-item');
+            var vals=[v.contactInfo.agency,v.contactInfo.whatsapp,v.contactInfo.telegram,v.contactInfo.email];
+            vals.forEach(function(val,i){ if(val&&items[i]){ var ps=items[i].querySelectorAll('p'); if(ps[1]) ps[1].textContent=String(val).slice(0,72); }});
+            window.GM_CONTACT_INFO=v.contactInfo;
+          }
+        }catch(e){}
+        // Payment note + notice
+        var pn=document.getElementById('gmPaymentNote'); if(pn) pn.textContent=(v.paymentNote&&String(v.paymentNote).trim())? String(v.paymentNote) : 'Payment information is managed from the Admin Panel. Please ask in live chat for the current instructions.';
+        var nt=document.getElementById('gmPortfolioNotifText'); if(nt) nt.textContent=(v.portfolioNotice&&String(v.portfolioNotice).trim())? String(v.portfolioNotice) : 'No new announcement yet.';
+        // Pre-fill admin inputs if admin panel is open
+        try{
+          if(v.paymentNote!=null){ var a=document.getElementById('gmAdminPaymentNote'); if(a&&!a.value) a.value=v.paymentNote; }
+          if(v.portfolioNotice!=null){ var b=document.getElementById('gmAdminPortfolioNotice'); if(b&&!b.value) b.value=v.portfolioNotice; }
+          if(v.contactInfo){ var m={agency:'gmAdminContactAgency',whatsapp:'gmAdminContactWhatsApp',telegram:'gmAdminContactTelegram',email:'gmAdminContactEmail'}; Object.keys(m).forEach(function(k){ var el=document.getElementById(m[k]); if(el&&!el.value&&v.contactInfo[k]) el.value=v.contactInfo[k]; }); }
+          if(v.staticServices){ var keys2=['play-store','map-review','map-seo','digital-marketing']; keys2.forEach(function(k,i){ var it=v.staticServices[k]; if(!it) return; var t=document.getElementById('gmAdminCard'+i+'Title'); var d=document.getElementById('gmAdminCard'+i+'Desc'); if(t&&!t.value&&it.title) t.value=it.title; if(d&&!d.value&&it.description) d.value=it.description; }); }
+        }catch(e){}
+      });
+    }catch(e){console.warn('siteSettings',e)}
+    // Approved reviews -> Play Store box
+    try{
+      onValue(ref(db,'reviews'), function(snap){
+        var all=snap.val()||{};
+        var list=Object.values(all).filter(function(r){ return r && (r.status==='approved' || r.status==='published'); }).sort(function(a,b){ return (Number(b.createdAt)||0)-(Number(a.createdAt)||0); }).slice(0,20).map(function(r){
+          return {name:r.name||r.userName||'Client', rating:r.rating||5, title:r.title||'', text:r.text||r.review||'', serviceName:r.serviceName||'', date: r.createdAt? new Date(Number(r.createdAt)).toLocaleDateString() : ''};
+        });
+        // Render via the helper in the previous script if it exists, else inline
+        var grid=document.getElementById('gmPlayStoreList'); var avgEl=document.getElementById('gmPlayStoreAvg');
+        if(grid){
+          if(!list.length){ grid.innerHTML='<div class="gm-playstore-card"><strong>No published reviews yet</strong><p>Approved client reviews will appear here. If you used a service, please leave a review from your workspace — it will show here after admin approval.</p></div>'; if(avgEl) avgEl.textContent='—'; }
+          else{
+            var avg=list.reduce(function(a,r){return a+(Number(r.rating)||0)},0)/list.length; if(avgEl) avgEl.textContent=avg.toFixed(1);
+            grid.innerHTML=list.map(function(r){ var st='★'.repeat(Math.max(0,Math.min(5,Math.round(Number(r.rating)||0))))+'☆'.repeat(5-Math.max(0,Math.min(5,Math.round(Number(r.rating)||0)))); return '<article class="gm-playstore-card"><div style="display:flex;justify-content:space-between;gap:8px"><strong>'+String(r.name).replace(/[<>&"]/g,'')+'</strong><span style="color:#f59e0b">'+st+'</span></div><p>'+String((r.title? r.title+' — ':'')+r.text).replace(/[<>&"]/g,'')+'</p><small style="color:#94a3b8">'+String(r.serviceName||'')+' · '+String(r.date||'')+'</small></article>'; }).join('');
+          }
+        }
+      });
+    }catch(e){console.warn('reviews',e)}
+    // Expose admin save + forgot + anonymous visit helpers for the previous script
+    if(window.GM){
+      window.GM._saveSiteSettings=function(payload){
+        // Merge: read current siteSettings, then set merged (so one field does not wipe others)
+        return new Promise(function(resolve,reject){
+          try{
+            import('https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js').then(function(mod){
+              var getFn=mod.get, updateFn=mod.update;
+              getFn(ref(db,'siteSettings')).then(function(snap){
+                var cur=snap.val()||{};
+                var merged={ paymentNote: payload.paymentNote, portfolioNotice: payload.portfolioNotice, contactInfo: Object.assign({}, cur.contactInfo||{}, payload.contactInfo||{}), staticServices: Object.assign({}, cur.staticServices||{}, payload.staticServices||{}) };
+                // Only overwrite staticServices entries that have content, keep others
+                Object.keys(payload.staticServices||{}).forEach(function(k){ if(!payload.staticServices[k].title && !payload.staticServices[k].description) merged.staticServices[k]=cur.staticServices&&cur.staticServices[k]||payload.staticServices[k]; });
+                set(ref(db,'siteSettings'), merged).then(resolve).catch(reject);
+              }).catch(reject);
+            }).catch(reject);
+          }catch(e){ reject(e); }
+        });
+      };
+      window.GM._recordAnonymousVisit=function(payload){
+        try{ push(ref(db,'siteVisits'), {country:'', region:'', timezone: payload.timezone||'', referrerDomain: payload.referrerDomain||'', page: payload.page||'', language: payload.language||'', createdAt: Date.now()}); }catch(e){}
+      };
+      window.GM._forgotPassword=function(email){
+        try{
+          sendPasswordResetEmail(auth, email).then(function(){ var s=document.getElementById('gmAuthStatus'); if(s) s.textContent='If an account exists for this email, a reset link has been sent. Please check your inbox / spam.'; }).catch(function(err){
+            var msg='Could not send reset link. Please try again.';
+            if(err && err.code==='auth/invalid-email') msg='Please enter a valid email address.';
+            if(err && err.code==='auth/user-not-found') msg='No account found for this email. Please create an account first.';
+            var s2=document.getElementById('gmAuthStatus'); if(s2) s2.textContent=msg;
+          });
+        }catch(e){}
+      };
+      window.GM._hasRealAccount=function(){ try{ var u=auth.currentUser; return !!(u && !u.isAnonymous); }catch(e){ return false; } };
+      window.GM._currentUser=auth.currentUser;
+      try{ auth.onAuthStateChanged(function(u){ window.GM._currentUser=u; }); }catch(e){}
+    }
+  }catch(e){ console.warn('GM patch',e); }
+}
+setTimeout(tryWire, 1200);
+setInterval(function(){ if(window.GM && !window.GM._saveSiteSettings) tryWire(); }, 4000);
+</script>
+</body>
 </html>
