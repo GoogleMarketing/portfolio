@@ -1346,6 +1346,34 @@ nav .logo span{white-space:nowrap}
 .gm-chat-launcher{background:linear-gradient(135deg,#2563eb,#3b82f6) !important;box-shadow:0 12px 35px rgba(37,99,235,.42) !important;display:grid !important;place-items:center !important;color:#fff !important}
 .gm-chat-launcher i{font-size:1.5rem !important;color:#fff !important;display:block !important;line-height:1 !important}
 
+
+/* ===== FIX 2026-11-24 — Logged-in workspace: no clutter, Admin out of menu, Premium menu, No Create Account after login ===== */
+/* Overview: hide stat cards (My Orders / Pending / Reviews / Notifications) — they live in Menu only */
+#gmOverviewStats{display:none !important}
+.gm-overview-minimal{padding:22px}
+.gm-overview-minimal h3{font-size:1.35rem;margin:0 0 8px}
+.gm-overview-minimal p{line-height:1.6}
+/* Auth: when logged in, hide BOTH side panels (HELLO FRIEND / WELCOME BACK) — so Create Account never shows after login */
+#gmAuthOverlay.gm-auth-loggedin .gm-auth-side{display:none !important}
+#gmAuthOverlay.gm-auth-loggedin .gm-dialog.gm-auth-split{grid-template-columns:1fr !important}
+#gmAuthOverlay.gm-auth-loggedin .gm-auth-form{max-width:640px;margin:0 auto;width:100%}
+/* Portfolio Menu — premium, professional: full overlay, centred card, FA icons in gold circles */
+.mobile-menu{position:fixed !important;inset:0 !important;z-index:3000 !important;display:flex !important;align-items:center !important;justify-content:center !important;padding:16px !important;background:rgba(3,5,12,.82) !important;backdrop-filter:blur(14px) !important;overflow-y:auto !important}
+.mobile-menu.gm-hidden,.mobile-menu.hidden{display:none !important}
+.mobile-menu .gm-menu-card{width:min(720px,94vw) !important;max-height:92vh !important;overflow-y:auto !important;margin:auto !important;background:linear-gradient(160deg,rgba(28,30,48,.98),rgba(12,13,26,.98)) !important;border:1px solid rgba(245,200,110,.28) !important;border-radius:22px !important;padding:18px !important;box-shadow:0 30px 80px rgba(0,0,0,.6) !important}
+.mobile-menu .gm-menu-card-grid{gap:12px !important}
+.mobile-menu .gm-menu-card-opt{padding:18px 10px 16px !important;gap:8px !important;border-radius:18px !important;background:rgba(255,255,255,.055) !important;border:1px solid rgba(255,255,255,.11) !important;transition:transform .15s ease,border-color .15s ease !important}
+.mobile-menu .gm-menu-card-opt:hover{border-color:rgba(245,200,110,.65) !important;transform:translateY(-2px) !important;background:rgba(255,255,255,.08) !important}
+.mobile-menu .gm-menu-card-ico{width:46px !important;height:46px !important;border-radius:14px !important;display:grid !important;place-items:center !important;background:linear-gradient(135deg,rgba(245,200,110,.22),rgba(124,108,255,.22)) !important;border:1px solid rgba(245,200,110,.35) !important;font-size:1.05rem !important;line-height:1 !important;color:#fde68a !important}
+.mobile-menu .gm-menu-card-ico i{font-size:1.05rem !important;color:#fde68a !important}
+.mobile-menu .gm-menu-card-opt strong{font-size:1rem !important}
+.mobile-menu .gm-menu-card-opt span:last-child{font-size:.75rem !important}
+.mobile-menu .gm-menu-card-opt-accent .gm-menu-card-ico{background:linear-gradient(135deg,#7c6cff,#22d3ee) !important;border-color:transparent !important}
+.mobile-menu .gm-menu-card-opt-accent .gm-menu-card-ico i{color:#fff !important}
+/* Workspace sidebar footer: Admin Console (moved out of Menu list) looks like a footer button */
+.gm-side-foot .gm-tab{width:100% !important;display:flex !important;align-items:center !important;gap:10px !important;justify-content:flex-start !important;padding:11px 12px !important;border-radius:13px !important;background:rgba(245,200,110,.12) !important;border:1px solid rgba(245,200,110,.4) !important;color:#fde68a !important;font-weight:750 !important;cursor:pointer !important;text-align:left !important}
+.gm-side-foot .gm-tab.gm-hidden{display:none !important}
+
 </style>
 
 </head>
@@ -1379,16 +1407,16 @@ nav .logo span{white-space:nowrap}
                 <button class="close-menu" onclick="toggleMenu()"><i class="fas fa-times"></i> CLOSE</button>
             </div>
             <div class="gm-menu-card-grid">
-                <a class="gm-menu-card-opt" href="#home" onclick="toggleMenu()"><span class="gm-menu-card-ico">🏠</span><strong>Home</strong><span>Start here</span></a>
-                <a class="gm-menu-card-opt" href="#services" onclick="toggleMenu()"><span class="gm-menu-card-ico">💎</span><strong>Services</strong><span>What we do</span></a>
-                <a class="gm-menu-card-opt" href="#guarantee" onclick="toggleMenu()"><span class="gm-menu-card-ico">🛡️</span><strong>Guarantee</strong><span>Safe &amp; non-drop</span></a>
-                <a class="gm-menu-card-opt" href="#reviews" onclick="toggleMenu()"><span class="gm-menu-card-ico">⭐</span><strong>Reviews</strong><span>Proof of work</span></a>
-                <a class="gm-menu-card-opt" href="#about" onclick="toggleMenu()"><span class="gm-menu-card-ico">👤</span><strong>About Me</strong><span>Meet Shakil</span></a>
-                <a class="gm-menu-card-opt" href="#faq" onclick="toggleMenu()"><span class="gm-menu-card-ico">❓</span><strong>FAQ</strong><span>Common questions</span></a>
-                <a class="gm-menu-card-opt" href="#contact" onclick="toggleMenu()"><span class="gm-menu-card-ico">💬</span><strong>Contact</strong><span>Talk to us</span></a>
-                <a class="gm-menu-card-opt gm-menu-card-opt-accent" href="#" onclick="event.preventDefault(); toggleMenu(); GM.openOrderPage();"><span class="gm-menu-card-ico">🛒</span><strong>Order Now</strong><span>Start a project</span></a>
-                <a class="gm-menu-card-opt" href="#" onclick="event.preventDefault(); toggleMenu(); GM.togglePortfolioNotif();"><span class="gm-menu-card-ico">🔔</span><strong>Alerts</strong><span>Announcements</span></a>
-                <a class="gm-menu-card-opt gm-menu-card-opt-profile" href="#" onclick="event.preventDefault(); toggleMenu(); GM.openProfile();"><span class="gm-menu-card-ico">👤</span><strong>Profile / Account</strong><span>Login / Your profile</span></a>
+                <a class="gm-menu-card-opt" href="#home" onclick="toggleMenu()"><span class="gm-menu-card-ico"><i class="fas fa-home"></i></span><strong>Home</strong><span>Start here</span></a>
+                <a class="gm-menu-card-opt" href="#services" onclick="toggleMenu()"><span class="gm-menu-card-ico"><i class="fas fa-gem"></i></span><strong>Services</strong><span>What we do</span></a>
+                <a class="gm-menu-card-opt" href="#guarantee" onclick="toggleMenu()"><span class="gm-menu-card-ico"><i class="fas fa-shield-alt"></i></span><strong>Guarantee</strong><span>Safe &amp; non-drop</span></a>
+                <a class="gm-menu-card-opt" href="#reviews" onclick="toggleMenu()"><span class="gm-menu-card-ico"><i class="fas fa-star"></i></span><strong>Reviews</strong><span>Proof of work</span></a>
+                <a class="gm-menu-card-opt" href="#about" onclick="toggleMenu()"><span class="gm-menu-card-ico"><i class="fas fa-user"></i></span><strong>About Me</strong><span>Meet Shakil</span></a>
+                <a class="gm-menu-card-opt" href="#faq" onclick="toggleMenu()"><span class="gm-menu-card-ico"><i class="fas fa-question-circle"></i></span><strong>FAQ</strong><span>Common questions</span></a>
+                <a class="gm-menu-card-opt" href="#contact" onclick="toggleMenu()"><span class="gm-menu-card-ico"><i class="fas fa-comments"></i></span><strong>Contact</strong><span>Talk to us</span></a>
+                <a class="gm-menu-card-opt gm-menu-card-opt-accent" href="#" onclick="event.preventDefault(); toggleMenu(); GM.openOrderPage();"><span class="gm-menu-card-ico"><i class="fas fa-shopping-cart"></i></span><strong>Order Now</strong><span>Start a project</span></a>
+                <a class="gm-menu-card-opt" href="#" onclick="event.preventDefault(); toggleMenu(); GM.togglePortfolioNotif();"><span class="gm-menu-card-ico"><i class="fas fa-bell"></i></span><strong>Alerts</strong><span>Announcements</span></a>
+                <a class="gm-menu-card-opt gm-menu-card-opt-profile" href="#" onclick="event.preventDefault(); toggleMenu(); GM.openProfile();"><span class="gm-menu-card-ico"><i class="fas fa-user-circle"></i></span><strong>Profile / Account</strong><span>Login / Your profile</span></a>
             </div>
         </div>
     </div>
@@ -1937,7 +1965,7 @@ nav .logo span{white-space:nowrap}
             <div class="gm-work-top-actions">
                 <button class="gm-work-tool-btn" type="button" onclick="GM.toggleWorkspaceSearch()" aria-label="Search workspace options" title="Search"><i class="fas fa-search"></i><span class="gm-action-label">Search</span></button>
                 <button class="gm-work-tool-btn" type="button" onclick="GM.toggleWorkspaceMenu()" aria-expanded="false" aria-controls="gmWorkspaceTabs" id="gmWorkspaceMenuButton"><i class="fas fa-bars"></i><span class="gm-action-label">Menu</span></button>
-                <button class="gm-work-tool-btn" type="button" onclick="GM.openProfile()"><i class="fas fa-user-circle"></i><span class="gm-action-label">Profile</span></button>
+                <!-- REMOVED: Profile icon in workspace top bar. Profile lives in Menu (Your Profile / Settings). -->
                 <button class="gm-work-tool-btn" type="button" onclick="GM.closeWorkspace()"><i class="fas fa-arrow-left"></i><span class="gm-action-label">Portfolio</span></button>
             </div>
             <div class="gm-work-search gm-hidden" id="gmWorkspaceSearch"><input id="gmWorkspaceSearchInput" type="search" placeholder="Search services, orders, reviews, chats…" aria-label="Search workspace options" oninput="GM.searchWorkspace(this.value)" onkeydown="GM.handleWorkspaceSearchKey(event)"><div class="gm-work-search-hint">Search any workspace section or service below.</div><div class="gm-search-results" id="gmWorkspaceSearchResults"></div></div>
@@ -1959,8 +1987,8 @@ nav .logo span{white-space:nowrap}
             </nav>
 
             <section data-gm-section="overview" id="gmSectionOverview">
-                <div class="gm-panel" style="margin-bottom:16px"><h3>Welcome to your workspace</h3><p class="gm-muted">Your private area for service pricing, order tracking, support messages and account notifications. This workspace is separate from the public portfolio.</p><div class="gm-action-row"><button class="gm-action gm-primary" onclick="GM.selectTab('services')" type="button">Explore Services</button><button class="gm-action" onclick="GM.toggleChat(true)" type="button">Open Live Support</button></div></div>
-                <div class="gm-panel"><h3>Available Services</h3><div class="gm-service-grid" id="gmOverviewServices"></div></div>
+                <div class="gm-panel gm-overview-minimal"><h3>Your workspace is ready</h3><p class="gm-muted">Orders, Reviews, Notifications, Services and Price Calculator all live in Menu. Open Menu and tap any option to view it. Nothing else is shown here.</p><div class="gm-action-row"><button class="gm-action gm-primary" onclick="GM.toggleWorkspaceMenu()" type="button">Open Menu</button></div></div>
+                <div class="gm-panel gm-hidden"><h3>Available Services</h3><div class="gm-service-grid" id="gmOverviewServices"></div></div>
             </section>
 
             <section data-gm-section="calculator" class="gm-hidden">
@@ -2277,11 +2305,13 @@ nav .logo span{white-space:nowrap}
         function setAuthUi(user) {
           const nameWrap = $('gmAuthNameWrap'), contactWrap = $('gmAuthContactWrap'), photoWrap = $('gmAuthPhotoWrap');
           if (user && !user.isAnonymous) {
+            try{ var _ov=document.getElementById('gmAuthOverlay'); if(_ov) _ov.classList.add('gm-auth-loggedin'); }catch(e){}
             $('gmAuthTitle').textContent = 'Your Profile'; $('gmAuthSubtitle').textContent = 'Manage your contact information and open your private workspace.';
             $('gmAuthEmail').value = user.email || ''; $('gmAuthEmail').disabled = true; $('gmAuthName').value = user.displayName || $('gmAuthName').value || '';
             $('gmAuthPasswordWrap').classList.add('gm-hidden'); nameWrap.classList.remove('gm-hidden'); contactWrap.classList.remove('gm-hidden'); photoWrap.classList.remove('gm-hidden');
             $('gmAuthActions').classList.add('gm-hidden'); $('gmSignedInActions').classList.remove('gm-hidden'); var _m1=$('gmModeSignIn'); if(_m1) _m1.classList.add('gm-hidden'); var _m2=$('gmModeSignUp'); if(_m2) _m2.classList.add('gm-hidden');
           } else {
+            try{ var _ov2=document.getElementById('gmAuthOverlay'); if(_ov2) _ov2.classList.remove('gm-auth-loggedin'); }catch(e){}
             $('gmAuthEmail').disabled = false; $('gmAuthPasswordWrap').classList.remove('gm-hidden'); $('gmAuthActions').classList.remove('gm-hidden'); $('gmSignedInActions').classList.add('gm-hidden');
             var _m1b=$('gmModeSignIn'); if(_m1b) _m1b.classList.remove('gm-hidden'); var _m2b=$('gmModeSignUp'); if(_m2b) _m2b.classList.remove('gm-hidden');
             $('gmAuthName').value = ''; $('gmAuthContact').value = ''; $('gmAuthPhoto').value = '';
@@ -3637,6 +3667,25 @@ setInterval(function(){ if(window.GM && !window.GM._saveSiteSettings) tryWire();
   document.addEventListener('DOMContentLoaded', function(){ wrapAuth(); wrapWorkspace(); wireCMSListener(); setInterval(tick, 1200); });
   setTimeout(function(){ wrapAuth(); wrapWorkspace(); wireCMSListener(); buildWorkspaceSidebar(); }, 1500);
   setInterval(tick, 1200);
+})();
+</script>
+
+<script>
+/* Move Admin Panel out of workspace Menu list into sidebar footer (only visible if admin). Runs until it succeeds. */
+(function(){
+  function moveAdmin(){
+    try{
+      var tab=document.getElementById('gmAdminTab');
+      var foot=document.querySelector('.gm-side-foot');
+      if(tab && foot && tab.parentNode && tab.parentNode.id==='gmWorkspaceTabs'){
+        foot.insertBefore(tab, foot.firstChild);
+        tab.classList.add('gm-side-admin-btn');
+      }
+    }catch(e){}
+  }
+  document.addEventListener('DOMContentLoaded', moveAdmin);
+  setInterval(moveAdmin, 800);
+  setTimeout(moveAdmin, 300);
 })();
 </script>
 
