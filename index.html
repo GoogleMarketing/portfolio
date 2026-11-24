@@ -1271,9 +1271,22 @@ footer{border-radius:28px 28px 0 0;background:linear-gradient(180deg,#0a0e1d,#02
 .gm-cms-badge{display:inline-flex;padding:4px 10px;border-radius:999px;background:rgba(245,200,110,.14);border:1px solid rgba(245,200,110,.4);color:#fde68a;font-size:.68rem;font-weight:800;letter-spacing:.12em}
 @media(max-width:640px){.hero{padding:36px 18px 30px !important}.section-header{padding:0 12px}}
 
-/* ===== FIX — Homepage top bar + Menu card + Reviews Shutter + Service icons ===== */
-nav .gm-nav-profile, #gmPortfolioNotifBtn{display:none !important}
-.mobile-menu{padding:16px !important;justify-content:flex-start !important;overflow-y:auto !important;align-items:center !important}
+/* ===== FIX — FIXED HEADER (always visible) + HOME + BACK-TO-TOP + MENU CARD + REVIEWS + LOGIN ===== */
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{padding-top:68px !important}
+nav{position:fixed !important;top:0 !important;left:0 !important;right:0 !important;width:100% !important;z-index:2000 !important;transform:none !important;backdrop-filter:blur(18px) saturate(140%);background:rgba(5,6,15,.88) !important;border-bottom:1px solid var(--premium-border);box-shadow:0 10px 30px rgba(0,0,0,.35)}
+nav .gm-nav-profile,#gmPortfolioNotifBtn{display:none !important}
+.gm-nav-home{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--premium-border) !important;background:rgba(255,255,255,.06) !important;border-radius:999px !important;padding:10px 16px !important;font-weight:700;color:#f8fafc;cursor:pointer;white-space:nowrap}
+.gm-nav-home:hover{border-color:rgba(245,200,110,.7) !important;box-shadow:0 0 0 3px rgba(245,200,110,.15)}
+#gmBackToTop{position:fixed !important;right:16px;bottom:88px;z-index:1900;display:none;align-items:center;gap:6px;border:1px solid rgba(245,200,110,.6);background:linear-gradient(135deg,#7c6cff,#3b82f6);color:#fff;border-radius:999px;padding:12px 18px;font-weight:800;font-size:.9rem;cursor:pointer;box-shadow:0 12px 30px rgba(59,130,246,.45)}
+#gmBackToTop.gm-show{display:inline-flex !important}
+@media(max-width:640px){
+  body{padding-top:60px !important} html{scroll-padding-top:72px}
+  .gm-nav-home{padding:9px 12px !important} .gm-nav-home-txt{display:none}
+  #gmBackToTop{right:12px;bottom:84px;padding:11px 15px}
+  #gmBackToTop span{display:none}
+}
+.mobile-menu{z-index:3000 !important;padding:16px !important;justify-content:flex-start !important;overflow-y:auto !important;align-items:center !important}
 .mobile-menu .gm-menu-card{width:min(560px,94vw);margin:auto;background:linear-gradient(165deg,rgba(255,255,255,.10),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.14);border-radius:24px;padding:18px;box-shadow:0 30px 80px rgba(0,0,0,.6);max-height:92vh;overflow-y:auto}
 .mobile-menu .gm-menu-card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
 .mobile-menu .gm-menu-card-title{font-size:.72rem;letter-spacing:.18em;font-weight:850;color:#fde68a}
@@ -1292,9 +1305,8 @@ nav .gm-nav-profile, #gmPortfolioNotifBtn{display:none !important}
 .gm-reviews-shutter #gmGalleryGrid .gallery-item:first-child{display:block !important;width:100%;aspect-ratio:9/16}
 .gm-review-shutter{max-width:380px;margin:16px auto 0;text-align:center}
 .gm-review-see-more{width:100%;min-height:52px;border-radius:999px;border:1px solid rgba(245,200,110,.6);background:linear-gradient(135deg,#7c6cff,#3b82f6,#22d3ee);color:#fff;font-weight:800;font-size:1rem;cursor:pointer;box-shadow:0 12px 30px rgba(59,130,246,.35)}
-.gm-review-see-more:hover{filter:brightness(1.08)}
 .gm-review-shutter-note{color:#94a3b8;font-size:.8rem;margin:10px 0 0;line-height:1.5}
-.gm-review-full{position:fixed;inset:0;z-index:3000;background:#05060f;overflow-y:auto;padding:18px}
+.gm-review-full{position:fixed;inset:0;z-index:3100;background:#05060f;overflow-y:auto;padding:18px}
 .gm-review-full.gm-hidden{display:none !important}
 .gm-review-full-head{max-width:1100px;margin:0 auto 16px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
 .gm-review-full-kicker{font-size:.68rem;letter-spacing:.18em;font-weight:850;color:#fde68a}
@@ -1302,7 +1314,37 @@ nav .gm-nav-profile, #gmPortfolioNotifBtn{display:none !important}
 .gm-review-full-close{border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;border-radius:999px;padding:10px 16px;font-weight:750;cursor:pointer;white-space:nowrap}
 .gm-review-full-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
 .gm-review-full-grid .gallery-item{display:block !important}
-#imageModal{z-index:3100 !important}
+#imageModal{z-index:3200 !important}
+.gm-reviews-shutter.gm-reviews-show-all #gmGalleryGrid{display:grid !important;grid-template-columns:repeat(2,1fr) !important;max-width:900px !important;gap:12px !important}
+.gm-reviews-shutter.gm-reviews-show-all #gmGalleryGrid .gallery-item{display:block !important;aspect-ratio:auto !important}
+#gmAuthOverlay .gm-auth-side-link{background:none;border:none;padding:0;color:#94a3b8;font-size:.82rem;cursor:pointer;text-decoration:underline;text-underline-offset:3px;text-align:left}
+#gmAuthOverlay .gm-auth-side-link:hover{color:#fff}
+#gmAuthOverlay #gmModeSignIn,#gmAuthOverlay #gmModeSignUp{display:none !important}
+@media(max-width:760px){
+  #gmAuthOverlay .gm-dialog.gm-auth-split{grid-template-columns:1fr !important;max-height:94vh !important;overflow:auto !important;width:min(480px,96vw) !important}
+  #gmAuthOverlay .gm-auth-split .gm-auth-side{min-height:0 !important;padding:22px !important;order:1 !important}
+  #gmAuthOverlay .gm-auth-split .gm-auth-form{order:2 !important;max-height:none !important;overflow:visible !important}
+  #gmAuthOverlay.gm-auth-signup .gm-auth-split .gm-auth-side{order:1 !important}
+  #gmAuthOverlay.gm-auth-signup .gm-auth-split .gm-auth-form{order:2 !important}
+}
+
+
+/* ===== FIX — Header: NO Home box. Bell small, beside logo, BEFORE name. Chat icon restored as before. ===== */
+nav .gm-nav-home, #gmBackToTop, #gmPortfolioNotifBtn{display:none !important}
+.gm-header-notif{position:relative;flex-shrink:0;width:28px;height:28px;min-width:28px;border-radius:50%;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.07);color:#fde68a;display:grid !important;place-items:center;cursor:pointer;padding:0;line-height:1}
+.gm-header-notif i{font-size:13px !important;color:#fde68a !important}
+.gm-header-notif .gm-notif-dot{position:absolute;top:-1px;right:-1px;width:9px;height:9px;border-radius:50%;background:#ef4444;box-shadow:0 0 0 0 rgba(239,68,68,.7);animation:gmPulse 1.6s infinite}
+nav .logo{gap:8px !important;flex-wrap:nowrap !important}
+nav .logo span{white-space:nowrap}
+@media(max-width:640px){
+  nav .logo{gap:6px !important}
+  nav .logo span{font-size:.9rem !important}
+  .gm-header-notif{width:26px;height:26px;min-width:26px}
+  .gm-header-notif i{font-size:12px !important}
+}
+/* Chat launcher — restore EXACT earlier look: blue gradient + white comments icon, centred */
+.gm-chat-launcher{background:linear-gradient(135deg,#2563eb,#3b82f6) !important;box-shadow:0 12px 35px rgba(37,99,235,.42) !important;display:grid !important;place-items:center !important;color:#fff !important}
+.gm-chat-launcher i{font-size:1.5rem !important;color:#fff !important;display:block !important;line-height:1 !important}
 
 </style>
 
@@ -1314,15 +1356,21 @@ nav .gm-nav-profile, #gmPortfolioNotifBtn{display:none !important}
 
     <!-- Navbar -->
     <nav>
-        <div class="logo">
-            <img src="https://i.ibb.co.com/GfswcC5V/FB-IMG-1791925489216.jpg" alt="Google Marketing Logo">
-            <span>Google Marketing</span>
+        <div class="logo" role="button" tabindex="0" title="Go to Home" style="cursor:pointer">
+            <img src="https://i.ibb.co.com/GfswcC5V/FB-IMG-1791925489216.jpg" alt="Google Marketing Logo" onclick="window.scrollTo({top:0,behavior:'smooth'});try{history.replaceState(null,'','#home');}catch(e){}">
+            <button id="gmHeaderNotifBtn" class="gm-header-notif" type="button" onclick="event.stopPropagation();GM.togglePortfolioNotif()" aria-label="Announcements" title="Announcements"><i class="fas fa-bell"></i><span class="gm-notif-dot" id="gmNotifDot"></span></button>
+            <span onclick="window.scrollTo({top:0,behavior:'smooth'});try{history.replaceState(null,'','#home');}catch(e){}">Google Marketing</span>
         </div>
+        <!-- REMOVED: extra Home box in header. Home is via MENU (fixed) + Logo click. No extra box. -->
         <button class="menu-btn" onclick="toggleMenu()">
             MENU <i class="fas fa-bars"></i>
         </button>
     </nav>
+<script>
+    (function(){ try{ if(sessionStorage.getItem('gmNotifSeen')==='1'){ var d=document.getElementById('gmNotifDot'); if(d) d.style.display='none'; } }catch(e){} })();
+    </script>
 
+    <!-- REMOVED: floating Home box. Header MENU is fixed, that is enough. -->
     <!-- Homepage Menu — ONE card, all options inside the card (no text list) -->
     <div class="mobile-menu" id="mobileMenu">
         <div class="gm-menu-card">
@@ -1571,19 +1619,77 @@ nav .gm-nav-profile, #gmPortfolioNotifBtn{display:none !important}
             </div>
         </div>
         <div class="gm-review-shutter">
-            <button class="gm-review-see-more" type="button" onclick="GM.openReviewGallery()">See More &nbsp;→&nbsp; <span id="gmReviewCountLabel">See all reviews</span></button>
+            <button class="gm-review-see-more" type="button" id="gmReviewSeeMoreBtn" onclick="openReviewGallery();return false;">See More &nbsp;→&nbsp; <span id="gmReviewCountLabel">See all reviews</span></button>
             <p class="gm-review-shutter-note">Tap to open the full gallery — all reviews together on one page.</p>
         </div>
     </section>
 
-    <!-- Reviews Full Gallery — full page, all reviews together (same as before) -->
+    <!-- Reviews Full Gallery — full page, all reviews together -->
     <div class="gm-review-full gm-hidden" id="gmReviewGalleryFull" role="dialog" aria-modal="true" aria-label="All reviews">
         <div class="gm-review-full-head">
             <div><span class="gm-review-full-kicker">✦ PROOF OF WORK</span><h3>All Reviews</h3></div>
-            <button class="gm-review-full-close" type="button" onclick="GM.closeReviewGallery()">✕ CLOSE</button>
+            <button class="gm-review-full-close" type="button" id="gmReviewFullCloseBtn" onclick="closeReviewGallery();return false;">✕ CLOSE</button>
         </div>
         <div class="gm-review-full-grid" id="gmReviewFullGrid"></div>
     </div>
+    <!-- BULLETPROOF: See More works even if GM is overwritten. Global function + listener + inline fallback. -->
+    <script>
+    (function(){
+      function gmOpenReviewGallery(){
+        try{
+          var src=document.getElementById('gmGalleryGrid');
+          var dst=document.getElementById('gmReviewFullGrid');
+          var full=document.getElementById('gmReviewGalleryFull');
+          var items=src?src.querySelectorAll('.gallery-item'):null;
+          if(full&&dst&&items&&items.length){
+            dst.innerHTML='';
+            for(var i=0;i<items.length;i++){ var c=items[i].cloneNode(true); c.style.display=''; dst.appendChild(c); }
+            full.classList.remove('gm-hidden'); full.style.display='block';
+            document.body.style.overflow='hidden';
+            try{ full.scrollTop=0; window.scrollTo(0,0); }catch(e){}
+            return true;
+          }
+          var sec=document.getElementById('reviews');
+          if(sec&&items&&items.length){
+            sec.classList.add('gm-reviews-show-all');
+            var btn=document.getElementById('gmReviewSeeMoreBtn'); if(btn) btn.style.display='none';
+            try{ sec.scrollIntoView({behavior:'smooth',block:'start'}); }catch(e){}
+            return true;
+          }
+          return false;
+        }catch(e){ return false; }
+      }
+      function gmCloseReviewGallery(){
+        try{
+          var full=document.getElementById('gmReviewGalleryFull');
+          if(full){ full.classList.add('gm-hidden'); full.style.display='none'; }
+          document.body.style.overflow='';
+        }catch(e){}
+      }
+      function gmRefreshReviewCount(){
+        try{
+          var n=document.querySelectorAll('#gmGalleryGrid .gallery-item').length;
+          var lbl=document.getElementById('gmReviewCountLabel');
+          if(lbl&&n) lbl.textContent='See all '+n+' reviews';
+        }catch(e){}
+      }
+      window.openReviewGallery=gmOpenReviewGallery;
+      window.closeReviewGallery=gmCloseReviewGallery;
+      function syncGM(){ try{ if(window.GM){ window.GM.openReviewGallery=gmOpenReviewGallery; window.GM.closeReviewGallery=gmCloseReviewGallery; } }catch(e){} }
+      syncGM(); setTimeout(syncGM,500); setTimeout(syncGM,2000); setTimeout(syncGM,5000);
+      document.addEventListener('DOMContentLoaded', function(){ syncGM(); gmRefreshReviewCount(); });
+      function bind(){
+        var b=document.getElementById('gmReviewSeeMoreBtn');
+        if(b&&!b.__gmBound){ b.__gmBound=true; b.addEventListener('click', function(ev){ ev.preventDefault(); gmOpenReviewGallery(); }); }
+        var c=document.getElementById('gmReviewFullCloseBtn');
+        if(c&&!c.__gmBound){ c.__gmBound=true; c.addEventListener('click', function(ev){ ev.preventDefault(); gmCloseReviewGallery(); }); }
+      }
+      if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', bind); else bind();
+      setTimeout(bind,800); setTimeout(bind,2500);
+      document.addEventListener('keydown', function(ev){ if(ev.key==='Escape') gmCloseReviewGallery(); });
+      setTimeout(gmRefreshReviewCount,600); setTimeout(gmRefreshReviewCount,2500);
+    })();
+    </script>
 
 
     <!-- About Section -->
@@ -1789,23 +1895,20 @@ nav .gm-nav-profile, #gmPortfolioNotifBtn{display:none !important}
                 <h3>HELLO,<br>FRIEND!</h3>
                 <p>Enter your personal details and start your journey with us.</p>
                 <button class="gm-auth-side-btn" type="button" onclick="GM.setAuthMode('signup')">Create Account →</button>
-                <small>Already have an account? Sign in to continue.</small>
+                <button class="gm-auth-side-link" type="button" onclick="GM.setAuthMode('signin')">Already have an account? Sign in to continue.</button>
             </div>
             <div class="gm-auth-side gm-auth-side-back">
                 <span class="gm-auth-side-badge">✦ WELCOME BACK</span>
                 <h3>WELCOME<br>BACK!</h3>
                 <p>Already a Member? Please Login with your credentials.</p>
                 <button class="gm-auth-side-btn" type="button" onclick="GM.setAuthMode('signin')">Sign In →</button>
-                <small>New here? Create an account in under a minute.</small>
+                <button class="gm-auth-side-link" type="button" onclick="GM.setAuthMode('signup')">New here? Create an account in under a minute.</button>
             </div>
             <div class="gm-auth-form">
                 <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px">
                     <div><span class="gm-auth-kicker"><i class="fas fa-shield-alt"></i> Secure Client Portal</span><h2 id="gmAuthTitle">Your Google Marketing Profile</h2><p class="gm-muted" id="gmAuthSubtitle">Sign in to view your private workspace, orders and notifications.</p></div>
                 </div>
-                <div class="gm-action-row" style="margin:15px 0">
-                    <button class="gm-action gm-primary" type="button" id="gmModeSignIn" onclick="GM.setAuthMode('signin')">Sign In</button>
-                    <button class="gm-action" type="button" id="gmModeSignUp" onclick="GM.setAuthMode('signup')">Create Account</button>
-                </div>
+                <!-- REMOVED: duplicate Sign In / Create Account pills. Switching is ONLY via the side panel button. -->
                 <div class="gm-form-grid">
                     <div class="gm-field gm-full gm-hidden" id="gmAuthNameWrap"><label for="gmAuthName">Full name *</label><input id="gmAuthName" autocomplete="name" placeholder="Your full name"></div>
                     <div class="gm-field gm-full gm-hidden" id="gmAuthContactWrap"><label for="gmAuthContact">Contact information *</label><input id="gmAuthContact" autocomplete="tel" placeholder="Email, WhatsApp or Telegram username"></div>
@@ -2177,10 +2280,10 @@ nav .gm-nav-profile, #gmPortfolioNotifBtn{display:none !important}
             $('gmAuthTitle').textContent = 'Your Profile'; $('gmAuthSubtitle').textContent = 'Manage your contact information and open your private workspace.';
             $('gmAuthEmail').value = user.email || ''; $('gmAuthEmail').disabled = true; $('gmAuthName').value = user.displayName || $('gmAuthName').value || '';
             $('gmAuthPasswordWrap').classList.add('gm-hidden'); nameWrap.classList.remove('gm-hidden'); contactWrap.classList.remove('gm-hidden'); photoWrap.classList.remove('gm-hidden');
-            $('gmAuthActions').classList.add('gm-hidden'); $('gmSignedInActions').classList.remove('gm-hidden'); $('gmModeSignIn').classList.add('gm-hidden'); $('gmModeSignUp').classList.add('gm-hidden');
+            $('gmAuthActions').classList.add('gm-hidden'); $('gmSignedInActions').classList.remove('gm-hidden'); var _m1=$('gmModeSignIn'); if(_m1) _m1.classList.add('gm-hidden'); var _m2=$('gmModeSignUp'); if(_m2) _m2.classList.add('gm-hidden');
           } else {
             $('gmAuthEmail').disabled = false; $('gmAuthPasswordWrap').classList.remove('gm-hidden'); $('gmAuthActions').classList.remove('gm-hidden'); $('gmSignedInActions').classList.add('gm-hidden');
-            $('gmModeSignIn').classList.remove('gm-hidden'); $('gmModeSignUp').classList.remove('gm-hidden');
+            var _m1b=$('gmModeSignIn'); if(_m1b) _m1b.classList.remove('gm-hidden'); var _m2b=$('gmModeSignUp'); if(_m2b) _m2b.classList.remove('gm-hidden');
             $('gmAuthName').value = ''; $('gmAuthContact').value = ''; $('gmAuthPhoto').value = '';
             setAuthMode(authMode, true);
           }
@@ -2193,7 +2296,7 @@ nav .gm-nav-profile, #gmPortfolioNotifBtn{display:none !important}
           $('gmAuthSubtitle').textContent = signup ? 'Create an account to access pricing, orders, notifications and live support.' : 'Sign in to access your private workspace.';
           $('gmAuthNameWrap').classList.toggle('gm-hidden', !signup); $('gmAuthContactWrap').classList.toggle('gm-hidden', !signup); $('gmAuthPhotoWrap').classList.toggle('gm-hidden', !signup); $('gmAuthPasswordWrap').classList.remove('gm-hidden');
           $('gmAuthSubmit').textContent = signup ? 'Create Account' : 'Sign In';
-          $('gmModeSignIn').classList.toggle('gm-primary', !signup); $('gmModeSignUp').classList.toggle('gm-primary', signup);
+          var _m1c=$('gmModeSignIn'); if(_m1c) _m1c.classList.toggle('gm-primary', !signup); var _m2c=$('gmModeSignUp'); if(_m2c) _m2c.classList.toggle('gm-primary', signup);
           if (!quiet) setStatus('gmAuthStatus', '');
         }
         async function saveUserProfile(user, { name, contact, photoUrl, isNew = false } = {}) {
@@ -2987,34 +3090,8 @@ nav .gm-nav-profile, #gmPortfolioNotifBtn{display:none !important}
   }
 
   // ---- 6. Portfolio notification button next to Profile ----
-  // ---- Reviews Gallery Shutter ----
-  function openReviewGallery(){
-    try{
-      var src=document.getElementById('gmGalleryGrid'); var dst=document.getElementById('gmReviewFullGrid'); var full=document.getElementById('gmReviewGalleryFull');
-      if(!src||!dst||!full) return;
-      dst.innerHTML='';
-      Array.prototype.forEach.call(src.querySelectorAll('.gallery-item'), function(item){
-        var c=item.cloneNode(true); c.style.display=''; dst.appendChild(c);
-      });
-      full.classList.remove('gm-hidden'); document.body.style.overflow='hidden';
-    }catch(e){}
-  }
-  function closeReviewGallery(){
-    try{ var full=document.getElementById('gmReviewGalleryFull'); if(full) full.classList.add('gm-hidden'); document.body.style.overflow=''; }catch(e){}
-  }
-  function refreshReviewCount(){
-    try{
-      var n=document.querySelectorAll('#gmGalleryGrid .gallery-item').length;
-      var lbl=document.getElementById('gmReviewCountLabel'); if(lbl&&n) lbl.textContent='See all '+n+' reviews';
-    }catch(e){}
-  }
-  window.GM.openReviewGallery=openReviewGallery;
-  window.GM.closeReviewGallery=closeReviewGallery;
-  setTimeout(refreshReviewCount, 600); setTimeout(refreshReviewCount, 2500);
-  document.addEventListener('keydown', function(ev){ if(ev.key==='Escape'){ closeReviewGallery(); } });
-
   function ensurePortfolioNotif(){
-    return; // Homepage top bar: only Logo + MENU. Alerts live inside Menu card.
+    return; // Header bell is now static HTML inside logo (small, before name). Do NOT create a second bell.
     var nav=document.querySelector('nav'); if(!nav || document.getElementById('gmPortfolioNotifBtn')) return;
     var profileBtn=nav.querySelector('.gm-nav-profile');
     var btn=document.createElement('button');
