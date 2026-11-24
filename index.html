@@ -1270,6 +1270,36 @@ footer{border-radius:28px 28px 0 0;background:linear-gradient(180deg,#0a0e1d,#02
 @media(max-width:700px){.gm-cms-grid{grid-template-columns:1fr}}
 .gm-cms-badge{display:inline-flex;padding:4px 10px;border-radius:999px;background:rgba(245,200,110,.14);border:1px solid rgba(245,200,110,.4);color:#fde68a;font-size:.68rem;font-weight:800;letter-spacing:.12em}
 @media(max-width:640px){.hero{padding:36px 18px 30px !important}.section-header{padding:0 12px}}
+
+/* ===== FIXES v2 — professional: no half-half, no leaked admin, no auto-open sections ===== */
+/* 1. Admin Panel must NEVER show for non-admin — sidebar must respect gm-hidden */
+.gm-work-sidebar .gm-tab.gm-hidden, #gmAdminTab.gm-hidden, .gm-work-sidebar .gm-tab[data-gm-tab="admin"].gm-hidden{display:none !important}
+#gmAdminSection.gm-hidden{display:none !important}
+/* 2. Stats bar must not stay visible on every tab / on login */
+#gmOverviewStats{display:none !important}
+/* 3. Logged-in profile: NO Create Account side panel, NO Sign In / Sign Up toggle */
+#gmAuthOverlay.gm-auth-loggedin .gm-auth-side{display:none !important}
+#gmAuthOverlay.gm-auth-loggedin .gm-dialog.gm-auth-split{grid-template-columns:1fr;max-width:520px}
+#gmAuthOverlay.gm-auth-loggedin .gm-auth-form{max-height:92vh;overflow-y:auto}
+#gmAuthOverlay.gm-auth-loggedin #gmModeSignIn, #gmAuthOverlay.gm-auth-loggedin #gmModeSignUp{display:none !important}
+/* 4. Chat service picker: FULL sheet, never half chat + half card */
+#gmChatWindow{position:fixed}
+#gmChatWindow #gmChatOrderPicker{position:absolute !important;inset:0 !important;z-index:20 !important;background:#070b18 !important;max-height:none !important;overflow-y:auto !important;padding:16px !important;border-radius:inherit !important}
+#gmChatWindow #gmChatOrderPicker .gm-chat-service-card{margin-bottom:12px}
+.gm-chat-picker-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;position:sticky;top:0;background:#070b18;padding:6px 0 10px;z-index:1;border-bottom:1px solid rgba(255,255,255,.10)}
+.gm-chat-picker-head strong{font-size:1.05rem}
+.gm-chat-picker-close{border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.08);color:#fff;border-radius:999px;padding:8px 14px;font-weight:700;cursor:pointer}
+/* 5. Workspace home = ONLY menu cards. Nothing else auto-opens. */
+.gm-menu-home-sub{color:#94a3b8;line-height:1.6;margin:0 0 16px}
+.gm-menu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media(min-width:900px){.gm-menu-grid{grid-template-columns:repeat(4,1fr)}}
+.gm-menu-card{text-align:left;background:linear-gradient(165deg,rgba(255,255,255,.09),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:18px 16px;cursor:pointer;color:#f8fafc;display:flex;flex-direction:column;gap:10px;min-height:132px;transition:transform .15s,border-color .15s}
+.gm-menu-card:hover{transform:translateY(-3px);border-color:rgba(245,200,110,.55)}
+.gm-menu-card .gm-menu-ico{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,#7c6cff,#3b82f6,#22d3ee);font-size:1.25rem}
+.gm-menu-card strong{font-size:1.02rem;line-height:1.25}
+.gm-menu-card span{font-size:.85rem;color:#94a3b8;line-height:1.5}
+.gm-menu-card .gm-menu-go{margin-top:auto;font-size:.82rem;font-weight:750;color:#93c5fd}
+
 </style>
 
 </head>
@@ -1803,8 +1833,17 @@ footer{border-radius:28px 28px 0 0;background:linear-gradient(180deg,#0a0e1d,#02
             </nav>
 
             <section data-gm-section="overview" id="gmSectionOverview">
-                <div class="gm-panel" style="margin-bottom:16px"><h3>Welcome to your workspace</h3><p class="gm-muted">Your private area for service pricing, order tracking, support messages and account notifications. This workspace is separate from the public portfolio.</p><div class="gm-action-row"><button class="gm-action gm-primary" onclick="GM.selectTab('services')" type="button">Explore Services</button><button class="gm-action" onclick="GM.toggleChat(true)" type="button">Open Live Support</button></div></div>
-                <div class="gm-panel"><h3>Available Services</h3><div class="gm-service-grid" id="gmOverviewServices"></div></div>
+                <div class="gm-panel"><h3>What do you want to do?</h3><p class="gm-menu-home-sub">Menu থেকে একটা অপশনে ক্লিক করো — শুধু ওই পেজটাই খুলবে। আগে থেকে আর কিছু খোলা থাকবে না।</p><div class="gm-menu-grid">
+                  <button type="button" class="gm-menu-card" onclick="GM.selectTab('calculator')"><span class="gm-menu-ico">🧮</span><strong>Price Calculator</strong><span>Estimate price before you order.</span><span class="gm-menu-go">Open →</span></button>
+                  <button type="button" class="gm-menu-card" onclick="GM.selectTab('services')"><span class="gm-menu-ico">💎</span><strong>Services</strong><span>View pricing &amp; place an order.</span><span class="gm-menu-go">Open →</span></button>
+                  <button type="button" class="gm-menu-card" onclick="GM.selectTab('orders')"><span class="gm-menu-ico">📦</span><strong>My Orders</strong><span>Track your orders in one place.</span><span class="gm-menu-go">Open →</span></button>
+                  <button type="button" class="gm-menu-card" onclick="GM.selectTab('reviews')"><span class="gm-menu-ico">⭐</span><strong>Reviews</strong><span>Rate a service &amp; see your reviews.</span><span class="gm-menu-go">Open →</span></button>
+                  <button type="button" class="gm-menu-card" onclick="GM.selectTab('notifications')"><span class="gm-menu-ico">🔔</span><strong>Notifications</strong><span>Announcements &amp; updates.</span><span class="gm-menu-go">Open →</span></button>
+                  <button type="button" class="gm-menu-card" onclick="GM.openWorkspaceChat()"><span class="gm-menu-ico">💬</span><strong>Live Support</strong><span>Chat with us directly.</span><span class="gm-menu-go">Open →</span></button>
+                  <button type="button" class="gm-menu-card" onclick="GM.openProfile()"><span class="gm-menu-ico">👤</span><strong>Your Profile</strong><span>Account &amp; contact settings.</span><span class="gm-menu-go">Open →</span></button>
+                  <button type="button" class="gm-menu-card" onclick="GM.closeWorkspace()"><span class="gm-menu-ico">🌐</span><strong>Back to Portfolio</strong><span>View the public site.</span><span class="gm-menu-go">Open →</span></button>
+                </div></div>
+                <div class="gm-service-grid gm-hidden" id="gmOverviewServices"></div>
             </section>
 
             <section data-gm-section="calculator" class="gm-hidden">
@@ -3221,32 +3260,85 @@ setInterval(function(){ if(window.GM && !window.GM._saveSiteSettings) tryWire();
   function txt(id, val){ var el=$id(id); if(el && val!=null && String(val).trim()!=='') el.textContent=String(val); }
   function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
-  /* ---- 1. Auth split: keep overlay class in sync with signin/signup ---- */
+  /* ---- 1. Auth split: keep overlay class in sync — LOGGED-IN = NO Create Account ---- */
+  function syncAuthOverlay(loggedIn){
+    var ov=$id('gmAuthOverlay'); if(!ov) return;
+    ov.classList.toggle('gm-auth-loggedin', !!loggedIn);
+    if(loggedIn) ov.classList.remove('gm-auth-signup');
+  }
   function wrapAuth(){
-    if(!window.GM || !window.GM.setAuthMode || window.GM.__premiumAuthWrapped) return;
-    var orig=window.GM.setAuthMode;
-    window.GM.setAuthMode=function(mode, quiet){
-      var r=orig.apply(this, arguments);
-      var ov=$id('gmAuthOverlay'); if(ov) ov.classList.toggle('gm-auth-signup', mode==='signup');
-      return r;
-    };
-    window.GM.__premiumAuthWrapped=true;
+    if(!window.GM) return;
+    if(window.GM.setAuthMode && !window.GM.__premiumAuthWrapped){
+      var orig=window.GM.setAuthMode;
+      window.GM.setAuthMode=function(mode, quiet){
+        var loggedIn = !!(window.GM._currentUser && !window.GM._currentUser.isAnonymous);
+        if(loggedIn){ syncAuthOverlay(true); return orig.apply(this, ['signin', quiet]); }
+        var r=orig.apply(this, arguments);
+        var ov=$id('gmAuthOverlay'); if(ov) ov.classList.toggle('gm-auth-signup', mode==='signup');
+        syncAuthOverlay(false);
+        return r;
+      };
+      window.GM.__premiumAuthWrapped=true;
+    }
+    if(window.GM.setAuthUi && !window.GM.__premiumAuthUiWrapped){
+      var origUi=window.GM.setAuthUi;
+      window.GM.setAuthUi=function(user){
+        var r=origUi.apply(this, arguments);
+        var loggedIn = !!(user && !user.isAnonymous);
+        syncAuthOverlay(loggedIn);
+        // Logged-in: hide side panels + mode toggle for good (orig already hides mode btns, but side panels were left visible)
+        var ov=$id('gmAuthOverlay'); if(ov && loggedIn){ ov.classList.remove('gm-auth-signup'); }
+        return r;
+      };
+      window.GM.__premiumAuthUiWrapped=true;
+    }
+    if(window.GM.openProfile && !window.GM.__premiumOpenProfileWrapped){
+      var origOpen=window.GM.openProfile;
+      window.GM.openProfile=function(){
+        var r=origOpen.apply(this, arguments);
+        var loggedIn = !!(window.GM._currentUser && !window.GM._currentUser.isAnonymous);
+        syncAuthOverlay(loggedIn);
+        return r;
+      };
+      window.GM.__premiumOpenProfileWrapped=true;
+    }
   }
 
   /* ---- 2. Workspace glass sidebar (LUMEN style) — runtime restructure, keeps all IDs ---- */
   function syncSidebarUser(){
     try{
+      var user=window.GM&&window.GM._currentUser;
+      var loggedIn=!!(user && !user.isAnonymous);
+      var n=$id('gmSideName'), sub=$id('gmSideSub'), img=$id('gmSideAvatar'), uid=$id('gmSideUid'), pro=document.querySelector('.gm-side-pro');
       var t=$id('gmWorkspaceTitle'), s=$id('gmWorkspaceSubtitle'), av=$id('gmWorkspaceAvatar');
-      var n=$id('gmSideName'); if(t&&n) n.textContent=t.textContent||'My Workspace';
-      var sub=$id('gmSideSub'); if(s&&sub) sub.textContent=s.textContent||'Client Area';
-      var img=$id('gmSideAvatar'); if(av&&img&&av.src) img.src=av.src;
-      var uid=$id('gmSideUid');
-      if(uid){
-        var u=(window.GM&&window.GM._currentUser&&window.GM._currentUser.uid)||'';
-        if(u) uid.textContent='UID: '+u.slice(0,10)+'...';
+      if(!loggedIn){
+        if(n) n.textContent='Guest';
+        if(sub) sub.textContent='Please login to continue';
+        if(uid) uid.textContent='Tap Profile icon to Sign In';
+        if(pro) pro.style.display='none';
+        if(img) img.src='https://i.ibb.co.com/GfswcC5V/FB-IMG-1791925489216.jpg';
+      } else {
+        if(n) n.textContent=(user.displayName||user.email||'My Workspace');
+        if(sub) sub.textContent=(s&&s.textContent)||'Client Area';
+        if(uid) uid.textContent='UID: '+String(user.uid||'').slice(0,10)+'...';
+        if(pro) pro.style.display='';
+        if(av&&img&&av.src) img.src=av.src;
       }
       var nt=$id('gmPortfolioNotifText'), sn=$id('gmSideNoticeText');
       if(nt&&sn&&nt.textContent) sn.textContent=nt.textContent;
+      // Admin Panel: original openWorkspace already toggles gm-hidden correctly — CSS fix now respects it (sidebar no longer overrides gm-hidden).
+    }catch(e){}
+  }
+  /* Chat picker: full sheet header + close, never half-half */
+  function fixChatPicker(){
+    try{
+      var p=$id('gmChatOrderPicker'); if(!p) return;
+      if(!p.querySelector('.gm-chat-picker-head')){
+        var head=document.createElement('div'); head.className='gm-chat-picker-head';
+        head.innerHTML='<strong>Choose a Service</strong><button type="button" class="gm-chat-picker-close">Back to Chat ✕</button>';
+        head.querySelector('button').onclick=function(){ if(window.GM&&window.GM.toggleChatOrderPicker) window.GM.toggleChatOrderPicker(); };
+        p.insertBefore(head, p.firstChild);
+      }
     }catch(e){}
   }
   function buildWorkspaceSidebar(){
@@ -3279,7 +3371,7 @@ setInterval(function(){ if(window.GM && !window.GM._saveSiteSettings) tryWire();
     if(!window.GM) return;
     if(window.GM.openWorkspace && !window.GM.__premiumWsWrapped){
       var ow=window.GM.openWorkspace;
-      window.GM.openWorkspace=function(){ var r=ow.apply(this, arguments); setTimeout(buildWorkspaceSidebar, 80); setTimeout(syncSidebarUser, 400); return r; };
+      window.GM.openWorkspace=function(){ var r=ow.apply(this, arguments); setTimeout(buildWorkspaceSidebar, 80); setTimeout(syncSidebarUser, 400); setTimeout(function(){ try{ if(window.GM.selectTab) window.GM.selectTab('overview'); }catch(e){} }, 150); return r; };
       window.GM.__premiumWsWrapped=true;
     }
     if(window.GM.toggleWorkspaceMenu && !window.GM.__premiumMenuWrapped){
@@ -3289,8 +3381,18 @@ setInterval(function(){ if(window.GM && !window.GM._saveSiteSettings) tryWire();
     }
     if(window.GM.selectTab && !window.GM.__premiumTabWrapped){
       var st=window.GM.selectTab;
-      window.GM.selectTab=function(){ var r=st.apply(this, arguments); var ov=$id('gmWorkspaceOverlay'); if(ov) ov.classList.remove('gm-side-open'); return r; };
+      window.GM.selectTab=function(){ var r=st.apply(this, arguments); var ov=$id('gmWorkspaceOverlay'); if(ov) ov.classList.remove('gm-side-open'); var stEl=$id('gmOverviewStats'); if(stEl) stEl.style.display='none'; fixChatPicker(); return r; };
       window.GM.__premiumTabWrapped=true;
+    }
+    if(window.GM.toggleChatOrderPicker && !window.GM.__premiumChatPickerWrapped){
+      var tp=window.GM.toggleChatOrderPicker;
+      window.GM.toggleChatOrderPicker=function(){ var r=tp.apply(this, arguments); setTimeout(fixChatPicker, 60); return r; };
+      window.GM.__premiumChatPickerWrapped=true;
+    }
+    if(window.GM.toggleChat && !window.GM.__premiumToggleChatWrapped){
+      var tc=window.GM.toggleChat;
+      window.GM.toggleChat=function(){ var r=tc.apply(this, arguments); setTimeout(fixChatPicker, 120); return r; };
+      window.GM.__premiumToggleChatWrapped=true;
     }
     if(window.GM.closeWorkspaceMenu && !window.GM.__premiumCloseWrapped){
       var cm=window.GM.closeWorkspaceMenu;
@@ -3469,7 +3571,7 @@ setInterval(function(){ if(window.GM && !window.GM._saveSiteSettings) tryWire();
     }).catch(function(){});
   }
   function tick(){
-    wrapAuth(); wrapWorkspace();
+    wrapAuth(); wrapWorkspace(); fixChatPicker();
     if(window.GM && window.GM._currentUser) syncSidebarUser();
     var panel=document.querySelector('[data-gm-admin-section="site"]');
     if(panel) buildCMSUI();
