@@ -1271,34 +1271,38 @@ footer{border-radius:28px 28px 0 0;background:linear-gradient(180deg,#0a0e1d,#02
 .gm-cms-badge{display:inline-flex;padding:4px 10px;border-radius:999px;background:rgba(245,200,110,.14);border:1px solid rgba(245,200,110,.4);color:#fde68a;font-size:.68rem;font-weight:800;letter-spacing:.12em}
 @media(max-width:640px){.hero{padding:36px 18px 30px !important}.section-header{padding:0 12px}}
 
-/* ===== FIXES v2 — professional: no half-half, no leaked admin, no auto-open sections ===== */
-/* 1. Admin Panel must NEVER show for non-admin — sidebar must respect gm-hidden */
-.gm-work-sidebar .gm-tab.gm-hidden, #gmAdminTab.gm-hidden, .gm-work-sidebar .gm-tab[data-gm-tab="admin"].gm-hidden{display:none !important}
-#gmAdminSection.gm-hidden{display:none !important}
-/* 2. Stats bar must not stay visible on every tab / on login */
-#gmOverviewStats{display:none !important}
-/* 3. Logged-in profile: NO Create Account side panel, NO Sign In / Sign Up toggle */
-#gmAuthOverlay.gm-auth-loggedin .gm-auth-side{display:none !important}
-#gmAuthOverlay.gm-auth-loggedin .gm-dialog.gm-auth-split{grid-template-columns:1fr;max-width:520px}
-#gmAuthOverlay.gm-auth-loggedin .gm-auth-form{max-height:92vh;overflow-y:auto}
-#gmAuthOverlay.gm-auth-loggedin #gmModeSignIn, #gmAuthOverlay.gm-auth-loggedin #gmModeSignUp{display:none !important}
-/* 4. Chat service picker: FULL sheet, never half chat + half card */
-#gmChatWindow{position:fixed}
-#gmChatWindow #gmChatOrderPicker{position:absolute !important;inset:0 !important;z-index:20 !important;background:#070b18 !important;max-height:none !important;overflow-y:auto !important;padding:16px !important;border-radius:inherit !important}
-#gmChatWindow #gmChatOrderPicker .gm-chat-service-card{margin-bottom:12px}
-.gm-chat-picker-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;position:sticky;top:0;background:#070b18;padding:6px 0 10px;z-index:1;border-bottom:1px solid rgba(255,255,255,.10)}
-.gm-chat-picker-head strong{font-size:1.05rem}
-.gm-chat-picker-close{border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.08);color:#fff;border-radius:999px;padding:8px 14px;font-weight:700;cursor:pointer}
-/* 5. Workspace home = ONLY menu cards. Nothing else auto-opens. */
-.gm-menu-home-sub{color:#94a3b8;line-height:1.6;margin:0 0 16px}
-.gm-menu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-@media(min-width:900px){.gm-menu-grid{grid-template-columns:repeat(4,1fr)}}
-.gm-menu-card{text-align:left;background:linear-gradient(165deg,rgba(255,255,255,.09),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:18px 16px;cursor:pointer;color:#f8fafc;display:flex;flex-direction:column;gap:10px;min-height:132px;transition:transform .15s,border-color .15s}
-.gm-menu-card:hover{transform:translateY(-3px);border-color:rgba(245,200,110,.55)}
-.gm-menu-card .gm-menu-ico{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,#7c6cff,#3b82f6,#22d3ee);font-size:1.25rem}
-.gm-menu-card strong{font-size:1.02rem;line-height:1.25}
-.gm-menu-card span{font-size:.85rem;color:#94a3b8;line-height:1.5}
-.gm-menu-card .gm-menu-go{margin-top:auto;font-size:.82rem;font-weight:750;color:#93c5fd}
+/* ===== FIX — Homepage top bar + Menu card + Reviews Shutter + Service icons ===== */
+nav .gm-nav-profile, #gmPortfolioNotifBtn{display:none !important}
+.mobile-menu{padding:16px !important;justify-content:flex-start !important;overflow-y:auto !important;align-items:center !important}
+.mobile-menu .gm-menu-card{width:min(560px,94vw);margin:auto;background:linear-gradient(165deg,rgba(255,255,255,.10),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.14);border-radius:24px;padding:18px;box-shadow:0 30px 80px rgba(0,0,0,.6);max-height:92vh;overflow-y:auto}
+.mobile-menu .gm-menu-card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.mobile-menu .gm-menu-card-title{font-size:.72rem;letter-spacing:.18em;font-weight:850;color:#fde68a}
+.mobile-menu .close-menu{position:static !important;top:auto !important;right:auto !important;background:rgba(255,255,255,.08) !important;border:1px solid rgba(255,255,255,.18) !important;border-radius:999px !important;padding:9px 14px !important;font-size:.82rem !important;color:#fff !important}
+.mobile-menu .gm-menu-card-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(min-width:640px){.mobile-menu .gm-menu-card-grid{grid-template-columns:repeat(3,1fr)}}
+.mobile-menu .gm-menu-card-opt{display:flex !important;flex-direction:column !important;align-items:center !important;gap:4px !important;text-align:center !important;background:rgba(255,255,255,.06) !important;border:1px solid rgba(255,255,255,.12) !important;border-radius:16px !important;padding:14px 8px !important;color:#f8fafc !important;text-decoration:none !important;-webkit-text-fill-color:#f8fafc !important;cursor:pointer}
+.mobile-menu .gm-menu-card-opt:hover{border-color:rgba(245,200,110,.6) !important;transform:translateY(-2px)}
+.mobile-menu .gm-menu-card-ico{font-size:1.35rem;line-height:1}
+.mobile-menu .gm-menu-card-opt strong{font-size:.95rem;line-height:1.25;-webkit-text-fill-color:#f8fafc}
+.mobile-menu .gm-menu-card-opt span:last-child{font-size:.72rem;color:#94a3b8;line-height:1.4;-webkit-text-fill-color:#94a3b8}
+.mobile-menu .gm-menu-card-opt-accent{background:linear-gradient(135deg,rgba(124,108,255,.35),rgba(34,211,238,.25)) !important;border-color:rgba(124,108,255,.5) !important}
+.mobile-menu .gm-menu-card-opt-profile{grid-column:1 / -1 !important;flex-direction:row !important;justify-content:center !important;gap:8px !important;padding:14px !important}
+.gm-reviews-shutter #gmGalleryGrid{display:block !important;max-width:380px;margin:0 auto}
+.gm-reviews-shutter #gmGalleryGrid .gallery-item{display:none !important}
+.gm-reviews-shutter #gmGalleryGrid .gallery-item:first-child{display:block !important;width:100%;aspect-ratio:9/16}
+.gm-review-shutter{max-width:380px;margin:16px auto 0;text-align:center}
+.gm-review-see-more{width:100%;min-height:52px;border-radius:999px;border:1px solid rgba(245,200,110,.6);background:linear-gradient(135deg,#7c6cff,#3b82f6,#22d3ee);color:#fff;font-weight:800;font-size:1rem;cursor:pointer;box-shadow:0 12px 30px rgba(59,130,246,.35)}
+.gm-review-see-more:hover{filter:brightness(1.08)}
+.gm-review-shutter-note{color:#94a3b8;font-size:.8rem;margin:10px 0 0;line-height:1.5}
+.gm-review-full{position:fixed;inset:0;z-index:3000;background:#05060f;overflow-y:auto;padding:18px}
+.gm-review-full.gm-hidden{display:none !important}
+.gm-review-full-head{max-width:1100px;margin:0 auto 16px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.gm-review-full-kicker{font-size:.68rem;letter-spacing:.18em;font-weight:850;color:#fde68a}
+.gm-review-full-head h3{margin:4px 0 0;font-size:1.6rem}
+.gm-review-full-close{border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;border-radius:999px;padding:10px 16px;font-weight:750;cursor:pointer;white-space:nowrap}
+.gm-review-full-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+.gm-review-full-grid .gallery-item{display:block !important}
+#imageModal{z-index:3100 !important}
 
 </style>
 
@@ -1314,33 +1318,38 @@ footer{border-radius:28px 28px 0 0;background:linear-gradient(180deg,#0a0e1d,#02
             <img src="https://i.ibb.co.com/GfswcC5V/FB-IMG-1791925489216.jpg" alt="Google Marketing Logo">
             <span>Google Marketing</span>
         </div>
-        <button type="button" class="gm-nav-profile" onclick="GM.openProfile()" aria-label="Open profile"><i class="fas fa-user-circle"></i> Profile</button>
         <button class="menu-btn" onclick="toggleMenu()">
             MENU <i class="fas fa-bars"></i>
         </button>
     </nav>
 
-    <!-- Mobile Menu -->
+    <!-- Homepage Menu — ONE card, all options inside the card (no text list) -->
     <div class="mobile-menu" id="mobileMenu">
-        <button class="close-menu" onclick="toggleMenu()"><i class="fas fa-times"></i> CLOSE</button>
-        <ul>
-            <li><a href="#home" onclick="toggleMenu()">Home</a></li>
-            <li><a href="#services" onclick="toggleMenu()">Services</a></li>
-            <li><a href="#guarantee" onclick="toggleMenu()">Guarantee</a></li>
-            <li><a href="#reviews" onclick="toggleMenu()">Reviews</a></li>
-            <li><a href="#about" onclick="toggleMenu()">About Me</a></li>
-            <li><a href="#faq" onclick="toggleMenu()">FAQ</a></li>
-            <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
-            <li><a href="#" onclick="event.preventDefault(); toggleMenu(); GM.openOrderPage();">Order Now</a></li>
-            <li><a href="#" onclick="event.preventDefault(); toggleMenu(); GM.openProfile();">Profile / Account</a></li>
-        </ul>
+        <div class="gm-menu-card">
+            <div class="gm-menu-card-head">
+                <span class="gm-menu-card-title">✦ MENU</span>
+                <button class="close-menu" onclick="toggleMenu()"><i class="fas fa-times"></i> CLOSE</button>
+            </div>
+            <div class="gm-menu-card-grid">
+                <a class="gm-menu-card-opt" href="#home" onclick="toggleMenu()"><span class="gm-menu-card-ico">🏠</span><strong>Home</strong><span>Start here</span></a>
+                <a class="gm-menu-card-opt" href="#services" onclick="toggleMenu()"><span class="gm-menu-card-ico">💎</span><strong>Services</strong><span>What we do</span></a>
+                <a class="gm-menu-card-opt" href="#guarantee" onclick="toggleMenu()"><span class="gm-menu-card-ico">🛡️</span><strong>Guarantee</strong><span>Safe &amp; non-drop</span></a>
+                <a class="gm-menu-card-opt" href="#reviews" onclick="toggleMenu()"><span class="gm-menu-card-ico">⭐</span><strong>Reviews</strong><span>Proof of work</span></a>
+                <a class="gm-menu-card-opt" href="#about" onclick="toggleMenu()"><span class="gm-menu-card-ico">👤</span><strong>About Me</strong><span>Meet Shakil</span></a>
+                <a class="gm-menu-card-opt" href="#faq" onclick="toggleMenu()"><span class="gm-menu-card-ico">❓</span><strong>FAQ</strong><span>Common questions</span></a>
+                <a class="gm-menu-card-opt" href="#contact" onclick="toggleMenu()"><span class="gm-menu-card-ico">💬</span><strong>Contact</strong><span>Talk to us</span></a>
+                <a class="gm-menu-card-opt gm-menu-card-opt-accent" href="#" onclick="event.preventDefault(); toggleMenu(); GM.openOrderPage();"><span class="gm-menu-card-ico">🛒</span><strong>Order Now</strong><span>Start a project</span></a>
+                <a class="gm-menu-card-opt" href="#" onclick="event.preventDefault(); toggleMenu(); GM.togglePortfolioNotif();"><span class="gm-menu-card-ico">🔔</span><strong>Alerts</strong><span>Announcements</span></a>
+                <a class="gm-menu-card-opt gm-menu-card-opt-profile" href="#" onclick="event.preventDefault(); toggleMenu(); GM.openProfile();"><span class="gm-menu-card-ico">👤</span><strong>Profile / Account</strong><span>Login / Your profile</span></a>
+            </div>
+        </div>
     </div>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <span class="badge gm-premium-badge" id="gmHeroBadge">Professional Agency</span>
-        <h1 id="gmHeroTitle"><span id="gmHeroTitle1">Hi, I'm Shakil</span><br><span id="gmHeroTitle2">Authentic Review &amp; SEO Specialist</span></h1>
-        <p id="gmHeroSubtitle">Owner of Google Marketing. We help businesses scale rapidly with safe, authentic reviews, powerful Google Map SEO, and targeted digital marketing solutions.</p>
+        <span class="badge gm-premium-badge" id="gmHeroBadge">Play Store Specialist</span>
+        <h1 id="gmHeroTitle"><span id="gmHeroTitle1">Hi, I'm Shakil</span><br><span id="gmHeroTitle2">Play Store Review &amp; Growth Specialist</span></h1>
+        <p id="gmHeroSubtitle">Owner of Google Marketing. My main focus is the Play Store. I analyze your app, study real user feedback, and give you clear, correct guidance for your app — then we work step by step with that feedback to grow your app safely.</p>
         <div style="display: flex; gap: 15px; flex-wrap: wrap;">
             <a href="#contact" class="btn btn-primary" id="gmHeroBtn1">Start Your Project</a>
             <a href="#services" class="btn btn-outline" id="gmHeroBtn2">Explore Services</a>
@@ -1506,12 +1515,12 @@ footer{border-radius:28px 28px 0 0;background:linear-gradient(180deg,#0a0e1d,#02
         </div>
     </section>
 
-    <!-- Reviews Section -->
-    <section id="reviews" style="background-color: var(--surface-color);">
+    <!-- Reviews Section — Gallery + Shutter: 1 featured, See More opens full page -->
+    <section id="reviews" class="gm-reviews-shutter" style="background-color: var(--surface-color);">
         <div class="section-header">
             <span class="badge gm-premium-badge" id="gmReviewsBadge">Proof of Work</span>
             <h2 id="gmReviewsTitle">Delivered Excellence</h2>
-            <p id="gmReviewsSubtitle">Real results from real campaigns. Browse through some of the authentic reviews we've successfully delivered for our global clients.</p>
+            <p id="gmReviewsSubtitle">The screenshots below are examples. The apps shown here are design mockups created for demonstration only — they are not on the Play Store. We keep real client work private: if we published it here, everyone could see everyone else's work, so we choose to keep it confidential and we are committed to protecting every client's information. Contact us to see how your app will look after taking our service.</p>
         </div>
 
         <div class="gallery-grid" id="gmGalleryGrid">
@@ -1561,7 +1570,21 @@ footer{border-radius:28px 28px 0 0;background:linear-gradient(180deg,#0a0e1d,#02
                 <img src="https://i.ibb.co.com/qFcJbjZB/20261017-133905.jpg" alt="Review 15">
             </div>
         </div>
+        <div class="gm-review-shutter">
+            <button class="gm-review-see-more" type="button" onclick="GM.openReviewGallery()">See More &nbsp;→&nbsp; <span id="gmReviewCountLabel">See all reviews</span></button>
+            <p class="gm-review-shutter-note">Tap to open the full gallery — all reviews together on one page.</p>
+        </div>
     </section>
+
+    <!-- Reviews Full Gallery — full page, all reviews together (same as before) -->
+    <div class="gm-review-full gm-hidden" id="gmReviewGalleryFull" role="dialog" aria-modal="true" aria-label="All reviews">
+        <div class="gm-review-full-head">
+            <div><span class="gm-review-full-kicker">✦ PROOF OF WORK</span><h3>All Reviews</h3></div>
+            <button class="gm-review-full-close" type="button" onclick="GM.closeReviewGallery()">✕ CLOSE</button>
+        </div>
+        <div class="gm-review-full-grid" id="gmReviewFullGrid"></div>
+    </div>
+
 
     <!-- About Section -->
     <section id="about">
@@ -1833,17 +1856,8 @@ footer{border-radius:28px 28px 0 0;background:linear-gradient(180deg,#0a0e1d,#02
             </nav>
 
             <section data-gm-section="overview" id="gmSectionOverview">
-                <div class="gm-panel"><h3>What do you want to do?</h3><p class="gm-menu-home-sub">Menu থেকে একটা অপশনে ক্লিক করো — শুধু ওই পেজটাই খুলবে। আগে থেকে আর কিছু খোলা থাকবে না।</p><div class="gm-menu-grid">
-                  <button type="button" class="gm-menu-card" onclick="GM.selectTab('calculator')"><span class="gm-menu-ico">🧮</span><strong>Price Calculator</strong><span>Estimate price before you order.</span><span class="gm-menu-go">Open →</span></button>
-                  <button type="button" class="gm-menu-card" onclick="GM.selectTab('services')"><span class="gm-menu-ico">💎</span><strong>Services</strong><span>View pricing &amp; place an order.</span><span class="gm-menu-go">Open →</span></button>
-                  <button type="button" class="gm-menu-card" onclick="GM.selectTab('orders')"><span class="gm-menu-ico">📦</span><strong>My Orders</strong><span>Track your orders in one place.</span><span class="gm-menu-go">Open →</span></button>
-                  <button type="button" class="gm-menu-card" onclick="GM.selectTab('reviews')"><span class="gm-menu-ico">⭐</span><strong>Reviews</strong><span>Rate a service &amp; see your reviews.</span><span class="gm-menu-go">Open →</span></button>
-                  <button type="button" class="gm-menu-card" onclick="GM.selectTab('notifications')"><span class="gm-menu-ico">🔔</span><strong>Notifications</strong><span>Announcements &amp; updates.</span><span class="gm-menu-go">Open →</span></button>
-                  <button type="button" class="gm-menu-card" onclick="GM.openWorkspaceChat()"><span class="gm-menu-ico">💬</span><strong>Live Support</strong><span>Chat with us directly.</span><span class="gm-menu-go">Open →</span></button>
-                  <button type="button" class="gm-menu-card" onclick="GM.openProfile()"><span class="gm-menu-ico">👤</span><strong>Your Profile</strong><span>Account &amp; contact settings.</span><span class="gm-menu-go">Open →</span></button>
-                  <button type="button" class="gm-menu-card" onclick="GM.closeWorkspace()"><span class="gm-menu-ico">🌐</span><strong>Back to Portfolio</strong><span>View the public site.</span><span class="gm-menu-go">Open →</span></button>
-                </div></div>
-                <div class="gm-service-grid gm-hidden" id="gmOverviewServices"></div>
+                <div class="gm-panel" style="margin-bottom:16px"><h3>Welcome to your workspace</h3><p class="gm-muted">Your private area for service pricing, order tracking, support messages and account notifications. This workspace is separate from the public portfolio.</p><div class="gm-action-row"><button class="gm-action gm-primary" onclick="GM.selectTab('services')" type="button">Explore Services</button><button class="gm-action" onclick="GM.toggleChat(true)" type="button">Open Live Support</button></div></div>
+                <div class="gm-panel"><h3>Available Services</h3><div class="gm-service-grid" id="gmOverviewServices"></div></div>
             </section>
 
             <section data-gm-section="calculator" class="gm-hidden">
@@ -2973,7 +2987,34 @@ footer{border-radius:28px 28px 0 0;background:linear-gradient(180deg,#0a0e1d,#02
   }
 
   // ---- 6. Portfolio notification button next to Profile ----
+  // ---- Reviews Gallery Shutter ----
+  function openReviewGallery(){
+    try{
+      var src=document.getElementById('gmGalleryGrid'); var dst=document.getElementById('gmReviewFullGrid'); var full=document.getElementById('gmReviewGalleryFull');
+      if(!src||!dst||!full) return;
+      dst.innerHTML='';
+      Array.prototype.forEach.call(src.querySelectorAll('.gallery-item'), function(item){
+        var c=item.cloneNode(true); c.style.display=''; dst.appendChild(c);
+      });
+      full.classList.remove('gm-hidden'); document.body.style.overflow='hidden';
+    }catch(e){}
+  }
+  function closeReviewGallery(){
+    try{ var full=document.getElementById('gmReviewGalleryFull'); if(full) full.classList.add('gm-hidden'); document.body.style.overflow=''; }catch(e){}
+  }
+  function refreshReviewCount(){
+    try{
+      var n=document.querySelectorAll('#gmGalleryGrid .gallery-item').length;
+      var lbl=document.getElementById('gmReviewCountLabel'); if(lbl&&n) lbl.textContent='See all '+n+' reviews';
+    }catch(e){}
+  }
+  window.GM.openReviewGallery=openReviewGallery;
+  window.GM.closeReviewGallery=closeReviewGallery;
+  setTimeout(refreshReviewCount, 600); setTimeout(refreshReviewCount, 2500);
+  document.addEventListener('keydown', function(ev){ if(ev.key==='Escape'){ closeReviewGallery(); } });
+
   function ensurePortfolioNotif(){
+    return; // Homepage top bar: only Logo + MENU. Alerts live inside Menu card.
     var nav=document.querySelector('nav'); if(!nav || document.getElementById('gmPortfolioNotifBtn')) return;
     var profileBtn=nav.querySelector('.gm-nav-profile');
     var btn=document.createElement('button');
@@ -3009,10 +3050,10 @@ footer{border-radius:28px 28px 0 0;background:linear-gradient(180deg,#0a0e1d,#02
       +'<div class="gm-field"><label>Contact — Email</label><input id="gmAdminContactEmail" placeholder="you@example.com"></div>'
       +'</div>'
       +'<h4 style="margin:16px 0 8px">Premium Digital Solutions — 4 static cards (title + description + tick lines — all unlimited)</h4><div class="gm-admin-site-grid">'
-      +'<div class="gm-field"><label>Card 1 — Title (unlimited)</label><input id="gmAdminCard0Title"></div><div class="gm-field"><label>Card 1 — Description (unlimited — write as much as you want)</label><textarea id="gmAdminCard0Desc" rows="4"></textarea></div><div class="gm-field gm-full"><label>Card 1 — Tick lines (one per line, unlimited — blue tick like in screenshot)</label><textarea id="gmAdminCard0Features" rows="4" placeholder="100% Safe & Authentic\nGradual Natural Delivery\nPositive Rating Impact"></textarea></div>'
-      +'<div class="gm-field"><label>Card 2 — Title (unlimited)</label><input id="gmAdminCard1Title"></div><div class="gm-field"><label>Card 2 — Description (unlimited)</label><textarea id="gmAdminCard1Desc" rows="4"></textarea></div><div class="gm-field gm-full"><label>Card 2 — Tick lines (one per line, unlimited)</label><textarea id="gmAdminCard1Features" rows="4"></textarea></div>'
-      +'<div class="gm-field"><label>Card 3 — Title (unlimited)</label><input id="gmAdminCard2Title"></div><div class="gm-field"><label>Card 3 — Description (unlimited)</label><textarea id="gmAdminCard2Desc" rows="4"></textarea></div><div class="gm-field gm-full"><label>Card 3 — Tick lines (one per line, unlimited)</label><textarea id="gmAdminCard2Features" rows="4"></textarea></div>'
-      +'<div class="gm-field"><label>Card 4 — Title (unlimited)</label><input id="gmAdminCard3Title"></div><div class="gm-field"><label>Card 4 — Description (unlimited)</label><textarea id="gmAdminCard3Desc" rows="4"></textarea></div><div class="gm-field gm-full"><label>Card 4 — Tick lines (one per line, unlimited)</label><textarea id="gmAdminCard3Features" rows="4"></textarea></div>'
+      +'<div class="gm-field"><label>Card 1 — Title (unlimited)</label><input id="gmAdminCard0Title"></div><div class="gm-field"><label>Card 1 — Icon</label><input id="gmAdminCard0Icon" placeholder="e.g. fab fa-youtube, fab fa-facebook, fab fa-google-play or emoji"></div><div class="gm-field"><label>Card 1 — Description (unlimited — write as much as you want)</label><textarea id="gmAdminCard0Desc" rows="4"></textarea></div><div class="gm-field gm-full"><label>Card 1 — Tick lines (one per line, unlimited — blue tick like in screenshot)</label><textarea id="gmAdminCard0Features" rows="4" placeholder="100% Safe & Authentic\nGradual Natural Delivery\nPositive Rating Impact"></textarea></div>'
+      +'<div class="gm-field"><label>Card 2 — Title (unlimited)</label><input id="gmAdminCard1Title"></div><div class="gm-field"><label>Card 2 — Icon</label><input id="gmAdminCard1Icon" placeholder="e.g. fab fa-youtube, fab fa-facebook, fab fa-google-play or emoji"></div><div class="gm-field"><label>Card 2 — Description (unlimited)</label><textarea id="gmAdminCard1Desc" rows="4"></textarea></div><div class="gm-field gm-full"><label>Card 2 — Tick lines (one per line, unlimited)</label><textarea id="gmAdminCard1Features" rows="4"></textarea></div>'
+      +'<div class="gm-field"><label>Card 3 — Title (unlimited)</label><input id="gmAdminCard2Title"></div><div class="gm-field"><label>Card 3 — Icon</label><input id="gmAdminCard2Icon" placeholder="e.g. fab fa-youtube, fab fa-facebook, fab fa-google-play or emoji"></div><div class="gm-field"><label>Card 3 — Description (unlimited)</label><textarea id="gmAdminCard2Desc" rows="4"></textarea></div><div class="gm-field gm-full"><label>Card 3 — Tick lines (one per line, unlimited)</label><textarea id="gmAdminCard2Features" rows="4"></textarea></div>'
+      +'<div class="gm-field"><label>Card 4 — Title (unlimited)</label><input id="gmAdminCard3Title"></div><div class="gm-field"><label>Card 4 — Icon</label><input id="gmAdminCard3Icon" placeholder="e.g. fab fa-youtube, fab fa-facebook, fab fa-google-play or emoji"></div><div class="gm-field"><label>Card 4 — Description (unlimited)</label><textarea id="gmAdminCard3Desc" rows="4"></textarea></div><div class="gm-field gm-full"><label>Card 4 — Tick lines (one per line, unlimited)</label><textarea id="gmAdminCard3Features" rows="4"></textarea></div>'
       +'</div><div class="gm-action-row" style="margin-top:14px"><button class="gm-action gm-primary" type="button" onclick="GM.saveSiteSettings()">Save Site Settings</button></div><div class="gm-inline-status" id="gmAdminSiteStatus"></div></div>';
     if(pages) pages.appendChild(panel); else adminSec.appendChild(panel);
   }
@@ -3074,10 +3115,10 @@ footer{border-radius:28px 28px 0 0;background:linear-gradient(180deg,#0a0e1d,#02
           email: (document.getElementById('gmAdminContactEmail')||{}).value||''
         },
         staticServices: {
-          'play-store': {title:(document.getElementById('gmAdminCard0Title')||{}).value||'', description:(document.getElementById('gmAdminCard0Desc')||{}).value||'', features:feat('gmAdminCard0Features')},
-          'map-review': {title:(document.getElementById('gmAdminCard1Title')||{}).value||'', description:(document.getElementById('gmAdminCard1Desc')||{}).value||'', features:feat('gmAdminCard1Features')},
-          'map-seo': {title:(document.getElementById('gmAdminCard2Title')||{}).value||'', description:(document.getElementById('gmAdminCard2Desc')||{}).value||'', features:feat('gmAdminCard2Features')},
-          'digital-marketing': {title:(document.getElementById('gmAdminCard3Title')||{}).value||'', description:(document.getElementById('gmAdminCard3Desc')||{}).value||'', features:feat('gmAdminCard3Features')}
+          'play-store': {title:(document.getElementById('gmAdminCard0Title')||{}).value||'', icon:(document.getElementById('gmAdminCard0Icon')||{}).value||'', description:(document.getElementById('gmAdminCard0Desc')||{}).value||'', features:feat('gmAdminCard0Features')},
+          'map-review': {title:(document.getElementById('gmAdminCard1Title')||{}).value||'', icon:(document.getElementById('gmAdminCard1Icon')||{}).value||'', description:(document.getElementById('gmAdminCard1Desc')||{}).value||'', features:feat('gmAdminCard1Features')},
+          'map-seo': {title:(document.getElementById('gmAdminCard2Title')||{}).value||'', icon:(document.getElementById('gmAdminCard2Icon')||{}).value||'', description:(document.getElementById('gmAdminCard2Desc')||{}).value||'', features:feat('gmAdminCard2Features')},
+          'digital-marketing': {title:(document.getElementById('gmAdminCard3Title')||{}).value||'', icon:(document.getElementById('gmAdminCard3Icon')||{}).value||'', description:(document.getElementById('gmAdminCard3Desc')||{}).value||'', features:feat('gmAdminCard3Features')}
         }
       };
       if(window.GM && typeof window.GM._saveSiteSettings==='function'){ window.GM._saveSiteSettings(payload).then(function(){ if(st) st.textContent='Saved. Public site updated.'; }).catch(function(e){ if(st) st.textContent='Could not save. Please try again.'; }); return; }
@@ -3169,6 +3210,7 @@ function tryWire(){
             var h=cards[i].querySelector('h3'); var p=cards[i].querySelector('p');
             if(it.title) h.textContent=String(it.title);
             if(it.description) p.textContent=String(it.description);
+            if(it.icon){ var ic=cards[i].querySelector('.service-icon'); if(ic){ var v=String(it.icon).trim(); if(v.indexOf('fa-')!==-1||v.indexOf('fas ')!==-1||v.indexOf('fab ')!==-1||v.indexOf('far ')!==-1){ ic.innerHTML='<i class="'+v.replace(/"/g,'')+'"></i>'; } else { ic.textContent=v; } } }
             if(Array.isArray(it.features)){ var ul=cards[i].querySelector('ul'); if(ul){ ul.innerHTML=it.features.map(function(f){ return '<li><i class=\'fas fa-check-circle\' style=\'color:#3b82f6\'></i><span>'+String(f).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</span></li>'; }).join(''); } }
           });
         }catch(e){}
@@ -3189,7 +3231,7 @@ function tryWire(){
           if(v.paymentNote!=null){ var a=document.getElementById('gmAdminPaymentNote'); if(a&&!a.value) a.value=v.paymentNote; }
           if(v.portfolioNotice!=null){ var b=document.getElementById('gmAdminPortfolioNotice'); if(b&&!b.value) b.value=v.portfolioNotice; }
           if(v.contactInfo){ var m={agency:'gmAdminContactAgency',whatsapp:'gmAdminContactWhatsApp',telegram:'gmAdminContactTelegram',email:'gmAdminContactEmail'}; Object.keys(m).forEach(function(k){ var el=document.getElementById(m[k]); if(el&&!el.value&&v.contactInfo[k]) el.value=v.contactInfo[k]; }); }
-          if(v.staticServices){ var keys2=['play-store','map-review','map-seo','digital-marketing']; keys2.forEach(function(k,i){ var it=v.staticServices[k]; if(!it) return; var t=document.getElementById('gmAdminCard'+i+'Title'); var d=document.getElementById('gmAdminCard'+i+'Desc'); var f=document.getElementById('gmAdminCard'+i+'Features'); if(t&&!t.value&&it.title) t.value=it.title; if(d&&!d.value&&it.description) d.value=it.description; if(f&&!f.value&&Array.isArray(it.features)) f.value=it.features.join('\n'); }); }
+          if(v.staticServices){ var keys2=['play-store','map-review','map-seo','digital-marketing']; keys2.forEach(function(k,i){ var it=v.staticServices[k]; if(!it) return; var t=document.getElementById('gmAdminCard'+i+'Title'); var d=document.getElementById('gmAdminCard'+i+'Desc'); var f=document.getElementById('gmAdminCard'+i+'Features'); if(t&&!t.value&&it.title) t.value=it.title; if(d&&!d.value&&it.description) d.value=it.description; if(f&&!f.value&&Array.isArray(it.features)) f.value=it.features.join('\n'); var ic2=document.getElementById('gmAdminCard'+i+'Icon'); if(ic2&&!ic2.value&&it.icon) ic2.value=it.icon; }); }
         }catch(e){}
       });
     }catch(e){console.warn('siteSettings',e)}
@@ -3223,7 +3265,7 @@ function tryWire(){
                 var cur=snap.val()||{};
                 var merged={ paymentNote: payload.paymentNote, portfolioNotice: payload.portfolioNotice, contactInfo: Object.assign({}, cur.contactInfo||{}, payload.contactInfo||{}), staticServices: Object.assign({}, cur.staticServices||{}, payload.staticServices||{}), siteCMS: payload.siteCMS || cur.siteCMS || {} };
                 // Only overwrite staticServices entries that have content, keep others
-                Object.keys(payload.staticServices||{}).forEach(function(k){ var curEntry=payload.staticServices[k]||{}; if(!curEntry.title && !curEntry.description && !(curEntry.features&&curEntry.features.length)) merged.staticServices[k]=cur.staticServices&&cur.staticServices[k]||payload.staticServices[k]; });
+                Object.keys(payload.staticServices||{}).forEach(function(k){ var curEntry=payload.staticServices[k]||{}; if(!curEntry.title && !curEntry.description && !curEntry.icon && !(curEntry.features&&curEntry.features.length)) merged.staticServices[k]=cur.staticServices&&cur.staticServices[k]||payload.staticServices[k]; });
                 set(ref(db,'siteSettings'), merged).then(resolve).catch(reject);
               }).catch(reject);
             }).catch(reject);
@@ -3260,85 +3302,32 @@ setInterval(function(){ if(window.GM && !window.GM._saveSiteSettings) tryWire();
   function txt(id, val){ var el=$id(id); if(el && val!=null && String(val).trim()!=='') el.textContent=String(val); }
   function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
-  /* ---- 1. Auth split: keep overlay class in sync — LOGGED-IN = NO Create Account ---- */
-  function syncAuthOverlay(loggedIn){
-    var ov=$id('gmAuthOverlay'); if(!ov) return;
-    ov.classList.toggle('gm-auth-loggedin', !!loggedIn);
-    if(loggedIn) ov.classList.remove('gm-auth-signup');
-  }
+  /* ---- 1. Auth split: keep overlay class in sync with signin/signup ---- */
   function wrapAuth(){
-    if(!window.GM) return;
-    if(window.GM.setAuthMode && !window.GM.__premiumAuthWrapped){
-      var orig=window.GM.setAuthMode;
-      window.GM.setAuthMode=function(mode, quiet){
-        var loggedIn = !!(window.GM._currentUser && !window.GM._currentUser.isAnonymous);
-        if(loggedIn){ syncAuthOverlay(true); return orig.apply(this, ['signin', quiet]); }
-        var r=orig.apply(this, arguments);
-        var ov=$id('gmAuthOverlay'); if(ov) ov.classList.toggle('gm-auth-signup', mode==='signup');
-        syncAuthOverlay(false);
-        return r;
-      };
-      window.GM.__premiumAuthWrapped=true;
-    }
-    if(window.GM.setAuthUi && !window.GM.__premiumAuthUiWrapped){
-      var origUi=window.GM.setAuthUi;
-      window.GM.setAuthUi=function(user){
-        var r=origUi.apply(this, arguments);
-        var loggedIn = !!(user && !user.isAnonymous);
-        syncAuthOverlay(loggedIn);
-        // Logged-in: hide side panels + mode toggle for good (orig already hides mode btns, but side panels were left visible)
-        var ov=$id('gmAuthOverlay'); if(ov && loggedIn){ ov.classList.remove('gm-auth-signup'); }
-        return r;
-      };
-      window.GM.__premiumAuthUiWrapped=true;
-    }
-    if(window.GM.openProfile && !window.GM.__premiumOpenProfileWrapped){
-      var origOpen=window.GM.openProfile;
-      window.GM.openProfile=function(){
-        var r=origOpen.apply(this, arguments);
-        var loggedIn = !!(window.GM._currentUser && !window.GM._currentUser.isAnonymous);
-        syncAuthOverlay(loggedIn);
-        return r;
-      };
-      window.GM.__premiumOpenProfileWrapped=true;
-    }
+    if(!window.GM || !window.GM.setAuthMode || window.GM.__premiumAuthWrapped) return;
+    var orig=window.GM.setAuthMode;
+    window.GM.setAuthMode=function(mode, quiet){
+      var r=orig.apply(this, arguments);
+      var ov=$id('gmAuthOverlay'); if(ov) ov.classList.toggle('gm-auth-signup', mode==='signup');
+      return r;
+    };
+    window.GM.__premiumAuthWrapped=true;
   }
 
   /* ---- 2. Workspace glass sidebar (LUMEN style) — runtime restructure, keeps all IDs ---- */
   function syncSidebarUser(){
     try{
-      var user=window.GM&&window.GM._currentUser;
-      var loggedIn=!!(user && !user.isAnonymous);
-      var n=$id('gmSideName'), sub=$id('gmSideSub'), img=$id('gmSideAvatar'), uid=$id('gmSideUid'), pro=document.querySelector('.gm-side-pro');
       var t=$id('gmWorkspaceTitle'), s=$id('gmWorkspaceSubtitle'), av=$id('gmWorkspaceAvatar');
-      if(!loggedIn){
-        if(n) n.textContent='Guest';
-        if(sub) sub.textContent='Please login to continue';
-        if(uid) uid.textContent='Tap Profile icon to Sign In';
-        if(pro) pro.style.display='none';
-        if(img) img.src='https://i.ibb.co.com/GfswcC5V/FB-IMG-1791925489216.jpg';
-      } else {
-        if(n) n.textContent=(user.displayName||user.email||'My Workspace');
-        if(sub) sub.textContent=(s&&s.textContent)||'Client Area';
-        if(uid) uid.textContent='UID: '+String(user.uid||'').slice(0,10)+'...';
-        if(pro) pro.style.display='';
-        if(av&&img&&av.src) img.src=av.src;
+      var n=$id('gmSideName'); if(t&&n) n.textContent=t.textContent||'My Workspace';
+      var sub=$id('gmSideSub'); if(s&&sub) sub.textContent=s.textContent||'Client Area';
+      var img=$id('gmSideAvatar'); if(av&&img&&av.src) img.src=av.src;
+      var uid=$id('gmSideUid');
+      if(uid){
+        var u=(window.GM&&window.GM._currentUser&&window.GM._currentUser.uid)||'';
+        if(u) uid.textContent='UID: '+u.slice(0,10)+'...';
       }
       var nt=$id('gmPortfolioNotifText'), sn=$id('gmSideNoticeText');
       if(nt&&sn&&nt.textContent) sn.textContent=nt.textContent;
-      // Admin Panel: original openWorkspace already toggles gm-hidden correctly — CSS fix now respects it (sidebar no longer overrides gm-hidden).
-    }catch(e){}
-  }
-  /* Chat picker: full sheet header + close, never half-half */
-  function fixChatPicker(){
-    try{
-      var p=$id('gmChatOrderPicker'); if(!p) return;
-      if(!p.querySelector('.gm-chat-picker-head')){
-        var head=document.createElement('div'); head.className='gm-chat-picker-head';
-        head.innerHTML='<strong>Choose a Service</strong><button type="button" class="gm-chat-picker-close">Back to Chat ✕</button>';
-        head.querySelector('button').onclick=function(){ if(window.GM&&window.GM.toggleChatOrderPicker) window.GM.toggleChatOrderPicker(); };
-        p.insertBefore(head, p.firstChild);
-      }
     }catch(e){}
   }
   function buildWorkspaceSidebar(){
@@ -3371,7 +3360,7 @@ setInterval(function(){ if(window.GM && !window.GM._saveSiteSettings) tryWire();
     if(!window.GM) return;
     if(window.GM.openWorkspace && !window.GM.__premiumWsWrapped){
       var ow=window.GM.openWorkspace;
-      window.GM.openWorkspace=function(){ var r=ow.apply(this, arguments); setTimeout(buildWorkspaceSidebar, 80); setTimeout(syncSidebarUser, 400); setTimeout(function(){ try{ if(window.GM.selectTab) window.GM.selectTab('overview'); }catch(e){} }, 150); return r; };
+      window.GM.openWorkspace=function(){ var r=ow.apply(this, arguments); setTimeout(buildWorkspaceSidebar, 80); setTimeout(syncSidebarUser, 400); return r; };
       window.GM.__premiumWsWrapped=true;
     }
     if(window.GM.toggleWorkspaceMenu && !window.GM.__premiumMenuWrapped){
@@ -3381,18 +3370,8 @@ setInterval(function(){ if(window.GM && !window.GM._saveSiteSettings) tryWire();
     }
     if(window.GM.selectTab && !window.GM.__premiumTabWrapped){
       var st=window.GM.selectTab;
-      window.GM.selectTab=function(){ var r=st.apply(this, arguments); var ov=$id('gmWorkspaceOverlay'); if(ov) ov.classList.remove('gm-side-open'); var stEl=$id('gmOverviewStats'); if(stEl) stEl.style.display='none'; fixChatPicker(); return r; };
+      window.GM.selectTab=function(){ var r=st.apply(this, arguments); var ov=$id('gmWorkspaceOverlay'); if(ov) ov.classList.remove('gm-side-open'); return r; };
       window.GM.__premiumTabWrapped=true;
-    }
-    if(window.GM.toggleChatOrderPicker && !window.GM.__premiumChatPickerWrapped){
-      var tp=window.GM.toggleChatOrderPicker;
-      window.GM.toggleChatOrderPicker=function(){ var r=tp.apply(this, arguments); setTimeout(fixChatPicker, 60); return r; };
-      window.GM.__premiumChatPickerWrapped=true;
-    }
-    if(window.GM.toggleChat && !window.GM.__premiumToggleChatWrapped){
-      var tc=window.GM.toggleChat;
-      window.GM.toggleChat=function(){ var r=tc.apply(this, arguments); setTimeout(fixChatPicker, 120); return r; };
-      window.GM.__premiumToggleChatWrapped=true;
     }
     if(window.GM.closeWorkspaceMenu && !window.GM.__premiumCloseWrapped){
       var cm=window.GM.closeWorkspaceMenu;
@@ -3512,7 +3491,7 @@ setInterval(function(){ if(window.GM && !window.GM._saveSiteSettings) tryWire();
   function buildCMSUI(){
     var panel=document.querySelector('[data-gm-admin-section="site"]'); if(!panel||$id('gmCmsRoot')) return;
     var root=document.createElement('div'); root.id='gmCmsRoot';
-    root.innerHTML='<div style="margin:20px 0 6px;display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span class="gm-cms-badge">PREMIUM CMS</span><h3 style="margin:0">Every Section — Edit From Admin</h3></div><p class="gm-muted" style="margin:0 0 12px;line-height:1.55">Hero, Stats, Section Headers, About, Working Policy, FAQ, Gallery, Payments, Footer — সব এখান থেকে বদলাও। Save করলেই পাবলিক সাইটে সাথে সাথে আপডেট হবে। খালি রাখলে আগের লেখাই থাকবে।</p>';
+    root.innerHTML='<div style="margin:20px 0 6px;display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span class="gm-cms-badge">PREMIUM CMS</span><h3 style="margin:0">Every Section — Edit From Admin</h3></div><p class="gm-muted" style="margin:0 0 12px;line-height:1.55">Hero, Stats, Section Headers, About, Working Policy, FAQ, Gallery, Payments, Footer — edit everything from here. Saving updates the public site instantly. Leave blank to keep the existing text.</p>';
     // Group fields by section
     var groups={}; CMS_FIELDS.forEach(function(f){ (groups[f.sec]=groups[f.sec]||[]).push(f); });
     Object.keys(groups).forEach(function(sec){
@@ -3528,23 +3507,23 @@ setInterval(function(){ if(window.GM && !window.GM._saveSiteSettings) tryWire();
     });
     // Policy
     var pol=document.createElement('div'); pol.className='gm-cms-section';
-    pol.innerHTML='<h4>Working Policy — 5 Cards</h4><p>প্রতিটা Policy কার্ডের Title + Description এখান থেকে বদলাও।</p><div class="gm-field"><label>Policy — Panel title</label><input id="gmCms_policyTitle" placeholder="Our Working Policy"></div><div class="gm-cms-grid" id="gmCmsPolicyGrid"></div>';
+    pol.innerHTML='<h4>Working Policy — 5 Cards</h4><p>Edit the Title + Description of each Policy card from here.</p><div class="gm-field"><label>Policy — Panel title</label><input id="gmCms_policyTitle" placeholder="Our Working Policy"></div><div class="gm-cms-grid" id="gmCmsPolicyGrid"></div>';
     var pg=pol.querySelector('#gmCmsPolicyGrid');
     for(var i=0;i<5;i++){ var w=document.createElement('div'); w.className='gm-field'; w.innerHTML='<label>Policy '+(i+1)+' — Title</label><input id="gmCms_policy'+i+'Title">'; pg.appendChild(w); var w2=document.createElement('div'); w2.className='gm-field'; w2.innerHTML='<label>Policy '+(i+1)+' — Description</label><textarea id="gmCms_policy'+i+'Desc"></textarea>'; pg.appendChild(w2); }
     root.appendChild(pol);
     // FAQ
     var fq=document.createElement('div'); fq.className='gm-cms-section';
-    fq.innerHTML='<h4>FAQ — 6 Questions</h4><p>প্রতিটা FAQ-র Question + Answer এখান থেকে বদলাও।</p><div class="gm-cms-grid" id="gmCmsFaqGrid"></div>';
+    fq.innerHTML='<h4>FAQ — 6 Questions</h4><p>Edit the Question + Answer of each FAQ from here.</p><div class="gm-cms-grid" id="gmCmsFaqGrid"></div>';
     var fg=fq.querySelector('#gmCmsFaqGrid');
     for(var j=0;j<6;j++){ var a=document.createElement('div'); a.className='gm-field'; a.innerHTML='<label>FAQ '+(j+1)+' — Question</label><input id="gmCms_faq'+j+'Q">'; fg.appendChild(a); var b=document.createElement('div'); b.className='gm-field'; b.innerHTML='<label>FAQ '+(j+1)+' — Answer</label><textarea id="gmCms_faq'+j+'A"></textarea>'; fg.appendChild(b); }
     root.appendChild(fq);
     // Gallery + Payments
     var gp=document.createElement('div'); gp.className='gm-cms-section';
-    gp.innerHTML='<h4>Gallery + Payments</h4><p>Gallery: এক লাইনে একটা ছবির URL। Payments: এক লাইনে একটা মেথড।</p><div class="gm-cms-grid"><div class="gm-field gm-full"><label>Gallery — Image URLs (one per line, max 15)</label><textarea id="gmCms_gallery" placeholder="https://..."></textarea></div><div class="gm-field"><label>Payments — Accepted (one per line)</label><textarea id="gmCms_payAccept" placeholder="USDT (TRC20/BEP20)"></textarea></div><div class="gm-field"><label>Payments — Not Accepted (one per line)</label><textarea id="gmCms_payNot" placeholder="PayPal"></textarea></div></div>';
+    gp.innerHTML='<h4>Gallery + Payments</h4><p>Gallery: one image URL per line. Payments: one method per line.</p><div class="gm-cms-grid"><div class="gm-field gm-full"><label>Gallery — Image URLs (one per line, max 15)</label><textarea id="gmCms_gallery" placeholder="https://..."></textarea></div><div class="gm-field"><label>Payments — Accepted (one per line)</label><textarea id="gmCms_payAccept" placeholder="USDT (TRC20/BEP20)"></textarea></div><div class="gm-field"><label>Payments — Not Accepted (one per line)</label><textarea id="gmCms_payNot" placeholder="PayPal"></textarea></div></div>';
     root.appendChild(gp);
     // Save
     var saveDiv=document.createElement('div'); saveDiv.style.marginTop='16px';
-    saveDiv.innerHTML='<div class="gm-action-row"><button class="gm-action gm-primary" type="button" id="gmCmsSaveBtn">Save All Sections</button><span class="gm-inline-status" id="gmCmsStatus"></span></div><p class="gm-muted" style="margin-top:8px;font-size:.85rem">Tip: উপরের Site Settings-এর Save-ও আগের মতো কাজ করবে। এই Save-টা শুধু এই CMS সেকশনগুলো সেভ করে।</p>';
+    saveDiv.innerHTML='<div class="gm-action-row"><button class="gm-action gm-primary" type="button" id="gmCmsSaveBtn">Save All Sections</button><span class="gm-inline-status" id="gmCmsStatus"></span></div><p class="gm-muted" style="margin-top:8px;font-size:.85rem">Tip: The Save in Site Settings above still works as before. This Save only saves these CMS sections.</p>';
     root.appendChild(saveDiv);
     // Insert before old Save button if present, else append
     var oldSaveBtn=panel.querySelector('button[onclick*="saveSiteSettings"]');
@@ -3571,7 +3550,7 @@ setInterval(function(){ if(window.GM && !window.GM._saveSiteSettings) tryWire();
     }).catch(function(){});
   }
   function tick(){
-    wrapAuth(); wrapWorkspace(); fixChatPicker();
+    wrapAuth(); wrapWorkspace();
     if(window.GM && window.GM._currentUser) syncSidebarUser();
     var panel=document.querySelector('[data-gm-admin-section="site"]');
     if(panel) buildCMSUI();
