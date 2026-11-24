@@ -1347,32 +1347,42 @@ nav .logo span{white-space:nowrap}
 .gm-chat-launcher i{font-size:1.5rem !important;color:#fff !important;display:block !important;line-height:1 !important}
 
 
-/* ===== FIX 2026-11-24 — Logged-in workspace: no clutter, Admin out of menu, Premium menu, No Create Account after login ===== */
-/* Overview: hide stat cards (My Orders / Pending / Reviews / Notifications) — they live in Menu only */
+/* ===== FIX 2026-11-24 — Logged-in workspace clean + Auth logged-in + Pill Nav (screenshot style) ===== */
 #gmOverviewStats{display:none !important}
 .gm-overview-minimal{padding:22px}
 .gm-overview-minimal h3{font-size:1.35rem;margin:0 0 8px}
 .gm-overview-minimal p{line-height:1.6}
-/* Auth: when logged in, hide BOTH side panels (HELLO FRIEND / WELCOME BACK) — so Create Account never shows after login */
 #gmAuthOverlay.gm-auth-loggedin .gm-auth-side{display:none !important}
 #gmAuthOverlay.gm-auth-loggedin .gm-dialog.gm-auth-split{grid-template-columns:1fr !important}
 #gmAuthOverlay.gm-auth-loggedin .gm-auth-form{max-width:640px;margin:0 auto;width:100%}
-/* Portfolio Menu — premium, professional: full overlay, centred card, FA icons in gold circles */
-.mobile-menu{position:fixed !important;inset:0 !important;z-index:3000 !important;display:flex !important;align-items:center !important;justify-content:center !important;padding:16px !important;background:rgba(3,5,12,.82) !important;backdrop-filter:blur(14px) !important;overflow-y:auto !important}
-.mobile-menu.gm-hidden,.mobile-menu.hidden{display:none !important}
-.mobile-menu .gm-menu-card{width:min(720px,94vw) !important;max-height:92vh !important;overflow-y:auto !important;margin:auto !important;background:linear-gradient(160deg,rgba(28,30,48,.98),rgba(12,13,26,.98)) !important;border:1px solid rgba(245,200,110,.28) !important;border-radius:22px !important;padding:18px !important;box-shadow:0 30px 80px rgba(0,0,0,.6) !important}
-.mobile-menu .gm-menu-card-grid{gap:12px !important}
-.mobile-menu .gm-menu-card-opt{padding:18px 10px 16px !important;gap:8px !important;border-radius:18px !important;background:rgba(255,255,255,.055) !important;border:1px solid rgba(255,255,255,.11) !important;transition:transform .15s ease,border-color .15s ease !important}
-.mobile-menu .gm-menu-card-opt:hover{border-color:rgba(245,200,110,.65) !important;transform:translateY(-2px) !important;background:rgba(255,255,255,.08) !important}
-.mobile-menu .gm-menu-card-ico{width:46px !important;height:46px !important;border-radius:14px !important;display:grid !important;place-items:center !important;background:linear-gradient(135deg,rgba(245,200,110,.22),rgba(124,108,255,.22)) !important;border:1px solid rgba(245,200,110,.35) !important;font-size:1.05rem !important;line-height:1 !important;color:#fde68a !important}
-.mobile-menu .gm-menu-card-ico i{font-size:1.05rem !important;color:#fde68a !important}
-.mobile-menu .gm-menu-card-opt strong{font-size:1rem !important}
-.mobile-menu .gm-menu-card-opt span:last-child{font-size:.75rem !important}
-.mobile-menu .gm-menu-card-opt-accent .gm-menu-card-ico{background:linear-gradient(135deg,#7c6cff,#22d3ee) !important;border-color:transparent !important}
-.mobile-menu .gm-menu-card-opt-accent .gm-menu-card-ico i{color:#fff !important}
-/* Workspace sidebar footer: Admin Console (moved out of Menu list) looks like a footer button */
 .gm-side-foot .gm-tab{width:100% !important;display:flex !important;align-items:center !important;gap:10px !important;justify-content:flex-start !important;padding:11px 12px !important;border-radius:13px !important;background:rgba(245,200,110,.12) !important;border:1px solid rgba(245,200,110,.4) !important;color:#fde68a !important;font-weight:750 !important;cursor:pointer !important;text-align:left !important}
 .gm-side-foot .gm-tab.gm-hidden{display:none !important}
+/* --- Screenshot-style direct pill nav: no logo, no MENU, one-click --- */
+nav.gm-pill-nav{position:fixed !important;top:14px !important;left:50% !important;transform:translateX(-50%) !important;width:min(920px,94vw) !important;padding:8px 10px 8px 10px !important;display:flex !important;align-items:center !important;gap:8px !important;background:rgba(8,10,22,.92) !important;backdrop-filter:blur(16px) saturate(140%) !important;border:1px solid rgba(255,255,255,.14) !important;border-radius:999px !important;box-shadow:0 18px 50px rgba(0,0,0,.55) !important;z-index:1000 !important}
+.gm-pill-brand{display:flex !important;align-items:center !important;gap:8px !important;flex-shrink:0 !important;padding:6px 10px 6px 6px !important;color:#fff !important;text-decoration:none !important;font-weight:800 !important}
+.gm-pill-brand-ico{width:32px !important;height:32px !important;border-radius:999px !important;display:grid !important;place-items:center !important;background:rgba(255,255,255,.12) !important;font-size:.85rem !important;color:#fff !important}
+.gm-pill-brand-text{font-size:1.05rem !important;letter-spacing:.01em !important}
+.gm-pill-links{display:flex !important;align-items:center !important;gap:2px !important;flex:1 !important;min-width:0 !important;overflow-x:auto !important;scrollbar-width:none !important;-ms-overflow-style:none !important}
+.gm-pill-links::-webkit-scrollbar{display:none !important}
+.gm-pill-links a{flex-shrink:0 !important;padding:9px 14px !important;border-radius:999px !important;color:#cbd5e1 !important;font-size:.92rem !important;font-weight:600 !important;white-space:nowrap !important;text-decoration:none !important}
+.gm-pill-links a:hover{color:#fff !important;background:rgba(255,255,255,.08) !important}
+.gm-pill-actions{display:flex !important;align-items:center !important;gap:8px !important;flex-shrink:0 !important}
+.gm-pill-icon{width:38px !important;height:38px !important;border-radius:999px !important;border:1px solid rgba(255,255,255,.16) !important;background:rgba(255,255,255,.08) !important;color:#e2e8f0 !important;display:grid !important;place-items:center !important;cursor:pointer !important;position:relative !important;font-size:.95rem !important}
+.gm-pill-icon .gm-notif-dot{position:absolute !important;top:7px !important;right:8px !important;width:8px !important;height:8px !important;border-radius:50% !important;background:#f43f5e !important;border:2px solid #0b0e1a !important}
+.gm-pill-login{border:0 !important;border-radius:999px !important;padding:10px 18px !important;background:rgba(255,255,255,.12) !important;border:1px solid rgba(255,255,255,.18) !important;color:#fff !important;font-weight:700 !important;font-size:.92rem !important;cursor:pointer !important;white-space:nowrap !important}
+.gm-pill-login:hover{background:rgba(255,255,255,.2) !important}
+/* Old menu button / card gone */
+.menu-btn,.mobile-menu,.gm-menu-card,.logo{display:none !important}
+/* Hero needs room under floating pill */
+.hero{margin-top:88px !important}
+@media(max-width:640px){
+  nav.gm-pill-nav{top:10px !important;width:94vw !important;padding:6px 8px !important;gap:6px !important}
+  .gm-pill-brand-text{display:none !important}
+  .gm-pill-brand{padding:4px !important}
+  .gm-pill-links a{padding:8px 10px !important;font-size:.86rem !important}
+  .gm-pill-login{padding:8px 12px !important;font-size:.84rem !important}
+  .hero{margin-top:78px !important}
+}
 
 </style>
 
@@ -1382,46 +1392,29 @@ nav .logo span{white-space:nowrap}
     <div class="ambient-glow"></div>
     <div class="gm-toast-region" id="gmToastRegion" aria-live="polite" aria-atomic="false"></div>
 
-    <!-- Navbar -->
-    <nav>
-        <div class="logo" role="button" tabindex="0" title="Go to Home" style="cursor:pointer">
-            <img src="https://i.ibb.co.com/GfswcC5V/FB-IMG-1791925489216.jpg" alt="Google Marketing Logo" onclick="window.scrollTo({top:0,behavior:'smooth'});try{history.replaceState(null,'','#home');}catch(e){}">
-            <button id="gmHeaderNotifBtn" class="gm-header-notif" type="button" onclick="event.stopPropagation();GM.togglePortfolioNotif()" aria-label="Announcements" title="Announcements"><i class="fas fa-bell"></i><span class="gm-notif-dot" id="gmNotifDot"></span></button>
-            <span onclick="window.scrollTo({top:0,behavior:'smooth'});try{history.replaceState(null,'','#home');}catch(e){}">Google Marketing</span>
+    <!-- Navbar — Screenshot-style direct pill nav. No company logo, no MENU card. One click to any section. -->
+    <nav class="gm-pill-nav" aria-label="Main navigation">
+        <a class="gm-pill-brand" href="#home" aria-label="Go to Home"><span class="gm-pill-brand-ico"><i class="fas fa-bars"></i></span><span class="gm-pill-brand-text">Nav</span></a>
+        <div class="gm-pill-links" id="gmPillLinks">
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#about">About</a>
+            <a href="#" onclick="event.preventDefault(); GM.openOrderPage();">Tools</a>
+            <a href="#contact">Contact</a>
         </div>
-        <!-- REMOVED: extra Home box in header. Home is via MENU (fixed) + Logo click. No extra box. -->
-        <button class="menu-btn" onclick="toggleMenu()">
-            MENU <i class="fas fa-bars"></i>
-        </button>
+        <div class="gm-pill-actions">
+            <button class="gm-pill-icon" type="button" onclick="GM.togglePortfolioNotif()" aria-label="Announcements" title="Announcements"><i class="fas fa-bell"></i><span class="gm-notif-dot" id="gmNotifDot"></span></button>
+            <button class="gm-pill-login" type="button" id="gmPillLoginBtn" onclick="GM.openProfile()">Log in</button>
+        </div>
     </nav>
 <script>
     (function(){ try{ if(sessionStorage.getItem('gmNotifSeen')==='1'){ var d=document.getElementById('gmNotifDot'); if(d) d.style.display='none'; } }catch(e){} })();
     </script>
 
     <!-- REMOVED: floating Home box. Header MENU is fixed, that is enough. -->
-    <!-- Homepage Menu — ONE card, all options inside the card (no text list) -->
-    <div class="mobile-menu" id="mobileMenu">
-        <div class="gm-menu-card">
-            <div class="gm-menu-card-head">
-                <span class="gm-menu-card-title">✦ MENU</span>
-                <button class="close-menu" onclick="toggleMenu()"><i class="fas fa-times"></i> CLOSE</button>
-            </div>
-            <div class="gm-menu-card-grid">
-                <a class="gm-menu-card-opt" href="#home" onclick="toggleMenu()"><span class="gm-menu-card-ico"><i class="fas fa-home"></i></span><strong>Home</strong><span>Start here</span></a>
-                <a class="gm-menu-card-opt" href="#services" onclick="toggleMenu()"><span class="gm-menu-card-ico"><i class="fas fa-gem"></i></span><strong>Services</strong><span>What we do</span></a>
-                <a class="gm-menu-card-opt" href="#guarantee" onclick="toggleMenu()"><span class="gm-menu-card-ico"><i class="fas fa-shield-alt"></i></span><strong>Guarantee</strong><span>Safe &amp; non-drop</span></a>
-                <a class="gm-menu-card-opt" href="#reviews" onclick="toggleMenu()"><span class="gm-menu-card-ico"><i class="fas fa-star"></i></span><strong>Reviews</strong><span>Proof of work</span></a>
-                <a class="gm-menu-card-opt" href="#about" onclick="toggleMenu()"><span class="gm-menu-card-ico"><i class="fas fa-user"></i></span><strong>About Me</strong><span>Meet Shakil</span></a>
-                <a class="gm-menu-card-opt" href="#faq" onclick="toggleMenu()"><span class="gm-menu-card-ico"><i class="fas fa-question-circle"></i></span><strong>FAQ</strong><span>Common questions</span></a>
-                <a class="gm-menu-card-opt" href="#contact" onclick="toggleMenu()"><span class="gm-menu-card-ico"><i class="fas fa-comments"></i></span><strong>Contact</strong><span>Talk to us</span></a>
-                <a class="gm-menu-card-opt gm-menu-card-opt-accent" href="#" onclick="event.preventDefault(); toggleMenu(); GM.openOrderPage();"><span class="gm-menu-card-ico"><i class="fas fa-shopping-cart"></i></span><strong>Order Now</strong><span>Start a project</span></a>
-                <a class="gm-menu-card-opt" href="#" onclick="event.preventDefault(); toggleMenu(); GM.togglePortfolioNotif();"><span class="gm-menu-card-ico"><i class="fas fa-bell"></i></span><strong>Alerts</strong><span>Announcements</span></a>
-                <a class="gm-menu-card-opt gm-menu-card-opt-profile" href="#" onclick="event.preventDefault(); toggleMenu(); GM.openProfile();"><span class="gm-menu-card-ico"><i class="fas fa-user-circle"></i></span><strong>Profile / Account</strong><span>Login / Your profile</span></a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Hero Section -->
+    <!-- REMOVED: MENU card. Navigation is now direct in the top pill bar (one click, no menu). -->
+     <!-- Hero Section -->
     <section id="home" class="hero">
         <span class="badge gm-premium-badge" id="gmHeroBadge">Play Store Specialist</span>
         <h1 id="gmHeroTitle"><span id="gmHeroTitle1">Hi, I'm Shakil</span><br><span id="gmHeroTitle2">Play Store Review &amp; Growth Specialist</span></h1>
@@ -1965,7 +1958,7 @@ nav .logo span{white-space:nowrap}
             <div class="gm-work-top-actions">
                 <button class="gm-work-tool-btn" type="button" onclick="GM.toggleWorkspaceSearch()" aria-label="Search workspace options" title="Search"><i class="fas fa-search"></i><span class="gm-action-label">Search</span></button>
                 <button class="gm-work-tool-btn" type="button" onclick="GM.toggleWorkspaceMenu()" aria-expanded="false" aria-controls="gmWorkspaceTabs" id="gmWorkspaceMenuButton"><i class="fas fa-bars"></i><span class="gm-action-label">Menu</span></button>
-                <!-- REMOVED: Profile icon in workspace top bar. Profile lives in Menu (Your Profile / Settings). -->
+                <!-- REMOVED: Profile icon in workspace top bar. Profile lives in Menu. -->
                 <button class="gm-work-tool-btn" type="button" onclick="GM.closeWorkspace()"><i class="fas fa-arrow-left"></i><span class="gm-action-label">Portfolio</span></button>
             </div>
             <div class="gm-work-search gm-hidden" id="gmWorkspaceSearch"><input id="gmWorkspaceSearchInput" type="search" placeholder="Search services, orders, reviews, chats…" aria-label="Search workspace options" oninput="GM.searchWorkspace(this.value)" onkeydown="GM.handleWorkspaceSearchKey(event)"><div class="gm-work-search-hint">Search any workspace section or service below.</div><div class="gm-search-results" id="gmWorkspaceSearchResults"></div></div>
@@ -3671,7 +3664,7 @@ setInterval(function(){ if(window.GM && !window.GM._saveSiteSettings) tryWire();
 </script>
 
 <script>
-/* Move Admin Panel out of workspace Menu list into sidebar footer (only visible if admin). Runs until it succeeds. */
+/* Move Admin Panel out of workspace Menu list into sidebar footer (only if admin). */
 (function(){
   function moveAdmin(){
     try{
@@ -3686,6 +3679,18 @@ setInterval(function(){ if(window.GM && !window.GM._saveSiteSettings) tryWire();
   document.addEventListener('DOMContentLoaded', moveAdmin);
   setInterval(moveAdmin, 800);
   setTimeout(moveAdmin, 300);
+  /* Pill Log in button: show My Account when logged in */
+  function syncPillLogin(){
+    try{
+      var btn=document.getElementById('gmPillLoginBtn'); if(!btn) return;
+      var logged = !!(window.GM && window.GM._currentUser && !window.GM._currentUser.isAnonymous);
+      btn.textContent = logged ? 'My Account' : 'Log in';
+    }catch(e){}
+  }
+  setInterval(syncPillLogin, 1500);
+  document.addEventListener('DOMContentLoaded', syncPillLogin);
+  /* Old MENU card is gone — any old toggleMenu() call becomes a no-op (no error, no menu). */
+  window.toggleMenu = function(){ try{ window.scrollTo({top:0, behavior:'smooth'}); }catch(e){} };
 })();
 </script>
 
