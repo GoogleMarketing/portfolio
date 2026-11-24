@@ -1084,6 +1084,194 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
         }
 
     </style>
+
+<style id="gmPremiumStyle">
+/* ===== PREMIUM DESIGN SYSTEM — Google Marketing (keeps all IDs / JS) ===== */
+:root{
+  --premium-bg:#05060f; --premium-surface:#0a0e1d; --premium-glass:rgba(255,255,255,.06);
+  --premium-glass2:rgba(255,255,255,.09); --premium-border:rgba(255,255,255,.12);
+  --premium-gold:#f5c86e; --premium-gold2:#d4a017; --premium-violet:#7c6cff; --premium-blue:#3b82f6; --premium-cyan:#22d3ee;
+  --premium-text:#f8fafc; --premium-muted:#94a3b8;
+  --premium-grad:linear-gradient(135deg,#7c6cff 0%,#3b82f6 45%,#22d3ee 100%);
+  --premium-gold-grad:linear-gradient(135deg,#fde68a 0%,#f5c86e 45%,#d4a017 100%);
+  --premium-shadow:0 20px 50px rgba(0,0,0,.45); --premium-shadow2:0 10px 30px rgba(124,108,255,.25);
+}
+html{scroll-behavior:smooth}
+body{background:
+  radial-gradient(900px 500px at 15% -5%, rgba(124,108,255,.22), transparent 60%),
+  radial-gradient(800px 500px at 90% 10%, rgba(59,130,246,.18), transparent 60%),
+  radial-gradient(700px 400px at 50% 110%, rgba(34,211,238,.10), transparent 60%),
+  #05060f !important; color:var(--premium-text)}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:56px 56px; mask-image:radial-gradient(ellipse at 50% 0%,black 30%,transparent 75%)}
+body>*{position:relative;z-index:1}
+/* NAV — glass pill */
+nav{backdrop-filter:blur(18px) saturate(140%); background:rgba(5,6,15,.72) !important; border-bottom:1px solid var(--premium-border); box-shadow:0 10px 30px rgba(0,0,0,.35)}
+nav .logo span{background:var(--premium-gold-grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:800;letter-spacing:-.02em}
+nav .logo img{border:1px solid rgba(245,200,110,.5);box-shadow:0 0 0 3px rgba(245,200,110,.12)}
+.gm-nav-profile,.menu-btn{border:1px solid var(--premium-border) !important;background:rgba(255,255,255,.06) !important;border-radius:999px !important;padding:10px 16px !important;font-weight:650}
+.gm-nav-profile:hover,.menu-btn:hover{border-color:var(--premium-gold) !important;box-shadow:0 0 0 3px rgba(245,200,110,.15)}
+.mobile-menu{background:rgba(5,6,15,.96) !important;backdrop-filter:blur(20px)}
+.mobile-menu a{border:1px solid var(--premium-border);border-radius:14px}
+/* HERO — premium */
+.hero{position:relative;overflow:hidden;padding:92px 5% 64px !important;text-align:left;max-width:1180px;margin:28px auto 0 !important;border:1px solid var(--premium-border);border-radius:28px;background:linear-gradient(140deg,rgba(124,108,255,.16),rgba(10,14,29,.9) 42%,rgba(5,6,15,.95)) !important;box-shadow:var(--premium-shadow)}
+.hero::before{content:"";position:absolute;inset:-40% -20% auto auto;width:520px;height:520px;background:radial-gradient(circle,rgba(245,200,110,.28),transparent 65%);filter:blur(10px)}
+.hero::after{content:"";position:absolute;right:28px;bottom:18px;left:auto;width:220px;height:140px;opacity:.55;background:linear-gradient(135deg,transparent 48%,rgba(255,255,255,.14) 49%,transparent 52%),linear-gradient(225deg,transparent 48%,rgba(255,255,255,.10) 49%,transparent 52%);background-size:44px 44px}
+.gm-premium-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;border:1px solid rgba(245,200,110,.45);background:rgba(245,200,110,.10);color:#fde68a !important;font-size:.72rem !important;letter-spacing:.14em;text-transform:uppercase;font-weight:800;box-shadow:0 0 0 3px rgba(245,200,110,.08)}
+.hero h1{font-size:clamp(2.4rem,6vw,4.2rem) !important;line-height:.98 !important;letter-spacing:-.03em}
+.hero h1 #gmHeroTitle2{background:linear-gradient(90deg,#fde68a,#f5c86e 40%,#7c6cff 75%,#22d3ee);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{max-width:640px;font-size:1.08rem;line-height:1.7;color:#cbd5e1}
+.btn{border-radius:999px !important;font-weight:750 !important;letter-spacing:-.01em;transition:transform .18s,box-shadow .18s}
+.btn-primary{background:var(--premium-grad) !important;border:none !important;box-shadow:0 12px 30px rgba(59,130,246,.45),inset 0 1px 0 rgba(255,255,255,.25) !important}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 40px rgba(124,108,255,.5)}
+.btn-outline{border:1px solid rgba(255,255,255,.25) !important;background:rgba(255,255,255,.06) !important;backdrop-filter:blur(10px)}
+.btn-wa{background:#16a34a !important}.btn-tg{background:#0ea5e9 !important}.btn-mail{background:#334155 !important}
+/* STATS + SECTION HEADERS */
+.trust-counter{max-width:1180px;margin:22px auto !important}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.stat-card{background:linear-gradient(160deg,rgba(255,255,255,.09),rgba(255,255,255,.03)) !important;border:1px solid var(--premium-border) !important;border-radius:20px !important;padding:20px !important;box-shadow:0 14px 30px rgba(0,0,0,.25);backdrop-filter:blur(12px)}
+.stat-card:hover{transform:translateY(-3px);border-color:rgba(245,200,110,.5) !important}
+.stat-icon{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;background:var(--premium-gold-grad);color:#1a1200 !important;font-size:1.1rem}
+.stat-number{font-size:1.9rem !important;font-weight:850;letter-spacing:-.03em;background:linear-gradient(90deg,#fff,#fde68a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.section-header{text-align:center;max-width:720px;margin:0 auto 34px !important}
+.section-header h2{font-size:clamp(1.9rem,4.5vw,2.8rem) !important;letter-spacing:-.03em;line-height:1.05}
+.section-header p{color:#a8b3c7;line-height:1.7}
+/* SERVICE CARDS — premium glass */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.service-card{position:relative;overflow:hidden;background:linear-gradient(165deg,rgba(255,255,255,.10),rgba(255,255,255,.03)) !important;border:1px solid var(--premium-border) !important;border-radius:22px !important;padding:24px !important;box-shadow:0 16px 40px rgba(0,0,0,.28);backdrop-filter:blur(14px);transition:transform .2s,box-shadow .2s,border-color .2s}
+.service-card::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:var(--premium-grad);opacity:.9}
+.service-card:hover{transform:translateY(-5px);border-color:rgba(124,108,255,.55) !important;box-shadow:0 24px 55px rgba(124,108,255,.22)}
+.service-card h3{font-size:1.22rem;letter-spacing:-.01em}
+.service-card p{color:#aeb8cc;line-height:1.65}
+.service-card ul li{color:#dbe4f3}
+.service-icon{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;background:var(--premium-grad);color:#fff !important;box-shadow:var(--premium-shadow2);font-size:1.35rem}
+.service-icon i{color:#fff !important}
+/* GUARANTEE / PAYMENTS */
+.guarantee-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.payment-panel,.guarantee-panel{background:linear-gradient(165deg,rgba(255,255,255,.09),rgba(255,255,255,.03)) !important;border:1px solid var(--premium-border) !important;border-radius:22px !important;padding:24px !important;backdrop-filter:blur(14px);box-shadow:0 16px 40px rgba(0,0,0,.25)}
+.panel-title{font-size:1.15rem;letter-spacing:-.01em}
+.payment-item{border-radius:14px !important;border:1px solid var(--premium-border) !important;background:rgba(255,255,255,.05) !important;padding:12px 14px !important}
+.payment-item.active-method{border-color:rgba(16,185,129,.55) !important;background:rgba(16,185,129,.10) !important}
+.payment-item.disabled-method{opacity:.75}
+.guarantee-list li{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:14px}
+.guarantee-list li i{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:rgba(245,200,110,.15);color:#fde68a !important}
+/* GALLERY */
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+.gallery-item{border-radius:18px !important;overflow:hidden;border:1px solid var(--premium-border);box-shadow:0 12px 30px rgba(0,0,0,.3)}
+.gallery-item img{transition:transform .35s}
+.gallery-item:hover img{transform:scale(1.06)}
+/* ABOUT / FAQ / CONTACT */
+#about .contact-wrapper,#contact .contact-wrapper{border:1px solid var(--premium-border);border-radius:24px;padding:28px;background:linear-gradient(165deg,rgba(255,255,255,.08),rgba(255,255,255,.02));backdrop-filter:blur(12px)}
+#about img{border-color:rgba(245,200,110,.5) !important;box-shadow:0 20px 45px rgba(0,0,0,.4) !important}
+.faq-item{background:rgba(255,255,255,.05) !important;border:1px solid var(--premium-border) !important;border-radius:18px !important;overflow:hidden}
+.faq-item.active{border-color:rgba(124,108,255,.55) !important;background:rgba(124,108,255,.08) !important}
+.faq-question{font-weight:700}
+.contact-info-panel{background:linear-gradient(160deg,#1a1030,#0a0e1d) !important;border:1px solid rgba(124,108,255,.35);border-radius:20px;padding:22px}
+.info-item{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:12px}
+.custom-form{background:rgba(255,255,255,.05);border:1px solid var(--premium-border);border-radius:20px;padding:22px}
+.input-group input,.input-group textarea,.custom-form input,.custom-form textarea{background:#050a16 !important;border:1px solid var(--premium-border) !important;color:#f8fafc !important;border-radius:12px !important}
+.input-group input:focus,.input-group textarea:focus{outline:2px solid rgba(124,108,255,.6);border-color:#7c6cff !important}
+footer{border-radius:28px 28px 0 0;background:linear-gradient(180deg,#0a0e1d,#02040a) !important;border-top:1px solid var(--premium-border)}
+.footer-badge{border:1px solid var(--premium-border);background:rgba(255,255,255,.06);border-radius:999px;padding:9px 14px;font-weight:650}
+/* ===== AUTH — SPLIT PANEL (like reference: Login / Create Account) ===== */
+#gmAuthOverlay .gm-dialog.gm-auth-split{position:relative;width:min(940px,96vw);max-width:940px;padding:0;overflow:hidden;border-radius:24px;border:1px solid rgba(255,255,255,.16);background:#070b18;box-shadow:0 30px 80px rgba(0,0,0,.6);display:grid;grid-template-columns:1fr 1fr;max-height:92vh}
+#gmAuthOverlay .gm-dialog.gm-auth-split .gm-auth-form{overflow-y:auto;max-height:92vh}
+#gmAuthOverlay .gm-dialog.gm-auth-split .gm-auth-side{min-height:520px}
+#gmAuthOverlay .gm-auth-split .gm-auth-close{position:absolute;top:14px;right:14px;z-index:5;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.2);color:#fff}
+.gm-auth-form{padding:clamp(22px,3.5vw,34px);display:flex;flex-direction:column;justify-content:center;min-width:0}
+.gm-auth-side{padding:clamp(24px,3.5vw,36px);display:flex;flex-direction:column;justify-content:center;gap:14px;color:#fff;position:relative;overflow:hidden;background:
+  radial-gradient(500px 300px at 20% 0%,rgba(255,255,255,.18),transparent 60%),
+  linear-gradient(150deg,#1a1a2e 0%,#0a0a1a 55%,#05060f 100%)}
+.gm-auth-side::after{content:"";position:absolute;right:-30px;bottom:-30px;width:220px;height:220px;background:linear-gradient(135deg,transparent 48%,rgba(255,255,255,.14) 49%,transparent 52%),linear-gradient(225deg,transparent 48%,rgba(255,255,255,.08) 49%,transparent 52%);background-size:36px 36px;opacity:.7;pointer-events:none}
+.gm-auth-side h3{font-size:clamp(1.9rem,4vw,2.6rem);line-height:1.02;letter-spacing:-.02em;margin:0}
+.gm-auth-side p{color:#cbd5e1;line-height:1.6;max-width:320px}
+.gm-auth-side-badge{display:inline-flex;align-items:center;gap:8px;font-size:.68rem;letter-spacing:.16em;font-weight:800;color:#fde68a}
+.gm-auth-side-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:11px 22px;border-radius:999px;border:1px solid rgba(255,255,255,.55);background:rgba(255,255,255,.08);color:#fff;font-weight:750;cursor:pointer;width:fit-content}
+.gm-auth-side-btn:hover{background:rgba(255,255,255,.16)}
+.gm-auth-side small{color:#94a3b8}
+#gmAuthOverlay .gm-auth-split .gm-auth-side-back{display:none}
+#gmAuthOverlay.gm-auth-signup .gm-auth-split .gm-auth-side-friend{display:none}
+#gmAuthOverlay.gm-auth-signup .gm-auth-split .gm-auth-side-back{display:flex}
+#gmAuthOverlay .gm-auth-split .gm-auth-form{order:1}
+#gmAuthOverlay .gm-auth-split .gm-auth-side{order:2}
+#gmAuthOverlay.gm-auth-signup .gm-auth-split .gm-auth-side{order:1}
+#gmAuthOverlay.gm-auth-signup .gm-auth-split .gm-auth-form{order:2}
+#gmAuthOverlay .gm-auth-split .gm-field input,#gmAuthOverlay .gm-auth-split .gm-field textarea,#gmAuthOverlay .gm-auth-split .gm-field select{min-height:48px;border-radius:12px;background:#050a16;border:1px solid rgba(255,255,255,.14);color:#f8fafc}
+#gmAuthOverlay .gm-auth-split .gm-action{min-height:48px;border-radius:999px}
+@media(max-width:760px){
+  #gmAuthOverlay .gm-dialog.gm-auth-split{grid-template-columns:1fr;max-height:94vh;overflow:auto}
+  #gmAuthOverlay .gm-auth-split .gm-auth-side{order:1 !important;padding:22px;min-height:0}
+  #gmAuthOverlay .gm-auth-split .gm-auth-form{order:2 !important}
+  .guarantee-wrapper{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .hero{margin:14px 12px 0 !important}
+}
+/* ===== WORKSPACE + ADMIN — GLASS SIDEBAR (LUMEN style) ===== */
+#gmWorkspaceOverlay{background:radial-gradient(800px 400px at 10% 0%,rgba(124,108,255,.14),transparent 60%),#05060f}
+.gm-work-shell{display:flex;min-height:100vh;align-items:stretch}
+.gm-work-sidebar{width:302px;flex-shrink:0;padding:18px;display:flex;flex-direction:column;gap:16px;background:rgba(255,255,255,.05);border-right:1px solid var(--premium-border);backdrop-filter:blur(18px);position:sticky;top:0;height:100vh;overflow:auto}
+.gm-side-brand{display:flex;align-items:center;gap:10px;font-weight:850;letter-spacing:.06em}
+.gm-side-brand .gm-side-logo{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;background:var(--premium-gold-grad);color:#1a1200;font-size:1.1rem}
+.gm-side-user{display:flex;gap:12px;align-items:center;padding:14px;border:1px solid var(--premium-border);border-radius:18px;background:linear-gradient(160deg,rgba(255,255,255,.10),rgba(255,255,255,.03))}
+.gm-side-user img{width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid rgba(245,200,110,.6)}
+.gm-side-user-name{font-weight:800;line-height:1.2;overflow-wrap:anywhere}
+.gm-side-pro{display:inline-flex;align-items:center;padding:2px 8px;border-radius:999px;background:#fef3c7;color:#92400e;font-size:.62rem;font-weight:850;letter-spacing:.08em;margin-left:6px}
+.gm-side-uid{font-size:.72rem;color:#94a3b8;word-break:break-all}
+.gm-side-menu-label{font-size:.68rem;letter-spacing:.18em;color:#94a3b8;font-weight:800;margin:2px 0 2px 6px}
+.gm-work-sidebar #gmWorkspaceTabs{display:flex !important;flex-direction:column;gap:6px;position:static !important;width:auto !important;margin:0 !important;padding:0 !important;background:transparent !important;border:none !important;box-shadow:none !important}
+.gm-work-sidebar .gm-tab{display:flex !important;align-items:center;gap:10px;width:100%;text-align:left;justify-content:flex-start;padding:11px 12px;border-radius:13px;border:1px solid transparent;background:transparent;color:#cbd5e1;font-weight:650;cursor:pointer}
+.gm-work-sidebar .gm-tab:hover{background:rgba(255,255,255,.07)}
+.gm-work-sidebar .gm-tab.active{background:rgba(255,255,255,.92) !important;color:#0f172a !important;font-weight:800;box-shadow:0 8px 22px rgba(0,0,0,.25)}
+.gm-work-sidebar .gm-tab.active .gm-pill{background:#0f172a;color:#fff}
+.gm-side-notice{border-radius:18px;overflow:hidden;border:1px solid var(--premium-border);background:#0f172a;display:grid;grid-template-columns:1fr 110px}
+.gm-side-notice-text{padding:14px}
+.gm-side-notice-text small{letter-spacing:.16em;color:#94a3b8;font-weight:800;font-size:.62rem}
+.gm-side-notice-text strong{display:block;font-size:1.35rem;letter-spacing:-.02em;line-height:1.05;margin:6px 0}
+.gm-side-notice-text p{font-size:.72rem;color:#94a3b8}
+.gm-side-notice-art{display:grid;place-items:center;background:radial-gradient(circle at 50% 40%,rgba(124,108,255,.6),transparent 70%),linear-gradient(150deg,#1e1b4b,#0f172a);font-size:2.2rem}
+.gm-side-foot{margin-top:auto;display:flex;flex-direction:column;gap:6px}
+.gm-side-foot button{display:flex;align-items:center;gap:10px;width:100%;padding:11px 12px;border-radius:13px;border:1px solid transparent;background:transparent;color:#cbd5e1;cursor:pointer;font-weight:650;text-align:left}
+.gm-side-foot button:hover{background:rgba(255,255,255,.07)}
+.gm-work-main{flex:1;min-width:0;display:flex;flex-direction:column}
+.gm-work-main .gm-work-top{position:sticky;top:0;z-index:5;backdrop-filter:blur(16px);background:rgba(5,6,15,.72);border-bottom:1px solid var(--premium-border)}
+.gm-work-main .gm-work-content{padding:22px clamp(14px,3vw,32px) 40px}
+.gm-work-main .gm-section-toolbar h2{font-size:1.45rem;letter-spacing:-.02em}
+@media(max-width:900px){
+  .gm-work-sidebar{position:fixed;left:0;top:0;bottom:0;z-index:50;transform:translateX(-105%);transition:transform .22s;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+  #gmWorkspaceOverlay.gm-side-open .gm-work-sidebar{transform:none}
+  .gm-work-shell{flex-direction:column}
+}
+/* ADMIN — premium */
+#gmAdminSection .gm-panel,#gmAdminSection .gm-admin-pages .gm-panel{background:linear-gradient(165deg,rgba(255,255,255,.08),rgba(255,255,255,.02)) !important;border:1px solid var(--premium-border) !important;border-radius:20px !important}
+#gmAdminTabs,.gm-admin-menu{background:rgba(255,255,255,.05) !important;border:1px solid var(--premium-border) !important;border-radius:18px !important;padding:12px !important;backdrop-filter:blur(12px)}
+.gm-admin-menu-btn{border-radius:12px !important}
+.gm-admin-menu-btn.active{background:var(--premium-grad) !important;border-color:transparent !important;box-shadow:var(--premium-shadow2)}
+.gm-panel{border-radius:20px !important;border:1px solid var(--premium-border) !important;background:linear-gradient(165deg,rgba(255,255,255,.08),rgba(255,255,255,.02)) !important}
+.gm-panel h3{letter-spacing:-.01em}
+.gm-field input,.gm-field textarea,.gm-field select{background:#050a16 !important;border:1px solid rgba(255,255,255,.14) !important;color:#f8fafc !important;border-radius:12px !important}
+.gm-field input:focus,.gm-field textarea:focus,.gm-field select:focus{outline:2px solid rgba(124,108,255,.6);border-color:#7c6cff !important}
+.gm-action{border-radius:999px !important;font-weight:700}
+.gm-action.gm-primary{background:var(--premium-grad) !important;border:none !important;box-shadow:0 10px 24px rgba(59,130,246,.35)}
+.gm-stat-grid .gm-panel,.gm-stat-grid>div{background:linear-gradient(165deg,rgba(255,255,255,.09),rgba(255,255,255,.03));border:1px solid var(--premium-border);border-radius:18px}
+.gm-order-card,.gm-chat-service-card,.gm-playstore-card{border-radius:18px !important;border:1px solid var(--premium-border) !important;background:linear-gradient(165deg,rgba(255,255,255,.08),rgba(255,255,255,.03)) !important}
+/* CHAT + ORDER PAGE */
+.gm-chat-window{border-radius:22px !important;border:1px solid var(--premium-border) !important;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.5) !important;background:#070b18 !important}
+.gm-chat-head{background:linear-gradient(135deg,#1e1b4b,#0a0e1d) !important}
+.gm-chat-launcher{background:var(--premium-grad) !important;box-shadow:0 14px 32px rgba(124,108,255,.45) !important}
+.gm-send-btn{background:var(--premium-grad) !important}
+#gmOrderPage{background:#05060f}
+.gm-order-page-head{background:linear-gradient(150deg,rgba(124,108,255,.18),rgba(5,6,15,.95));border-bottom:1px solid var(--premium-border)}
+/* PREMIUM CMS SECTIONS IN ADMIN */
+.gm-cms-section{margin:18px 0 0;border:1px solid var(--premium-border);border-radius:18px;padding:16px;background:rgba(255,255,255,.03)}
+.gm-cms-section h4{margin:0 0 4px;font-size:1.05rem}
+.gm-cms-section p{color:#94a3b8;font-size:.85rem;margin:0 0 12px;line-height:1.55}
+.gm-cms-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:700px){.gm-cms-grid{grid-template-columns:1fr}}
+.gm-cms-badge{display:inline-flex;padding:4px 10px;border-radius:999px;background:rgba(245,200,110,.14);border:1px solid rgba(245,200,110,.4);color:#fde68a;font-size:.68rem;font-weight:800;letter-spacing:.12em}
+@media(max-width:640px){.hero{padding:36px 18px 30px !important}.section-header{padding:0 12px}}
+</style>
+
 </head>
 <body>
 
@@ -1120,16 +1308,12 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <span class="badge">Professional Agency</span>
-        <h1>Hi, I'm Shakil<br><span>Authentic Review & SEO Specialist</span></h1>
-        <p>Owner of Google Marketing. We help businesses scale rapidly with safe, authentic reviews, powerful Google Map SEO, and targeted digital marketing solutions.</p>
+        <span class="badge gm-premium-badge" id="gmHeroBadge">Professional Agency</span>
+        <h1 id="gmHeroTitle"><span id="gmHeroTitle1">Hi, I'm Shakil</span><br><span id="gmHeroTitle2">Authentic Review &amp; SEO Specialist</span></h1>
+        <p id="gmHeroSubtitle">Owner of Google Marketing. We help businesses scale rapidly with safe, authentic reviews, powerful Google Map SEO, and targeted digital marketing solutions.</p>
         <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-            <a href="#contact" class="btn btn-primary">
-                Start Your Project
-            </a>
-            <a href="#services" class="btn btn-outline">
-                Explore Services
-            </a>
+            <a href="#contact" class="btn btn-primary" id="gmHeroBtn1">Start Your Project</a>
+            <a href="#services" class="btn btn-outline" id="gmHeroBtn2">Explore Services</a>
         </div>
     </section>
 
@@ -1138,23 +1322,23 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-icon"><i class="fas fa-check-double"></i></div>
-                <div class="stat-number">500+</div>
-                <div class="stat-text">Projects Completed</div>
+                <div class="stat-number" id="gmStat0Num">500+</div>
+                <div class="stat-text" id="gmStat0Label">Projects Completed</div>
             </div>
             <div class="stat-card">
                 <div class="stat-icon"><i class="fas fa-globe"></i></div>
-                <div class="stat-number">300+</div>
-                <div class="stat-text">Global Clients</div>
+                <div class="stat-number" id="gmStat1Num">300+</div>
+                <div class="stat-text" id="gmStat1Label">Global Clients</div>
             </div>
             <div class="stat-card">
                 <div class="stat-icon"><i class="fas fa-award"></i></div>
-                <div class="stat-number">3+</div>
-                <div class="stat-text">Years Experience</div>
+                <div class="stat-number" id="gmStat2Num">3+</div>
+                <div class="stat-text" id="gmStat2Label">Years Experience</div>
             </div>
             <div class="stat-card">
                 <div class="stat-icon"><i class="fas fa-shield-alt"></i></div>
-                <div class="stat-number">100%</div>
-                <div class="stat-text">Safe & Non-Drop</div>
+                <div class="stat-number" id="gmStat3Num">100%</div>
+                <div class="stat-text" id="gmStat3Label">Safe &amp; Non-Drop</div>
             </div>
         </div>
     </div>
@@ -1162,9 +1346,9 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
     <!-- Services Section -->
     <section id="services" style="background-color: var(--surface-color);">
         <div class="section-header">
-            <span class="badge">Our Expertise</span>
-            <h2>Premium Digital Solutions</h2>
-            <p>Comprehensive strategies engineered to elevate your brand's digital footprint and credibility.</p>
+            <span class="badge gm-premium-badge" id="gmServicesBadge">Our Expertise</span>
+            <h2 id="gmServicesTitle">Premium Digital Solutions</h2>
+            <p id="gmServicesSubtitle">Comprehensive strategies engineered to elevate your brand's digital footprint and credibility.</p>
         </div>
         
         <div class="services-grid">
@@ -1223,19 +1407,19 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
     <!-- Payment Terms & Guarantee Section -->
     <section id="guarantee">
         <div class="section-header">
-            <span class="badge">Trust & Transparency</span>
-            <h2>Our Agency Guarantee</h2>
-            <p>We believe in building long-term partnerships through 100% secure, transparent, and result-oriented work processes.</p>
+            <span class="badge gm-premium-badge" id="gmGuaranteeBadge">Trust &amp; Transparency</span>
+            <h2 id="gmGuaranteeTitle">Our Agency Guarantee</h2>
+            <p id="gmGuaranteeSubtitle">We believe in building long-term partnerships through 100% secure, transparent, and result-oriented work processes.</p>
         </div>
 
         <div class="guarantee-wrapper">
             <!-- Payment Methods -->
             <div class="payment-panel">
-                <h3 class="panel-title"><i class="fas fa-wallet"></i> Accepted Payments</h3>
+                <h3 class="panel-title" id="gmPaymentTitle"><i class="fas fa-wallet"></i> <span id="gmPaymentTitleText">Accepted Payments</span></h3>
                 
                 <div class="payment-group">
-                    <h4 style="color: #10b981; margin-bottom: 15px; font-size: 1.1rem; font-weight: 600;"><i class="fas fa-check-circle" style="margin-right: 5px;"></i> We Accept (Primary)</h4>
-                    <div class="payment-methods">
+                    <h4 id="gmPaymentAcceptTitle" style="color: #10b981; margin-bottom: 15px; font-size: 1.1rem; font-weight: 600;"><i class="fas fa-check-circle" style="margin-right: 5px;"></i> We Accept (Primary)</h4>
+                    <div class="payment-methods" id="gmPaymentAcceptList">
                         <!-- Payment methods updated: managed from Admin Panel. -->
                         <div class="payment-item active-method">
                             <i class="fab fa-bitcoin"></i> USDT (TRC20/BEP20)
@@ -1249,8 +1433,8 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
                 </div>
 
                 <div class="payment-group" style="margin-bottom: 0;">
-                    <h4 style="color: #ef4444; margin-bottom: 15px; font-size: 1.1rem; font-weight: 600;"><i class="fas fa-times-circle" style="margin-right: 5px;"></i> Not Accepted Directly</h4>
-                    <div class="payment-methods">
+                    <h4 id="gmPaymentNotTitle" style="color: #ef4444; margin-bottom: 15px; font-size: 1.1rem; font-weight: 600;"><i class="fas fa-times-circle" style="margin-right: 5px;"></i> Not Accepted Directly</h4>
+                    <div class="payment-methods" id="gmPaymentNotList">
                         <div class="payment-item disabled-method">
                             <i class="fab fa-paypal"></i> PayPal
                             <span class="not-accepted-badge">Not Accepted</span>
@@ -1276,17 +1460,17 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
 
             <!-- Guarantee Box - Corrected Version -->
 <div class="guarantee-panel">
-    <h3 class="panel-title"><i class="fas fa-shield-alt"></i> Our Working Policy</h3>
+    <h3 class="panel-title" id="gmPolicyTitle"><i class="fas fa-shield-alt"></i> <span id="gmPolicyTitleText">Our Working Policy</span></h3>
     <ul class="guarantee-list">
-        <li><i class="fas fa-handshake"></i> <div><strong>Pay Only For Live & Published Reviews</strong><br><span style="font-size: 0.9rem; color: var(--text-muted);">We charge only for reviews that are live and visible. We submit a daily report and you pay only for the live ones in that report.</span></div></li>
+        <li><i class="fas fa-handshake"></i> <div><strong id="gmPolicy0Title">Pay Only For Live & Published Reviews</strong><br><span style="font-size: 0.9rem; color: var(--text-muted);"><span id="gmPolicy0Desc">We charge only for reviews that are live and visible. We submit a daily report and you pay only for the live ones in that report.</span></span></div></li>
         
-        <li><i class="fas fa-lock"></i> <div><strong>100% Manual & Safe Method</strong><br><span style="font-size: 0.9rem; color: var(--text-muted);">We follow 100% manual Play Store search, install & review method. But as Google's policy changes frequently, we cannot provide any absolute guarantee - we work with the safest method possible.</span></div></li>
+        <li><i class="fas fa-lock"></i> <div><strong id="gmPolicy1Title">100% Manual & Safe Method</strong><br><span style="font-size: 0.9rem; color: var(--text-muted);"><span id="gmPolicy1Desc">We follow 100% manual Play Store search, install & review method. But as Google's policy changes frequently, we cannot provide any absolute guarantee - we work with the safest method possible.</span></span></div></li>
         
-        <li><i class="fas fa-file-invoice-dollar"></i> <div><strong>Daily Report & Daily Payment</strong><br><span style="font-size: 0.9rem; color: var(--text-muted);">We will add only the published reviews to our daily report. You just need to count the live reviews from the report and pay for those only. No extra charge.</span></div></li>
+        <li><i class="fas fa-file-invoice-dollar"></i> <div><strong id="gmPolicy2Title">Daily Report & Daily Payment</strong><br><span style="font-size: 0.9rem; color: var(--text-muted);"><span id="gmPolicy2Desc">We will add only the published reviews to our daily report. You just need to count the live reviews from the report and pay for those only. No extra charge.</span></span></div></li>
         
-        <li><i class="fas fa-ban"></i> <div><strong>No Refill / No Money-Back Commitment</strong><br><span style="font-size: 0.9rem; color: var(--text-muted);">Since we only take payment for reviews that are already published and live, there is no need for refill or refund policy. You pay for what you get.</span></div></li>
+        <li><i class="fas fa-ban"></i> <div><strong id="gmPolicy3Title">No Refill / No Money-Back Commitment</strong><br><span style="font-size: 0.9rem; color: var(--text-muted);"><span id="gmPolicy3Desc">Since we only take payment for reviews that are already published and live, there is no need for refill or refund policy. You pay for what you get.</span></span></div></li>
         
-        <li><i class="fas fa-headset"></i> <div><strong>24/7 Live Support</strong><br><span style="font-size: 0.9rem; color: var(--text-muted);">Always available to answer your queries and provide live updates on WhatsApp & Telegram.</span></div></li>
+        <li><i class="fas fa-headset"></i> <div><strong id="gmPolicy4Title">24/7 Live Support</strong><br><span style="font-size: 0.9rem; color: var(--text-muted);"><span id="gmPolicy4Desc">Always available to answer your queries and provide live updates on WhatsApp & Telegram.</span></span></div></li>
     </ul>
 </div>
         </div>
@@ -1295,12 +1479,12 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
     <!-- Reviews Section -->
     <section id="reviews" style="background-color: var(--surface-color);">
         <div class="section-header">
-            <span class="badge">Proof of Work</span>
-            <h2>Delivered Excellence</h2>
-            <p>Real results from real campaigns. Browse through some of the authentic reviews we've successfully delivered for our global clients.</p>
+            <span class="badge gm-premium-badge" id="gmReviewsBadge">Proof of Work</span>
+            <h2 id="gmReviewsTitle">Delivered Excellence</h2>
+            <p id="gmReviewsSubtitle">Real results from real campaigns. Browse through some of the authentic reviews we've successfully delivered for our global clients.</p>
         </div>
 
-        <div class="gallery-grid">
+        <div class="gallery-grid" id="gmGalleryGrid">
             <div class="gallery-item" onclick="openModal('https://i.ibb.co.com/mVcbPvkH/Screenshot-20261017-172628.jpg')">
                 <img src="https://i.ibb.co.com/mVcbPvkH/Screenshot-20261017-172628.jpg" alt="Review 1">
             </div>
@@ -1352,19 +1536,19 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
     <!-- About Section -->
     <section id="about">
         <div class="section-header">
-            <span class="badge">The Founder</span>
-            <h2>About Shakil</h2>
+            <span class="badge gm-premium-badge" id="gmAboutBadge">The Founder</span>
+            <h2 id="gmAboutTitle">About Shakil</h2>
         </div>
         
         <div class="contact-wrapper" style="max-width: 1000px; margin: 0 auto; align-items: center;">
             <div style="text-align: center;">
-                <img src="https://i.ibb.co.com/V0rL4WJN/IMG-20261017-142414-396.png" alt="Shakil" style="width: 250px; height: 250px; border-radius: 20px; object-fit: cover; border: 2px solid var(--border-color); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                <img id="gmAboutImg" src="https://i.ibb.co.com/V0rL4WJN/IMG-20261017-142414-396.png" alt="Shakil" style="width: 250px; height: 250px; border-radius: 20px; object-fit: cover; border: 2px solid var(--border-color); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
             </div>
             <div>
-                <h3 style="font-size: 2rem; margin-bottom: 5px;">Meet Shakil</h3>
-                <h4 style="color: var(--primary-color); margin-bottom: 20px; font-weight: 500;">Founder & CEO, Google Marketing</h4>
-                <p style="color: var(--text-muted); margin-bottom: 15px;">Shakil is the founder of Google Marketing, a premium digital agency specializing in authentic online review services and Google Map SEO. With years of deep industry expertise, he has helped hundreds of businesses dominate their local markets.</p>
-                <p style="color: var(--text-muted);">His commitment to transparency, quality, and 100% safe methods has made Google Marketing a trusted name. Shakil believes in building long-term relationships through honest communication and reliable service delivery.</p>
+                <h3 id="gmAboutName" style="font-size: 2rem; margin-bottom: 5px;">Meet Shakil</h3>
+                <h4 id="gmAboutRole" style="color: var(--primary-color); margin-bottom: 20px; font-weight: 500;">Founder &amp; CEO, Google Marketing</h4>
+                <p style="color: var(--text-muted); margin-bottom: 15px;"><span id="gmAboutPara1">Shakil is the founder of Google Marketing, a premium digital agency specializing in authentic online review services and Google Map SEO. With years of deep industry expertise, he has helped hundreds of businesses dominate their local markets.</span></p>
+                <p style="color: var(--text-muted);"><span id="gmAboutPara2">His commitment to transparency, quality, and 100% safe methods has made Google Marketing a trusted name. Shakil believes in building long-term relationships through honest communication and reliable service delivery.</span></p>
             </div>
         </div>
     </section>
@@ -1372,64 +1556,64 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
     <!-- FAQ Section - Corrected Honest Version -->
     <section id="faq" style="background-color: var(--surface-color);">
         <div class="section-header">
-            <span class="badge">Clear Your Doubts</span>
-            <h2>Frequently Asked Questions</h2>
-            <p>Everything you need to know about our honest working process.</p>
+            <span class="badge gm-premium-badge" id="gmFaqBadge">Clear Your Doubts</span>
+            <h2 id="gmFaqTitle">Frequently Asked Questions</h2>
+            <p id="gmFaqSubtitle">Everything you need to know about our honest working process.</p>
         </div>
 
         <div class="faq-container">
             <div class="faq-item">
                 <div class="faq-question">
-                    Are your reviews safe for my app/business?
+                    <span id="gmFaq0Q">Are your reviews safe for my app/business?</span>
                     <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
-                    We use 100% manual method - real search, real install, real review. It's the safest method in the market. But we cannot give you 100% guarantee because Google Play / Map policy changes anytime and it's not our property. We always follow the safest way possible.
+                    <span id="gmFaq0A">We use 100% manual method - real search, real install, real review. It's the safest method in the market. But we cannot give you 100% guarantee because Google Play / Map policy changes anytime and it's not our property. We always follow the safest way possible.</span>
                 </div>
             </div>
             <div class="faq-item">
                 <div class="faq-question">
-                    Will the reviews ever drop or disappear?
+                    <span id="gmFaq1Q">Will the reviews ever drop or disappear?</span>
                     <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
-                    Reviews can drop anytime due to Google's algorithm. That's why our system is different - we charge you ONLY for reviews that are currently live. If any review drops, you don't need to pay for it. So no tension about drop.
+                    <span id="gmFaq1A">Reviews can drop anytime due to Google's algorithm. That's why our system is different - we charge you ONLY for reviews that are currently live. If any review drops, you don't need to pay for it. So no tension about drop.</span>
                 </div>
             </div>
             <div class="faq-item">
                 <div class="faq-question">
-                    How long does it take to complete an order?
+                    <span id="gmFaq2Q">How long does it take to complete an order?</span>
                     <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
-                    We deliver slowly to keep it natural and safe, usually 2-5 reviews per day. The exact timeline depends on your app's current condition. We will give you a clear idea before starting.
+                    <span id="gmFaq2A">We deliver slowly to keep it natural and safe, usually 2-5 reviews per day. The exact timeline depends on your app's current condition. We will give you a clear idea before starting.</span>
                 </div>
             </div>
             <div class="faq-item">
                 <div class="faq-question">
-                    What payment methods do you accept?
+                    <span id="gmFaq3Q">What payment methods do you accept?</span>
                     <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
-                    We accept USDT (TRC20/BEP20) and Binance Pay / Binance Balance. We don't accept PayPal, Payoneer, Wise or Bank directly. For the current payment instructions, see Accepted Payments above or ask in live chat.
+                    <span id="gmFaq3A">We accept USDT (TRC20/BEP20) and Binance Pay / Binance Balance. We don't accept PayPal, Payoneer, Wise or Bank directly. For the current payment instructions, see Accepted Payments above or ask in live chat.</span>
                 </div>
             </div>
             <div class="faq-item">
                 <div class="faq-question">
-                    Do you provide proof/screenshots of work?
+                    <span id="gmFaq4Q">Do you provide proof/screenshots of work?</span>
                     <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
-                    Yes. We provide a daily report with all published review details. You can check the report, count the live reviews, and pay only for those live ones. Full transparency.
+                    <span id="gmFaq4A">Yes. We provide a daily report with all published review details. You can check the report, count the live reviews, and pay only for those live ones. Full transparency.</span>
                 </div>
             </div>
             <div class="faq-item">
                 <div class="faq-question">
-                    Can you handle bulk orders?
+                    <span id="gmFaq5Q">Can you handle bulk orders?</span>
                     <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
-                    Yes, we can handle bulk orders. But we still deliver them slowly and manually to keep it safe. Contact us for your bulk requirement and we will make a daily plan for you.
+                    <span id="gmFaq5A">Yes, we can handle bulk orders. But we still deliver them slowly and manually to keep it safe. Contact us for your bulk requirement and we will make a daily plan for you.</span>
                 </div>
             </div>
         </div>
@@ -1438,17 +1622,17 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
     <!-- Advanced Contact Section -->
     <section id="contact">
         <div class="section-header">
-            <span class="badge">Let's Connect</span>
-            <h2>Start Your Project Today</h2>
-            <p>Fill out the details below and select your preferred platform to send us a direct message.</p>
+            <span class="badge gm-premium-badge" id="gmContactBadge">Let's Connect</span>
+            <h2 id="gmContactTitle">Start Your Project Today</h2>
+            <p id="gmContactSubtitle">Fill out the details below and select your preferred platform to send us a direct message.</p>
         </div>
 
         <div class="contact-wrapper" style="max-width: 1100px; margin: 0 auto;">
             
             <!-- Contact Info Panel -->
             <div class="contact-info-panel">
-                <h3>Contact Info</h3>
-                <p>We are available 24/7 to answer your queries and help your business grow.</p>
+                <h3 id="gmContactInfoTitle">Contact Info</h3>
+                <p id="gmContactInfoSubtitle">We are available 24/7 to answer your queries and help your business grow.</p>
                 
                 <div class="info-item">
                     <div class="icon"><i class="fas fa-building"></i></div>
@@ -1543,33 +1727,50 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
     </aside>
 
     <!-- Sign in, sign up and profile -->
+    <!-- Sign in, sign up and profile — PREMIUM split panel (Login / Create Account) -->
     <div class="gm-overlay gm-hidden" id="gmAuthOverlay" role="dialog" aria-modal="true" aria-labelledby="gmAuthTitle">
-        <div class="gm-dialog">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px">
-                <div><span class="gm-auth-kicker"><i class="fas fa-shield-alt"></i> Secure Client Portal</span><h2 id="gmAuthTitle">Your Google Marketing Profile</h2><p class="gm-muted" id="gmAuthSubtitle">Sign in to view your private workspace, orders and notifications.</p></div>
-                <button class="gm-icon-btn" type="button" onclick="GM.closeProfile()" aria-label="Close"><i class="fas fa-times"></i></button>
+        <div class="gm-dialog gm-auth-split">
+            <button class="gm-icon-btn gm-auth-close" type="button" onclick="GM.closeProfile()" aria-label="Close"><i class="fas fa-times"></i></button>
+            <div class="gm-auth-side gm-auth-side-friend">
+                <span class="gm-auth-side-badge">✦ PREMIUM CLIENT PORTAL</span>
+                <h3>HELLO,<br>FRIEND!</h3>
+                <p>Enter your personal details and start your journey with us.</p>
+                <button class="gm-auth-side-btn" type="button" onclick="GM.setAuthMode('signup')">Create Account →</button>
+                <small>Already have an account? Sign in to continue.</small>
             </div>
-            <div class="gm-action-row" style="margin:15px 0">
-                <button class="gm-action gm-primary" type="button" id="gmModeSignIn" onclick="GM.setAuthMode('signin')">Sign In</button>
-                <button class="gm-action" type="button" id="gmModeSignUp" onclick="GM.setAuthMode('signup')">Create Account</button>
+            <div class="gm-auth-side gm-auth-side-back">
+                <span class="gm-auth-side-badge">✦ WELCOME BACK</span>
+                <h3>WELCOME<br>BACK!</h3>
+                <p>Already a Member? Please Login with your credentials.</p>
+                <button class="gm-auth-side-btn" type="button" onclick="GM.setAuthMode('signin')">Sign In →</button>
+                <small>New here? Create an account in under a minute.</small>
             </div>
-            <div class="gm-form-grid">
-                <div class="gm-field gm-full gm-hidden" id="gmAuthNameWrap"><label for="gmAuthName">Full name *</label><input id="gmAuthName" autocomplete="name" placeholder="Your full name"></div>
-                <div class="gm-field gm-full gm-hidden" id="gmAuthContactWrap"><label for="gmAuthContact">Contact information *</label><input id="gmAuthContact" autocomplete="tel" placeholder="Email, WhatsApp or Telegram username"></div>
-                <div class="gm-field gm-full"><label for="gmAuthEmail">Email address</label><input id="gmAuthEmail" type="email" autocomplete="email" placeholder="you@example.com"></div>
-                <div class="gm-field gm-full" id="gmAuthPasswordWrap"><label for="gmAuthPassword">Password</label><input id="gmAuthPassword" type="password" autocomplete="current-password" placeholder="At least 6 characters"></div>
-                <div class="gm-field gm-full gm-hidden" id="gmAuthPhotoWrap"><label for="gmAuthPhoto">Profile photo (optional)</label><input id="gmAuthPhoto" type="file" accept="image/*"></div>
+            <div class="gm-auth-form">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px">
+                    <div><span class="gm-auth-kicker"><i class="fas fa-shield-alt"></i> Secure Client Portal</span><h2 id="gmAuthTitle">Your Google Marketing Profile</h2><p class="gm-muted" id="gmAuthSubtitle">Sign in to view your private workspace, orders and notifications.</p></div>
+                </div>
+                <div class="gm-action-row" style="margin:15px 0">
+                    <button class="gm-action gm-primary" type="button" id="gmModeSignIn" onclick="GM.setAuthMode('signin')">Sign In</button>
+                    <button class="gm-action" type="button" id="gmModeSignUp" onclick="GM.setAuthMode('signup')">Create Account</button>
+                </div>
+                <div class="gm-form-grid">
+                    <div class="gm-field gm-full gm-hidden" id="gmAuthNameWrap"><label for="gmAuthName">Full name *</label><input id="gmAuthName" autocomplete="name" placeholder="Your full name"></div>
+                    <div class="gm-field gm-full gm-hidden" id="gmAuthContactWrap"><label for="gmAuthContact">Contact information *</label><input id="gmAuthContact" autocomplete="tel" placeholder="Email, WhatsApp or Telegram username"></div>
+                    <div class="gm-field gm-full"><label for="gmAuthEmail">Email address</label><input id="gmAuthEmail" type="email" autocomplete="email" placeholder="you@example.com"></div>
+                    <div class="gm-field gm-full" id="gmAuthPasswordWrap"><label for="gmAuthPassword">Password</label><input id="gmAuthPassword" type="password" autocomplete="current-password" placeholder="At least 6 characters"></div>
+                    <div class="gm-field gm-full gm-hidden" id="gmAuthPhotoWrap"><label for="gmAuthPhoto">Profile photo (optional)</label><input id="gmAuthPhoto" type="file" accept="image/*"></div>
+                </div>
+                <div class="gm-action-row" id="gmAuthActions">
+                    <button class="gm-action gm-primary" type="button" id="gmAuthSubmit" onclick="GM.submitAuth()">Sign In</button>
+                    <button class="gm-action gm-google-action" type="button" onclick="GM.googleAuth()"><i class="fab fa-google"></i> Continue with Google</button>
+                </div>
+                <div class="gm-action-row gm-hidden" id="gmSignedInActions">
+                    <button class="gm-action gm-primary" type="button" onclick="GM.saveProfile()"><i class="fas fa-save"></i> Save Profile</button>
+                    <button class="gm-action gm-danger" type="button" onclick="GM.logout()">Sign Out</button>
+                </div>
+                <div class="gm-inline-status" id="gmAuthStatus" role="status"></div>
+                <p class="gm-privacy">Account details are used to manage your profile, orders and support conversation.</p>
             </div>
-            <div class="gm-action-row" id="gmAuthActions">
-                <button class="gm-action gm-primary" type="button" id="gmAuthSubmit" onclick="GM.submitAuth()">Sign In</button>
-                <button class="gm-action gm-google-action" type="button" onclick="GM.googleAuth()"><i class="fab fa-google"></i> Continue with Google</button>
-            </div>
-            <div class="gm-action-row gm-hidden" id="gmSignedInActions">
-                <button class="gm-action gm-primary" type="button" onclick="GM.saveProfile()"><i class="fas fa-save"></i> Save Profile</button>
-                <button class="gm-action gm-danger" type="button" onclick="GM.logout()">Sign Out</button>
-            </div>
-            <div class="gm-inline-status" id="gmAuthStatus" role="status"></div>
-            <p class="gm-privacy">Account details are used to manage your profile, orders and support conversation.</p>
         </div>
     </div>
 
@@ -1663,8 +1864,8 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
     <footer style="background-color: #02040a; padding: 60px 5% 30px; border-top: 1px solid var(--border-color);">
         <div style="text-align: center; margin-bottom: 30px;">
             <img src="https://i.ibb.co.com/GfswcC5V/FB-IMG-1791925489216.jpg" alt="Logo" style="width: 50px; border-radius: 8px; margin-bottom: 15px;">
-            <h3 style="font-family: 'Outfit'; font-size: 1.5rem;">Google Marketing</h3>
-            <p style="color: var(--text-muted); max-width: 500px; margin: 15px auto;">Premium online review services and Google Map SEO optimization. Empowering businesses worldwide.</p>
+            <h3 id="gmFooterTitle" style="font-family: 'Outfit'; font-size: 1.5rem;">Google Marketing</h3>
+            <p id="gmFooterSubtitle" style="color: var(--text-muted); max-width: 500px; margin: 15px auto;">Premium online review services and Google Map SEO optimization. Empowering businesses worldwide.</p>
         </div>
         
         <!-- Footer Trust Badges - Honest Version -->
@@ -1681,7 +1882,7 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
         </div>
 
         <div style="text-align: center; padding-top: 25px; color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">
-            &copy; 2026 Google Marketing. All rights reserved. | Built with honesty, not fake guarantees.
+            <span id="gmFooterCopyright">&copy; 2026 Google Marketing. All rights reserved. | Built with honesty, not fake guarantees.</span>
         </div>
     </footer>
 
@@ -2981,7 +3182,7 @@ function tryWire(){
               var getFn=mod.get, updateFn=mod.update;
               getFn(ref(db,'siteSettings')).then(function(snap){
                 var cur=snap.val()||{};
-                var merged={ paymentNote: payload.paymentNote, portfolioNotice: payload.portfolioNotice, contactInfo: Object.assign({}, cur.contactInfo||{}, payload.contactInfo||{}), staticServices: Object.assign({}, cur.staticServices||{}, payload.staticServices||{}) };
+                var merged={ paymentNote: payload.paymentNote, portfolioNotice: payload.portfolioNotice, contactInfo: Object.assign({}, cur.contactInfo||{}, payload.contactInfo||{}), staticServices: Object.assign({}, cur.staticServices||{}, payload.staticServices||{}), siteCMS: payload.siteCMS || cur.siteCMS || {} };
                 // Only overwrite staticServices entries that have content, keep others
                 Object.keys(payload.staticServices||{}).forEach(function(k){ var curEntry=payload.staticServices[k]||{}; if(!curEntry.title && !curEntry.description && !(curEntry.features&&curEntry.features.length)) merged.staticServices[k]=cur.staticServices&&cur.staticServices[k]||payload.staticServices[k]; });
                 set(ref(db,'siteSettings'), merged).then(resolve).catch(reject);
@@ -3012,5 +3213,274 @@ function tryWire(){
 setTimeout(tryWire, 1200);
 setInterval(function(){ if(window.GM && !window.GM._saveSiteSettings) tryWire(); }, 4000);
 </script>
+
+<script id="gmPremiumScript">
+/* PREMIUM — Auth split toggle + Glass Sidebar + Full CMS (every public sector editable from Admin) */
+(function(){
+  function $id(id){ return document.getElementById(id); }
+  function txt(id, val){ var el=$id(id); if(el && val!=null && String(val).trim()!=='') el.textContent=String(val); }
+  function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+  /* ---- 1. Auth split: keep overlay class in sync with signin/signup ---- */
+  function wrapAuth(){
+    if(!window.GM || !window.GM.setAuthMode || window.GM.__premiumAuthWrapped) return;
+    var orig=window.GM.setAuthMode;
+    window.GM.setAuthMode=function(mode, quiet){
+      var r=orig.apply(this, arguments);
+      var ov=$id('gmAuthOverlay'); if(ov) ov.classList.toggle('gm-auth-signup', mode==='signup');
+      return r;
+    };
+    window.GM.__premiumAuthWrapped=true;
+  }
+
+  /* ---- 2. Workspace glass sidebar (LUMEN style) — runtime restructure, keeps all IDs ---- */
+  function syncSidebarUser(){
+    try{
+      var t=$id('gmWorkspaceTitle'), s=$id('gmWorkspaceSubtitle'), av=$id('gmWorkspaceAvatar');
+      var n=$id('gmSideName'); if(t&&n) n.textContent=t.textContent||'My Workspace';
+      var sub=$id('gmSideSub'); if(s&&sub) sub.textContent=s.textContent||'Client Area';
+      var img=$id('gmSideAvatar'); if(av&&img&&av.src) img.src=av.src;
+      var uid=$id('gmSideUid');
+      if(uid){
+        var u=(window.GM&&window.GM._currentUser&&window.GM._currentUser.uid)||'';
+        if(u) uid.textContent='UID: '+u.slice(0,10)+'...';
+      }
+      var nt=$id('gmPortfolioNotifText'), sn=$id('gmSideNoticeText');
+      if(nt&&sn&&nt.textContent) sn.textContent=nt.textContent;
+    }catch(e){}
+  }
+  function buildWorkspaceSidebar(){
+    var overlay=$id('gmWorkspaceOverlay'); if(!overlay||overlay.dataset.gmPremiumSidebar) return false;
+    var top=overlay.querySelector('.gm-work-top'); var content=overlay.querySelector('.gm-work-content'); var tabs=$id('gmWorkspaceTabs');
+    if(!top||!content||!tabs) return false;
+    overlay.dataset.gmPremiumSidebar='1';
+    var shell=document.createElement('div'); shell.className='gm-work-shell';
+    var aside=document.createElement('aside'); aside.className='gm-work-sidebar';
+    aside.innerHTML='<div class="gm-side-brand"><span class="gm-side-logo">\uD83D\uDC8E</span><span>GOOGLE MARKETING</span><span style="margin-left:auto;font-size:.62rem;color:#94a3b8;letter-spacing:.1em">PREMIUM</span></div>'
+      +'<div class="gm-side-user"><img id="gmSideAvatar" src="https://i.ibb.co.com/GfswcC5V/FB-IMG-1791925489216.jpg" alt="Profile"><div style="min-width:0"><div class="gm-side-user-name"><span id="gmSideName">My Workspace</span><span class="gm-side-pro">PRO</span></div><div class="gm-side-uid" id="gmSideUid">UID: \u2014</div><div class="gm-muted" id="gmSideSub" style="font-size:.75rem">Client Area</div></div></div>'
+      +'<div class="gm-side-menu-label">MENU</div>';
+    aside.appendChild(tabs);
+    var notice=document.createElement('div'); notice.className='gm-side-notice';
+    notice.innerHTML='<div class="gm-side-notice-text"><small>BULLETIN \u2022 NOTICE</small><strong>NOTICE</strong><p id="gmSideNoticeText">Check announcements in Notifications.</p><span style="font-size:.68rem;color:#60a5fa">READ MORE \u2192</span></div><div class="gm-side-notice-art">\uD83D\uDC8E</div>';
+    notice.onclick=function(){ if(window.GM&&window.GM.selectTab) window.GM.selectTab('notifications'); };
+    notice.style.cursor='pointer';
+    aside.appendChild(notice);
+    var foot=document.createElement('div'); foot.className='gm-side-foot';
+    foot.innerHTML='<button type="button" onclick="GM.openProfile()"><i class="fas fa-gear"></i> Settings / Profile</button><button type="button" onclick="GM.logout()"><i class="fas fa-sign-out-alt"></i> Log out</button>';
+    aside.appendChild(foot);
+    var main=document.createElement('div'); main.className='gm-work-main';
+    main.appendChild(top); main.appendChild(content);
+    shell.appendChild(aside); shell.appendChild(main);
+    overlay.appendChild(shell);
+    setInterval(syncSidebarUser, 1500); syncSidebarUser();
+    return true;
+  }
+  function wrapWorkspace(){
+    if(!window.GM) return;
+    if(window.GM.openWorkspace && !window.GM.__premiumWsWrapped){
+      var ow=window.GM.openWorkspace;
+      window.GM.openWorkspace=function(){ var r=ow.apply(this, arguments); setTimeout(buildWorkspaceSidebar, 80); setTimeout(syncSidebarUser, 400); return r; };
+      window.GM.__premiumWsWrapped=true;
+    }
+    if(window.GM.toggleWorkspaceMenu && !window.GM.__premiumMenuWrapped){
+      var tm=window.GM.toggleWorkspaceMenu;
+      window.GM.toggleWorkspaceMenu=function(){ var r=tm.apply(this, arguments); var ov=$id('gmWorkspaceOverlay'); if(ov) ov.classList.toggle('gm-side-open'); return r; };
+      window.GM.__premiumMenuWrapped=true;
+    }
+    if(window.GM.selectTab && !window.GM.__premiumTabWrapped){
+      var st=window.GM.selectTab;
+      window.GM.selectTab=function(){ var r=st.apply(this, arguments); var ov=$id('gmWorkspaceOverlay'); if(ov) ov.classList.remove('gm-side-open'); return r; };
+      window.GM.__premiumTabWrapped=true;
+    }
+    if(window.GM.closeWorkspaceMenu && !window.GM.__premiumCloseWrapped){
+      var cm=window.GM.closeWorkspaceMenu;
+      window.GM.closeWorkspaceMenu=function(){ var r=cm.apply(this, arguments); return r; };
+      window.GM.__premiumCloseWrapped=true;
+    }
+  }
+
+  /* ---- 3. FULL CMS — every public sector / card editable from Admin ---- */
+  var CMS_FIELDS=[
+    {sec:'Hero', id:'heroBadge', label:'Hero — Badge', el:'gmHeroBadge'},
+    {sec:'Hero', id:'heroTitle1', label:'Hero — Title line 1 (Hi, I\'m Shakil)', el:'gmHeroTitle1'},
+    {sec:'Hero', id:'heroTitle2', label:'Hero — Title line 2 (gradient)', el:'gmHeroTitle2'},
+    {sec:'Hero', id:'heroSubtitle', label:'Hero — Subtitle', el:'gmHeroSubtitle', textarea:true},
+    {sec:'Hero', id:'heroBtn1', label:'Hero — Button 1', el:'gmHeroBtn1'},
+    {sec:'Hero', id:'heroBtn2', label:'Hero — Button 2', el:'gmHeroBtn2'},
+    {sec:'Stats', id:'stat0Num', label:'Stat 1 — Number', el:'gmStat0Num'},
+    {sec:'Stats', id:'stat0Label', label:'Stat 1 — Label', el:'gmStat0Label'},
+    {sec:'Stats', id:'stat1Num', label:'Stat 2 — Number', el:'gmStat1Num'},
+    {sec:'Stats', id:'stat1Label', label:'Stat 2 — Label', el:'gmStat1Label'},
+    {sec:'Stats', id:'stat2Num', label:'Stat 3 — Number', el:'gmStat2Num'},
+    {sec:'Stats', id:'stat2Label', label:'Stat 3 — Label', el:'gmStat2Label'},
+    {sec:'Stats', id:'stat3Num', label:'Stat 4 — Number', el:'gmStat3Num'},
+    {sec:'Stats', id:'stat3Label', label:'Stat 4 — Label', el:'gmStat3Label'},
+    {sec:'Services Header', id:'servicesBadge', label:'Services — Badge', el:'gmServicesBadge'},
+    {sec:'Services Header', id:'servicesTitle', label:'Services — Title', el:'gmServicesTitle'},
+    {sec:'Services Header', id:'servicesSubtitle', label:'Services — Subtitle', el:'gmServicesSubtitle', textarea:true},
+    {sec:'Guarantee Header', id:'guaranteeBadge', label:'Guarantee — Badge', el:'gmGuaranteeBadge'},
+    {sec:'Guarantee Header', id:'guaranteeTitle', label:'Guarantee — Title', el:'gmGuaranteeTitle'},
+    {sec:'Guarantee Header', id:'guaranteeSubtitle', label:'Guarantee — Subtitle', el:'gmGuaranteeSubtitle', textarea:true},
+    {sec:'Reviews Header', id:'reviewsBadge', label:'Reviews — Badge', el:'gmReviewsBadge'},
+    {sec:'Reviews Header', id:'reviewsTitle', label:'Reviews — Title', el:'gmReviewsTitle'},
+    {sec:'Reviews Header', id:'reviewsSubtitle', label:'Reviews — Subtitle', el:'gmReviewsSubtitle', textarea:true},
+    {sec:'About', id:'aboutBadge', label:'About — Badge', el:'gmAboutBadge'},
+    {sec:'About', id:'aboutTitle', label:'About — Title', el:'gmAboutTitle'},
+    {sec:'About', id:'aboutName', label:'About — Name', el:'gmAboutName'},
+    {sec:'About', id:'aboutRole', label:'About — Role', el:'gmAboutRole'},
+    {sec:'About', id:'aboutPara1', label:'About — Paragraph 1', el:'gmAboutPara1', textarea:true},
+    {sec:'About', id:'aboutPara2', label:'About — Paragraph 2', el:'gmAboutPara2', textarea:true},
+    {sec:'About', id:'aboutImg', label:'About — Photo URL', el:'gmAboutImg', isImg:true},
+    {sec:'FAQ Header', id:'faqBadge', label:'FAQ — Badge', el:'gmFaqBadge'},
+    {sec:'FAQ Header', id:'faqTitle', label:'FAQ — Title', el:'gmFaqTitle'},
+    {sec:'FAQ Header', id:'faqSubtitle', label:'FAQ — Subtitle', el:'gmFaqSubtitle', textarea:true},
+    {sec:'Contact Header', id:'contactBadge', label:'Contact — Badge', el:'gmContactBadge'},
+    {sec:'Contact Header', id:'contactTitle', label:'Contact — Title', el:'gmContactTitle'},
+    {sec:'Contact Header', id:'contactSubtitle', label:'Contact — Subtitle', el:'gmContactSubtitle', textarea:true},
+    {sec:'Contact Header', id:'contactInfoTitle', label:'Contact — Info box title', el:'gmContactInfoTitle'},
+    {sec:'Contact Header', id:'contactInfoSubtitle', label:'Contact — Info box subtitle', el:'gmContactInfoSubtitle', textarea:true},
+    {sec:'Payments', id:'paymentTitle', label:'Payments — Panel title', el:'gmPaymentTitleText'},
+    {sec:'Payments', id:'paymentAcceptTitle', label:'Payments — Accept heading', el:'gmPaymentAcceptTitle'},
+    {sec:'Payments', id:'paymentNotTitle', label:'Payments — Not-accepted heading', el:'gmPaymentNotTitle'},
+    {sec:'Footer', id:'footerTitle', label:'Footer — Title', el:'gmFooterTitle'},
+    {sec:'Footer', id:'footerSubtitle', label:'Footer — Subtitle', el:'gmFooterSubtitle', textarea:true},
+    {sec:'Footer', id:'footerCopyright', label:'Footer — Copyright line', el:'gmFooterCopyright', textarea:true}
+  ];
+  var currentCMS={};
+  function applyCMS(cms){
+    if(!cms) return; currentCMS=cms;
+    CMS_FIELDS.forEach(function(f){
+      var v=cms[f.id]; if(v==null||String(v).trim()==='') return;
+      if(f.isImg){ var img=$id(f.el); if(img) img.src=String(v); }
+      else txt(f.el, v);
+    });
+    // Policy (5 items)
+    if(cms.policy){
+      txt('gmPolicyTitleText', cms.policy.title);
+      (cms.policy.items||[]).forEach(function(it,i){
+        if(!it) return; txt('gmPolicy'+i+'Title', it.title); txt('gmPolicy'+i+'Desc', it.desc);
+      });
+    }
+    // FAQ (6 items)
+    if(cms.faq && Array.isArray(cms.faq.items)){
+      cms.faq.items.forEach(function(it,i){ if(!it) return; txt('gmFaq'+i+'Q', it.q); txt('gmFaq'+i+'A', it.a); });
+    }
+    // Gallery
+    if(Array.isArray(cms.gallery) && cms.gallery.length){
+      var grid=$id('gmGalleryGrid');
+      if(grid) grid.innerHTML=cms.gallery.map(function(url,i){ var u=esc(url); return '<div class="gallery-item" onclick="openModal(\''+u.replace(/'/g,"\\'")+'\')"><img src="'+u+'" alt="Review '+(i+1)+'"></div>'; }).join('');
+    }
+    // Payments lists
+    if(cms.payments){
+      if(Array.isArray(cms.payments.accept) && cms.payments.accept.length){
+        var al=$id('gmPaymentAcceptList'); if(al) al.innerHTML=cms.payments.accept.map(function(t){ return '<div class="payment-item active-method"><i class="fab fa-bitcoin"></i> '+esc(t)+' <i class="fas fa-check-circle"></i></div>'; }).join('');
+      }
+      if(Array.isArray(cms.payments.notAccept) && cms.payments.notAccept.length){
+        var nl=$id('gmPaymentNotList'); if(nl) nl.innerHTML=cms.payments.notAccept.map(function(t){ return '<div class="payment-item disabled-method">'+esc(t)+' <span class="not-accepted-badge">Not Accepted</span></div>'; }).join('');
+      }
+    }
+    prefillCMS();
+  }
+  function collectCMS(){
+    var cms={};
+    CMS_FIELDS.forEach(function(f){ var el=$id('gmCms_'+f.id); if(el) cms[f.id]=el.value; });
+    cms.policy={ title:($id('gmCms_policyTitle')||{}).value||'', items:[] };
+    for(var i=0;i<5;i++){ cms.policy.items.push({ title:($id('gmCms_policy'+i+'Title')||{}).value||'', desc:($id('gmCms_policy'+i+'Desc')||{}).value||'' }); }
+    cms.faq={ items:[] };
+    for(var j=0;j<6;j++){ cms.faq.items.push({ q:($id('gmCms_faq'+j+'Q')||{}).value||'', a:($id('gmCms_faq'+j+'A')||{}).value||'' }); }
+    var g=(($id('gmCms_gallery')||{}).value||'').split('\n').map(function(s){return s.trim();}).filter(Boolean);
+    var acc=(($id('gmCms_payAccept')||{}).value||'').split('\n').map(function(s){return s.trim();}).filter(Boolean);
+    var notA=(($id('gmCms_payNot')||{}).value||'').split('\n').map(function(s){return s.trim();}).filter(Boolean);
+    cms.gallery=g; cms.payments={ accept:acc, notAccept:notA };
+    return cms;
+  }
+  function prefillCMS(){
+    CMS_FIELDS.forEach(function(f){ var el=$id('gmCms_'+f.id); if(el && !el.value && currentCMS[f.id]) el.value=currentCMS[f.id]; });
+    if(currentCMS.policy){
+      var pt=$id('gmCms_policyTitle'); if(pt && !pt.value) pt.value=currentCMS.policy.title||'';
+      (currentCMS.policy.items||[]).forEach(function(it,i){ var a=$id('gmCms_policy'+i+'Title'), b=$id('gmCms_policy'+i+'Desc'); if(a&&!a.value&&it) a.value=it.title||''; if(b&&!b.value&&it) b.value=it.desc||''; });
+    }
+    if(currentCMS.faq && Array.isArray(currentCMS.faq.items)){
+      currentCMS.faq.items.forEach(function(it,i){ var a=$id('gmCms_faq'+i+'Q'), b=$id('gmCms_faq'+i+'A'); if(a&&!a.value&&it) a.value=it.q||''; if(b&&!b.value&&it) b.value=it.a||''; });
+    }
+    var g=$id('gmCms_gallery'); if(g&&!g.value&&Array.isArray(currentCMS.gallery)) g.value=currentCMS.gallery.join('\n');
+    var pa=$id('gmCms_payAccept'); if(pa&&!pa.value&&currentCMS.payments&&Array.isArray(currentCMS.payments.accept)) pa.value=currentCMS.payments.accept.join('\n');
+    var pn=$id('gmCms_payNot'); if(pn&&!pn.value&&currentCMS.payments&&Array.isArray(currentCMS.payments.notAccept)) pn.value=currentCMS.payments.notAccept.join('\n');
+  }
+  function buildCMSUI(){
+    var panel=document.querySelector('[data-gm-admin-section="site"]'); if(!panel||$id('gmCmsRoot')) return;
+    var root=document.createElement('div'); root.id='gmCmsRoot';
+    root.innerHTML='<div style="margin:20px 0 6px;display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span class="gm-cms-badge">PREMIUM CMS</span><h3 style="margin:0">Every Section — Edit From Admin</h3></div><p class="gm-muted" style="margin:0 0 12px;line-height:1.55">Hero, Stats, Section Headers, About, Working Policy, FAQ, Gallery, Payments, Footer — সব এখান থেকে বদলাও। Save করলেই পাবলিক সাইটে সাথে সাথে আপডেট হবে। খালি রাখলে আগের লেখাই থাকবে।</p>';
+    // Group fields by section
+    var groups={}; CMS_FIELDS.forEach(function(f){ (groups[f.sec]=groups[f.sec]||[]).push(f); });
+    Object.keys(groups).forEach(function(sec){
+      var div=document.createElement('div'); div.className='gm-cms-section';
+      div.innerHTML='<h4>'+esc(sec)+'</h4><p>Edit this section. Leave blank to keep current text.</p><div class="gm-cms-grid"></div>';
+      var grid=div.querySelector('.gm-cms-grid');
+      groups[sec].forEach(function(f){
+        var w=document.createElement('div'); w.className='gm-field'+(f.textarea?' gm-full':'');
+        var input=f.textarea?'<textarea id="gmCms_'+f.id+'" placeholder="'+esc(f.label)+'"></textarea>':'<input id="gmCms_'+f.id+'" placeholder="'+esc(f.label)+'">';
+        w.innerHTML='<label>'+esc(f.label)+'</label>'+input; grid.appendChild(w);
+      });
+      root.appendChild(div);
+    });
+    // Policy
+    var pol=document.createElement('div'); pol.className='gm-cms-section';
+    pol.innerHTML='<h4>Working Policy — 5 Cards</h4><p>প্রতিটা Policy কার্ডের Title + Description এখান থেকে বদলাও।</p><div class="gm-field"><label>Policy — Panel title</label><input id="gmCms_policyTitle" placeholder="Our Working Policy"></div><div class="gm-cms-grid" id="gmCmsPolicyGrid"></div>';
+    var pg=pol.querySelector('#gmCmsPolicyGrid');
+    for(var i=0;i<5;i++){ var w=document.createElement('div'); w.className='gm-field'; w.innerHTML='<label>Policy '+(i+1)+' — Title</label><input id="gmCms_policy'+i+'Title">'; pg.appendChild(w); var w2=document.createElement('div'); w2.className='gm-field'; w2.innerHTML='<label>Policy '+(i+1)+' — Description</label><textarea id="gmCms_policy'+i+'Desc"></textarea>'; pg.appendChild(w2); }
+    root.appendChild(pol);
+    // FAQ
+    var fq=document.createElement('div'); fq.className='gm-cms-section';
+    fq.innerHTML='<h4>FAQ — 6 Questions</h4><p>প্রতিটা FAQ-র Question + Answer এখান থেকে বদলাও।</p><div class="gm-cms-grid" id="gmCmsFaqGrid"></div>';
+    var fg=fq.querySelector('#gmCmsFaqGrid');
+    for(var j=0;j<6;j++){ var a=document.createElement('div'); a.className='gm-field'; a.innerHTML='<label>FAQ '+(j+1)+' — Question</label><input id="gmCms_faq'+j+'Q">'; fg.appendChild(a); var b=document.createElement('div'); b.className='gm-field'; b.innerHTML='<label>FAQ '+(j+1)+' — Answer</label><textarea id="gmCms_faq'+j+'A"></textarea>'; fg.appendChild(b); }
+    root.appendChild(fq);
+    // Gallery + Payments
+    var gp=document.createElement('div'); gp.className='gm-cms-section';
+    gp.innerHTML='<h4>Gallery + Payments</h4><p>Gallery: এক লাইনে একটা ছবির URL। Payments: এক লাইনে একটা মেথড।</p><div class="gm-cms-grid"><div class="gm-field gm-full"><label>Gallery — Image URLs (one per line, max 15)</label><textarea id="gmCms_gallery" placeholder="https://..."></textarea></div><div class="gm-field"><label>Payments — Accepted (one per line)</label><textarea id="gmCms_payAccept" placeholder="USDT (TRC20/BEP20)"></textarea></div><div class="gm-field"><label>Payments — Not Accepted (one per line)</label><textarea id="gmCms_payNot" placeholder="PayPal"></textarea></div></div>';
+    root.appendChild(gp);
+    // Save
+    var saveDiv=document.createElement('div'); saveDiv.style.marginTop='16px';
+    saveDiv.innerHTML='<div class="gm-action-row"><button class="gm-action gm-primary" type="button" id="gmCmsSaveBtn">Save All Sections</button><span class="gm-inline-status" id="gmCmsStatus"></span></div><p class="gm-muted" style="margin-top:8px;font-size:.85rem">Tip: উপরের Site Settings-এর Save-ও আগের মতো কাজ করবে। এই Save-টা শুধু এই CMS সেকশনগুলো সেভ করে।</p>';
+    root.appendChild(saveDiv);
+    // Insert before old Save button if present, else append
+    var oldSaveBtn=panel.querySelector('button[onclick*="saveSiteSettings"]');
+    if(oldSaveBtn && oldSaveBtn.parentElement) panel.insertBefore(root, oldSaveBtn.parentElement);
+    else panel.appendChild(root);
+    $id('gmCmsSaveBtn').onclick=function(){
+      var st=$id('gmCmsStatus'); if(st) st.textContent='Saving...';
+      var cms=collectCMS();
+      // Save via Firebase directly to siteSettings/siteCMS (does not wipe other settings)
+      import('https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js').then(function(mod){
+        var db; try{ var gdb=mod.getDatabase; db=gdb(); }catch(e){ if(st) st.textContent='Firebase not ready. Try again.'; return; }
+        mod.set(mod.ref(db,'siteSettings/siteCMS'), cms).then(function(){ if(st) st.textContent='Saved. Public site updated.'; applyCMS(cms); }).catch(function(){ if(st) st.textContent='Could not save. Please try again.'; });
+      }).catch(function(){ if(st) st.textContent='Could not save. Please try again.'; });
+    };
+    prefillCMS();
+  }
+  function wireCMSListener(){
+    if(window.__gmPremiumCmsWired) return; window.__gmPremiumCmsWired=true;
+    import('https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js').then(function(mod){
+      try{
+        var db=mod.getDatabase();
+        mod.onValue(mod.ref(db,'siteSettings/siteCMS'), function(snap){ applyCMS(snap.val()||{}); });
+      }catch(e){}
+    }).catch(function(){});
+  }
+  function tick(){
+    wrapAuth(); wrapWorkspace();
+    if(window.GM && window.GM._currentUser) syncSidebarUser();
+    var panel=document.querySelector('[data-gm-admin-section="site"]');
+    if(panel) buildCMSUI();
+    // Try to build sidebar when workspace is visible
+    var ov=$id('gmWorkspaceOverlay'); if(ov && !ov.classList.contains('gm-hidden')) buildWorkspaceSidebar();
+  }
+  document.addEventListener('DOMContentLoaded', function(){ wrapAuth(); wrapWorkspace(); wireCMSListener(); setInterval(tick, 1200); });
+  setTimeout(function(){ wrapAuth(); wrapWorkspace(); wireCMSListener(); buildWorkspaceSidebar(); }, 1500);
+  setInterval(tick, 1200);
+})();
+</script>
+
 </body>
 </html>
