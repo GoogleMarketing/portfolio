@@ -1989,7 +1989,7 @@ body.gm-workspace-open .gm-chat-launcher, body.gm-admin-open .gm-chat-launcher{z
                     <div class="icon"><i class="fas fa-envelope"></i></div>
                     <div>
                         <p>Email</p>
-                        <p>24.7.g00glemarketing@gmail.com</p>
+                        <p>afshakil279@gmail.com</p>
                     </div>
                 </div>
             </div>
@@ -2295,7 +2295,7 @@ body.gm-workspace-open .gm-chat-launcher, body.gm-admin-open .gm-chat-launcher{z
                 window.open(`https://t.me/DirectorShakil?text=${encodedText}`, '_blank');
             } else if (platform === 'email') {
                 const subject = encodeURIComponent("New Service Request - Google Marketing");
-                window.open(`mailto:24.7.g00glemarketing@gmail.com?subject=${subject}&body=${encodedText}`, '_blank');
+                window.open(`mailto:afshakil279@gmail.com?subject=${subject}&body=${encodedText}`, '_blank');
             }
         }
     </script>
@@ -4539,7 +4539,127 @@ section[id], div[id]{ scroll-margin-top:96px !important; }
   });
 })();
 </script>
+
+<style id="gm-fix-long-menu-tiny-contact-2026-11-27">
+/* ===== LONG MENU CARD - ONE TALL CARD, NOT 4-CORNER GRID ===== */
+#gmWorkspaceOverlay[data-gm-ws-view="home"] [data-gm-section]{ display:none !important; }
+#gmWorkspaceOverlay[data-gm-ws-view="home"] [data-gm-section="services"]{ display:block !important; }
+#gmWorkspaceOverlay[data-gm-ws-view="home"] #gmOverviewStats{ display:none !important; }
+#gmWorkspaceOverlay[data-gm-ws-view="home"] #gmWorkspaceTabs{ display:none !important; }
+#gmWorkspaceOverlay[data-gm-ws-view="menu"] [data-gm-section]{ display:none !important; }
+#gmWorkspaceOverlay[data-gm-ws-view="menu"] #gmOverviewStats{ display:none !important; }
+#gmWorkspaceOverlay[data-gm-ws-view="page"] #gmWorkspaceTabs{ display:none !important; }
+#gmWorkspaceOverlay[data-gm-ws-view="menu"] #gmWorkspaceTabs{
+  display:flex !important; flex-direction:column !important; gap:0 !important;
+  max-width:520px !important; width:100% !important; margin:0 auto !important; padding:0 !important;
+  background:#0b1423 !important; border:1px solid rgba(255,255,255,.14) !important; border-radius:22px !important;
+  overflow:hidden !important; box-shadow:0 20px 50px rgba(0,0,0,.45) !important;
+}
+#gmWorkspaceTabs.gm-menu-card .gm-tab{
+  display:flex !important; align-items:center !important; gap:12px !important; width:100% !important;
+  padding:16px 18px !important; border:none !important; border-bottom:1px solid rgba(255,255,255,.08) !important;
+  border-radius:0 !important; background:transparent !important; color:#fff !important;
+  font-weight:700 !important; font-size:.95rem !important; text-align:left !important; white-space:normal !important; line-height:1.35 !important;
+}
+#gmWorkspaceTabs.gm-menu-card .gm-tab:last-child{ border-bottom:none !important; }
+#gmWorkspaceTabs.gm-menu-card .gm-tab:active{ background:rgba(255,255,255,.08) !important; }
+#gmWsMenuProfile{
+  display:flex !important; gap:12px !important; align-items:center !important;
+  padding:20px 18px !important; background:linear-gradient(135deg,#1e3a8a,#7c3aed) !important;
+  border-bottom:1px solid rgba(255,255,255,.12) !important; text-align:left !important;
+}
+#gmWsMenuProfile img{ width:52px !important; height:52px !important; min-width:52px !important; border-radius:50% !important; object-fit:cover !important; border:2px solid rgba(255,255,255,.6) !important; }
+#gmWsMenuProfile .gm-long-name{ font-weight:800 !important; font-size:1.05rem !important; color:#fff !important; line-height:1.3 !important; overflow-wrap:anywhere !important; }
+#gmWsMenuProfile .gm-long-sub{ font-size:.82rem !important; color:rgba(255,255,255,.85) !important; line-height:1.4 !important; overflow-wrap:anywhere !important; }
+#gmWsMenuProfile .gm-long-close{ margin-left:auto !important; flex-shrink:0 !important; width:34px !important; height:34px !important; border-radius:50% !important; border:1px solid rgba(255,255,255,.35) !important; background:rgba(0,0,0,.25) !important; color:#fff !important; cursor:pointer !important; display:grid !important; place-items:center !important; }
+/* Admin long card - same: one tall list, not grid */
+#gmAdminMenuGrid{ display:flex !important; flex-direction:column !important; gap:0 !important; margin-top:0 !important; border:1px solid rgba(255,255,255,.14) !important; border-radius:18px !important; overflow:hidden !important; background:#0b1423 !important; }
+.gm-admin-menu-card-btn{
+  display:flex !important; flex-direction:row !important; align-items:center !important; gap:12px !important;
+  width:100% !important; padding:16px 18px !important; border:none !important; border-bottom:1px solid rgba(255,255,255,.08) !important;
+  border-radius:0 !important; background:transparent !important; text-align:left !important;
+}
+.gm-admin-menu-card-btn:last-child{ border-bottom:none !important; }
+.gm-admin-menu-card-btn span{ font-weight:700 !important; }
+/* ===== CONTACT INFO - TINY ICONS, TINY BOXES ===== */
+.contact-wrapper{ align-items:start !important; }
+.info-item{
+  display:flex !important; align-items:center !important; gap:10px !important;
+  padding:10px 12px !important; margin-bottom:12px !important;
+  background:rgba(255,255,255,.05) !important; border:1px solid rgba(255,255,255,.08) !important; border-radius:12px !important;
+}
+.info-item .icon{
+  flex:0 0 32px !important; width:32px !important; height:32px !important; min-width:32px !important; max-width:32px !important;
+  font-size:.85rem !important; border-radius:8px !important; padding:0 !important; margin:0 !important;
+  background:rgba(255,255,255,.06) !important; border:1px solid rgba(255,255,255,.12) !important;
+}
+.info-item > div:not(.icon){ flex:1 1 auto !important; min-width:0 !important; }
+.info-item > div:not(.icon) p{ overflow-wrap:break-word !important; word-break:normal !important; white-space:normal !important; line-height:1.4 !important; }
+.info-item > div:not(.icon) p:first-child{ font-size:.78rem !important; color:#94a3b8 !important; margin-bottom:2px !important; }
+.info-item > div:not(.icon) p:last-child{ font-size:.92rem !important; font-weight:600 !important; overflow-wrap:break-word !important; word-break:break-word !important; }
+.info-item > div:not(.icon) p:last-child a{ overflow-wrap:break-word !important; word-break:break-word !important; }
+@media(max-width:768px){
+  .contact-wrapper{ grid-template-columns:1fr !important; gap:20px !important; }
+  .contact-info-panel{ min-width:0 !important; }
+  .info-item{ gap:10px !important; padding:9px 10px !important; }
+  .info-item .icon{ flex:0 0 30px !important; width:30px !important; height:30px !important; min-width:30px !important; max-width:30px !important; font-size:.8rem !important; }
+  .info-item > div:not(.icon) p:last-child{ font-size:.88rem !important; }
+}
+</style>
+<script>
+(function(){
+  function $id(id){ return document.getElementById(id); }
+  function syncLongMenuProfile(){
+    try{
+      var prof=$id('gmWsMenuProfile'); if(!prof) return;
+      var av=$id('gmWorkspaceAvatar'); var title=$id('gmWorkspaceTitle'); var sub=$id('gmWorkspaceSubtitle');
+      var img=prof.querySelector('img'); if(img && av && av.src) img.src=av.src;
+      var n=prof.querySelector('.gm-long-name'); if(n && title) n.textContent=title.textContent||'My Workspace';
+      var s=prof.querySelector('.gm-long-sub'); if(s && sub) s.textContent=sub.textContent||'Google Marketing Client Area';
+    }catch(e){}
+  }
+  function ensureLongMenuProfile(){
+    try{
+      var tabs=$id('gmWorkspaceTabs'); if(!tabs) return;
+      if(!$id('gmWsMenuProfile')){
+        var div=document.createElement('div'); div.id='gmWsMenuProfile';
+        div.innerHTML='<img src="https://i.ibb.co.com/GfswcC5V/FB-IMG-1791925489216.jpg" alt="Profile"><div style="min-width:0;flex:1"><div class="gm-long-name">My Workspace</div><div class="gm-long-sub">Google Marketing Client Area</div></div><button class="gm-long-close" type="button" onclick="window.GM.__wsShowHome()" title="Back to Services">\u2715</button>';
+        tabs.insertBefore(div, tabs.firstChild);
+      }
+      syncLongMenuProfile();
+    }catch(e){}
+  }
+  function waitGM(cb){ var t=setInterval(function(){ if(window.GM && window.GM.__wsShowMenu){ clearInterval(t); cb(); } },200); setTimeout(function(){ clearInterval(t); },10000); }
+  waitGM(function(){
+    // Wrap previous Menu/Home to always attach profile header + enforce long-card
+    var prevMenu = window.GM.__wsShowMenu;
+    var prevHome = window.GM.__wsShowHome;
+    window.GM.__wsShowMenu = function(){ prevMenu(); ensureLongMenuProfile(); };
+    window.GM.__wsShowHome = function(){ prevHome(); };
+    // Also wrap selectTab/menu toggle if they bypass __wsShowMenu
+    var prevToggle = window.GM.toggleWorkspaceMenu;
+    // toggleWorkspaceMenu already calls __wsShowMenu/__wsShowHome via previous wrapper, so no double wrap needed
+    // Enforce: if workspace is open but view not set, force Home (Service Cards)
+    setInterval(function(){
+      try{
+        var ov=$id('gmWorkspaceOverlay'); if(!ov || ov.classList.contains('gm-hidden')) return;
+        if(!ov.dataset.gmWsView){ window.GM.__wsShowHome(); }
+        // If in menu view, keep profile header synced
+        if(ov.dataset.gmWsView==='menu'){ ensureLongMenuProfile(); }
+        // If in home view, make sure Services is the visible section (not Overview)
+        if(ov.dataset.gmWsView==='home'){
+          var svc=document.querySelector('[data-gm-section="services"]');
+          if(svc && svc.classList.contains('gm-hidden')){ window.GM.__wsShowHome(); }
+        }
+      }catch(e){}
+    }, 800);
+    // If workspace already open on load, force Home after a tick
+    setTimeout(function(){ try{ var ov=$id('gmWorkspaceOverlay'); if(ov && !ov.classList.contains('gm-hidden')){ window.GM.__wsShowHome(); } }catch(e){} }, 600);
+  });
+})();
+</script>
 </body>
+
 
 
 </html>
