@@ -3,7 +3,7 @@ Google Marketing Portfolio - Production Build
 Project: Portfolio Website with Real-Time Chat, User Workspace, Telegram Bot, and Admin Control
 Live Target: https://googlemarketing.github.io/portfolio/
 Backend: https://portfolio-live-chat-bot.onrender.com
-Admin: 
+Admin: afshakil279@gmail.com
 Build: All source code, comments, UI labels, variables in English only.
 Responsive: Desktop & Mobile adaptive, no overflow.
 Core Preservation: Original portfolio layout preserved; interactive modules integrated modularly.
@@ -1347,27 +1347,23 @@ nav .logo span{white-space:nowrap}
 .gm-chat-launcher i{font-size:1.5rem !important;color:#fff !important;display:block !important;line-height:1 !important}
 
 
-/* ===== FIX 2026-11-25 — Screenshot audit: overflow, pill nav, admin, contact, hero, chat ===== */
-/* Global: never allow horizontal overflow */
+/* ===== FIX 2026-11-25 — Screenshot audit ===== */
 html,body{overflow-x:hidden !important;max-width:100vw !important}
 *{box-sizing:border-box}
 img,video{max-width:100% !important;height:auto}
 section{overflow-x:hidden}
-/* Logged-in / overview / auth */
 #gmOverviewStats{display:none !important}
 .gm-overview-minimal{padding:22px}
-.gm-overview-minimal h3{font-size:1.35rem;margin:0 0 8px}
 #gmAuthOverlay.gm-auth-loggedin .gm-auth-side{display:none !important}
 #gmAuthOverlay.gm-auth-loggedin .gm-dialog.gm-auth-split{grid-template-columns:1fr !important}
 #gmAuthOverlay.gm-auth-loggedin .gm-auth-form{max-width:640px;margin:0 auto;width:100%}
 .gm-side-foot .gm-tab{width:100% !important;display:flex !important;align-items:center !important;gap:10px !important;justify-content:flex-start !important;padding:11px 12px !important;border-radius:13px !important;background:rgba(245,200,110,.12) !important;border:1px solid rgba(245,200,110,.4) !important;color:#fde68a !important;font-weight:750 !important;cursor:pointer !important;text-align:left !important}
 .gm-side-foot .gm-tab.gm-hidden{display:none !important}
-/* --- Pill nav: screenshot style, no logo, no MENU --- */
 nav.gm-pill-nav{position:fixed !important;top:12px !important;left:50% !important;transform:translateX(-50%) !important;width:min(920px,calc(100vw - 16px)) !important;max-width:calc(100vw - 16px) !important;padding:6px 8px !important;display:flex !important;align-items:center !important;gap:6px !important;background:rgba(8,10,22,.94) !important;backdrop-filter:blur(16px) saturate(140%) !important;border:1px solid rgba(255,255,255,.14) !important;border-radius:999px !important;box-shadow:0 18px 50px rgba(0,0,0,.55) !important;z-index:1000 !important;overflow:hidden}
 .gm-pill-brand{display:flex !important;align-items:center !important;gap:8px !important;flex-shrink:0 !important;padding:6px 8px 6px 4px !important;color:#fff !important;text-decoration:none !important;font-weight:800 !important}
 .gm-pill-brand-ico{width:32px !important;height:32px !important;border-radius:999px !important;display:grid !important;place-items:center !important;background:rgba(255,255,255,.12) !important;font-size:.85rem !important;color:#fff !important}
 .gm-pill-brand-text{font-size:1.05rem !important}
-.gm-pill-links{display:flex !important;align-items:center !important;gap:2px !important;flex:1 !important;min-width:0 !important;overflow-x:auto !important;scrollbar-width:none !important;-ms-overflow-style:none !important;scroll-behavior:smooth !important;mask-image:linear-gradient(to right,black 88%,transparent 100%) !important}
+.gm-pill-links{display:flex !important;align-items:center !important;gap:2px !important;flex:1 !important;min-width:0 !important;overflow-x:auto !important;scrollbar-width:none !important;scroll-behavior:smooth !important;mask-image:linear-gradient(to right,black 88%,transparent 100%) !important}
 .gm-pill-links::-webkit-scrollbar{display:none !important}
 .gm-pill-links a{flex-shrink:0 !important;padding:9px 13px !important;border-radius:999px !important;color:#cbd5e1 !important;font-size:.92rem !important;font-weight:600 !important;white-space:nowrap !important;text-decoration:none !important}
 .gm-pill-links a:hover,.gm-pill-links a.gm-active{color:#fff !important;background:rgba(255,255,255,.10) !important}
@@ -1378,13 +1374,10 @@ nav.gm-pill-nav{position:fixed !important;top:12px !important;left:50% !importan
 .gm-pill-login{border-radius:999px !important;padding:10px 16px !important;background:rgba(255,255,255,.12) !important;border:1px solid rgba(255,255,255,.18) !important;color:#fff !important;font-weight:700 !important;font-size:.90rem !important;cursor:pointer !important;white-space:nowrap !important}
 .menu-btn,.mobile-menu,.gm-menu-card,.logo{display:none !important}
 .hero{margin-top:84px !important}
-/* --- Hero: no right cut, buttons never cut --- */
 .hero{max-width:1180px !important;width:calc(100vw - 24px) !important;margin-left:auto !important;margin-right:auto !important;padding-left:22px !important;padding-right:22px !important;overflow-wrap:break-word}
 .hero h1{font-size:clamp(1.9rem,7.2vw,3.1rem) !important;line-height:1.15 !important;overflow-wrap:break-word !important;word-break:break-word}
-.hero h1 span{display:inline;overflow-wrap:break-word}
 .hero p{max-width:720px !important;overflow-wrap:break-word}
 .hero .btn{max-width:100% !important;white-space:normal !important;text-align:center}
-/* --- Contact: single card, no double card, no right cut --- */
 .contact-wrapper{max-width:1100px !important;width:100% !important;margin:0 auto !important;background:transparent !important;border:0 !important;padding:0 !important;gap:20px !important;grid-template-columns:1fr 1fr !important}
 .contact-info-panel{max-width:100% !important;width:100% !important;min-width:0 !important}
 .custom-form{max-width:100% !important;min-width:0 !important}
@@ -1393,25 +1386,21 @@ nav.gm-pill-nav{position:fixed !important;top:12px !important;left:50% !importan
 .info-item p{overflow-wrap:anywhere !important;word-break:break-word !important;white-space:normal !important}
 .info-item .icon{flex-shrink:0 !important}
 .custom-form input,.custom-form textarea{max-width:100% !important;width:100% !important;box-sizing:border-box}
-/* --- Admin: ONE menu at a time, solid (no blur), orders table mobile --- */
-#gmAdminTabs,.gm-admin-menu{background:#0b1423 !important;backdrop-filter:none !important;-webkit-backdrop-filter:none !important;border:1px solid rgba(255,255,255,.14) !important;border-radius:16px !important;padding:10px !important;box-shadow:none !important}
+#gmAdminTabs,.gm-admin-menu{background:#0b1423 !important;backdrop-filter:none !important;border:1px solid rgba(255,255,255,.14) !important;border-radius:16px !important;padding:10px !important;box-shadow:none !important}
 .gm-admin-layout{display:grid !important;grid-template-columns:230px 1fr !important;gap:16px !important;align-items:start}
 .gm-admin-menu{display:flex !important;flex-direction:column !important;gap:6px !important;position:sticky !important;top:0}
 .gm-admin-menu-btn{width:100% !important;text-align:left !important;justify-content:flex-start !important;white-space:normal !important}
 body.gm-admin-open #gmWorkspaceTabs{display:none !important}
 body.gm-admin-open #gmWorkspaceMenuButton{display:none !important}
-.gm-table-wrap{overflow-x:auto !important;-webkit-overflow-scrolling:touch;max-width:100%}
+.gm-table-wrap{overflow-x:auto !important;max-width:100%}
 .gm-table-wrap table{min-width:560px;width:100%}
 .gm-table th,.gm-table td{overflow-wrap:anywhere !important;word-break:break-word !important;white-space:normal !important}
-.gm-table td:first-child{word-break:break-all !important}
-/* --- Bulletin / Notice: compact, not half the sidebar --- */
 .gm-side-notice{grid-template-columns:1fr 56px !important;border-radius:14px !important;overflow:hidden}
 .gm-side-notice-text{padding:10px 11px !important}
 .gm-side-notice-text strong{font-size:1.05rem !important;margin:4px 0 !important}
 .gm-side-notice-text p{font-size:.70rem !important;line-height:1.4 !important;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .gm-side-notice.gm-expanded .gm-side-notice-text p{-webkit-line-clamp:unset !important;display:block}
 .gm-side-notice-art{font-size:1.4rem !important}
-/* --- Chat: picker compact, composer compact --- */
 .gm-chat-window{max-height:calc(100dvh - 80px) !important}
 .gm-chat-messages{min-height:120px !important;flex:1 1 auto !important}
 .gm-chat-order-picker{max-height:240px !important;overflow-y:auto !important}
@@ -1426,15 +1415,35 @@ body.gm-admin-open #gmWorkspaceMenuButton{display:none !important}
 .gm-chat-compose{padding:10px !important}
 .gm-compose-row{gap:6px !important}
 .gm-composer{min-width:0 !important;flex:1}
-/* --- Order page / dialogs: never wider than screen --- */
 #gmOrderPage .gm-order-page-inner,.gm-dialog{max-width:calc(100vw - 16px) !important;box-sizing:border-box}
 .gm-form-grid input,.gm-form-grid textarea,.gm-form-grid select{max-width:100% !important;box-sizing:border-box}
+/* ===== FIX 2026-11-27 — Service cards: Add + Edit actually reach Portfolio ===== */
+/* Chat launcher must NOT cover Admin / Workspace (it was covering Save + Card inputs) */
+body.gm-workspace-open .gm-chat-launcher, body.gm-admin-open .gm-chat-launcher{z-index:900 !important}
+.gm-chat-launcher{z-index:900 !important}
+/* Site Settings panel: never cut on the right, inputs full width */
+[data-gm-admin-section="site"]{max-width:100% !important;min-width:0 !important;overflow-x:hidden}
+[data-gm-admin-section="site"] .gm-panel{max-width:100% !important;min-width:0 !important;overflow-x:hidden}
+.gm-admin-site-grid{grid-template-columns:1fr 1fr !important;gap:12px !important;max-width:100%}
+.gm-admin-site-grid .gm-field{min-width:0 !important}
+.gm-admin-site-grid .gm-field input,.gm-admin-site-grid .gm-field textarea{width:100% !important;max-width:100% !important;box-sizing:border-box;overflow-wrap:anywhere}
+.gm-admin-site-grid .gm-field.gm-full{grid-column:1 / -1 !important}
+.gm-site-save-sticky{position:sticky !important;top:0 !important;z-index:5 !important;display:flex !important;flex-wrap:wrap !important;gap:10px !important;align-items:center !important;padding:10px 12px !important;margin:0 -4px 14px !important;background:#0b1423 !important;border:1px solid rgba(59,130,246,.4) !important;border-radius:12px !important}
+.gm-site-save-sticky .gm-inline-status{flex:1 !important;min-width:180px}
+.gm-custom-card{border:1px dashed rgba(59,130,246,.5) !important;border-radius:14px !important;padding:14px !important;margin-top:12px !important;background:rgba(59,130,246,.06)}
+.gm-custom-card-head{display:flex !important;justify-content:space-between !important;align-items:center !important;gap:10px;margin-bottom:10px}
+.gm-custom-card-head strong{font-size:.95rem}
+/* Portfolio: live + custom cards look exactly like static cards */
+#services .service-card.gm-live-portfolio-card,#services .service-card.gm-custom-portfolio-card{border-color:rgba(59,130,246,.45) !important}
+#services .service-card .gm-card-price{margin:10px 0 4px;font-weight:800;color:#93c5fd}
+#services .service-card .gm-card-order{margin-top:12px;width:100%}
 @media(max-width:820px){
   .contact-wrapper{grid-template-columns:1fr !important}
   .gm-admin-layout{grid-template-columns:1fr !important}
   .gm-admin-menu{position:static !important;flex-direction:row !important;overflow-x:auto !important;scrollbar-width:none}
   .gm-admin-menu::-webkit-scrollbar{display:none}
   .gm-admin-menu-btn{flex-shrink:0 !important;width:auto !important;white-space:nowrap !important}
+  .gm-admin-site-grid{grid-template-columns:1fr !important}
 }
 @media(max-width:640px){
   nav.gm-pill-nav{top:10px !important;width:calc(100vw - 12px) !important;padding:5px 6px !important;gap:4px !important}
@@ -1450,13 +1459,60 @@ body.gm-admin-open #gmWorkspaceMenuButton{display:none !important}
 
 </style>
 
+<style>
+/* ===== FIX 2026-11-27 — Chat shopping icon: FULL service cards, NOT a small strip ===== */
+/* Old bug: picker was max-height 220-240px stuck between messages + compose, so only a cut-off strip showed.
+   Now: picker is a FULL overlay covering the whole chat window, with its own header + scrollable full cards. */
+#gmChatWindow{position:fixed !important}
+#gmChatWindow .gm-chat-order-picker{
+  position:absolute !important; inset:0 !important; top:0 !important; left:0 !important; right:0 !important; bottom:0 !important;
+  z-index:30 !important; display:flex !important; flex-direction:column !important;
+  width:100% !important; height:100% !important; max-height:none !important; min-height:0 !important;
+  margin:0 !important; padding:0 !important; border:0 !important; border-radius:inherit !important;
+  background:#070b18 !important; overflow:hidden !important;
+}
+#gmChatWindow .gm-chat-order-picker.gm-hidden{display:none !important}
+#gmChatWindow .gm-picker-head{
+  flex-shrink:0 !important; display:flex !important; align-items:flex-start !important; justify-content:space-between !important; gap:10px !important;
+  padding:14px 14px 12px !important; border-bottom:1px solid rgba(255,255,255,.12) !important; background:#0b1423 !important;
+}
+#gmChatWindow .gm-picker-head strong{display:block !important; font-size:1.05rem !important; color:#fff !important}
+#gmChatWindow .gm-picker-head small{display:block !important; margin-top:4px !important; font-size:.82rem !important; line-height:1.45 !important; color:#94a3b8 !important}
+#gmChatWindow .gm-picker-head .gm-icon-btn{flex-shrink:0 !important}
+#gmChatWindow #gmChatOrderPickerList{
+  flex:1 1 auto !important; min-height:0 !important; overflow-y:auto !important; -webkit-overflow-scrolling:touch !important;
+  padding:14px !important; display:flex !important; flex-direction:column !important; gap:14px !important;
+}
+#gmChatWindow .gm-picker-foot{
+  flex-shrink:0 !important; padding:12px 14px !important; border-top:1px solid rgba(255,255,255,.12) !important; background:#0b1423 !important;
+}
+#gmChatWindow .gm-picker-foot .gm-action{width:100% !important; justify-content:center !important}
+/* Full cards inside picker — NO truncation, NO hidden features */
+#gmChatWindow .gm-chat-service-card{
+  flex-shrink:0 !important; width:100% !important; margin:0 !important; padding:16px !important;
+  border-radius:16px !important; background:linear-gradient(165deg,rgba(255,255,255,.09),rgba(255,255,255,.03)) !important;
+  border:1px solid rgba(255,255,255,.14) !important;
+}
+#gmChatWindow .gm-chat-service-card h4{font-size:1.05rem !important; line-height:1.35 !important; margin:0 0 8px !important}
+#gmChatWindow .gm-chat-service-card p{
+  display:block !important; -webkit-line-clamp:unset !important; -webkit-box-orient:unset !important;
+  overflow:visible !important; white-space:normal !important; font-size:.92rem !important; line-height:1.6 !important;
+}
+#gmChatWindow .gm-chat-service-card ul{
+  display:flex !important; flex-direction:column !important; gap:7px !important; margin:10px 0 !important; padding:0 !important; list-style:none !important;
+}
+#gmChatWindow .gm-chat-service-card ul li{display:flex !important; gap:8px !important; font-size:.88rem !important; line-height:1.5 !important}
+#gmChatWindow .gm-chat-service-card > strong{display:block !important; margin-top:10px !important; font-size:1rem !important; color:#93c5fd !important}
+#gmChatWindow .gm-chat-service-card .gm-action{padding:11px 14px !important; font-size:.88rem !important; width:100% !important; justify-content:center !important}
+#gmChatWindow .gm-chat-service-card div[style*="display:flex"]{display:flex !important; flex-direction:column !important; gap:8px !important; margin-top:12px !important}
+</style>
 </head>
 <body>
 
     <div class="ambient-glow"></div>
     <div class="gm-toast-region" id="gmToastRegion" aria-live="polite" aria-atomic="false"></div>
 
-    <!-- Navbar — Screenshot-style direct pill nav. No company logo, no MENU card. One click to any section. -->
+    <!-- Navbar — Screenshot-style direct pill nav. No company logo, no MENU card. -->
     <nav class="gm-pill-nav" aria-label="Main navigation">
         <a class="gm-pill-brand" href="#home" aria-label="Go to Home"><span class="gm-pill-brand-ico"><i class="fas fa-bars"></i></span><span class="gm-pill-brand-text">Nav</span></a>
         <div class="gm-pill-links" id="gmPillLinks">
@@ -1478,7 +1534,7 @@ body.gm-admin-open #gmWorkspaceMenuButton{display:none !important}
     </script>
 
     <!-- REMOVED: floating Home box. Header MENU is fixed, that is enough. -->
-    <!-- REMOVED: MENU card. Navigation is now direct in the top pill bar (one click, no menu). -->
+    <!-- REMOVED: MENU card. Navigation is now direct in the top pill bar. -->
      <!-- Hero Section -->
     <section id="home" class="hero">
         <span class="badge gm-premium-badge" id="gmHeroBadge">Play Store Specialist</span>
@@ -2026,7 +2082,7 @@ body.gm-admin-open #gmWorkspaceMenuButton{display:none !important}
             <div class="gm-work-top-actions">
                 <button class="gm-work-tool-btn" type="button" onclick="GM.toggleWorkspaceSearch()" aria-label="Search workspace options" title="Search"><i class="fas fa-search"></i><span class="gm-action-label">Search</span></button>
                 <button class="gm-work-tool-btn" type="button" onclick="GM.toggleWorkspaceMenu()" aria-expanded="false" aria-controls="gmWorkspaceTabs" id="gmWorkspaceMenuButton"><i class="fas fa-bars"></i><span class="gm-action-label">Menu</span></button>
-                <!-- REMOVED: Profile icon in workspace top bar. Profile lives in Menu. -->
+                <!-- REMOVED: Profile icon in workspace top bar. -->
                 <button class="gm-work-tool-btn" type="button" onclick="GM.closeWorkspace()"><i class="fas fa-arrow-left"></i><span class="gm-action-label">Portfolio</span></button>
             </div>
             <div class="gm-work-search gm-hidden" id="gmWorkspaceSearch"><input id="gmWorkspaceSearchInput" type="search" placeholder="Search services, orders, reviews, chats…" aria-label="Search workspace options" oninput="GM.searchWorkspace(this.value)" onkeydown="GM.handleWorkspaceSearchKey(event)"><div class="gm-work-search-hint">Search any workspace section or service below.</div><div class="gm-search-results" id="gmWorkspaceSearchResults"></div></div>
@@ -3169,7 +3225,7 @@ body.gm-admin-open #gmWorkspaceMenuButton{display:none !important}
     if(win && !document.getElementById('gmChatOrderPicker')){
       var picker=document.createElement('div');
       picker.id='gmChatOrderPicker'; picker.className='gm-chat-order-picker gm-hidden';
-      picker.innerHTML='<p class="gm-muted" style="margin-bottom:8px">Pick a service — full card with rate + all details. Tap Order to send it straight to live chat.</p><div id="gmChatOrderPickerList"></div>';
+      picker.innerHTML='<div class="gm-picker-head"><div><strong>Choose a service</strong><small>Full card with rate + all details. Tap Order to send it straight to live chat.</small></div><button class="gm-icon-btn" type="button" onclick="GM.toggleChatOrderPicker()" title="Back to chat" aria-label="Back to chat"><i class="fas fa-times"></i></button></div><div id="gmChatOrderPickerList"></div><div class="gm-picker-foot"><button class="gm-action" type="button" onclick="GM.toggleChatOrderPicker()">← Back to chat</button></div>';
       var compose=win.querySelector('.gm-chat-compose');
       if(compose) win.insertBefore(picker, compose);
     }
@@ -3752,6 +3808,10 @@ setInterval(function(){ if(window.GM && !window.GM._saveSiteSettings) tryWire();
       var adminSec=document.querySelector('[data-gm-section="admin"]');
       var isAdmin = adminSec && !adminSec.classList.contains('gm-hidden');
       document.body.classList.toggle('gm-admin-open', !!isAdmin);
+      var ws=document.querySelector('[data-gm-section="admin"]') ? document.body : null;
+      // Workspace overlay open = any gm-section visible inside the workspace dialog
+      var anyWs=document.querySelector('[data-gm-section]:not(.gm-hidden)');
+      document.body.classList.toggle('gm-workspace-open', !!anyWs);
     }catch(e){}
   }
   function syncPillActive(){
@@ -3765,22 +3825,221 @@ setInterval(function(){ if(window.GM && !window.GM._saveSiteSettings) tryWire();
       });
     }catch(e){}
   }
-  document.addEventListener('DOMContentLoaded', function(){ moveAdmin(); syncPillLogin(); syncAdminOpen(); syncPillActive(); });
+  // --- Custom portfolio cards (Add New Card) ---
+  function customCardHtml(n, data){
+    data=data||{};
+    function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+    return '<div class="gm-custom-card" data-gm-custom-card="'+n+'">'
+      +'<div class="gm-custom-card-head"><strong>New Card '+n+' — will appear in Portfolio</strong><button class="gm-action" type="button" onclick="this.closest(\'.gm-custom-card\').remove()">Delete</button></div>'
+      +'<div class="gm-admin-site-grid">'
+      +'<div class="gm-field"><label>Title</label><input class="gm-custom-title" value="'+esc(data.title)+'"></div>'
+      +'<div class="gm-field"><label>Icon</label><input class="gm-custom-icon" placeholder="e.g. fab fa-youtube" value="'+esc(data.icon)+'"></div>'
+      +'<div class="gm-field gm-full"><label>Description</label><textarea class="gm-custom-desc" rows="3">'+esc(data.description)+'</textarea></div>'
+      +'<div class="gm-field gm-full"><label>Tick lines (one per line)</label><textarea class="gm-custom-features" rows="3">'+esc((data.features||[]).join('\n'))+'</textarea></div>'
+      +'</div></div>';
+  }
+  function ensureSiteEnhance(){
+    try{
+      var panel=document.querySelector('[data-gm-admin-section="site"]');
+      if(!panel || panel.dataset.gmEnhanced) return;
+      panel.dataset.gmEnhanced='1';
+      // Sticky Save at top (user in screenshot never saw the bottom Save)
+      var sticky=document.createElement('div');
+      sticky.className='gm-site-save-sticky';
+      sticky.innerHTML='<button class="gm-action gm-primary" type="button" onclick="GM.saveSiteSettings()">Save Site Settings</button><span class="gm-inline-status" id="gmAdminSiteStatusTop">Edit Card 1-4, or Add New Card below, then press Save. After Save, close Workspace to see Portfolio.</span><button class="gm-action" type="button" onclick="GM.closeWorkspace();document.getElementById(\'services\').scrollIntoView({behavior:\'smooth\'})">View Portfolio →</button>';
+      var h3=panel.querySelector('h3');
+      if(h3) h3.after(sticky);
+      // Explain the 2 systems
+      var note=document.createElement('p');
+      note.className='gm-muted';
+      note.style.cssText='margin:10px 0 0;font-size:.85rem;line-height:1.55';
+      note.innerHTML='<b>How Portfolio cards work:</b> Card 1-4 + New Cards below = Portfolio &gt; Premium Digital Solutions. <b>Services &amp; Pricing</b> (Admin menu) = Order page + Live Chat + <b>also</b> Portfolio (as extra cards, automatically). If you add there, it will appear in Portfolio too — you do not need to add it twice.';
+      if(h3) h3.after(note);
+      // Custom cards container + Add button (after Card 4 block)
+      var grids=panel.querySelectorAll('.gm-admin-site-grid');
+      var lastGrid=grids[grids.length-1];
+      if(lastGrid){
+        var wrap=document.createElement('div');
+        wrap.id='gmAdminCustomCards';
+        var addBtn=document.createElement('button');
+        addBtn.className='gm-action gm-primary';
+        addBtn.type='button';
+        addBtn.style.marginTop='14px';
+        addBtn.textContent='+ Add New Portfolio Card';
+        addBtn.onclick=function(){
+          var n=(panel.querySelectorAll('.gm-custom-card').length||0)+1;
+          var div=document.createElement('div');
+          div.innerHTML=customCardHtml(n,{});
+          wrap.appendChild(div.firstChild);
+          wrap.scrollIntoView({behavior:'smooth',block:'nearest'});
+        };
+        lastGrid.after(wrap);
+        wrap.after(addBtn);
+      }
+      // Restore custom cards from last saved payload (kept in localStorage as backup)
+      try{
+        var saved=JSON.parse(localStorage.getItem('gmCustomPortfolioCards')||'[]');
+        var wrap2=document.getElementById('gmAdminCustomCards');
+        if(saved.length && wrap2){
+          saved.forEach(function(c,i){ var div=document.createElement('div'); div.innerHTML=customCardHtml(i+1,c); wrap2.appendChild(div.firstChild); });
+        }
+      }catch(e){}
+    }catch(e){}
+  }
+  // Wrap _saveSiteSettings so custom cards are included in the Firebase payload
+  function wrapSave(){
+    try{
+      if(window.GM && typeof window.GM._saveSiteSettings==='function' && !window.GM._saveSiteSettings.__gmWrapped){
+        var orig=window.GM._saveSiteSettings;
+        var wrapped=function(payload){
+          try{
+            payload=payload||{};
+            payload.staticServices=payload.staticServices||{};
+            var cards=document.querySelectorAll('.gm-custom-card');
+            var custom=[];
+            cards.forEach(function(card,i){
+              var title=(card.querySelector('.gm-custom-title')||{}).value||'';
+              var icon=(card.querySelector('.gm-custom-icon')||{}).value||'';
+              var desc=(card.querySelector('.gm-custom-desc')||{}).value||'';
+              var feats=String((card.querySelector('.gm-custom-features')||{}).value||'').split('\n').map(function(s){return s.trim();}).filter(Boolean);
+              if(title||desc||feats.length){
+                var key='custom-'+(i+1);
+                payload.staticServices[key]={title:title,icon:icon,description:desc,features:feats};
+                custom.push({title:title,icon:icon,description:desc,features:feats});
+              }
+            });
+            try{ localStorage.setItem('gmCustomPortfolioCards', JSON.stringify(custom)); }catch(e){}
+            // Show status in BOTH places
+            var top=document.getElementById('gmAdminSiteStatusTop'); if(top) top.textContent='Saving…';
+          }catch(e){}
+          return orig(payload).then(function(r){
+            var top2=document.getElementById('gmAdminSiteStatusTop'); if(top2) top2.textContent='Saved. Public site updated — press View Portfolio to check.';
+            var st=document.getElementById('gmAdminSiteStatus'); if(st) st.textContent='Saved. Public site updated.';
+            return r;
+          }).catch(function(e){
+            var top3=document.getElementById('gmAdminSiteStatusTop'); if(top3) top3.textContent='Could not save. Check internet / admin login, then try again.';
+            throw e;
+          });
+        };
+        wrapped.__gmWrapped=true;
+        window.GM._saveSiteSettings=wrapped;
+      }
+    }catch(e){}
+  }
+  document.addEventListener('DOMContentLoaded', function(){ moveAdmin(); syncPillLogin(); syncAdminOpen(); syncPillActive(); ensureSiteEnhance(); wrapSave(); });
   window.addEventListener('hashchange', function(){ syncAdminOpen(); syncPillActive(); });
-  setInterval(function(){ moveAdmin(); syncPillLogin(); syncAdminOpen(); }, 1200);
-  // Bulletin: tap to expand / collapse (compact by default)
+  setInterval(function(){ moveAdmin(); syncPillLogin(); syncAdminOpen(); ensureSiteEnhance(); wrapSave(); }, 1200);
   document.addEventListener('click', function(e){
     var n=e.target.closest && e.target.closest('.gm-side-notice');
     if(n){ n.classList.toggle('gm-expanded'); }
   });
   window.toggleMenu=function(){ try{ window.scrollTo({top:0,behavior:'smooth'}); }catch(e){} };
-  // Wrap original selectTab to keep admin-open in sync (if GM exists)
   try{
     if(window.GM && window.GM.selectTab){
       var _orig=window.GM.selectTab;
-      window.GM.selectTab=function(){ var r=_orig.apply(this,arguments); setTimeout(syncAdminOpen,80); return r; };
+      window.GM.selectTab=function(){ var r=_orig.apply(this,arguments); setTimeout(function(){ syncAdminOpen(); ensureSiteEnhance(); },120); return r; };
     }
   }catch(e){}
+  try{
+    if(window.GM && window.GM.selectAdminTab){
+      var _orig2=window.GM.selectAdminTab;
+      window.GM.selectAdminTab=function(){ var r=_orig2.apply(this,arguments); setTimeout(ensureSiteEnhance,120); return r; };
+    }
+  }catch(e){}
+})();
+</script>
+
+<script type="module">
+/* Portfolio cards fix: custom cards (siteSettings.staticServices custom-*) + live services (services) both render into #services */
+import { getDatabase, ref, onValue } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js';
+function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function cardHtml(item, kind){
+  var feats=(item.features||[]).map(function(f){ return '<li><i class="fas fa-check-circle"></i>'+esc(f)+'</li>'; }).join('');
+  var icon=String(item.icon||'fas fa-check-circle').trim();
+  var iconHtml=(icon.indexOf('fa-')!==-1||icon.indexOf('fas ')!==-1||icon.indexOf('fab ')!==-1)? '<i class="'+esc(icon)+'"></i>' : esc(icon||'✓');
+  var price=(item.price!==''&&item.price!=null)? '<div class="gm-card-price">$'+esc(Number(item.price||0).toFixed(2))+' per unit</div>' : '';
+  var orderBtn=(kind==='live')? '<button class="gm-action gm-primary gm-card-order" type="button" onclick="GM.requireAccountForOrder(\''+esc(item.id)+'\',\''+esc(item.name||item.title).replace(/'/g,"\\'")+'\')">Order — goes to live chat</button>' : '<a href="#contact" class="cta-badge">📩 Get Custom Quote - Contact Us</a>';
+  return '<div class="service-card gm-'+kind+'-portfolio-card" data-gm-portfolio-card="'+esc(item.id||item.key||'')+'"><div class="service-icon">'+iconHtml+'</div><h3>'+esc(item.name||item.title||'Service')+'</h3><p>'+esc(item.description||'')+'</p>'+(feats?'<ul>'+feats+'</ul>':'')+price+orderBtn+'</div>';
+}
+function renderCustomCards(staticServices){
+  try{
+    var grid=document.querySelector('#services .services-grid'); if(!grid) return;
+    grid.querySelectorAll('.gm-custom-portfolio-card').forEach(function(el){ el.remove(); });
+    var known=['play-store','map-review','map-seo','digital-marketing'];
+    Object.keys(staticServices||{}).forEach(function(k){
+      if(known.indexOf(k)!==-1) return;
+      var it=staticServices[k]; if(!it||(!it.title&&!it.description)) return;
+      var div=document.createElement('div'); div.innerHTML=cardHtml({key:k,title:it.title,icon:it.icon,description:it.description,features:it.features},'custom');
+      grid.appendChild(div.firstElementChild);
+    });
+  }catch(e){}
+}
+function renderLiveCards(services){
+  try{
+    var grid=document.querySelector('#services .services-grid'); if(!grid) return;
+    grid.querySelectorAll('.gm-live-portfolio-card').forEach(function(el){ el.remove(); });
+    var list=[];
+    if(services && typeof services==='object'){
+      list=Object.entries(services).filter(function(e){ return e[1]&&e[1].active!==false; }).map(function(e){ return {id:e[0],name:e[1].name,description:e[1].description||'',price:e[1].price,icon:e[1].icon,features:Array.isArray(e[1].features)?e[1].features:[]}; });
+    }
+    list.forEach(function(s){
+      var div=document.createElement('div'); div.innerHTML=cardHtml(s,'live');
+      grid.appendChild(div.firstElementChild);
+    });
+  }catch(e){}
+}
+try{
+  var db=getDatabase();
+  onValue(ref(db,'siteSettings'), function(snap){ var v=snap.val()||{}; renderCustomCards(v.staticServices||{}); });
+  onValue(ref(db,'services'), function(snap){ renderLiveCards(snap.val()||{}); });
+}catch(e){}
+</script>
+
+<script>
+(function(){
+  function upgradePicker(){
+    try{
+      var p=document.getElementById('gmChatOrderPicker'); if(!p) return;
+      if(!p.querySelector('.gm-picker-head')){
+        var list=document.getElementById('gmChatOrderPickerList');
+        // Old picker had a <p> intro — replace with full header + foot
+        var head=document.createElement('div'); head.className='gm-picker-head';
+        head.innerHTML='<div><strong>Choose a service</strong><small>Full card with rate + all details. Tap Order to send it straight to live chat.</small></div><button class="gm-icon-btn" type="button" title="Back to chat" aria-label="Back to chat"><i class="fas fa-times"></i></button>';
+        head.querySelector('button').onclick=function(){ try{ window.GM.toggleChatOrderPicker(); }catch(e){} };
+        p.insertBefore(head, p.firstChild);
+        var foot=document.createElement('div'); foot.className='gm-picker-foot';
+        foot.innerHTML='<button class="gm-action" type="button">← Back to chat</button>';
+        foot.querySelector('button').onclick=function(){ try{ window.GM.toggleChatOrderPicker(); }catch(e){} };
+        p.appendChild(foot);
+        var oldP=p.querySelector('p.gm-muted'); if(oldP) oldP.remove();
+      }
+    }catch(e){}
+  }
+  function scrollPickerTop(){
+    try{ var l=document.getElementById('gmChatOrderPickerList'); if(l) l.scrollTop=0; }catch(e){}
+  }
+  // Wrap toggle so opening always scrolls to top
+  function wrapToggle(){
+    try{
+      if(window.GM && typeof window.GM.toggleChatOrderPicker==='function' && !window.GM.toggleChatOrderPicker.__gmFull){
+        var orig=window.GM.toggleChatOrderPicker;
+        var w=function(){ var r=orig.apply(this,arguments); setTimeout(function(){ upgradePicker(); scrollPickerTop(); },60); return r; };
+        w.__gmFull=true; window.GM.toggleChatOrderPicker=w;
+      }
+    }catch(e){}
+  }
+  // After tapping Order inside picker, close picker so chat is visible again
+  document.addEventListener('click', function(e){
+    try{
+      var btn=e.target.closest && e.target.closest('#gmChatOrderPicker .gm-action');
+      if(!btn) return;
+      if(/order/i.test(btn.textContent||'')){
+        setTimeout(function(){ var p=document.getElementById('gmChatOrderPicker'); if(p) p.classList.add('gm-hidden'); },350);
+      }
+    }catch(err){}
+  });
+  document.addEventListener('DOMContentLoaded', function(){ upgradePicker(); wrapToggle(); });
+  setInterval(function(){ upgradePicker(); wrapToggle(); }, 1500);
 })();
 </script>
 
