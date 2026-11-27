@@ -1378,7 +1378,7 @@ nav.gm-pill-nav{position:fixed !important;top:12px !important;left:50% !importan
 .hero h1{font-size:clamp(1.9rem,7.2vw,3.1rem) !important;line-height:1.15 !important;overflow-wrap:break-word !important;word-break:break-word}
 .hero p{max-width:720px !important;overflow-wrap:break-word}
 .hero .btn{max-width:100% !important;white-space:normal !important;text-align:center}
-.contact-wrapper{max-width:1100px !important;width:100% !important;margin:0 auto !important;background:transparent !important;border:0 !important;padding:0 !important;gap:20px !important;grid-template-columns:1fr 1fr !important}
+.contact-wrapper{max-width:1100px !important;width:100% !important;margin:0 auto !important;background:transparent !important;border:0 !important;padding:0 !important;gap:20px !important;grid-template-columns:1fr 1fr}
 .contact-info-panel{max-width:100% !important;width:100% !important;min-width:0 !important}
 .custom-form{max-width:100% !important;min-width:0 !important}
 .info-item{min-width:0 !important;align-items:flex-start !important}
@@ -3568,7 +3568,7 @@ setInterval(function(){ if(window.GM && !window.GM._saveSiteSettings) tryWire();
       if(nt&&sn&&nt.textContent) sn.textContent=nt.textContent;
     }catch(e){}
   }
-  function buildWorkspaceSidebar(){
+  function buildWorkspaceSidebar(){ return false;
     var overlay=$id('gmWorkspaceOverlay'); if(!overlay||overlay.dataset.gmPremiumSidebar) return false;
     var top=overlay.querySelector('.gm-work-top'); var content=overlay.querySelector('.gm-work-content'); var tabs=$id('gmWorkspaceTabs');
     if(!top||!content||!tabs) return false;
@@ -4282,6 +4282,264 @@ setInterval(function(){ hideOldAdmin(); ensureServiceCardsTab(); tryAttachListen
   setInterval(function(){ ensureMenuBtn(); wireNotice(); }, 1500);
 })();
 </script>
+
+<style id="gm-fix-menu-page-back-2026-11-27">
+/* ===== Menu -> Page -> Back -> Menu (User + Admin) + Screenshot fixes ===== */
+html{ scroll-padding-top:96px !important; }
+section[id], div[id]{ scroll-margin-top:96px !important; }
+/* Pill nav: never clip Reviews, scrolls */
+.gm-pill-nav{ max-width:100vw !important; box-sizing:border-box !important; overflow:hidden !important; }
+#gmPillLinks{ display:flex !important; flex-wrap:nowrap !important; overflow-x:auto !important; -webkit-overflow-scrolling:touch !important; scrollbar-width:none !important; }
+#gmPillLinks::-webkit-scrollbar{ display:none !important; }
+#gmPillLinks a{ white-space:nowrap !important; flex-shrink:0 !important; }
+/* Hero: no huge blank, no cut text */
+@media(max-width:768px){
+  .hero{ min-height:auto !important; padding:110px 5% 36px !important; }
+  .contact-wrapper{ grid-template-columns:1fr !important; gap:24px !important; }
+  .contact-info-panel{ min-width:0 !important; }
+  .info-item{ align-items:flex-start !important; }
+  .info-item > div{ min-width:0 !important; flex:1 !important; }
+  .info-item p:last-child{ overflow-wrap:break-word !important; word-break:break-word !important; white-space:normal !important; }
+}
+/* Workspace: kill old sidebar layout if it ever builds */
+.gm-work-sidebar{ display:none !important; }
+.gm-work-shell{ display:block !important; min-height:0 !important; }
+.gm-work-main{ width:100% !important; max-width:100% !important; }
+/* Workspace Menu Card */
+#gmWorkspaceTabs.gm-menu-card{ display:grid !important; grid-template-columns:repeat(2,minmax(0,1fr)) !important; gap:12px !important; margin:0 0 16px !important; }
+@media(min-width:700px){ #gmWorkspaceTabs.gm-menu-card{ grid-template-columns:repeat(3,minmax(0,1fr)) !important; } }
+#gmWorkspaceTabs.gm-menu-card .gm-tab{ display:flex !important; align-items:center; gap:10px; justify-content:flex-start; padding:18px 14px !important; border-radius:16px !important; border:1px solid rgba(255,255,255,.14) !important; background:linear-gradient(165deg,rgba(255,255,255,.09),rgba(255,255,255,.02)) !important; color:#fff !important; font-weight:700 !important; font-size:.95rem !important; text-align:left !important; white-space:normal !important; line-height:1.35 !important; }
+#gmWorkspaceTabs.gm-menu-card .gm-tab small{ display:block; font-weight:400; font-size:.78rem; color:#94a3b8; margin-top:2px; }
+#gmWsMenuHeader{ display:none; }
+#gmWsMenuHeader.gm-show{ display:flex !important; align-items:center; justify-content:space-between; gap:12px; margin-bottom:12px; }
+#gmWsHomeBar{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:14px; }
+#gmWsHomeBar .gm-home-menu-btn{ display:inline-flex; align-items:center; gap:8px; padding:11px 16px; border-radius:999px; border:1px solid rgba(255,255,255,.18); background:#fff; color:#0f172a; font-weight:800; cursor:pointer; }
+#gmWorkspaceBackButton{ display:inline-flex !important; align-items:center; gap:8px; }
+#gmWorkspaceBackButton.gm-hidden{ display:none !important; }
+/* Admin Menu Card */
+#gmAdminMenuCard{ display:none; }
+#gmAdminMenuCard.gm-show{ display:block !important; }
+#gmAdminMenuGrid{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin-top:12px; }
+@media(min-width:700px){ #gmAdminMenuGrid{ grid-template-columns:repeat(3,minmax(0,1fr)); } }
+.gm-admin-menu-card-btn{ display:flex; flex-direction:column; gap:4px; align-items:flex-start; text-align:left; padding:18px 14px; border-radius:16px; border:1px solid rgba(255,255,255,.14); background:linear-gradient(165deg,rgba(255,255,255,.09),rgba(255,255,255,.02)); color:#fff; font-weight:700; cursor:pointer; font-size:.95rem; line-height:1.35; }
+.gm-admin-menu-card-btn small{ font-weight:400; font-size:.78rem; color:#94a3b8; }
+#gmAdminBackBtn{ display:none; }
+#gmAdminBackBtn.gm-show{ display:inline-flex !important; align-items:center; gap:8px; }
+#gmAdminTabs{ display:none !important; }
+/* Hide old admin header text that said menu is on left */
+#gmAdminSection .gm-panel:first-child p{ display:none !important; }
+</style>
+<script>
+(function(){
+  function $(id){ return document.getElementById(id); }
+  function waitForGM(cb){ var t=setInterval(function(){ if(window.GM && window.GM.selectTab && window.GM.selectAdminTab && window.GM.openWorkspace){ clearInterval(t); cb(); } }, 200); setTimeout(function(){ clearInterval(t); }, 10000); }
+  waitForGM(function(){
+    var origSelectTab = window.GM.selectTab;
+    var origWorkspaceBack = window.GM.workspaceBack;
+    var origToggleMenu = window.GM.toggleWorkspaceMenu;
+    var origOpenWorkspace = window.GM.openWorkspace;
+    var origSelectAdminTab = window.GM.selectAdminTab;
+    var wsView = 'home'; // home | menu | page
+    var adminView = 'menu'; // menu | page
+
+    /* ---------- Workspace: Home bar + Menu header ---------- */
+    function ensureWsChrome(){
+      var content = document.querySelector('#gmWorkspaceOverlay .gm-work-content');
+      if(!content) return;
+      if(!$('gmWsHomeBar')){
+        var bar=document.createElement('div'); bar.id='gmWsHomeBar';
+        bar.innerHTML='<button class="gm-home-menu-btn" type="button" onclick="window.GM.__wsShowMenu()">\u2630 Menu</button><div><strong>Services</strong><div class="gm-muted" style="font-size:.82rem">Tap Menu (top-left) for Orders, Reviews, Calculator & more.</div></div>';
+        content.insertBefore(bar, content.firstChild);
+      }
+      if(!$('gmWsMenuHeader')){
+        var tabs=$('gmWorkspaceTabs');
+        if(tabs){
+          var h=document.createElement('div'); h.id='gmWsMenuHeader';
+          h.innerHTML='<div><strong style="font-size:1.1rem">Menu</strong><div class="gm-muted" style="font-size:.82rem">Tap one option — only that page opens.</div></div><button class="gm-action" type="button" onclick="window.GM.__wsShowHome()">\u2190 Back to Services</button>';
+          tabs.parentNode.insertBefore(h, tabs);
+        }
+      }
+    }
+    function setWsTitle(t){ var el=$('gmCurrentSectionTitle'); if(el) el.textContent=t; }
+    function wsShowHome(){
+      ensureWsChrome(); wsView='home';
+      var ov=$('gmWorkspaceOverlay'); if(ov) ov.dataset.gmWsView='home';
+      document.querySelectorAll('[data-gm-section]').forEach(function(s){ s.classList.toggle('gm-hidden', s.dataset.gmSection!=='services'); });
+      var tabs=$('gmWorkspaceTabs'); if(tabs){ tabs.classList.add('gm-hidden'); tabs.classList.remove('gm-menu-card'); }
+      var h=$('gmWsMenuHeader'); if(h) h.classList.remove('gm-show');
+      var bar=$('gmWsHomeBar'); if(bar) bar.style.display='flex';
+      var back=$('gmWorkspaceBackButton'); if(back) back.classList.add('gm-hidden');
+      var stats=$('gmOverviewStats'); if(stats) stats.classList.add('gm-hidden');
+      setWsTitle('Services & Pricing');
+      var c=document.querySelector('#gmWorkspaceOverlay .gm-work-content'); if(c) c.scrollTop=0; window.scrollTo(0,0);
+    }
+    function wsShowMenu(){
+      ensureWsChrome(); wsView='menu';
+      var ov=$('gmWorkspaceOverlay'); if(ov) ov.dataset.gmWsView='menu';
+      document.querySelectorAll('[data-gm-section]').forEach(function(s){ s.classList.add('gm-hidden'); });
+      var tabs=$('gmWorkspaceTabs'); if(tabs){ tabs.classList.remove('gm-hidden'); tabs.classList.add('gm-menu-card'); }
+      var h=$('gmWsMenuHeader'); if(h) h.classList.add('gm-show');
+      var bar=$('gmWsHomeBar'); if(bar) bar.style.display='none';
+      var back=$('gmWorkspaceBackButton'); if(back) back.classList.add('gm-hidden');
+      var stats=$('gmOverviewStats'); if(stats) stats.classList.add('gm-hidden');
+      setWsTitle('Menu');
+      // Make Admin Panel visible in menu — it was below fold in old sidebar
+      var adminTab=$('gmAdminTab'); if(adminTab){ adminTab.classList.remove('gm-hidden'); }
+      var c=document.querySelector('#gmWorkspaceOverlay .gm-work-content'); if(c) c.scrollTop=0;
+    }
+    function wsOpenPage(tab){
+      if(tab==='admin'){
+        // Show Admin section, then Admin Menu (not a single admin page)
+        origSelectTab('admin');
+        wsView='page';
+        var ov=$('gmWorkspaceOverlay'); if(ov) ov.dataset.gmWsView='page';
+        var tabs=$('gmWorkspaceTabs'); if(tabs){ tabs.classList.add('gm-hidden'); tabs.classList.remove('gm-menu-card'); }
+        var h=$('gmWsMenuHeader'); if(h) h.classList.remove('gm-show');
+        var bar=$('gmWsHomeBar'); if(bar) bar.style.display='none';
+        var back=$('gmWorkspaceBackButton'); if(back) back.classList.remove('gm-hidden');
+        var stats=$('gmOverviewStats'); if(stats) stats.classList.add('gm-hidden');
+        setWsTitle('Admin Panel');
+        adminShowMenu();
+        return;
+      }
+      wsView='page';
+      origSelectTab(tab);
+      var ov2=$('gmWorkspaceOverlay'); if(ov2) ov2.dataset.gmWsView='page';
+      var tabs2=$('gmWorkspaceTabs'); if(tabs2){ tabs2.classList.add('gm-hidden'); tabs2.classList.remove('gm-menu-card'); }
+      var h2=$('gmWsMenuHeader'); if(h2) h2.classList.remove('gm-show');
+      var bar2=$('gmWsHomeBar'); if(bar2) bar2.style.display='none';
+      var back2=$('gmWorkspaceBackButton'); if(back2) back2.classList.remove('gm-hidden');
+      var stats2=$('gmOverviewStats'); if(stats2) stats2.classList.toggle('gm-hidden', tab!=='overview');
+      var titles={overview:'Overview',calculator:'Price Calculator',services:'Services & Pricing',orders:'My Orders',reviews:'Reviews',notifications:'Notifications'};
+      setWsTitle(titles[tab]||'Workspace');
+      var c=document.querySelector('#gmWorkspaceOverlay .gm-work-content'); if(c) c.scrollTop=0;
+    }
+    function wsBack(){
+      var active=document.querySelector('[data-gm-section]:not(.gm-hidden)');
+      var isAdminPage = active && active.dataset.gmSection==='admin';
+      if(isAdminPage){
+        if(adminView==='page'){ adminShowMenu(); return; }
+        wsShowMenu(); return;
+      }
+      if(wsView==='page'){ wsShowMenu(); return; }
+      if(wsView==='menu'){ wsShowHome(); return; }
+      if(origWorkspaceBack) origWorkspaceBack();
+    }
+
+    /* ---------- Admin: Menu Card -> Page -> Back -> Menu ---------- */
+    function adminMenuDefs(){
+      var defs=[
+        {key:'service-cards', icon:'\uD83C\uDCCF', label:'Service Cards', sub:'Add Portfolio + Chat cards'},
+        {key:'orders', icon:'\uD83D\uDCE6', label:'Orders', sub:'All orders'},
+        {key:'chats', icon:'\uD83D\uDCAC', label:'Live Chats', sub:'Reply to clients'},
+        {key:'reviews', icon:'\u2B50', label:'Review Moderation', sub:'Approve / reject'},
+        {key:'analytics', icon:'\uD83D\uDCCA', label:'Visit Count', sub:'Analytics + Export'}
+      ];
+      // Only show defs that actually exist as admin sections (Service Cards may load late)
+      return defs.filter(function(d){ return !!document.querySelector('[data-gm-admin-section="'+d.key+'"]'); });
+    }
+    function ensureAdminChrome(){
+      var adminSec=$('gmAdminSection'); if(!adminSec) return;
+      if(!$('gmAdminMenuCard')){
+        var card=document.createElement('div'); card.id='gmAdminMenuCard';
+        card.innerHTML='<div class="gm-panel"><h3>Admin Menu</h3><p class="gm-muted">Tap one option — only that page opens. Back will bring you back here.</p><div id="gmAdminMenuGrid"></div></div>';
+        var layout=adminSec.querySelector('.gm-admin-layout');
+        if(layout) adminSec.insertBefore(card, layout);
+        else adminSec.appendChild(card);
+      }
+      if(!$('gmAdminBackBtn')){
+        var b=document.createElement('button'); b.id='gmAdminBackBtn'; b.className='gm-action'; b.type='button';
+        b.innerHTML='\u2190 Back to Admin Menu';
+        b.onclick=function(){ adminShowMenu(); };
+        var adminPanel=adminSec.querySelector('.gm-panel');
+        if(adminPanel) adminPanel.insertBefore(b, adminPanel.firstChild);
+      }
+    }
+    function adminShowMenu(){
+      ensureAdminChrome(); adminView='menu';
+      document.querySelectorAll('[data-gm-admin-section]').forEach(function(s){ s.classList.add('gm-hidden'); });
+      var card=$('gmAdminMenuCard'); if(card) card.classList.add('gm-show');
+      var back=$('gmAdminBackBtn'); if(back) back.classList.remove('gm-show');
+      var grid=$('gmAdminMenuGrid'); if(grid){
+        var defs=adminMenuDefs();
+        grid.innerHTML=defs.map(function(d){ return '<button class="gm-admin-menu-card-btn" type="button" onclick="window.GM.selectAdminTab(\''+d.key+'\')"><span>'+d.icon+' '+d.label+'</span><small>'+d.sub+'</small></button>'; }).join('') || '<p class="gm-muted">Admin pages are loading… tap Menu again in a second.</p>';
+      }
+      var adminSec=$('gmAdminSection'); if(adminSec) adminSec.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+    function adminOpenPage(tab){
+      if(tab==='catalog'){ tab='service-cards'; } // Old catalog is hidden — Service Cards is the one
+      ensureAdminChrome(); adminView='page';
+      origSelectAdminTab(tab);
+      var card=$('gmAdminMenuCard'); if(card) card.classList.remove('gm-show');
+      var back=$('gmAdminBackBtn'); if(back) back.classList.add('gm-show');
+      var adminSec=$('gmAdminSection'); if(adminSec) adminSec.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+
+    /* ---------- Override GM ---------- */
+    window.GM.__wsShowHome = wsShowHome;
+    window.GM.__wsShowMenu = wsShowMenu;
+    window.GM.__wsOpenPage = wsOpenPage;
+    window.GM.__adminShowMenu = adminShowMenu;
+    window.GM.selectTab = function(tab){ wsOpenPage(tab); };
+    window.GM.workspaceBack = function(){ wsBack(); };
+    window.GM.toggleWorkspaceMenu = function(){ if(wsView==='menu') wsShowHome(); else wsShowMenu(); };
+    window.GM.selectAdminTab = function(tab){ adminOpenPage(tab); };
+    window.GM.openWorkspace = function(){ var r=origOpenWorkspace.apply(this, arguments); setTimeout(function(){ ensureWsChrome(); ensureAdminChrome(); wsShowHome(); }, 150); return r; };
+    // If workspace already open, apply Home view now
+    try{ if(!$('gmWorkspaceOverlay').classList.contains('gm-hidden')){ wsShowHome(); } }catch(e){}
+
+    /* ---------- Chat picker: load services even without opening Workspace ---------- */
+    var chatCatalog=[];
+    function fetchChatCatalog(){
+      return new Promise(function(resolve){
+        try{
+          var bridge=(window.GM_TELEGRAM_BRIDGE_URL||'https://portfolio-live-chat-bot.onrender.com/api/bridge');
+          var url=bridge.replace(/\/api\/bridge\/?$/, '/api/public/catalog');
+          fetch(url,{method:'GET', headers:{'Accept':'application/json'}, cache:'no-store'}).then(function(res){ return res.json(); }).then(function(data){
+            if(data && Array.isArray(data.services)) chatCatalog=data.services.filter(function(s){ return s && s.active!==false; });
+            resolve(chatCatalog);
+          }).catch(function(){ resolve(chatCatalog); });
+        }catch(e){ resolve(chatCatalog); }
+      });
+    }
+    fetchChatCatalog();
+    // Override getServicesList: if GM cache empty, use public catalog cache
+    try{
+      var origGetServices = window.GM.getServicesList;
+      window.GM.getServicesList = function(){
+        var live=[]; try{ live=origGetServices ? origGetServices() : []; }catch(e){}
+        if(live && live.length) return live;
+        if(chatCatalog && chatCatalog.length) return chatCatalog.map(function(s){ return {id:s.id, name:s.name, description:s.description||'', price:s.price, icon:s.icon||'fas fa-check-circle', features:Array.isArray(s.features)?s.features:[]}; });
+        return live||[];
+      };
+    }catch(e){}
+    // Override picker toggle: fetch first, then open so it never shows empty when services exist
+    try{
+      var origTogglePicker = window.GM.toggleChatOrderPicker;
+      window.GM.toggleChatOrderPicker = function(){
+        var picker=document.getElementById('gmChatOrderPicker');
+        var willShow = picker && picker.classList.contains('gm-hidden');
+        if(!willShow && origTogglePicker){ origTogglePicker(); return; }
+        var live=[]; try{ live=window.GM.getServicesList ? window.GM.getServicesList() : []; }catch(e){}
+        if(live && live.length){ if(origTogglePicker) origTogglePicker(); return; }
+        fetchChatCatalog().then(function(){
+          if(origTogglePicker) origTogglePicker();
+          // If still empty after fetch, keep picker open so user sees the message (not a silent fail)
+          setTimeout(function(){
+            var list=document.getElementById('gmChatOrderPickerList');
+            if(list && !list.innerHTML.trim()){ list.innerHTML='<p class="gm-muted">No services available right now. Please try again or ask in live chat.</p>'; }
+          }, 300);
+        });
+      };
+    }catch(e){}
+    // Keep Menu button always visible
+    setInterval(function(){
+      try{ var b=$('gmWorkspaceMenuButton'); if(b){ b.style.display=''; b.style.visibility='visible'; } }catch(e){}
+    }, 1500);
+  });
+})();
+</script>
 </body>
+
 
 </html>
