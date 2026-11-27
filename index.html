@@ -947,7 +947,7 @@ Core Preservation: Original portfolio layout preserved; interactive modules inte
         .gm-service-card h3 { font-size:1.15rem; margin:0 0 8px; }
         .gm-service-card p { color:var(--text-muted); font-size:.87rem; }
         .gm-service-card ul { list-style:none; padding:0; margin:12px 0 18px; color:#cbd5e1; font-size:.86rem; }
-        .gm-service-card li { margin:7px 0; display:flex; gap:8px; overflow-wrap:anywhere; }
+        .gm-service-card li { margin:7px 0; display:flex; gap:8px; overflow-wrap:break-word; word-break:normal; hyphens:none; } .gm-service-card li i { flex-shrink:0; } .gm-service-card li span { min-width:0; overflow-wrap:break-word; word-break:normal; }
         .gm-service-card li i { color:#34d399; margin-top:4px; }
         .gm-service-price { font:700 1.5rem 'Outfit',sans-serif; color:#93c5fd; margin-top:auto; padding:7px 0 14px; }
         .gm-table-wrap { overflow-x:auto; width:100%; }
@@ -1539,7 +1539,51 @@ body.gm-workspace-open .gm-chat-launcher, body.gm-admin-open .gm-chat-launcher{z
 .gm-filter-btn{padding:8px 14px; border-radius:999px; border:1px solid rgba(255,255,255,.16); background:transparent; color:#cbd5e1; cursor:pointer; font-size:.85rem}
 .gm-filter-btn.gm-active{background:#fff; color:#0b1423; font-weight:700}
 </style>
+
+<style id="gm-fix-2026-11-27">
+.gm-side-uid{ display:none !important; }
+.service-card h3, .gm-service-card h3{ overflow-wrap:break-word; word-break:normal; hyphens:none; line-height:1.35; }
+.service-card ul li, .service-card p, .gm-service-card p{ overflow-wrap:break-word; word-break:normal; hyphens:none; }
+.service-card ul li{ display:flex; gap:8px; } .service-card ul li i{ flex-shrink:0; margin-top:4px; } .service-card ul li span{ min-width:0; }
+.gm-pill-nav{ max-width:100vw !important; box-sizing:border-box !important; overflow:hidden !important; }
+#gmPillLinks{ display:flex !important; flex-wrap:nowrap !important; overflow-x:auto !important; -webkit-overflow-scrolling:touch !important; scrollbar-width:none !important; }
+#gmPillLinks::-webkit-scrollbar{ display:none !important; }
+#gmPillLinks a{ white-space:nowrap !important; flex-shrink:0 !important; }
+@media(max-width:700px){
+  .trust-counter{ margin-top:0 !important; padding:18px 4% 36px !important; }
+  .stats-grid{ grid-template-columns:repeat(2,minmax(0,1fr)) !important; gap:12px !important; }
+  .stat-card{ padding:20px 10px !important; }
+  .stat-number{ font-size:1.9rem !important; }
+  .stat-text{ font-size:.82rem !important; }
+}
+@media(max-width:900px){
+  .gm-work-shell{ flex-direction:column !important; }
+  .gm-work-sidebar{ width:100% !important; max-width:100% !important; position:static !important; transform:none !important; height:auto !important; overflow:visible !important; border-right:none !important; border-bottom:1px solid var(--premium-border, rgba(255,255,255,.12)) !important; }
+  .gm-work-main{ width:100% !important; min-width:0 !important; }
+  .gm-work-main .gm-work-top{ flex-wrap:wrap !important; gap:10px !important; }
+  .gm-admin-layout{ grid-template-columns:1fr !important; }
+  .gm-admin-menu{ position:static !important; flex-direction:row !important; flex-wrap:wrap !important; }
+  .gm-admin-menu-btn{ width:auto !important; flex:1 1 140px !important; }
+  .gm-form-grid{ grid-template-columns:1fr !important; }
+  .gm-card-type-toggle{ flex-direction:column !important; }
+  .gm-card-type-btn{ min-width:0 !important; width:100% !important; }
+  #gmNewCardList .gm-admin-card-item > div{ flex-direction:column !important; }
+  #gmNewCardList .gm-action-row{ width:100% !important; }
+  #gmNewCardList .gm-action-row .gm-action{ flex:1 !important; }
+  .gm-service-grid{ grid-template-columns:1fr !important; }
+}
+@media(min-width:901px){
+  .gm-work-shell{ flex-direction:row !important; }
+  .gm-work-sidebar{ width:302px !important; }
+}
+.gm-side-notice-text p{ display:block !important; -webkit-line-clamp:unset !important; overflow:visible !important; white-space:normal !important; line-height:1.55 !important; font-size:.78rem !important; }
+.gm-side-notice{ cursor:pointer; }
+#gmNewCardTitle, #gmNewCardIcon, #gmNewCardRate, #gmNewCardDesc, #gmNewCardFeatures{ width:100% !important; max-width:100% !important; box-sizing:border-box !important; }
+.gm-card-review-head{ display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; }
+.gm-portfolio-empty{ border:1px solid rgba(255,255,255,.16) !important; border-style:solid !important; background:linear-gradient(160deg, rgba(255,255,255,.07), rgba(255,255,255,.02)) !important; }
+</style>
 </head>
+
 <body>
 
     <div class="ambient-glow"></div>
@@ -1614,7 +1658,7 @@ body.gm-workspace-open .gm-chat-launcher, body.gm-admin-open .gm-chat-launcher{z
         </div>
         
         <div class="services-grid" id="gmPortfolioGrid"></div>
-          <div id="gmPortfolioEmpty" class="gm-portfolio-empty"><strong>No services yet.</strong><p>Admin will add service cards one by one from Admin Panel → Service Cards. Each new card appears here automatically.</p></div>
+          <div id="gmPortfolioEmpty" class="gm-portfolio-empty"><strong>Premium Play Store Growth Services</strong><p>New service cards are being prepared. For a custom quote, contact us on Live Chat or WhatsApp — we reply within minutes.</p><a href="#contact" class="cta-badge" style="display:inline-block;margin-top:12px">📩 Get Custom Quote - Contact Us</a></div>
           <!-- FIX: Old duplicate Live Catalog removed. Only the single Play Store Style Reviews box below remains. -->
     </section>
 
@@ -2782,7 +2826,7 @@ body.gm-workspace-open .gm-chat-launcher, body.gm-admin-open .gm-chat-launcher{z
         function renderReviewWidget(serviceId) {
           const reviews=reviewsForService(serviceId), key=escapeHtml(serviceId);
           const content = reviews.length ? `<div class="gm-review-marquee"><div class="gm-review-track">${reviews.map(renderMiniReview).join('')}${reviews.map(renderMiniReview).join('')}</div></div>` : `<p class="gm-muted" style="font-size:.78rem">No published reviews yet.</p>`;
-          return `<div class="gm-card-review-head"><strong><i class="fas fa-star" style="color:#fbbf24"></i> Reviews (${reviews.length})</strong><button class="gm-link-action" type="button" onclick="GM.toggleServiceReviews('${key}')">${reviews.length ? 'See all' : 'Reviews'}</button></div>${content}<div class="gm-all-reviews gm-hidden" data-gm-review-list="${key}">${reviews.length ? reviews.map(renderAllReviewItem).join('') : '<p class="gm-muted">Reviews approved by the administrator will appear here.</p>'}</div>`;
+          return `<div class="gm-card-review-head"><strong><i class="fas fa-star" style="color:#fbbf24"></i> Reviews (${reviews.length})</strong>${reviews.length ? `<button class="gm-link-action" type="button" onclick="GM.toggleServiceReviews('${key}')">See all</button>` : `<span class="gm-muted" style="font-size:.78rem">Be the first to review</span>`}</div>${content}<div class="gm-all-reviews gm-hidden" data-gm-review-list="${key}">${reviews.length ? reviews.map(renderAllReviewItem).join('') : '<p class="gm-muted">Reviews approved by the administrator will appear here.</p>'}</div>`;
         }
         function renderPublishedReviewsEverywhere() {
           document.querySelectorAll('[data-service-reviews]').forEach(node => { node.innerHTML=renderReviewWidget(node.dataset.serviceReviews || ''); });
@@ -3975,7 +4019,7 @@ setInterval(function(){ if(window.GM && !window.GM._saveSiteSettings) tryWire();
    Chat (WITH rate) -> services -> ONLY Chat Box + Order page + user Account. */
 import { getDatabase, ref, onValue, set, push, remove } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js';
 function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-var db=null; try{ db=getDatabase(); }catch(e){}
+var db=null; var listenersAttached=false; function ensureDb(){ try{ if(!db) db=getDatabase(); }catch(e){ db=null; } return db; } function tryAttachListeners(){ try{ if(listenersAttached) return true; if(!ensureDb()) return false; listenersAttached=true; onValue(ref(db,'portfolioCards'), function(snap){ portfolioCache=snap.val()||{}; renderPortfolio(); renderAdminList(); }); onValue(ref(db,'services'), function(snap){ chatCache=snap.val()||{}; renderAdminList(); }); return true; }catch(e){ listenersAttached=false; db=null; return false; } }
 var portfolioCache={}, chatCache={};
 var editing=null;
 var curType='portfolio';
@@ -4041,7 +4085,14 @@ function ensureServiceCardsTab(){
     }
   }catch(e){}
 }
+var drafts={portfolio:{title:'',icon:'',desc:'',feats:'',rate:''},chat:{title:'',icon:'',desc:'',feats:'',rate:''}};
+function readFormToDraft(){ try{ var k=curType; drafts[k]={title:document.getElementById('gmNewCardTitle').value||'',icon:document.getElementById('gmNewCardIcon').value||'',desc:document.getElementById('gmNewCardDesc').value||'',feats:document.getElementById('gmNewCardFeatures').value||'',rate:document.getElementById('gmNewCardRate').value||''}; try{ sessionStorage.setItem('gmCardDraft_'+k, JSON.stringify(drafts[k])); }catch(e){} }catch(e){} }
+function applyDraftToForm(k){ try{ var d=drafts[k]||{}; document.getElementById('gmNewCardTitle').value=d.title||''; document.getElementById('gmNewCardIcon').value=d.icon||''; document.getElementById('gmNewCardDesc').value=d.desc||''; document.getElementById('gmNewCardFeatures').value=d.feats||''; document.getElementById('gmNewCardRate').value=d.rate||''; }catch(e){} }
+function restoreDraftFromStorage(){ try{ ['portfolio','chat'].forEach(function(k){ var raw=sessionStorage.getItem('gmCardDraft_'+k); if(raw){ try{ drafts[k]=JSON.parse(raw)||drafts[k]; }catch(e){} } }); applyDraftToForm(curType); }catch(e){} }
+function wireDraftAutosave(){ try{ ['gmNewCardTitle','gmNewCardIcon','gmNewCardDesc','gmNewCardFeatures','gmNewCardRate'].forEach(function(id){ var el=document.getElementById(id); if(el && !el.dataset.gmDraftWired){ el.dataset.gmDraftWired='1'; el.addEventListener('input', function(){ readFormToDraft(); }); } }); }catch(e){} }
 function setType(t){
+  try{ if(t!==curType && !editing) readFormToDraft(); }catch(e){}
+  var prevType=curType;
   curType=t;
   try{
     document.getElementById('gmNewCardTypePortfolio').classList.toggle('gm-active', t==='portfolio');
@@ -4049,6 +4100,7 @@ function setType(t){
     document.getElementById('gmNewCardRateWrap').style.display=(t==='chat')?'':'none';
     var btn=document.getElementById('gmNewCardSaveBtn');
     if(btn) btn.textContent=(editing?'Update ':'+ Add ')+(t==='portfolio'?'Portfolio Card':'Chat Card');
+    try{ if(!editing && t!==prevType) applyDraftToForm(t); }catch(e){}
   }catch(e){}
 }
 function setFilter(f){
@@ -4057,6 +4109,7 @@ function setFilter(f){
   renderAdminList();
 }
 function clearForm(){
+  try{ sessionStorage.removeItem('gmCardDraft_'+curType); drafts[curType]={title:'',icon:'',desc:'',feats:'',rate:''}; }catch(e){}
   editing=null;
   try{
     document.getElementById('gmNewCardTitle').value='';
@@ -4170,15 +4223,15 @@ async function saveCard(){
       await set(r, payload);
       setStatus(curType==='portfolio' ? 'Portfolio card added — check Portfolio website.' : 'Chat card added — check Chat Box + Order page + user Account.');
     }
+    try{ sessionStorage.removeItem('gmCardDraft_'+curType); drafts[curType]={title:'',icon:'',desc:'',feats:'',rate:''}; }catch(e){}
     clearForm(); setType(curType);
   }catch(e){ setStatus('Could not save: '+(e.message||e), true); }
 }
 function init(){
   hideOldAdmin(); ensureServiceCardsTab(); setType('portfolio'); renderAdminList(); renderPortfolio();
-  if(db){
-    onValue(ref(db,'portfolioCards'), function(snap){ portfolioCache=snap.val()||{}; renderPortfolio(); renderAdminList(); });
-    onValue(ref(db,'services'), function(snap){ chatCache=snap.val()||{}; renderAdminList(); });
-  }
+  tryAttachListeners();
+  try{ restoreDraftFromStorage(); }catch(e){}
+  try{ wireDraftAutosave(); }catch(e){}
   try{
     if(window.GM && window.GM.selectAdminTab && !window.GM.selectAdminTab.__gmCardsWrapped){
       var orig=window.GM.selectAdminTab;
@@ -4189,7 +4242,7 @@ function init(){
 }
 if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', init);
 else init();
-setInterval(function(){ hideOldAdmin(); ensureServiceCardsTab(); }, 1500);
+setInterval(function(){ hideOldAdmin(); ensureServiceCardsTab(); tryAttachListeners(); }, 1500);
 </script>
 
 <script>
@@ -4208,5 +4261,27 @@ setInterval(function(){ hideOldAdmin(); ensureServiceCardsTab(); }, 1500);
 })();
 </script>
 
+
+<script>
+(function(){
+  function ensureMenuBtn(){
+    try{
+      var btn=document.getElementById('gmWorkspaceMenuButton');
+      if(btn){ btn.style.display=''; btn.style.visibility='visible'; }
+      var st=document.getElementById('gm-fix-menu-btn');
+      if(!st){ st=document.createElement('style'); st.id='gm-fix-menu-btn'; st.textContent='body.gm-admin-open #gmWorkspaceMenuButton{display:inline-flex !important; visibility:visible !important;}'; document.head.appendChild(st); }
+    }catch(e){}
+  }
+  function wireNotice(){
+    try{
+      var n=document.querySelector('.gm-side-notice');
+      if(n && !n.dataset.gmFixed){ n.dataset.gmFixed='1'; n.addEventListener('click', function(){ n.classList.toggle('gm-expanded'); }); }
+    }catch(e){}
+  }
+  document.addEventListener('DOMContentLoaded', function(){ ensureMenuBtn(); wireNotice(); });
+  setInterval(function(){ ensureMenuBtn(); wireNotice(); }, 1500);
+})();
+</script>
 </body>
+
 </html>
